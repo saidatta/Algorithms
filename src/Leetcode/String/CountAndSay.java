@@ -1,4 +1,4 @@
-package Leetcode;
+package Leetcode.String;
 
 /**
  * Created by venkatamunnangi on 12/1/16.

@@ -1,5 +1,7 @@
-package Leetcode;
+package Leetcode.Tree;
 
+
+import Leetcode.ListNode;
 
 import javax.swing.tree.TreeNode;
 

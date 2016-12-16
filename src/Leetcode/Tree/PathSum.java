@@ -1,4 +1,6 @@
-package Leetcode;
+package Leetcode.Tree;
+
+import Leetcode.TreeNode;
 
 /**LeetCode 112
  * Created by venkatamunnangi on 24/11/16.

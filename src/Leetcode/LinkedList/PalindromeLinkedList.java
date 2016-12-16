@@ -1,4 +1,4 @@
-package Leetcode;
+package Leetcode.LinkedList;
 
 /**
  * Created by venkatamunnangi on 9/28/16.

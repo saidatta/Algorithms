@@ -1,5 +1,7 @@
 package Leetcode;
 
+import Leetcode.Tree.NestedInteger;
+
 import java.util.List;
 
 /**

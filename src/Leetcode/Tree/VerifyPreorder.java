@@ -1,4 +1,4 @@
-package Leetcode;
+package Leetcode.Tree;
 
 /**
  * Created by venkatamunnangi on 08/11/16.
