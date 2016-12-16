@@ -25,21 +25,21 @@ public class BinaryTreeUpsideDown {
      */
     public TreeNode upsideDownBinaryTree(TreeNode root) {
         // Hit the leftmost root first.
-        if(root == null || (root.left == null && root.right != null)) {
+        if(root == null || root.left == null) {
             return root;
         }
 
         TreeNode tr = upsideDownBinaryTree(root.left);
-        upsideDownFormula(tr);
+        upsideDownFormula(root);
 
         return tr;
     }
 
-    private void upsideDownFormula(TreeNode tr) {
-        tr.left.left = tr.right;
-        tr.left.right = tr;
+    private void upsideDownFormula(TreeNode root) {
+        root.left.left = root.right;
+        root.left.right = root;
 
-        tr.right = null;
-        tr.left = null;
+        root.right = null;
+        root.left = null;
     }
 }
