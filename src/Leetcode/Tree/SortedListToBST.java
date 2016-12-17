@@ -28,7 +28,7 @@ public class SortedListToBST {
             }
             int m = count/2;
             TreeNode left = convert(n, m);
-            TreeNode ret = null; //new TreeNode(end.val);
+            TreeNode ret = null; //new Leetcode.TreeNode(end.val);
             end = end.next;
 //            ret.left = left;
  //           ret.right = convert(end, count-m-1);
