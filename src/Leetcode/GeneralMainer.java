@@ -26,7 +26,7 @@ public class GeneralMainer {
         ArrayList<TestNestedInteger> test = new ArrayList<>();
         test.add(new TestNestedInteger(1));
         test.add(new TestNestedInteger(al2));
-        System.out.println(nw2.depthSumInverse(test));
+        //System.out.println(nw2.depthSumInverse(test));
     }
 
 

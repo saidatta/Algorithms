@@ -1,13 +1,15 @@
-package Leetcode.LinkedList;
+package Leetcode;
 
-import Leetcode.ListNode;
+import Leetcode.LinkedList.IntersectionLL;
+import Leetcode.LinkedList.OddEvenLL;
+import Leetcode.Tree.BSTCheck;
 
 /**
  * Created by venkatamunnangi on 12/11/16.
  */
 public class Mainer {
     public static void main(String [] args) {
-        testIntersectionLL();
+        testBSTCheck();
     }
 
     public static void testOddEvenLL() {
@@ -26,10 +28,6 @@ public class Mainer {
 
     public static void testIntersectionLL() {
         ListNode l1 = new ListNode(1);
-//        l1.next = new Leetcode.ListNode(2);
-//        l1.next.next = new Leetcode.ListNode(3);
-//        l1.next.next.next = new Leetcode.ListNode(4);
-//        l1.next.next.next.next = new Leetcode.ListNode(5);
         IntersectionLL intLL = new IntersectionLL();
         ListNode l2 = new ListNode(1);
         ListNode ans = intLL.getIntersectionNode(l1,l2);
@@ -38,5 +36,14 @@ public class Mainer {
             ans = ans.next;
         }
     }
+
+    public static void testBSTCheck() {
+        TreeNode l1 = new TreeNode(1);
+        l1.left = new TreeNode(1);
+        BSTCheck bstCheck = new BSTCheck();
+        System.out.println(bstCheck.validateBST(l1, null));
+    }
+
+
 
 }

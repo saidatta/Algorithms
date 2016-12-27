@@ -16,6 +16,11 @@ public class BalancedBinaryTree {
         return (Math.abs(hl-hr) <= 1) && isBalanced(root.left) && isBalanced(root.right);
     }
 
+    /**
+     * Getting height.
+     * @param root
+     * @return
+     */
     int isBalancedHelper(TreeNode root) {
         if(root == null)
             return 0;
@@ -24,5 +29,32 @@ public class BalancedBinaryTree {
         int right = isBalancedHelper(root.right) + 1;
 
         return Math.max(left,right);
+    }
+
+
+    public boolean isBalanced2(TreeNode root) {
+        return getHeightHelper(root) != Integer.MIN_VALUE;
+    }
+
+    int getHeightHelper(TreeNode root) {
+        if(root == null) {
+            return -1;
+        }
+
+        int leftHeight = getHeightHelper(root.left);
+        if(leftHeight == Integer.MIN_VALUE) {
+            return leftHeight;
+        }
+
+        int rightHeight = getHeightHelper(root.right);
+        if(rightHeight == Integer.MIN_VALUE) {
+            return rightHeight;
+        }
+
+        if(Math.abs(leftHeight - rightHeight) > 1) {
+            return Integer.MIN_VALUE;
+        }
+
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 }
