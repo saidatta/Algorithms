@@ -52,8 +52,7 @@ public class TopologicalSortGraph {
     }
 
     // Driver method
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         // Create a graph given in the above diagram
         TopologicalSortGraph g = new TopologicalSortGraph(6);
         g.addEdge(5, 2);
