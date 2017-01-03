@@ -11,11 +11,8 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
         String sb = "";
         int max = 0;
-        int count = 0;
-
         for(int i = 0; i < s.length() ; i++) {
             char x = s.charAt(i);
-            count++;
             if(!sb.contains(""+x)) {
                 sb += (s.charAt(i));
             } else {

@@ -28,4 +28,16 @@ public class ReverseLinkedList {
         // returns head of constructed head.
         return ln2;
     }
+
+    public static void main(String [] args) {
+        ReverseLinkedList rl = new ReverseLinkedList();
+
+        ListNode ln1 = new ListNode(1);
+        ln1.next = new ListNode(3);
+        ln1.next.next = new ListNode(4);
+        ln1.next.next.next = new ListNode(10);
+        ln1.next.next.next.next = new ListNode(19);
+
+        rl.reverseList(ln1);
+    }
 }
