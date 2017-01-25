@@ -1,6 +1,5 @@
 package Skiena.Chp5;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -34,15 +33,12 @@ public class DetectCycleUndirectedGraph {
         Integer i;
 
         // Recur for all the vertices adjacent to this vertex
-        Iterator<Integer> it = adj[v].iterator();
-        while (it.hasNext())
-        {
-            i = it.next();
+        for (Integer integer : adj[v]) {
+            i = integer;
 
             // If an adjacent is not visited, then recur for that
             // adjacent
-            if (!visited[i])
-            {
+            if (!visited[i]) {
                 if (isCyclicUtil(i, visited, v))
                     return true;
             }

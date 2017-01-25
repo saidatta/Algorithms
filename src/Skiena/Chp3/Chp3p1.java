@@ -38,4 +38,30 @@ public class Chp3p1 {
 
         return true;
     }
+
+
+    public static boolean isBalanced2(String str) {
+        int count = 0;
+
+        for(int i = 0;i<str.length();i++) {
+            switch(str.charAt(i)) {
+                case '(':
+                    count++;
+                    break;
+                case ')':
+                    count--;
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
+            if(count <0) {
+                return false;
+            }
+        }
+
+        if(count!= 0) {
+            return false;
+        }
+        return true;
+    }
 }
