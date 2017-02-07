@@ -5,15 +5,24 @@ package Leetcode;
  */
 public class LongestSubstringAtMostKDistinctCharacters {
     public int lengthOfLongestSubstringKDistinct(String s, int k) {
-        int[] count = new int[256];
-        int num = 0, i = 0, res = 0;
+        int[] count = new int[256];     // there are 256 ASCII characters in the world
+
+        int i = 0;  // i will be behind j
+        int num = 0;
+        int res = 0;
+
         for (int j = 0; j < s.length(); j++) {
-            if (count[s.charAt(j)]++ == 0) {
+            if (count[s.charAt(j)]++ == 0) {    // if count[s.charAt(j)] == 0, we know that it is a distinct character
                 num++;
             }
-            if (num > k) {
-                while (--count[s.charAt(i++)] > 0);
-                num--;
+            while (num > k && i < s.length()) {     // sliding window
+                count[s.charAt(i)]--;
+                if (count[s.charAt(i)] == 0){
+                    // If we remove a distinct character, then we have to
+                    // decrement the number of current distinct characters in rotation
+                    num--;
+                }
+                i++;
             }
             res = Math.max(res, j - i + 1);
         }

@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * Created by venkatamunnangi on 12/13/16.
  */
+//[[1,1],2,[1,1]]
 public class NestedWeight2 {
     public int depthSumInverse(List<NestedInteger> nestedList) {
         int unweighted = 0, weighted = 0;

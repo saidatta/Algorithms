@@ -8,7 +8,6 @@ import java.util.*;
  * Created by venkatamunnangi on 12/15/16.
  */
 public class TwoSum3 {
-    List<Integer> distinctNumbers = new ArrayList<>();
     Map<Integer, Integer> dict = new HashMap<>();
 
     // Add the number to an internal data structure.
@@ -17,13 +16,12 @@ public class TwoSum3 {
             dict.put(number, dict.get(number) +1);
         } else {
             dict.put(number, 1);
-            distinctNumbers.add(number);
         }
     }
 
     // Find if there exists any pair of numbers which sum is equal to the value.
     public boolean find(int value) {
-        for(int a : distinctNumbers) {
+        for(int a : dict.keySet()) {
             int b = value -a;
             int count = (b == a) ? 1 : 0;
             if(dict.get(b) != null && dict.get(b) > count) {

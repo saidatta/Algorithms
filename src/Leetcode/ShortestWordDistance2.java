@@ -35,12 +35,12 @@ public class ShortestWordDistance2 {
         for(int i = 0, j = 0; i< l1.size() && j < l2.size();) {
             int i1 = l1.get(i);
             int i2 = l2.get(j);
-            ans = Math.min(ans, i1 - i2);
-
             if(i1 > i2 ) {
-                i++;
-            } else {
+                ans = Math.min(ans, i1 - i2);
                 j++;
+            } else {
+                ans = Math.min(ans, i2 - i1);
+                i++;
             }
         }
         return ans;

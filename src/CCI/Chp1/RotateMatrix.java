@@ -8,7 +8,7 @@ public class RotateMatrix {
         if(matrix == null || matrix[0].length != matrix.length) return false;
 
 
-
+        return false;
     }
 
 }
