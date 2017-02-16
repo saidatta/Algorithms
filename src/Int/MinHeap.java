@@ -92,7 +92,7 @@ public class MinHeap
     }
 
     public int peek() {
-        return Heap[1];
+        return Heap[FRONT];
     }
 
     public void minHeap()
