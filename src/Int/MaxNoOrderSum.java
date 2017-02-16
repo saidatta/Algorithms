@@ -20,7 +20,7 @@ public class MaxNoOrderSum {
         for (int num : numbers)
         {
             if (totalFound < k) {
-                //n add this number without any pre-conditions
+                //add this number no matter what. Since, we need to totalFound is less than the target(k)
                 myHeap.insert(num);
                 totalFound++;
             } else if (num > myHeap.peek()) {
