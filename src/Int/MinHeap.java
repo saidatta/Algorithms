@@ -84,16 +84,15 @@ public class MinHeap
 
     public void print()
     {
-        for (int i = 1; i <= size / 2; i++ )
+        for (int i = 1; i <=size; i++ )
         {
-            System.out.print(" PARENT : " + Heap[i] + " LEFT CHILD : " + Heap[2*i]
-                    + " RIGHT CHILD :" + Heap[2 * i  + 1]);
+            System.out.print(Heap[i]);
             System.out.println();
         }
     }
 
     public int peek() {
-        return Heap[0];
+        return Heap[1];
     }
 
     public void minHeap()
