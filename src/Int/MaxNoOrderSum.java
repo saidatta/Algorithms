@@ -37,7 +37,7 @@ public class MaxNoOrderSum {
     // At this point, the max numbers are on the heap,
     // but there might be too many of them.
     // Remove the smallest number until we have k numbers.
-        while ((totalFound - myHeap.peek()) > k) {
+        while ((totalFound - myHeap.getSize()) > k) {
             myHeap.remove();
             totalFound--;
         }

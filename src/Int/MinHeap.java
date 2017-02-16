@@ -111,6 +111,10 @@ public class MinHeap
         return popped;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     public static void main(String...arg)
     {
         System.out.println("The Min Heap is ");
