@@ -4,10 +4,12 @@ package Int;
  * Deepthi's Question
  * Find k max numbers within an array of size n.
  *
+ *
  * Created by venkatamunnangi on 2/15/17.
  */
 public class MaxNoOrderSum {
 
+  // Running time should be proportional to n log k, where n is the number of numbers and k is the maximum number of items on the heap
     public void solution(int [] numbers, int k, MinHeap myHeap) {
         if(k > numbers.length) {
             // Error u cant have k numbers in (k>n) array.
