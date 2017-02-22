@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * https://leetcode.com/problems/binary-tree-paths/
+ *
+ * return all root to leaf paths
+ *
  * Created by venkatamunnangi on 11/29/16.
  */
 public class BinaryTreePaths {

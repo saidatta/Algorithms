@@ -3,11 +3,15 @@ package Leetcode.Tree;
 import Leetcode.TreeNode;
 
 /**
+ * https://leetcode.com/problems/count-complete-tree-nodes/
+ *
  * Created by venkatamunnangi on 26/11/16.
  */
 public class CountCompleteTreeNodes {
     /**
      * When it is a complete binary tree, then bottom leaf nodes fill up from left to right.
+     * So grab the left most node and ur good.
+     *
      * @param root
      * @return
      */

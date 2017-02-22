@@ -7,6 +7,8 @@ package Leetcode;
  * e.g. {2, 4, 3, 1, 0} => {3, 0, 1, 4, 2}
  * This should take O(n) time complexity.
  *
+ * https://discuss.leetcode.com/topic/98/change-array-in-place
+ *
  * Created by venkatamunnangi on 12/28/16.
  */
 public class ChangeArrayInPlace {
