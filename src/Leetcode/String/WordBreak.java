@@ -1,8 +1,15 @@
 package Leetcode.String;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * https://leetcode.com/problems/word-break/?tab=Description
+ *
+ * Dynamic programming solution
+ *
+ * O (string length * dict size)
+ *
  * Created by venkatamunnangi on 10/1/16.
  */
 public class WordBreak {
@@ -35,5 +42,16 @@ public class WordBreak {
 
         }
         return positions[s.length()];
+    }
+
+
+    public static void main(String [] args) {
+        WordBreak wordBreak = new WordBreak();
+
+        Set<String> words = new HashSet<>();
+        words.add("leet");
+        words.add("code");
+
+        System.out.println(wordBreak.wordBreak("leetcode", words));
     }
 }

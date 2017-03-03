@@ -1,6 +1,11 @@
 package Skiena.Chp8_DynamicProgramming;
 
 /**
+ *
+ * Given an array of non negative numbers and a total, is there subset of numbers in this array which adds up
+ * to given total. Another variation is given an array is it possible to split it up into 2 equal
+ * sum partitions. Partition need not be equal sized. Just equal sum.
+ *
  * Created by venkatamunnangi on 2/21/17.
  */
 public class SubsetSum {
