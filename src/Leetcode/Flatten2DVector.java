@@ -43,7 +43,7 @@ public class Flatten2DVector implements Iterator<Integer> {
         } else {
             do {
                 currentIndex++;
-            } while(currentIndex < vector2d.size() && vector2d.get(currentIndex).size() == 0);
+            } while((currentIndex < vector2d.size()) && (vector2d.get(currentIndex).size() == 0));
         }
         return currentIndex < vector2d.size();
 

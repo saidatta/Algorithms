@@ -2,9 +2,7 @@ package Leetcode.Tree;
 
 import Leetcode.TreeNode;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 /**
@@ -38,13 +36,4 @@ public class InvertBinaryTree {
 
         return root;
     }
-
-    public List<TreeNode> adjacentNodes(TreeNode n) {
-        ArrayList<TreeNode> tnList = new ArrayList<>();
-        tnList.add(n.left);
-        tnList.add(n.right);
-        return tnList;
-    }
-
-
 }
