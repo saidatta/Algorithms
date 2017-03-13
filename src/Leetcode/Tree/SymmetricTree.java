@@ -5,6 +5,8 @@ import Leetcode.TreeNode;
 import java.util.*;
 
 /**
+ * https://leetcode.com/problems/symmetric-tree/#/description
+ *
  * Created by venkatamunnangi on 24/11/16.
  */
 public class SymmetricTree {
@@ -57,9 +59,9 @@ public class SymmetricTree {
 
             q.add(tn1);
             q2.add(tn2);
-                return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 }

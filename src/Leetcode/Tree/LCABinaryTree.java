@@ -9,7 +9,7 @@ import Leetcode.TreeNode;
  */
 public class LCABinaryTree {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root == null || root == p || root == q) {
+        if(root == null || root.val == p.val || root.val == q.val) {
             return root;
         }
         TreeNode left = lowestCommonAncestor(root.left, p, q);
@@ -19,6 +19,18 @@ public class LCABinaryTree {
         }
 
         return (left != null) ? left : right;
+    }
 
+    public static void main(String [] args) {
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.left.left = new TreeNode(3);
+        root.left.right = new TreeNode(4);
+        root.right = new TreeNode(5);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+
+        LCABinaryTree lcaBinaryTree = new LCABinaryTree();
+        System.out.println(lcaBinaryTree.lowestCommonAncestor(root, new TreeNode(3), new TreeNode(4)).val);
     }
 }

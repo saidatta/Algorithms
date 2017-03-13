@@ -4,6 +4,14 @@ import Leetcode.ListNode;
 
 /**
  * 160
+ * https://leetcode.com/problems/intersection-of-two-linked-lists/?tab=Description
+ *
+ * A:          a1 → a2
+                      ↘
+                        c1 → c2 → c3
+                      ↗
+      B: b1 → b2 → b3
+ *
  * Created by venkatamunnangi on 12/11/16.
  */
 public class IntersectionLL {
@@ -36,6 +44,7 @@ public class IntersectionLL {
                 p2 = p2.next;
             }
         }
+
         while(p1 != null && p2 != null) {
             if(p1.val == p2.val) {
                 return p1;

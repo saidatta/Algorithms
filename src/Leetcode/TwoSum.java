@@ -21,4 +21,12 @@ public class TwoSum {
 
         return result;
     }
+
+    public static void main(String [] args) {
+        int [] nums = {2,7,11,15};
+        TwoSum twoSum = new TwoSum();
+
+        int [] ans = twoSum.twoSum(nums, 9);
+        System.out.println(ans[0]+" "+ ans[1]);
+    }
 }

@@ -8,7 +8,7 @@ import java.util.Stack;
  */
 public class TopologicalSortGraph {
     private int V; // no. of vertices
-    private LinkedList<Integer> adjacentNodes[];
+    private LinkedList<Integer>[] adjacentNodes;
 
     TopologicalSortGraph(int v) {
         V = v;
@@ -25,9 +25,10 @@ public class TopologicalSortGraph {
     void topologicalSort() {
         Stack<Integer> stack = new Stack<>();
 
-        boolean visited[] = new boolean[V];
-        for (int i = 0; i < V; i++)
+        boolean[] visited = new boolean[V];
+        for (int i = 0; i < V; i++) {
             visited[i] = false;
+        }
 
         for(int i = 0; i<V;i++) {
             if(!visited[i]) {
