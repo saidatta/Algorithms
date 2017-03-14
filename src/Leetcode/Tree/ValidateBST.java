@@ -14,11 +14,9 @@ public class ValidateBST {
         if (root == null) {
             return true;
         }
-        if(min != null && root.val >= max || (max == null || root.val <= min)) {
-            return false;
-        }
 
-        return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
+        boolean bstProperty = (min == null || root.val > min) && (max == null || root.val < max);
+        return bstProperty && isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
     }
 
     public static void main(String [] args) {
