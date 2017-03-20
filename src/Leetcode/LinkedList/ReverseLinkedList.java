@@ -16,7 +16,8 @@ public class ReverseLinkedList {
             return head;
         }
 
-        ListNode curr = head, ln2 = null;
+        ListNode curr = head;
+        ListNode ln2 = null;
 
         while(curr != null) {
             ListNode temp = curr.next; // 3 |
