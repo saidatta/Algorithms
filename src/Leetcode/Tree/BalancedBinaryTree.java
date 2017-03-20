@@ -8,6 +8,8 @@ import Leetcode.TreeNode;
  * Created by venkatamunnangi on 24/11/16.
  */
 public class BalancedBinaryTree {
+
+    // o (n^2)
     public boolean isBalanced(TreeNode root) {
         if(root == null) {
             return true;
@@ -33,12 +35,13 @@ public class BalancedBinaryTree {
         return Math.max(left,right);
     }
 
-
+    //  In this bottom up approach, each node in the tree only need to be accessed once.
+    // Thus the time complexity is O(N), better than the first solution.
     public boolean isBalanced2(TreeNode root) {
         return getHeightHelper(root) != Integer.MIN_VALUE;
     }
 
-    int getHeightHelper(TreeNode root) {
+    private int getHeightHelper(TreeNode root) {
         if(root == null) {
             return -1;
         }

@@ -34,4 +34,13 @@ public class BSTCheck {
 
         return true;
     }
+
+    public static void main(String [] args) {
+        BSTCheck bstCheck = new BSTCheck();
+        TreeNode root = new TreeNode(10);
+        root.left = new TreeNode(1);
+        root.right = new TreeNode(100);
+
+        System.out.println(bstCheck.isValidBST(root));
+    }
 }

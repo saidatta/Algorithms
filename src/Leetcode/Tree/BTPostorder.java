@@ -15,7 +15,9 @@ public class BTPostorder {
     public List<Integer> postorderTraversal(TreeNode root) {
         LinkedList<Integer> ans = new LinkedList<>();
         Stack<TreeNode> stack = new Stack<>();
-        if (root == null) return ans;
+        if (root == null) {
+            return ans;
+        }
 
         stack.push(root);
         while (!stack.isEmpty()) {
@@ -24,10 +26,20 @@ public class BTPostorder {
             if (cur.left != null) {
                 stack.push(cur.left);
             }
+
             if (cur.right != null) {
                 stack.push(cur.right);
             }
         }
         return ans;
+    }
+
+    public static void main(String [] args) {
+        BTPostorder btPostorder = new BTPostorder();
+        TreeNode root = new TreeNode(10);
+        root.left = new TreeNode(1);
+        root.right = new TreeNode(1000);
+
+        System.out.println(btPostorder.postorderTraversal(root));
     }
 }

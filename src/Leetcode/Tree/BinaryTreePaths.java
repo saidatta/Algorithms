@@ -21,7 +21,7 @@ public class BinaryTreePaths {
         return paths;
     }
 
-    public void treePathHelper(TreeNode root, String path, List<String> paths) {
+    private void treePathHelper(TreeNode root, String path, List<String> paths) {
         if(root.right == null && root.left == null) {
             paths.add(path + root.val);
         }

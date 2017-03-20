@@ -24,10 +24,20 @@ public class CountCompleteTreeNodes {
 
         if(h >= 0) {
             // If last node is right leaf subtree or left tree subtree.
-            return (heightCompleteTree(root.right) == h-1) ? (1 << h) + countNodes(root.right):
-                                                             (1 << h-1) + countNodes(root.left);
+            int innerHeight = (heightCompleteTree(root.right) == h-1) ? (1 << h)  + countNodes(root.right):
+                    (1 << h-1) + countNodes(root.left);
+            return innerHeight;
         } else {
             return 0;
         }
+    }
+
+    public static void main(String [] args) {
+        CountCompleteTreeNodes countCompleteTreeNodes = new CountCompleteTreeNodes();
+        TreeNode root = new TreeNode(10);
+        root.left = new TreeNode(1);
+        root.right = new TreeNode(11);
+
+        System.out.println(countCompleteTreeNodes.countNodes(root));
     }
 }

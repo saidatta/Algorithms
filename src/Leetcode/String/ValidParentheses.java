@@ -3,6 +3,8 @@ package Leetcode.String;
 import java.util.Stack;
 
 /**
+ * https://leetcode.com/problems/valid-parentheses/
+ *
  * Created by venkatamunnangi on 12/1/16.
  */
 public class ValidParentheses {
@@ -41,8 +43,6 @@ public class ValidParentheses {
             return false;
         }
         Stack<Character> cache = new Stack<>();
-        String openings = "({[";
-        String endings = ")}]";
 
         for(char c : s.toCharArray()) {
             if(c == '(') {
