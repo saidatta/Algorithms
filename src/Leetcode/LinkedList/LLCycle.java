@@ -24,6 +24,7 @@ public class LLCycle {
 
         ListNode p1 = head, p2 = head.next.next;
         while(p1 != null || p2 != null) {
+            assert p1 != null;
             if(p1.val == p2.val) {
                 return true;
             }

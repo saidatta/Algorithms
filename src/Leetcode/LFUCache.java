@@ -1,125 +1,117 @@
 package Leetcode;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * https://leetcode.com/problems/lfu-cache/#/description
- *
+ * <p>
  * Created by venkatamunnangi on 3/19/17.
  */
 public class LFUCache {
+    // frequencyMap:
+    //==================
+    // key is frequency , starts with 0 on entry  , and holds a LinkedHashSet of nodes with that freq,
+    // when a node is used again, we remove it from its location to insert with a key of 1 freq higher.
+    // since the LinkedHashSet maintains the insertion order we automatically get LRU in case of frequency tie.
 
-    private Node head = null;
-    private final int capacity;
-    private Map<Integer, Integer> valueMap = new HashMap<>();
-    private Map<Integer, Node> nodeMap = new HashMap<>();
+    HashMap<Integer, LinkedHashSet<Node>> frequencyMap;
+    HashMap<Integer, Node> keyValue;
+    int capacity;
+    int count;              // count of cache
+    int lowestFreq;         // current lowest frequency
 
     public LFUCache(int capacity) {
         this.capacity = capacity;
+        this.count = 0;
+        frequencyMap = new HashMap<Integer, LinkedHashSet<Node>>();
+        keyValue = new HashMap<Integer, Node>();
     }
 
     public int get(int key) {
-        if (nodeMap.containsKey(key)) {
-            increase(key);
+        if (this.capacity == 0) return -1;
+        if (!keyValue.containsKey(key)) {
+            return -1;
         }
+        updateFrequency(key);
+        return keyValue.get(key).value;
 
-        return valueMap.getOrDefault(key, -1);
     }
 
-
-    public void set(int key, int value) {
-        if (0 == this.capacity) {
+    public void put(int key, int value) {
+        if (capacity == 0) return;
+        if (keyValue.containsKey(key)) {
+            keyValue.get(key).value = value;// update new value in same key
+            updateFrequency(key);
             return;
         }
-        if (Objects.nonNull(valueMap.put(key, value))) {
-            // non-firsttime.
-            increase(key);
-        } else {
-            if (nodeMap.size() == this.capacity) {
-                remove();
+        Node n = new Node(key, value, 0);
+        if (count == capacity) {
+            LinkedHashSet<Node> lessFreqNodes = frequencyMap.get(lowestFreq);
+            Iterator<Node> itr = lessFreqNodes.iterator();
+            Node toRemove = itr.next();
+            lessFreqNodes.remove(toRemove);// remove the first one as it is LRU
+            keyValue.remove(toRemove.key);
+            count--;
+            if (lessFreqNodes.size() == 0) {
+                frequencyMap.remove(lowestFreq);
             }
-            add(key);
         }
-    }
 
-    private void increase(int key) {
-        Node node = nodeMap.get(key);
-        node.keys.remove(key);
-        if (Objects.isNull(node.next)) {
-            node.next = new Node(node, null, 1 + node.count, key);
-        } else if (node.next.count == node.count + 1) {
-            node.next.keys.add(key);
+        keyValue.put(key, n);
+        lowestFreq = 0;
+        count++;
+        if (frequencyMap.containsKey(0)) {
+            frequencyMap.get(0).add(n);
         } else {
-            node.next = node.next.prev = new Node(node, node.next, node.count + 1, key);
-        }
-        nodeMap.put(key, node.next);
-        if (node.keys.isEmpty()) {
-            remove(node);
+            LinkedHashSet<Node> newNodes = new LinkedHashSet<Node>();
+            newNodes.add(n);
+            frequencyMap.put(0, newNodes);
         }
     }
 
-    private void remove(Node node) {
-        if (head == node) {
-            head = node.next;
+
+    public void updateFrequency(int key) {
+        Node n = keyValue.get(key); // get the node
+        int freq = n.frequency; // get the frequency from the node
+
+        frequencyMap.get(freq).remove(n); // remove the node from frequency map to put in one level up
+        if (frequencyMap.get(freq).size() == 0 && lowestFreq == freq) {
+            frequencyMap.remove(freq);
+            lowestFreq = freq + 1;
+        }
+        n.frequency++;// increment the frequency in node itself
+
+        if (frequencyMap.containsKey(freq + 1)) {
+            frequencyMap.get(freq + 1).add(n);
         } else {
-            node.prev.next = node.next;
-        }
-        if (Objects.nonNull(node.next)) {
-            node.next.prev = node.prev;
-        }
-    }
-
-    private void add(int key) {
-        if (Objects.isNull(head)) {
-            head = new Node(null, null, 1, key);
-        } else if (head.count == 1) {
-            head.keys.add(key);
-        } else {
-            head = head.prev = new Node(null, head, 1, key);
-        }
-        nodeMap.put(key, head);
-    }
-
-    private void remove() {
-        if (Objects.isNull(head)) {
-            return;
-        }
-        int oldest = head.keys.iterator().next();
-        head.keys.remove(oldest);
-        if (head.keys.isEmpty()) {
-            remove(head);
-        }
-        nodeMap.remove(oldest);
-        valueMap.remove(oldest);
-    }
-
-    private class Node {
-        private Node prev, next;
-        private final int count;
-        private LinkedHashSet<Integer> keys = new LinkedHashSet<>();
-
-        private Node(Node prev, Node next, int count, int key) {
-            this.prev = prev;
-            this.next = next;
-            this.count = count;
-            keys.add(key);
+            LinkedHashSet<Node> newHashSet = new LinkedHashSet<Node>();
+            newHashSet.add(n);
+            frequencyMap.put(freq + 1, newHashSet);
         }
     }
 
-    public static void main(String [] args) {
-        LFUCache lfuCache = new LFUCache(2);
-        lfuCache.set(1,1);
-        lfuCache.set(2,2);
-        lfuCache.get(1);       // returns 1
-        lfuCache.set(3, 3);    // evicts key 2
-        lfuCache.get(2);       // returns -1 (not found)
-        lfuCache.get(3);       // returns 3.
-        lfuCache.set(4, 4);    // evicts key 1.
-        lfuCache.get(1);       // returns -1 (not found)
-        lfuCache.get(3);       // returns 3
-        lfuCache.get(4);       // returns 4
+    class Node {
+        int key;
+        int value;
+        int frequency;
+
+        public Node(int k, int v, int f) {
+            this.key = k;
+            this.value = v;
+            this.frequency = f;
+        }
+
+        public String toString() {
+            return " [ k:" + key + " v:" + value + " f:" + frequency + "] ";
+        }
     }
+
+/**
+ * Your LFUCache object will be instantiated and called as such:
+ * LFUCache obj = new LFUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
 }
