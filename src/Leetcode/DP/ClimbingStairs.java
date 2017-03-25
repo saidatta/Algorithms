@@ -1,11 +1,13 @@
 package Leetcode.DP;
 
 /**
+ * https://leetcode.com/problems/climbing-stairs/#/description
+ *
  * Created by venkatamunnangi on 3/1/17.
  */
 public class ClimbingStairs {
     public int climbStairs(int n) {
-        int total [] = new int[n+1];
+        int[] total = new int[n + 1];
 
         if(n == 0 || n == 1 || n == 2) {
             return n;

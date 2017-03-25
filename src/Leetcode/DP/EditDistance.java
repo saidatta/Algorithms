@@ -1,5 +1,7 @@
 package Leetcode.DP;
 
+import static java.lang.System.out;
+
 /**
  * Time complexity is O(m*n)
  * Space complexity is O(m*n)
@@ -10,7 +12,7 @@ public class EditDistance {
     /**
      * Uses recursion to find minimum edits
      */
-    public int recEditDistance(char[]  str1, char str2[], int len1,int len2){
+    public int recEditDistance(char[]  str1, char[] str2, int len1, int len2){
 
         if(len1 == str1.length){
             return str2.length - len2;
@@ -52,7 +54,7 @@ public class EditDistance {
     /**
      * Prints the actual edits which needs to be done.
      */
-    public void printActualEdits(int T[][], char[] str1, char[] str2) {
+    public void printActualEdits(int[][] T, char[] str1, char[] str2) {
         int i = T.length - 1;
         int j = T[0].length - 1;
         while(true) {
@@ -63,14 +65,14 @@ public class EditDistance {
                 i = i-1;
                 j = j-1;
             } else if (T[i][j] == T[i-1][j-1] + 1){
-                System.out.println("Edit " + str2[j-1] + " in string2 to " + str1[i-1] + " in string1");
+                out.println("Edit " + str2[j-1] + " in string2 to " + str1[i-1] + " in string1");
                 i = i-1;
                 j = j-1;
             } else if (T[i][j] == T[i-1][j] + 1) {
-                System.out.println("Delete in string1 " + str1[i-1]);
+                out.println("Delete in string1 " + str1[i-1]);
                 i = i-1;
             } else if (T[i][j] == T[i][j-1] + 1){
-                System.out.println("Delete in string2 " + str2[j-1]);
+                out.println("Delete in string2 " + str2[j-1]);
                 j = j -1;
             } else {
                 throw new IllegalArgumentException("Some wrong with given data");
@@ -85,11 +87,15 @@ public class EditDistance {
     }
 
     public static void main(String args[]){
+        EditDistance editDistance = new EditDistance();
+
         String str1 = "azced";
         String str2 = "abcdef";
-        EditDistance editDistance = new EditDistance();
-        int result = editDistance.dynamicEditDistance(str1.toCharArray(), str2.toCharArray());
-        System.out.print(result);
+        out.print(editDistance.dynamicEditDistance(str1.toCharArray(), str2.toCharArray()));
+
+        str1 = "abcd";
+        str2 = "dbfd";
+        out.println(editDistance.dynamicEditDistance(str1.toCharArray(), str2.toCharArray()));
     }
 
 }

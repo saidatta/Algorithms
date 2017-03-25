@@ -6,7 +6,6 @@ import java.util.PriorityQueue;
  * Deepthi's Question
  * Find k max numbers within an array of size n.
  *
- *
  * Created by venkatamunnangi on 2/15/17.
  */
 public class MaxNoOrderSum {

@@ -2,7 +2,11 @@ package Leetcode.DP;
 
 import java.util.Arrays;
 
+import static java.lang.System.out;
+
 /**
+ * https://leetcode.com/problems/maximal-rectangle/#/description
+ *
  * Created by venkatamunnangi on 3/3/17.
  */
 public class MaximalRectangle {
@@ -56,6 +60,6 @@ public class MaximalRectangle {
         MaximalRectangle mr = new MaximalRectangle();
 
         char[][] matrix = {"10100".toCharArray(), "10111".toCharArray(), "11111".toCharArray(), "10010".toCharArray()};
-        System.out.println(mr.maximalRectangle(matrix));
+        out.println(mr.maximalRectangle(matrix));
     }
 }
