@@ -1,6 +1,10 @@
 package Leetcode.String;
 
 /**
+ * https://leetcode.com/problems/one-edit-distance/#/description
+ *
+ * O(n)
+ *
  * Created by venkatamunnangi on 3/3/17.
  */
 public class OneEditDistance {

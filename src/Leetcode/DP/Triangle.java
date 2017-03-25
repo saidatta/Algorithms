@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * https://leetcode.com/problems/triangle/#/description
+ *
  * Created by venkatamunnangi on 3/4/17.
  */
 public class Triangle {
@@ -12,7 +14,7 @@ public class Triangle {
             return -1;
         }
 
-        int ans[] = new int[triangle.size() + 1];
+        int[] ans = new int[triangle.size() + 1];
 
         for(int i = triangle.size() -1 ; i >=0; i--) {
             for(int j = 0;j<triangle.get(i).size();j++) {
