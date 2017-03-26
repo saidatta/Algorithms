@@ -3,6 +3,8 @@ package Leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.System.*;
+
 /**
  * https://leetcode.com/problems/remove-invalid-parentheses/#/description
  *
@@ -40,8 +42,8 @@ public class RemoveInvalidParentheses {
 
     public static void main(String [] args) {
         RemoveInvalidParentheses removeInvalidParentheses = new RemoveInvalidParentheses();
-        System.out.println(removeInvalidParentheses.removeInvalidParentheses("()())()"));
-        System.out.println(removeInvalidParentheses.removeInvalidParentheses("(a)())()"));
-        System.out.println(removeInvalidParentheses.removeInvalidParentheses(")("));
+        out.println(removeInvalidParentheses.removeInvalidParentheses("()())()"));
+        out.println(removeInvalidParentheses.removeInvalidParentheses("(a)())()"));
+        out.println(removeInvalidParentheses.removeInvalidParentheses(")("));
     }
 }
