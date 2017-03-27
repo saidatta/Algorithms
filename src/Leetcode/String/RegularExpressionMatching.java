@@ -10,14 +10,14 @@ import static java.lang.System.*;
  */
 public class RegularExpressionMatching {
 
-    char STAR = '*';
-    char DOT = '.';
+    char MULTIPLE_OCCURENCES = '*';
+    char ANY_CHAR = '.';
 
     public boolean isMatch(String str, String regex) {
         boolean[][] dp = new boolean[str.length() + 1][regex.length() + 1];
         dp[0][0] = true;
         for (int i = 1; i < regex.length() + 1; i++) {
-            if (regex.charAt(i - 1) == '*') {
+            if (regex.charAt(i - 1) == MULTIPLE_OCCURENCES) {
                 /// Sets the first horizontal row of the regex pattern.
                 /// Meant to detect the *'s in the pattern.
                 dp[0][i] = dp[0][i - 2];
@@ -27,15 +27,15 @@ public class RegularExpressionMatching {
         for (int i = 1; i < dp.length; i++) {
             for (int j = 1; j < dp[0].length; j++) {
                 if (match(str.charAt(i - 1), regex.charAt(j - 1))) {
-                    /**
+                    /*
                      * if it matches the char in string and regex, or it char in string is '.'.
                      * Then, the set the value of the previous word. dp[i-1][j-1].
                      */
 
                     dp[i][j] = dp[i - 1][j - 1];
                 } else {
-                    if (regex.charAt(j - 1) == '*') {
-                        /**
+                    if (regex.charAt(j - 1) == MULTIPLE_OCCURENCES) {
+                        /*
                          * If the char pattern is *, then we have to check for the current char matches with
                          *  regex char or '.'.
                          *
@@ -55,7 +55,7 @@ public class RegularExpressionMatching {
     }
 
     private boolean match(char c1, char r) {
-        return c1 == r || r == '.';
+        return c1 == r || r == ANY_CHAR;
     }
 
 
@@ -64,6 +64,8 @@ public class RegularExpressionMatching {
         out.println(exp.isMatch("aab", "c*a*b"));
         out.println(exp.isMatch("aab", "ca*b"));
         out.println(exp.isMatch("aa", ".*"));
+        out.println(exp.isMatch("acca", ".*"));
+
 
     }
 }
