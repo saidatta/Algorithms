@@ -1,10 +1,11 @@
 package Leetcode.String;
 
+import static java.lang.System.*;
+
 /**
  * https://leetcode.com/problems/regular-expression-matching/?tab=Description
- * <p>
  * Dynamic Programming solution
- * <p>
+ *
  * Created by venkatamunnangi on 10/2/16.
  */
 public class RegularExpressionMatching {
@@ -41,8 +42,6 @@ public class RegularExpressionMatching {
                          *  - if it does, then it will be status of previous char in word, there are multiple same chars. (dp[i-1][j]
                          *  - if it doesn't, then it will be status of char before '<current-char>*' - so there is 0 chars (dp[i][j-2])
                          */
-
-
                         dp[i][j] = dp[i][j - 2]; // since star is 0 or anything, it goes the status of word before the * and its associated character and copies itself.
                         if (match(str.charAt(i - 1), regex.charAt(j - 2))) {
                             dp[i][j] |= dp[i - 1][j];
@@ -62,9 +61,9 @@ public class RegularExpressionMatching {
 
     public static void main(String [] args) {
         RegularExpressionMatching exp = new RegularExpressionMatching();
-        System.out.println(exp.isMatch("aab", "c*a*b"));
-        System.out.println(exp.isMatch("aab", "ca*b"));
-        System.out.println(exp.isMatch("aa", ".*"));
+        out.println(exp.isMatch("aab", "c*a*b"));
+        out.println(exp.isMatch("aab", "ca*b"));
+        out.println(exp.isMatch("aa", ".*"));
 
     }
 }
