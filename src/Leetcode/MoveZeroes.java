@@ -14,6 +14,7 @@ public class MoveZeroes {
 
         int p1 = 0, p2 = 1;
         // 0 1 0 3 12 ->1 0 0 3 12
+        //-> 1 3 12 0 0
         while(p2 < nums.length) {
             if(nums[p1] == 0 && nums[p2] != 0) {
                 nums[p1] = nums[p2];
