@@ -1,6 +1,8 @@
 package Leetcode.String;
 
 /**
+ * https://leetcode.com/problems/longest-palindromic-substring/#/description
+ *
  * Created by venkatamunnangi on 11/30/16.
  */
 public class LongestPalindromicSubstring {
@@ -8,24 +10,25 @@ public class LongestPalindromicSubstring {
         if(s == null || s.isEmpty()) {
             return s;
         }
-
-        int max = 0, start = 0,e = 0;
-
-        for(int i = 0; i< s.length();i++) {
-            if(isPalindrome(s, i - max - 1, s.length())) {
-                if(i <  max) {
-
-                }
+        int curLen = 0;
+        int start = -1;
+        char[] array = s.toCharArray();
+        for(int i = 0; i < array.length; i++) {
+            if(isPalindrome(array, i - curLen - 1, i)) {
+                start = i - curLen - 1;
+                curLen += 2;
+            } else if (isPalindrome(array, i - curLen, i)) {
+                start = i - curLen;
+                curLen += 1;
             }
         }
-        return "";
+        return new String(array, start, curLen);
     }
 
-    public boolean isPalindrome(String str, int s, int e) {
+    private boolean isPalindrome(char[] c, int s, int e) {
         if(s < 0) {
             return false;
         }
-        char [] c = str.toCharArray();
 
         while (s < e) {
             if(c[s++] != c[e--]) {
