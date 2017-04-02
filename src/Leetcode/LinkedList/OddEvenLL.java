@@ -4,6 +4,8 @@ import Leetcode.ListNode;
 
 /**
  * LC - 328
+ * https://leetcode.com/problems/odd-even-linked-list/#/description
+ *
  * Created by venkatamunnangi on 12/11/16.
  */
 public class OddEvenLL {
@@ -47,7 +49,7 @@ public class OddEvenLL {
             return head;
         }
 
-        ListNode odd =head, even =  head.next, oddHead = odd, evenHead = even; // 1,2
+        ListNode odd =head, even =  head.next, evenHead = even; // 1,2
 
         while(even != null && even.next != null) { // p2.next = 3
             odd.next = even.next; //next odd  = 3

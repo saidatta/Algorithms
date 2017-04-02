@@ -34,7 +34,8 @@ public class AllAnagramsInString {
                 list.add(left);
             }
 
-            //if we find the window's size equals to p, then we have to move left (narrow the window) to find the new match window
+            //if we find the window's size equals to p, then we have to move
+            // left (narrow the window) to find the new match window
             //++ to reset the hash because we kicked out the left
             //only increase the count if the character is in p
             //the count >= 0 indicate it was original in the hash, cuz it won't go below 0

@@ -3,6 +3,8 @@ package Leetcode;
 import java.util.HashMap;
 
 /**
+ * https://leetcode.com/problems/majority-element/#/description
+ *
  * Created by venkatamunnangi on 19/11/16.
  */
 public class MajorityElement {

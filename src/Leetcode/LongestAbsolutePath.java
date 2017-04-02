@@ -11,8 +11,6 @@ public class LongestAbsolutePath {
     String NEW_LINE = "\n";
 
     //dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext
-
-
     /**
      * dir
      * \tsubdir

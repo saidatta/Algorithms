@@ -16,11 +16,6 @@ public class AddTwoNumbers {
         } else if(l2 == null) {
             return l1;
         }
-
-        //321 + 123 = 444
-        // 325 + 21 = 346
-        // 321 + 721 = 1042
-        // 321 + 382 = 703
         return null;
     }
 

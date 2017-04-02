@@ -3,6 +3,8 @@ package Leetcode.LinkedList;
 import Leetcode.ListNode;
 
 /**
+ * https://leetcode.com/problems/linked-list-cycle/#/description
+ *
  * Created by venkatamunnangi on 12/11/16.
  */
 public class LLCycle {
@@ -36,5 +38,10 @@ public class LLCycle {
             p2 = p2.next.next;
         }
         return false;
+    }
+
+    public static void main(String [] args) {
+        LLCycle llCycle = new LLCycle();
+        System.out.println(llCycle.hasCycle(null));
     }
 }

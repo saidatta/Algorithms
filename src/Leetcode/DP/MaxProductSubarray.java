@@ -3,13 +3,18 @@ package Leetcode.DP;
 /**
  * https://leetcode.com/problems/maximum-product-subarray/?tab=Description
  *
+ * For example, given the array [2,3,-2,4],
+ * the contiguous subarray [2,3] has the largest product = 6.
+ *
  * Created by venkatamunnangi on 3/2/17.
  */
 public class MaxProductSubarray {
 
-    int maxProduct(int A[]) {
+    int maxProduct(int[] A) {
         int n = A.length;
-        if (n == 0) return 0;
+        if (n == 0) {
+            return 0;
+        }
         int maxProduct = A[0];
         int minProduct = A[0];
         int maxRes = A[0];
