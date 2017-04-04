@@ -1,4 +1,4 @@
-package Leetcode;
+package Leetcode.DP;
 
 import static java.lang.System.out;
 
