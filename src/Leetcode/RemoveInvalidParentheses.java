@@ -54,10 +54,6 @@ public class RemoveInvalidParentheses {
 
         while (!queue.isEmpty()) {
             s = queue.poll();
-            if(s.equals("(()")) {
-                int y = 3;
-            }
-
             if (isValid(s)) {
                 // found an answer, add to the result
                 res.add(s);
@@ -66,10 +62,6 @@ public class RemoveInvalidParentheses {
 
             if (found) {
                 continue;
-            }
-
-            if(s.length() == 4) {
-                int x = 3;
             }
 
             // generate all possible states

@@ -3,6 +3,8 @@ package Skiena.Chp6;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.System.*;
+
 /**
  * Video link - https://youtu.be/ID00PMy0-vE
  *
@@ -110,12 +112,12 @@ public class UnionFind {
         ds.union(5, 6);
         ds.union(3, 7);
 
-        System.out.println(ds.findSet(1));
-        System.out.println(ds.findSet(2));
-        System.out.println(ds.findSet(3));
-        System.out.println(ds.findSet(4));
-        System.out.println(ds.findSet(5));
-        System.out.println(ds.findSet(6));
-        System.out.println(ds.findSet(7));
+        out.println(ds.findSet(1));
+        out.println(ds.findSet(2));
+        out.println(ds.findSet(3));
+        out.println(ds.findSet(4));
+        out.println(ds.findSet(5));
+        out.println(ds.findSet(6));
+        out.println(ds.findSet(7));
     }
 }

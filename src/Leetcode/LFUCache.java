@@ -30,7 +30,9 @@ public class LFUCache {
     }
 
     public int get(int key) {
-        if (this.capacity == 0) return -1;
+        if (this.capacity == 0) {
+            return -1;
+        }
         if (!keyValue.containsKey(key)) {
             return -1;
         }
@@ -40,7 +42,9 @@ public class LFUCache {
     }
 
     public void put(int key, int value) {
-        if (capacity == 0) return;
+        if (capacity == 0) {
+            return;
+        }
         if (keyValue.containsKey(key)) {
             keyValue.get(key).value = value;// update new value in same key
             updateFrequency(key);

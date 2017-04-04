@@ -4,6 +4,8 @@ package CCI;
 import Leetcode.TreeNode;
 
 /**
+ * https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/#/description
+ *
  * Created by venkatamunnangi on 12/16/16.
  */
 public class MinimalTree {
@@ -12,7 +14,7 @@ public class MinimalTree {
         return createBSTHelper(array, 0, array.length-1);
     }
 
-    TreeNode createBSTHelper(int array[], int start, int end) {
+    TreeNode createBSTHelper(int[] array, int start, int end) {
         if(start > end) {
             return null;
         }

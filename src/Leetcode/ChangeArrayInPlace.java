@@ -1,5 +1,7 @@
 package Leetcode;
 
+import static java.lang.System.*;
+
 /**
  * Given an array of length n having integers 0 to n-1 in unsorted order.
  * Please modify this array such that the value at a[i] becomes a[a[i]].
@@ -12,7 +14,7 @@ package Leetcode;
  * Created by venkatamunnangi on 12/28/16.
  */
 public class ChangeArrayInPlace {
-    void rearrange(int arr[], int n)
+    void rearrange(int[] arr, int n)
     {
         // First step: Increase all values by (arr[arr[i]]%n)*n
         for (int i = 0; i < n; i++) {
@@ -27,9 +29,10 @@ public class ChangeArrayInPlace {
     // A utility function to print an array of size n
     void printArr(int arr[], int n)
     {
-        for (int i = 0; i < n; i++)
-            System.out.print(arr[i] + " ");
-        System.out.println("");
+        for (int i = 0; i < n; i++) {
+            out.print(arr[i] + " ");
+        }
+        out.println("");
     }
 
     /* Driver program to test above functions */
@@ -39,12 +42,12 @@ public class ChangeArrayInPlace {
         int arr[] = {3, 2, 0, 1};
         int n = arr.length;
 
-        System.out.println("Given Array is :");
+        out.println("Given Array is :");
         rearrange.printArr(arr, n);
 
         rearrange.rearrange(arr, n);
 
-        System.out.println("Modified Array is :");
+        out.println("Modified Array is :");
         rearrange.printArr(arr, n);
     }
 }

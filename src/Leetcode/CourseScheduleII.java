@@ -18,7 +18,7 @@ public class CourseScheduleII {
         List<Integer>[] adj = new ArrayList[numCourses];
         int[] indeg = new int[numCourses];
         for(int i=0; i<numCourses; i++)
-            adj[i] = new ArrayList<Integer>();
+            adj[i] = new ArrayList<>();
         for(int[] pre : prerequisites){
             adj[pre[1]].add(pre[0]);
             indeg[pre[0]]++;
@@ -31,11 +31,12 @@ public class CourseScheduleII {
         //do dfs/bfs from each in-degree=0 vertex
         int[] res = new int[numCourses];
         for(Integer start : starts){
-            // 	dfs(start, adj, indeg, res);
             bfs(start, adj, indeg, res);
         }
 
-        if(index != numCourses) return new int[0];
+        if(index != numCourses) {
+            return new int[0];
+        }
         return res;
     }
 

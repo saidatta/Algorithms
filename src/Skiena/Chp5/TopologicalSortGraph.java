@@ -36,8 +36,9 @@ public class TopologicalSortGraph {
             }
         }
 
-        while (!stack.empty())
+        while (!stack.empty()) {
             System.out.print(stack.pop() + " ");
+        }
     }
 
     private void topologicalSortUtil(int vertex, boolean[] visited, Stack<Integer> stack) {
