@@ -22,6 +22,7 @@ public class WordLadder {
         Queue<String> queue = new LinkedList<>();
         queue.offer(beginWord);
         int lenOfTransformation = 1;
+
         while(!queue.isEmpty()) {
             for (int x = queue.size(); x > 0; x--) {
                 String word = queue.poll();
@@ -53,6 +54,56 @@ public class WordLadder {
         return 0;
     }
 
+    public int ladderLengthDoubleBFS(String beginWord, String endWord, Set<String> wordList) {
+        Set<String> beginSet = new HashSet<>(), endSet = new HashSet<>();
+
+        int len = 1;
+        Set<String> visited = new HashSet<>();
+
+        beginSet.add(beginWord);
+        endSet.add(endWord);
+
+        while (!beginSet.isEmpty() && !endSet.isEmpty()) {
+            if (beginSet.size() > endSet.size()) {
+                swapSets(beginSet, endSet);
+            }
+
+            Set<String> temp = new HashSet<>();
+            for (String word : beginSet) {
+                char[] wordCharArray = word.toCharArray();
+
+                for (int i = 0; i < wordCharArray.length; i++) {
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        char old = wordCharArray[i];
+                        wordCharArray[i] = c;
+                        String target = String.valueOf(wordCharArray);
+
+                        if (endSet.contains(target)) {
+                            return len + 1;
+                        }
+
+                        if (!visited.contains(target) && wordList.contains(target)) {
+                            temp.add(target);
+                            visited.add(target);
+                        }
+                        wordCharArray[i] = old;
+                    }
+                }
+            }
+
+            beginSet = temp;
+            len++;
+        }
+
+        return 0;
+    }
+
+
+    private void swapSets(Set<String> beginSet, Set<String> endSet) {
+        Set<String> set = beginSet;
+        beginSet = endSet;
+        endSet = set;
+    }
     public static void main(String [] args) {
         WordLadder wordLadder = new WordLadder();
         List<String> dict = Arrays.asList("hot","dot","dog","lot","log","cog");

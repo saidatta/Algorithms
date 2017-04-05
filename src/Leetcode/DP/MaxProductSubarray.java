@@ -1,5 +1,7 @@
 package Leetcode.DP;
 
+import static java.lang.System.out;
+
 /**
  * https://leetcode.com/problems/maximum-product-subarray/?tab=Description
  *
@@ -23,6 +25,8 @@ public class MaxProductSubarray {
                 maxProduct = Math.max(maxProduct * A[i], A[i]);
                 minProduct = Math.min(minProduct * A[i], A[i]);
             } else {
+                // Mostly concerned of having even number of negatives.
+                // hence minProduct swap.
                 int temp = maxProduct;
                 maxProduct = Math.max(minProduct * A[i], A[i]);
                 minProduct = Math.min(temp * A[i], A[i]);
@@ -34,7 +38,7 @@ public class MaxProductSubarray {
 
     public static void main(String [] args) {
         MaxProductSubarray maxProductSubarray = new MaxProductSubarray();
-        int [] arr = {2,3,-2,4};
-        maxProductSubarray.maxProduct(arr);
+        int [] arr = {2,3,-2, 4};
+        out.println(maxProductSubarray.maxProduct(arr));
     }
 }

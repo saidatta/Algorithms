@@ -1,7 +1,8 @@
 package Leetcode.String;
 
 /**
- * 6
+ * https://leetcode.com/problems/zigzag-conversion/#/description
+ *
  * Created by venkatamunnangi on 11/29/16.
  */
 public class ZigZagConversion {
@@ -13,7 +14,6 @@ public class ZigZagConversion {
 
         int mid = numRows/2;
 
-        int x = 0;
         StringBuilder result = new StringBuilder();
         for(int i = 0;i<=s.length();i++) {
             if(i%(divident) == 0) {
