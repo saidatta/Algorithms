@@ -1,4 +1,6 @@
-package Leetcode;
+package Leetcode.Tree;
+
+import Leetcode.TreeNode;
 
 /**
  * https://leetcode.com/problems/inorder-successor-in-bst/#/description
@@ -10,7 +12,6 @@ public class InorderPredecessorBST {
         if(root == null) {
             return null;
         }
-
 
         if(root.val >= p.val) {
             return inorderPredecessor(root.right, p);

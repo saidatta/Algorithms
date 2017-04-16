@@ -10,4 +10,8 @@ public class Interval {
         start = s;
         end = e;
     }
+
+    public String toString() {
+        return ""+start+'-'+end;
+    }
 }

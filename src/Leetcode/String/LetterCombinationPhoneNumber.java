@@ -1,5 +1,6 @@
 package Leetcode.String;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,7 +10,12 @@ import java.util.List;
  * Created by venkatamunnangi on 12/2/16.
  */
 public class LetterCombinationPhoneNumber {
+
     public List<String> letterCombinations(String digits) {
+        if(digits == null || digits.isEmpty()) {
+            return new ArrayList<>();
+        }
+
         LinkedList<String> q = new LinkedList<>();
         q.add("");
 
@@ -26,15 +32,12 @@ public class LetterCombinationPhoneNumber {
             }
         }
 
-        if(q.size() == 1 && q.peek().length() == 1) {
-            q.remove();
-        }
-
         return q;
     }
 
     public static void main(String [] args) {
         LetterCombinationPhoneNumber letterCombinationPhoneNumber = new LetterCombinationPhoneNumber();
         System.out.println(letterCombinationPhoneNumber.letterCombinations("23"));
+        System.out.println(letterCombinationPhoneNumber.letterCombinations("1"));
     }
 }

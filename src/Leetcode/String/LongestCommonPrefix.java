@@ -1,34 +1,42 @@
 package Leetcode.String;
 
 /**
+ * https://leetcode.com/problems/longest-common-prefix/#/description
+ *
  * Created by venkatamunnangi on 12/2/16.
  */
 public class LongestCommonPrefix {
         public String longestCommonPrefix(String[] strs) {
-            if(strs.length == 0) return "";
-            String prev = strs[0];
+            if(strs.length == 0) {
+                return "";
+            }
+            String longestCommonPrefix = strs[0];
             for(int i = 1 ;i<strs.length;i++) {
-                prev = lcpHelper(prev, strs[i]);
+                longestCommonPrefix = lcpHelper(longestCommonPrefix, strs[i]);
             }
 
-            return prev;
+            return longestCommonPrefix;
         }
 
-        String lcpHelper(String s1, String s2) {
+        String lcpHelper(String longestCommonPrefix, String targetString) {
 
-            if(s1.isEmpty() || s2.isEmpty()) return "";
+            if(longestCommonPrefix.isEmpty() || targetString.isEmpty()) {
+                return "";
+            }
 
-            int len = s1.length() > s2.length() ? s2.length() : s1.length();
+            // get shortest string length
+            int len = longestCommonPrefix.length() > targetString.length() ? targetString.length() : longestCommonPrefix.length();
 
             StringBuilder ans = new StringBuilder();
             for(int i = 0; i < len; i++) {
-                if (s1.charAt(i) == s2.charAt(i))
-                    ans.append(s1.charAt(i));
-                else {
+                if (longestCommonPrefix.charAt(i) == targetString.charAt(i)) {
+                    ans.append(longestCommonPrefix.charAt(i));
+                } else {
                     return ans.toString();
                 }
             }
-            return (ans.length() == 0) ?"":ans.toString();
+
+            return (ans.length() == 0) ? "" :ans.toString();
 
         }
 }

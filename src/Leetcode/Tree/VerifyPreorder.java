@@ -14,7 +14,9 @@ public class VerifyPreorder {
         if(pointer[0] == preorder.length) return;
 
         int cur = preorder[pointer[0]];  // we check the cur element in arr
-        if(cur > min && cur < max) {    // if it can be valid to put here, we increment the pointer. Saying that we already use this value to "create a node and return"
+        if(cur > min && cur < max) {
+            // if it can be valid to put here, we increment the pointer.
+            // Saying that we already use this value to "create a node and return"
             ++pointer[0];
             helper(preorder, pointer, min, cur);
             helper(preorder, pointer, cur, max);

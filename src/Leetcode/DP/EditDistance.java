@@ -37,6 +37,7 @@ public class EditDistance {
             temp[i][0] = i;
         }
 
+
         for(int i=1;i <=str1.length; i++){
             for(int j=1; j <= str2.length; j++){
                 if(str1[i-1] == str2[j-1]){
@@ -48,7 +49,6 @@ public class EditDistance {
         }
         printActualEdits(temp, str1, str2);
         return temp[str1.length][str2.length];
-
     }
 
     /**

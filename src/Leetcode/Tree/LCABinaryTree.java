@@ -5,6 +5,8 @@ import Leetcode.TreeNode;
 /**
  * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/?tab=Description
  *
+ * DUPLICATE VALUE NOT ALLOWED
+ *
  * Created by venkatamunnangi on 3/7/17.
  */
 public class LCABinaryTree {

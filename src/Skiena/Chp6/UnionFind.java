@@ -57,8 +57,9 @@ public class UnionFind {
         Node p2 = findSet(n2);
 
         //if they are part of same set do nothing
-        if(p1.data == p2.data)
+        if(p1.data == p2.data) {
             return false;
+        }
 
         //else whoever's rank is higher becomes parent of other
         if(p1.rank >= p2.rank) {

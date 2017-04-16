@@ -6,16 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * LC 366
+ * LC 366 - https://leetcode.com/problems/find-leaves-of-binary-tree/#/description
+ *
  * Created by venkatamunnangi on 12/16/16.
  */
-
-/**
- * 1
- * 1,2
- * given example
- */
-
 /**
  *           1
             / \
@@ -23,8 +17,6 @@ import java.util.List;
            / \
           4   5
  */
-
-
 public class LeavesBinaryTree {
     public List<List<Integer>> findLeaves(TreeNode root) {
         List<List<Integer>> list = new ArrayList<>();

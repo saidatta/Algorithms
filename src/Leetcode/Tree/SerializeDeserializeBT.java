@@ -58,7 +58,7 @@ public class SerializeDeserializeBT {
         String x = ss.serialize(root);
 
         TreeNode tr = ss.deserialize(x);
-        System.out.println(tr.val);
+        System.out.println(x);
         System.out.println(tr.left.val);
         System.out.println(tr.right.val);
     }

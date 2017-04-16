@@ -13,7 +13,6 @@ public class BSTCheck {
         return validateBST(root, null);
     }
 
-
     public boolean validateBST(TreeNode root, TreeNode prev) {
         if(root == null) {
             return true;

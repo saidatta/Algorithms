@@ -132,9 +132,68 @@ public class RemoveInvalidParentheses {
             ans.add(reversed);
     }
 
+
+
+
+    public String ss(String s) {
+        if(s == null || s.isEmpty()) {
+            return "";
+        }
+        //())
+
+        Queue<String> q = new LinkedList<>();
+        q.offer(s);
+
+        List<String> visited = new ArrayList<>();
+        while(!q.isEmpty()) {
+            String curr = q.poll();
+            if(isValidParen(curr)) {
+                return curr;
+            }
+
+            for(int i = 0; i < curr.length(); i++) {
+                char c = curr.charAt(i);
+                if(c != '(' && c != ')') {
+                    continue;
+                }
+
+                // delete character at i
+                String truncated = curr.substring(0, i) + curr.substring(i+1);
+
+                if(!visited.contains(truncated)) {
+                    visited.add(truncated);
+                    q.offer(truncated);
+                }
+            }
+        }
+
+        return "";
+    }
+
+    private boolean isValidParen(String s) {
+        if(s == null || s.isEmpty()) {
+            return false;
+        }
+
+        int count = 0;
+        for(int i = 0; i<s.length();i++) {
+            if(s.charAt(i) == '(') {
+                count++;
+            }
+
+            if(s.charAt(i) == ')' && count--==0) {
+                count--;
+            }
+        }
+
+        return count == 0;
+    }
+
+
+
     public static void main(String [] args) {
         RemoveInvalidParentheses removeInvalidParentheses = new RemoveInvalidParentheses();
-        out.println(removeInvalidParentheses.removeInvalidParentheses("(()(()"));
+        out.println(removeInvalidParentheses.ss("(()(()"));
         out.println(removeInvalidParentheses.removeInvalidParentheses("()())()"));
         out.println(removeInvalidParentheses.removeInvalidParentheses("(a)())()"));
         out.println(removeInvalidParentheses.removeInvalidParentheses(")("));

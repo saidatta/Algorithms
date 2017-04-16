@@ -3,12 +3,15 @@ package Leetcode;
 import static java.lang.System.out;
 
 /**
+ * https://leetcode.com/problems/integer-to-english-words/#/description
+ *
  * Created by venkatamunnangi on 3/25/17.
  */
 public class IntegerToEnglishWords {
     private final String[] LESS_THAN_20 = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
     private final String[] TENS = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety", "Hundred"};
     private final String[] THOUSANDS = {"", "Thousand", "Million", "Billion"};
+
     public String numberToWords(int num) {
         int numToParse = num;
         if(numToParse == 0) {
@@ -19,9 +22,9 @@ public class IntegerToEnglishWords {
         int i = 0;
 
         while(numToParse > 0) {
-
             if(numToParse % 1000 != 0) {
-                englishTranslatedNumber.insert(0, constructNumberTranslation(numToParse % 1000)+ THOUSANDS[i]+" ");
+                String temp = constructNumberTranslation(numToParse % 1000)+ THOUSANDS[i]+" ";
+                englishTranslatedNumber.insert(0, temp);
             }
 
             numToParse /= 1000;

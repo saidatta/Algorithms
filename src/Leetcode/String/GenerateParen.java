@@ -1,10 +1,15 @@
-package Leetcode;
+package Leetcode.String;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * https://leetcode.com/problems/generate-parentheses/#/description
+ *
+ * Write a function to generate all combinations of well-formed parentheses.
+ *
+ * For example, given n = 3, a solution set is:
+ * [ "((()))", "(()())", "(())()", "()(())", "()()()" ]
  *
  * Created by venkatamunnangi on 4/3/17.
  */
@@ -28,7 +33,7 @@ public class GenerateParen {
         if(oc < n) {
             helper(list, curr+"(", ++oc, cc, n);
         }
-        if(cc < n) {
+        if(cc < oc) {
             helper(list, curr+")", oc, ++cc, n);
         }
     }

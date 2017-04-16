@@ -1,5 +1,6 @@
 package Leetcode;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +15,6 @@ public class MergeIntervals {
         if (intervals.size() <= 1)
             return intervals;
 
-        // Sort by ascending starting point using an anonymous Comparator
         intervals.sort((i1, i2) -> Integer.compare(i1.start, i2.start));
 
         List<Interval> result = new LinkedList<>();
@@ -22,17 +22,22 @@ public class MergeIntervals {
         int end = intervals.get(0).end;
 
         for (Interval interval : intervals) {
-            if (interval.start <= end) // Overlapping intervals, move the end if needed
+            if (interval.start <= end) {
                 end = Math.max(end, interval.end);
-            else {                     // Disjoint intervals, add the previous one and reset bounds
+            } else {
                 result.add(new Interval(start, end));
                 start = interval.start;
                 end = interval.end;
             }
         }
 
-        // Add the last interval
         result.add(new Interval(start, end));
         return result;
+    }
+
+    public static void main(String [] args) {
+        MergeIntervals mergeIntervals = new MergeIntervals();
+        Interval [] inters = {new Interval(94133, 94133), new Interval(94200, 94299),new Interval(94226, 94399)};
+        System.out.println(mergeIntervals.merge(Arrays.asList(inters)));
     }
 }

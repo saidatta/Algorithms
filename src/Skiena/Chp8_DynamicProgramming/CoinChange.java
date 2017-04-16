@@ -16,8 +16,8 @@ public class CoinChange {
      * Returns Integer.MAX_VALUE - 1 if solution is not possible.
      */
     public int minimumCoinBottomUp(int total, int coins[]){
-        int minNumberCoinsUsed [] = new int[total +1];
-        int indexCoinUsed [] = new int[total +1];
+        int[] minNumberCoinsUsed = new int[total + 1];
+        int[] indexCoinUsed = new int[total + 1];
 
         minNumberCoinsUsed[0] = 0;
 

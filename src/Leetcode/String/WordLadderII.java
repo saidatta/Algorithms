@@ -14,7 +14,7 @@ public class WordLadderII {
 
     public List<List<String>> findLadders(String start, String end, Set<String> dict) {
         results= new ArrayList<>();
-        if (dict.size() == 0) {
+        if (dict.isEmpty()) {
             return results;
         }
 
@@ -40,7 +40,9 @@ public class WordLadderII {
 
             int step = ladder.get(word)+1;//'step' indicates how many steps are needed to travel to one word.
 
-            if (step>min) break;
+            if (step>min) {
+                break;
+            }
 
             for (int i = 0; i < word.length(); i++){
                 StringBuilder builder = new StringBuilder(word);
