@@ -2,6 +2,8 @@ package Leetcode.Tree;
 
 import Leetcode.TreeNode;
 
+import static java.lang.System.*;
+
 /**
  * https://leetcode.com/problems/count-complete-tree-nodes/
  *
@@ -24,9 +26,9 @@ public class CountCompleteTreeNodes {
 
         if(h >= 0) {
             // If last node is right leaf subtree or left tree subtree.
-            int innerHeight = (heightCompleteTree(root.right) == h-1) ? (1 << h)  + countNodes(root.right):
+            // inner height
+            return (heightCompleteTree(root.right) == h-1) ? (1 << h)  + countNodes(root.right):
                     (1 << h-1) + countNodes(root.left);
-            return innerHeight;
         } else {
             return 0;
         }
@@ -38,6 +40,6 @@ public class CountCompleteTreeNodes {
         root.left = new TreeNode(1);
         root.right = new TreeNode(11);
 
-        System.out.println(countCompleteTreeNodes.countNodes(root));
+        out.println(countCompleteTreeNodes.countNodes(root));
     }
 }

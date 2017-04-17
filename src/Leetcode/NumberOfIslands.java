@@ -9,6 +9,8 @@ public class NumberOfIslands {
     private int m,n;
 
     public int numIslands(char[][] grid) {
+
+        // base cases
         if(grid == null) {
             return -1;
         }
@@ -16,9 +18,12 @@ public class NumberOfIslands {
         if(n == 0) {
             return -1;
         }
+
+        //initializations
         m = grid[0].length;
         int count = 0;
 
+        //logic
         for(int i = 0; i<n;i++) {
             for(int j = 0; j<m; j++) {
                 if(grid[i][j] == '1') {

@@ -5,7 +5,7 @@ package Leetcode.DP;
  *
  * Created by venkatamunnangi on 3/2/17.
  */
-public class MaxProfit {
+public class BestTimeToBuyAndSellStock {
 
     public int maxProfit(int[] prices) {
         if(prices == null || prices.length == 0) {

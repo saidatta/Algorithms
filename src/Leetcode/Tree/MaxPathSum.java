@@ -22,7 +22,7 @@ public class MaxPathSum {
 
         int mLeft = Math.max(maxPathSumHelper(root.left), 0);
         int mRight = Math.max(maxPathSumHelper(root.right), 0);
-        
+
         maxPath = Math.max(maxPath, mLeft + mRight + root.val);
 
         return Math.max(mLeft, mRight) + root.val;

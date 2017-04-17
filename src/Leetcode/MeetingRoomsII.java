@@ -27,7 +27,7 @@ public class MeetingRoomsII {
 
         for (int i = 1; i < intervals.length; i++) { //
             // get the meeting room that finishes earliest
-            Interval interval = heap.peek();
+            Interval interval = heap.poll();
 
             if (intervals[i].start >= interval.end) {
                 // if the current meeting starts right after
@@ -54,6 +54,6 @@ public class MeetingRoomsII {
         Interval interval3 = new Interval(15,25);
 
         Interval[] intervals = new Interval[] {interval1, interval2, interval3};
-        meetingRoomsII.minMeetingRooms(intervals);
+        System.out.println(meetingRoomsII.minMeetingRooms(intervals));
     }
 }

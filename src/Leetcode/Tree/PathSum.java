@@ -2,7 +2,10 @@ package Leetcode.Tree;
 
 import Leetcode.TreeNode;
 
-/**LeetCode 112
+/**
+ * LeetCode 112
+ * https://leetcode.com/problems/path-sum/#/description
+ *
  * Created by venkatamunnangi on 24/11/16.
  */
 public class PathSum {

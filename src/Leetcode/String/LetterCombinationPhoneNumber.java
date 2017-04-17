@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import static java.lang.System.*;
+
 /**
  * https://leetcode.com/problems/letter-combinations-of-a-phone-number/#/description
  *
@@ -37,7 +39,7 @@ public class LetterCombinationPhoneNumber {
 
     public static void main(String [] args) {
         LetterCombinationPhoneNumber letterCombinationPhoneNumber = new LetterCombinationPhoneNumber();
-        System.out.println(letterCombinationPhoneNumber.letterCombinations("23"));
-        System.out.println(letterCombinationPhoneNumber.letterCombinations("1"));
+        out.println(letterCombinationPhoneNumber.letterCombinations("23"));
+        out.println(letterCombinationPhoneNumber.letterCombinations("1"));
     }
 }

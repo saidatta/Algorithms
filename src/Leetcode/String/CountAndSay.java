@@ -16,6 +16,7 @@ public class CountAndSay {
             char start = prev.charAt(0);
             sb = new StringBuilder();
             int count = 0;
+
             for (int j = 0; j < prev.length(); j++) {
                 if (start != prev.charAt(j)) {
                     sb.append(count).append(start);

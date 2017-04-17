@@ -10,7 +10,8 @@ import Leetcode.TreeNode;
 public class RecoverBST {
     TreeNode firstElement = null;
     TreeNode secondElement = null;
-    // The reason for this initialization is to avoid null pointer exception in the first comparison when prevElement has not been initialized
+    // The reason for this initialization is to avoid null pointer exception
+    // in the first comparison when prevElement has not been initialized
     TreeNode prevElement = new TreeNode(Integer.MIN_VALUE);
 
     public void recoverTree(TreeNode root) {
@@ -44,7 +45,6 @@ public class RecoverBST {
         prevElement = root;
 
         // End of "do some business"
-
         traverse(root.right);
     }
 }

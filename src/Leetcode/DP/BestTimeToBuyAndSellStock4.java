@@ -1,9 +1,11 @@
 package Leetcode.DP;
 
 /**
+ * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/#/description
+ *
  * Created by venkatamunnangi on 3/3/17.
  */
-public class MaxProfit4 {
+public class BestTimeToBuyAndSellStock4 {
     public int maxProfit(int k, int[] prices) {
         int len = prices.length;
         if (k >= len / 2) {
@@ -38,7 +40,7 @@ public class MaxProfit4 {
     }
 
     public static void main(String [] args) {
-        MaxProfit4 mp4 = new MaxProfit4();
+        BestTimeToBuyAndSellStock4 mp4 = new BestTimeToBuyAndSellStock4();
         int [] prices = {7,1,5,3,6,4};
         System.out.println(mp4.maxProfit(1, prices));
     }

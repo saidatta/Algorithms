@@ -2,6 +2,8 @@ package Skiena.Chp3;
 
 import java.lang.reflect.Array;
 
+import static java.lang.System.*;
+
 /**
  * Created by venkatamunnangi on 12/28/16.
  */
@@ -21,12 +23,12 @@ public abstract class Heap<T extends Comparable> {
 
         public void printHeapArray() {
             for (int i = 0; i < count; i++) {
-                System.out.print(array[i] + ", ");
+                out.print(array[i] + ", ");
             }
-            System.out.println();
+            out.println();
 
             try {
-                System.out.println("Highest priority: " + getHighestPriority());
+                out.println("Highest priority: " + getHighestPriority());
             } catch (HeapEmptyException ex) {
 
             }
@@ -109,13 +111,13 @@ public abstract class Heap<T extends Comparable> {
             return count == array.length;
         }
 
-        public T getElementAtIndex(int index) {
+        T getElementAtIndex(int index) {
             return array[index];
         }
 
-        public static class HeapFullException extends Exception {
+        static class HeapFullException extends Exception {
         }
 
-        public static class HeapEmptyException extends Exception {
+        static class HeapEmptyException extends Exception {
         }
 }

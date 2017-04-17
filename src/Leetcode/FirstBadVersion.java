@@ -1,6 +1,10 @@
 package Leetcode;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 /**
+ * https://leetcode.com/problems/first-bad-version/#/description
+ *
  * Created by venkatamunnangi on 3/25/17.
  */
 public class FirstBadVersion {
@@ -20,6 +24,6 @@ public class FirstBadVersion {
 
     boolean isBadVersion(int version) {
         // API provided by the LEETCODE.
-        return false;
+        throw new NotImplementedException();
     }
 }

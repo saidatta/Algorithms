@@ -35,7 +35,7 @@ public class FindCelebrity {
         return celeb;
     }
 
-    private boolean knows(int a, int b) {
+    private boolean knows(int a, int celeb) {
         // LEETCODE API
         throw new NotImplementedException();
     }

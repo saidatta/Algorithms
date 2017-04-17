@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.lang.System.*;
+
 /**
  * https://leetcode.com/problems/subsets/#/description
  *
@@ -32,6 +34,6 @@ public class Subsets {
     public static void main(String [] args) {
         Subsets subsets = new Subsets();
         int[] nums = {1,2,3};
-        System.out.println(subsets.subsets(nums));
+        out.println(subsets.subsets(nums));
     }
 }

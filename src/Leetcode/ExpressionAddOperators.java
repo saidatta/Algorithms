@@ -47,6 +47,7 @@ public class ExpressionAddOperators {
             if(i != position && num.charAt(position) == '0') {
                 break;
             }
+
             long current = Long.parseLong(num.substring(position, i+1));
             if(position == 0) {
                 dfsHelper(result, num, target, path+current, i+1, current, current);

@@ -18,6 +18,7 @@ public class ValidateBST {
         }
 
         boolean bstProperty = (min == null || root.val > min) && (max == null || root.val < max);
+
         return bstProperty && isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
     }
 

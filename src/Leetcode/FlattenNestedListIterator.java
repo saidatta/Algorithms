@@ -35,10 +35,13 @@ public class FlattenNestedListIterator implements Iterator<Integer> {
         while (!stack.isEmpty()) {
             if (!stack.peek().hasNext()) {
                 stack.pop();
-            } else if ((nextInt = stack.peek().next()).isInteger()) {
-                return true;
             } else {
-                stack.push(nextInt.getList().iterator());
+                nextInt = stack.peek().next();
+                if (nextInt.isInteger()) {
+                    return true;
+                } else {
+                    stack.push(nextInt.getList().iterator());
+                }
             }
         }
 

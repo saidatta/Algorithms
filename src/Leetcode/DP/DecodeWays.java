@@ -29,7 +29,6 @@ public class DecodeWays {
             if (s.charAt(i) == '0') {
                 // Case 1: individual 0 does not work
                 // Case 2: 0 preceding any number does not work
-                continue;
             } else {
                 // memo[i+1]+memo[i+2]
                 // The character pair works, so we need to add up the total ways of decoding for the two pairs.

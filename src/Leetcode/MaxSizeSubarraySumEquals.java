@@ -3,6 +3,8 @@ package Leetcode;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.System.out;
+
 /**
  * https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/#/description
  *
@@ -29,9 +31,9 @@ public class MaxSizeSubarraySumEquals {
     public static void main(String [] args) {
         MaxSizeSubarraySumEquals maxSizeSubarraySumEquals = new MaxSizeSubarraySumEquals();
         int[] arr = {1,-1,5,-2,3};
-        System.out.println(maxSizeSubarraySumEquals.maxSubArrayLen(arr, 3));
+        out.println(maxSizeSubarraySumEquals.maxSubArrayLen(arr, 3));
 
         int[] arr2 = {-2, -1, 2, 1};
-        System.out.println(maxSizeSubarraySumEquals.maxSubArrayLen(arr2, 1));
+        out.println(maxSizeSubarraySumEquals.maxSubArrayLen(arr2, 1));
     }
 }
