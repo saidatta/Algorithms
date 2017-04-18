@@ -33,8 +33,10 @@ public class DecodeWays {
                 // memo[i+1]+memo[i+2]
                 // The character pair works, so we need to add up the total ways of decoding for the two pairs.
                 // memo[i+1]
-                // The pair does not work, just need to move the previous total so that memo[0] will eventually have the right count.
-                // Notice that we do not need to +1 here because we are counting the number of ways to separate the string.
+                // The pair does not work, just need to move the previous total so that memo[0]
+                // will eventually have the right count.
+                // Notice that we do not need to +1 here because we are counting the number of
+                // ways to separate the string.
                 memo[i] = (Integer.parseInt(s.substring(i,i+2))<= NUM_LETTERS) ? memo[i+1] + memo[i+2] : memo[i+1];
             }
 

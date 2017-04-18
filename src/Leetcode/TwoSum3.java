@@ -4,6 +4,8 @@ import java.util.*;
 
 /**
  * LC 170
+ * https://leetcode.com/problems/two-sum-iii-data-structure-design/#/description
+ *
  * The trade off is that constant time addition but O(n) in find.
  * Created by venkatamunnangi on 12/15/16.
  */
