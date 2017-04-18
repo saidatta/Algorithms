@@ -40,8 +40,62 @@ public class DistinctSubsequences {
         return mem[t.length()][s.length()];
     }
 
+    //21 ms
+    public int numDistinct2(String S, String T) {
+        int sl = S.length();
+        int tl = T.length();
+
+        int [][] dp = new int[tl+1][sl+1];
+
+        for(int i=0; i<=sl; ++i){
+            dp[0][i] = 1;
+        }
+
+        for(int t=1; t<=tl; ++t){
+
+            for(int s=1; s<=sl; ++s){
+                if(T.charAt(t-1) != S.charAt(s-1)){
+                    dp[t][s] = dp[t][s-1];
+                }else{
+                    dp[t][s] = dp[t][s-1] + dp[t-1][s-1];
+                }
+            }
+        }
+
+        return dp[tl][sl];
+    }
+
+    //15ms
+    public int numDistinct_sdp(String S, String T) {
+        int sl = S.length();
+        int tl = T.length();
+
+        int [] preComb = new int[sl+1];
+        int [] comb = new int[sl+1];
+
+
+        for(int i=0; i<=sl; i++)
+            preComb[i] = 1;
+
+        for(int t=1; t<=tl; ++t){
+            for(int s=1; s<=sl; ++s){
+                if(T.charAt(t-1) != S.charAt(s-1)){
+                    comb[s] = comb[s-1];
+                }else{
+                    comb[s] = comb[s-1] + preComb[s-1];
+                }
+            }
+
+            for(int i=0; i<=sl; ++i){
+                preComb[i] = comb[i];
+            }
+        }
+
+        return preComb[sl];
+    }
+
     public static void main(String [] args) {
         DistinctSubsequences distinctSubsequences = new DistinctSubsequences();
-        //System.out.println(distinctSubsequences.numDistinct());
+        System.out.println(distinctSubsequences.numDistinct("rabbbit", "rabbit"));
     }
 }

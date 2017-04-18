@@ -1,21 +1,32 @@
 package Leetcode.DP;
 
-import java.util.Arrays;
-
 /**
  *
- * https://leetcode.com/problems/perfect-squares/?tab=Description
+ * https://leetcoqde.com/problems/perfect-squares/?tab=Description
  *
  * Created by venkatamunnangi on 3/3/17.
  */
 public class PerfectSquares {
     public int numSquares(int n) {
-        int[] dp = new int[n + 1];
-        Arrays.fill(dp, Integer.MAX_VALUE);
-        dp[0] = 0;
-        for(int i = 0; i <= n; i++){
-            for(int j = 1; i + j * j <= n; j++){
-                dp[i  + j * j] = Math.min(dp[i + j * j], dp[i] + 1);
+        //creating a new table
+        int [] dp = new int[n+1];
+
+        int x = n < 3 ? n : 3;
+
+        for(int i = 0;i<=x;i++) {
+            dp[i] = i;
+        }
+
+        //calculating min square from 4 to n.
+        for(int i = 4;i<=n;i++) {
+            //starting point to be high enough for min.
+            dp[i] = i;
+            for(int j = 1;j<=i;j++) {
+                int temp = j*j;
+                if(i - temp < 0) {
+                    break;
+                }
+                dp[i] = Math.min(dp[i], 1 + dp[i-temp]);
             }
         }
         return dp[n];

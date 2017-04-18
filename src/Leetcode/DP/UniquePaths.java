@@ -12,9 +12,12 @@ public class UniquePaths {
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
                 if(i==0 || j==0){
+                    //boundary of the grid.
                     tab[i][j] = 1;
                 }
                 else{
+                    //the number of ways is the sum of
+                    // left and up ways.
                     tab[i][j] = tab[i-1][j]+tab[i][j-1];
                 }
             }

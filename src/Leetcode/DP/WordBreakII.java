@@ -20,7 +20,7 @@ public class WordBreakII {
             return map.get(s);
 
         LinkedList<String>res = new LinkedList<>();
-        if (s.length() == 0) {
+        if (s.isEmpty()) {
             res.add("");
             return res;
         }

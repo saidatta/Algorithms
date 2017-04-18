@@ -25,7 +25,7 @@ public class MaxProductSubarray {
                 maxProduct = Math.max(maxProduct * A[i], A[i]);
                 minProduct = Math.min(minProduct * A[i], A[i]);
             } else {
-                // Mostly concerned of having even number of negatives.
+                // Mostly concerned of having even number of negatives in the array.
                 // hence minProduct swap.
                 int temp = maxProduct;
                 maxProduct = Math.max(minProduct * A[i], A[i]);
