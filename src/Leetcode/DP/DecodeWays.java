@@ -25,7 +25,7 @@ public class DecodeWays {
         memo[n]  = 1;
         memo[n-1] = s.charAt(n-1) != '0' ? 1 : 0;
 
-        for (int i = n - 2; i >= 0; i--)
+        for (int i = n - 2; i >= 0; i--) {
             if (s.charAt(i) == '0') {
                 // Case 1: individual 0 does not work
                 // Case 2: 0 preceding any number does not work
@@ -37,8 +37,9 @@ public class DecodeWays {
                 // will eventually have the right count.
                 // Notice that we do not need to +1 here because we are counting the number of
                 // ways to separate the string.
-                memo[i] = (Integer.parseInt(s.substring(i,i+2))<= NUM_LETTERS) ? memo[i+1] + memo[i+2] : memo[i+1];
+                memo[i] = (Integer.parseInt(s.substring(i, i + 2)) <= NUM_LETTERS) ? memo[i + 1] + memo[i + 2] : memo[i + 1];
             }
+        }
 
         return memo[0];
     }
