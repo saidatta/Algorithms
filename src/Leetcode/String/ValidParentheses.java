@@ -55,6 +55,7 @@ public class ValidParentheses {
                 return false;
             }
         }
+
         return cache.empty();
     }
 }

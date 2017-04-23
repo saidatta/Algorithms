@@ -8,9 +8,10 @@ import java.util.PriorityQueue;
  *
  * Created by venkatamunnangi on 2/15/17.
  */
-public class MaxNoOrderSum {
+public class MaxNoOrderSumDeepthi {
 
-  // Running time should be proportional to n log k, where n is the number of numbers and k is the maximum number of items on the heap
+  // Running time should be proportional to n log k, where n is the number of numbers
+  // and k is the maximum number of items on the heap
     public void solution(int [] numbers, int k, PriorityQueue<Integer> myHeap) {
         if(k > numbers.length) {
             // Error u cant have k numbers in (k>n) array.
@@ -47,7 +48,7 @@ public class MaxNoOrderSum {
 
     public static void main(String [] args) {
 
-        MaxNoOrderSum maxNoOrderSum = new MaxNoOrderSum();
+        MaxNoOrderSumDeepthi maxNoOrderSum = new MaxNoOrderSumDeepthi();
 
         int [] array = {1,4,11,2,9};
         int k = 3;

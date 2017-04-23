@@ -22,10 +22,13 @@ public class MergeIntervals {
         int end = intervals.get(0).end;
 
         for (Interval interval : intervals) {
-            if (interval.start <= end) {
+            if (hasOverlap(interval.start, end)) {
                 end = Math.max(end, interval.end);
             } else {
+                // add the merged intervals now.
                 result.add(new Interval(start, end));
+
+                // now move to the new window.
                 start = interval.start;
                 end = interval.end;
             }
@@ -33,6 +36,10 @@ public class MergeIntervals {
 
         result.add(new Interval(start, end));
         return result;
+    }
+
+    private boolean hasOverlap(int start, int end) {
+        return start <= end;
     }
 
     public static void main(String [] args) {

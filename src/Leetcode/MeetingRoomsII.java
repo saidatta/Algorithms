@@ -12,6 +12,27 @@ import java.util.PriorityQueue;
  * Created by venkatamunnangi on 3/27/17.
  */
 public class MeetingRoomsII {
+
+    public int minMeetingRooms2(Interval[] intervals) {
+        int[] starts = new int[intervals.length];
+        int[] ends = new int[intervals.length];
+        for(int i=0; i<intervals.length; i++) {
+            starts[i] = intervals[i].start;
+            ends[i] = intervals[i].end;
+        }
+        Arrays.sort(starts);
+        Arrays.sort(ends);
+        int rooms = 0;
+        int endsItr = 0;
+        for(int i=0; i<starts.length; i++) {
+            if(starts[i]<ends[endsItr])
+                rooms++;
+            else
+                endsItr++;
+        }
+        return rooms;
+    }
+
     public int minMeetingRooms(Interval[] intervals) {
         if (intervals == null || intervals.length == 0)
             return 0;
@@ -54,6 +75,6 @@ public class MeetingRoomsII {
         Interval interval3 = new Interval(15,25);
 
         Interval[] intervals = new Interval[] {interval1, interval2, interval3};
-        System.out.println(meetingRoomsII.minMeetingRooms(intervals));
+        System.out.println(meetingRoomsII.minMeetingRooms2(intervals));
     }
 }

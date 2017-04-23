@@ -18,23 +18,23 @@ public class LetterCombinationPhoneNumber {
             return new ArrayList<>();
         }
 
-        LinkedList<String> q = new LinkedList<>();
-        q.add("");
+        LinkedList<String> list = new LinkedList<>();
+        list.add("");
 
         String [] mappings = new String[] {"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
 
         for(int i = 0; i < digits.length(); i++) {
             int numberRepresentation = Character.getNumericValue(digits.charAt(i));
 
-            while(q.peek().length() == i) {
-                String temp = q.remove();
+            while(list.peek().length() == i) {
+                String temp = list.remove();
                 for (int j = 0; j < mappings[numberRepresentation].length(); j++) {
-                    q.add(temp + mappings[numberRepresentation].charAt(j));
+                    list.add(temp + mappings[numberRepresentation].charAt(j));
                 }
             }
         }
 
-        return q;
+        return list;
     }
 
     public static void main(String [] args) {

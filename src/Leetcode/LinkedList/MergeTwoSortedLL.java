@@ -26,7 +26,8 @@ public class MergeTwoSortedLL {
         } else if (l2 == null) {
             return l1;
         } else {
-            ListNode ans = new ListNode(Integer.MIN_VALUE), curr = ans;
+            ListNode ans = new ListNode(Integer.MIN_VALUE);
+            ListNode curr = ans;
             ans.next = l1;
             while (l1 != null && l2 != null) {
                 if (l1.val < l2.val) {

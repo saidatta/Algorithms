@@ -13,8 +13,9 @@ public class CopyListWIthRandomPointer {
 
         //O (n)
         public RandomListNode copyRandomList(RandomListNode head) {
-        if (head == null)
+        if (head == null) {
             return null;
+        }
 
         Map<RandomListNode, RandomListNode> dict = new HashMap<>();
         RandomListNode randomListNode = head;

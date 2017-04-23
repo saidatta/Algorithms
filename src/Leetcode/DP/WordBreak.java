@@ -21,7 +21,7 @@ public class WordBreak {
         boolean [] positions = new boolean[targetString.length() + 1];
         positions[0] = true;
 
-        for(int i = 0 ;i< targetString.length();i++) {
+        for(int i = 0 ;i < targetString.length();i++) {
 
             if(!positions[i]) {
                 continue;

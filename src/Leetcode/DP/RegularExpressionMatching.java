@@ -44,10 +44,13 @@ public class RegularExpressionMatching {
                          *  - if it doesn't, then it will be status of char before '<current-char>*' -
                           *  so there is 0 chars (dp[i][j-2])
                          */
+                        /// this is prep for or statement.
                         dp[i][j] = dp[i][j - 2];
                         // since star is 0 or anything, it searches for the status of word before the *'s
                         // associated character and copies itself.
                         if (match(str.charAt(i - 1), regex.charAt(j - 2))) {
+                            // dp[i][j] - true - means only one or more a's
+                            // dp[i-1][j] - true - means no a's so we are getting status of previous char.
                             dp[i][j] |= dp[i - 1][j];
                         }
                     }

@@ -10,30 +10,55 @@ package Skiena.Chp8_DynamicProgramming;
  */
 public class SubsetSum {
 
-    public boolean subsetSum(int input[], int total) {
+    //Algo complexity is O(Sum * N) and use O(Sum) memory.
+    private int howManySubsetSums(int [] input, int targetTotal) {
+        int[] dp = new int[targetTotal+1];
+        dp[0] = 1;
+        int tempSum = 0;
+        for(int i = 0; i<input.length;i++) {
+            tempSum += input[i];
+
+            if(tempSum > targetTotal) {
+                continue;
+            }
+
+            // math.min is to avoid index overflow.
+            for(int j = Math.min(tempSum, targetTotal); j >= input[j];j--) {
+                dp[j] += dp[j-input[i]];
+            }
+
+        }
+
+        return dp[targetTotal];
+    }
+
+    public boolean subsetSum(int[] input, int targetTotal) {
         if(input == null) {
             return false;
         }
 
-        boolean result [] [] = new boolean[input.length+1][total+1];
+        boolean[][] result = new boolean[input.length + 1][targetTotal + 1];
 
         for(int i = 0; i<input.length;i++) {
             result[i][0] = true;
         }
 
         for(int i = 1; i <= input.length;i++) {
-            for(int j = 1; j <= total;j++) {
-
-                int goingBackJSpaces = j- input[i-1]; // go back input[i] spaces for j.
+            for(int currentTotal = 1; currentTotal <= targetTotal;currentTotal++) {
+                int goingBackJSpaces = currentTotal - input[i-1]; // go back input[i] spaces for currentTotal.
                 if(goingBackJSpaces >= 0) {
-                    result[i][j] = result[i-1][j]||result[i-1][goingBackJSpaces];
+                    //previous input(top in matrix) is true i.e. currentTotal is not taken into account
+                    // or we go back j spaces and determine what the status is for that cell.
+                    result[i][currentTotal] = result[i-1][currentTotal]||result[i-1][goingBackJSpaces];
                 } else {
-                    result[i][j] = result[i-1][j];
+                    // if input is less than the current sum
+                    // then copy the value from the top(previous input).
+                    result[i][currentTotal] = result[i-1][currentTotal];
                 }
             }
         }
 
-        return result[input.length][total];
+        return result[input.length][targetTotal];
     }
 
     public boolean canPartition(int[] nums) {

@@ -16,8 +16,9 @@ public class WordBreakII {
 
     // DFS function returns an array including all substrings derived from s.
     private List<String> DFS(String s, List<String> wordDict, HashMap<String, LinkedList<String>> map) {
-        if (map.containsKey(s))
+        if (map.containsKey(s)) {
             return map.get(s);
+        }
 
         LinkedList<String>res = new LinkedList<>();
         if (s.isEmpty()) {

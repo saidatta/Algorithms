@@ -3,6 +3,8 @@ package Leetcode.Tree;
 import java.util.Arrays;
 
 /**
+ * https://leetcode.com/problems/graph-valid-tree/#/description
+ *
  * Created by venkatamunnangi on 3/12/17.
  */
 public class GraphValidTree {
@@ -41,6 +43,7 @@ public class GraphValidTree {
 
     public static void main(String [] args) {
         int[][] edges = {{0,1},{1,2},{2,3},{1,3},{1,4}};
+        //int[][] edges = {{0,1},{0,2},{0,3},{1,4}};
 
         GraphValidTree graphValidTree = new GraphValidTree();
         System.out.println(graphValidTree.validTree(5, edges));

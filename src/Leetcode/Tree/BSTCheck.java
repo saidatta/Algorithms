@@ -21,7 +21,9 @@ public class BSTCheck {
         if(!validateBST(root.left, prev))
             return false;
 
-        // <= sign for both right and left??
+        // The condition is l < root < right for BST
+        // So, when validating left subtree; we are checking if l >= root, if true then its not bst.
+        // When validating right subtree; we are are checking if root >= root.right (since we are swapping using prev.
         if(prev != null && root.val <= prev.val) {
            return false;
         }
