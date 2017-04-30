@@ -3,6 +3,8 @@ package Leetcode.Backtracking;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.System.*;
+
 /**
  * https://leetcode.com/problems/combination-sum/#/description
  *
@@ -39,7 +41,7 @@ public class CombinationSum {
     public static void main(String [] args) {
         int[] arr = {2,3,6,7};
         CombinationSum combinationSum = new CombinationSum();
-        System.out.println(combinationSum.combinationSum(arr,7));
+        out.println(combinationSum.combinationSum(arr,7));
 
     }
 }

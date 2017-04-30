@@ -34,7 +34,7 @@ public class SegmentTree {
     /**
      * Creates a new segment tree based off input array.
      */
-    public int[] createSegmentTree(int input[]){
+    public int[] createSegmentTree(int[] input){
         NextPowerOf2 np2 = new NextPowerOf2();
         //if input len is pow of 2 then size of
         //segment tree is 2*len - 1, otherwise
@@ -139,9 +139,11 @@ public class SegmentTree {
     }
 
     private int rangeMinimumQuery(int segmentTree[],int low,int high,int qlow,int qhigh,int pos){
+        // complete overlap
         if(qlow <= low && qhigh >= high){
             return segmentTree[pos];
         }
+        // partial overalap or no overlap
         if(qlow > high || qhigh < low){
             return Integer.MAX_VALUE;
         }

@@ -3,7 +3,8 @@ package Leetcode;
 import java.util.HashMap;
 
 /**
- * 1
+ * 1 - https://leetcode.com/problems/two-sum/#/description
+ *
  * Created by venkatamunnangi on 12/21/16.
  */
 public class TwoSum {

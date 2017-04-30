@@ -1,6 +1,8 @@
 package Leetcode;
 
 /**
+ * https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/#/description
+ *
  * Created by venkatamunnangi on 1/11/17.
  */
 public class LongestSubstringAtMostKDistinctCharacters {
