@@ -13,7 +13,7 @@ import java.util.Stack;
  * Created by venkatamunnangi on 4/20/17.
  */
 public class BasicCalculator {
-    public static int calculate(String s) {
+    public int calculate(String s) {
         int len = s.length(), sign = 1, result = 0;
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < len; i++) {

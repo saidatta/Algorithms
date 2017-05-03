@@ -1,4 +1,4 @@
-package Leetcode.Tree;
+package Leetcode.Design;
 
 import Leetcode.TreeNode;
 

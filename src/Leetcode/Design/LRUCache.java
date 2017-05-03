@@ -1,10 +1,10 @@
-package Leetcode;
+package Leetcode.Design;
 
 import java.util.HashMap;
 
 /**
  * https://leetcode.com/problems/lru-cache/#/description
- * <p>
+ *
  * Created by venkatamunnangi on 3/10/17.
  */
 public class LRUCache {

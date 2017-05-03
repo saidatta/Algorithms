@@ -1,4 +1,4 @@
-package Leetcode;
+package Leetcode.Design;
 
 import Leetcode.Tree.NestedInteger;
 

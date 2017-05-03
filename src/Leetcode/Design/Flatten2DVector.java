@@ -1,4 +1,4 @@
-package Leetcode;
+package Leetcode.Design;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,10 +16,10 @@ public class Flatten2DVector implements Iterator<Integer> {
 
     public Flatten2DVector(List<List<Integer>> vec2d) {
         vector2d = vec2d;
-        if(vector2d == null || vector2d.size() == 0) {
+        if (vector2d == null || vector2d.isEmpty()) {
             tempList = new ArrayList<>();
         } else {
-            tempList =vector2d.get(currentIndex);
+            tempList = vector2d.get(currentIndex);
         }
         currentIndex = 0;
         tempIndex = 0;
@@ -27,10 +27,10 @@ public class Flatten2DVector implements Iterator<Integer> {
 
     @Override
     public Integer next() {
-        if(tempIndex < tempList.size()) {
+        if (tempIndex < tempList.size()) {
             return tempList.get(tempIndex++);
         } else {
-            tempIndex= 0;
+            tempIndex = 0;
             tempList = vector2d.get(currentIndex);
             return tempList.get(tempIndex++);
         }
@@ -38,12 +38,13 @@ public class Flatten2DVector implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        if(tempIndex < tempList.size()) {
+        if (tempIndex < tempList.size()) {
             return true;
         } else {
             do {
                 currentIndex++;
-            } while((currentIndex < vector2d.size()) && (vector2d.get(currentIndex).size() == 0));
+                // if the last arrays are just empty. Then, we cannot return any number from them.
+            } while ((currentIndex < vector2d.size()) && (vector2d.get(currentIndex).isEmpty()));
         }
         return currentIndex < vector2d.size();
 

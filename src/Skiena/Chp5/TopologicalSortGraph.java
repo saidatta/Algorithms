@@ -3,6 +3,8 @@ package Skiena.Chp5;
 import java.util.LinkedList;
 import java.util.Stack;
 
+import static java.lang.System.*;
+
 /**
  * Created by venkatamunnangi on 1/2/17.
  */
@@ -37,7 +39,7 @@ public class TopologicalSortGraph {
         }
 
         while (!stack.empty()) {
-            System.out.print(stack.pop() + " ");
+            out.print(stack.pop() + " ");
         }
     }
 
@@ -64,7 +66,7 @@ public class TopologicalSortGraph {
         g.addEdge(2, 3);
         g.addEdge(3, 1);
 
-        System.out.println("Following is a Topological " +
+        out.println("Following is a Topological " +
                 "sort of the given graph");
         g.topologicalSort();
     }

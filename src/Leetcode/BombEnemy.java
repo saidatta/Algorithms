@@ -2,7 +2,7 @@ package Leetcode;
 
 /**
  * https://leetcode.com/problems/bomb-enemy/#/description
- * <p>
+ *
  * Created by venkatamunnangi on 4/30/17.
  */
 public class BombEnemy {
