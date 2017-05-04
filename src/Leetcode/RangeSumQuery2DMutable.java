@@ -1,7 +1,5 @@
 package Leetcode;
 
-import Leetcode.Tushar.NextPowerOf2;
-
 /**
  * https://leetcode.com/problems/range-sum-query-2d-mutable/#/description
  *
@@ -14,7 +12,7 @@ public class RangeSumQuery2DMutable {
     int m;
     int n;
 
-    public NumMatrix(int[][] matrix) {
+    public RangeSumQuery2DMutable(int[][] matrix) {
         if (matrix.length == 0 || matrix[0].length == 0) return;
         m = matrix.length;
         n = matrix[0].length;

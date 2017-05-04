@@ -7,6 +7,6 @@ package Leetcode;
  */
 public class ShortestDistanceFromAllBuildings {
     public int shortestDistance(int[][] grid) {
-
+        return -1;
     }
 }
