@@ -1,23 +1,27 @@
 package Int;
 
+import static java.lang.System.out;
+
 /**
+ * find 95th percentile within an unsorted array of 2 million numbers.
+ *
  * Created by venkatamunnangi on 5/3/17.
  */
 public class QuickSelectWithPercentileSandeep {
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         QuickSelectWithPercentileSandeep qs = new QuickSelectWithPercentileSandeep();
 
-        int [] arr = {43, 54,87, 88, 89, 93, 95, 96, 98, 99, 100, 56, 61, 62, 66, 68, 69, 69, 70, 71, 72, 77, 78, 79, 85, };
+        int[] arr = {43, 54, 87, 88, 89, 93, 95, 96, 98, 99, 100, 56, 61, 62, 66, 68, 69, 69, 70, 71, 72, 77, 78, 79, 85,};
         int percentile = 90;
 
-        System.out.println(qs.pthPercentile(arr, percentile));
+        out.println(qs.pthPercentile(arr, percentile));
     }
 
 
     public int pthPercentile(int[] array, int percentile) {
         //-1 because of quick select index starts from 0
-        int percentileIndex = (int)Math.round((percentile/100D)*array.length) -1 ;
+        int percentileIndex = (int) Math.round((percentile / 100D) * array.length) - 1;
         return quickSelect(array, percentileIndex);
     }
 
@@ -55,7 +59,7 @@ public class QuickSelectWithPercentileSandeep {
         return end;
     }
 
-    public void swap(int[] nums,int a,int b) {
+    public void swap(int[] nums, int a, int b) {
         int temp = nums[a];
         nums[a] = nums[b];
         nums[b] = temp;

@@ -26,12 +26,12 @@ public class LongestAbsolutePath {
             return 0;
         }
 
-        String[] paths = input.split("\n");
+        String[] paths = input.split(NEW_LINE);
         int [] stack = new int[paths.length+1];
 
         int maxLen = 0;
         for(String path: paths) {
-            int level = path.lastIndexOf("\t")+1;//number of /ts
+            int level = path.lastIndexOf(TAB)+1;//number of /ts
             stack[level+1] = stack[level]+path.length() - level + 1;
             int currLength = stack[level+1];
             if(path.contains(".")) {
@@ -47,12 +47,12 @@ public class LongestAbsolutePath {
             return 0;
         }
 
-        String[] paths = input.split("\n");
+        String[] paths = input.split(NEW_LINE);
         int [] stack = new int[paths.length+1];
 
         int maxLen = 0;
         for(String path: paths) {
-            int level = path.lastIndexOf("\t")+1;
+            int level = path.lastIndexOf(TAB)+1;
             int nextAbsolutePathMember = level+1;
             // path of previous members + currentPathLength - tab length + length of adding /
             int currLength = stack[nextAbsolutePathMember] = stack[level]+path.length() - level + 1;
