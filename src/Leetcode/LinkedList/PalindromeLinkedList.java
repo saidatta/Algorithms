@@ -16,6 +16,7 @@ public class PalindromeLinkedList {
             fast = fast.next.next;
             slow = slow.next;
         }
+
         if(fast != null) {
             slow = slow.next;
         }
@@ -28,13 +29,13 @@ public class PalindromeLinkedList {
         return slow == null;
     }
 
-    private ListNode reverse(ListNode head) {
+    private ListNode reverse(ListNode node) {
         ListNode prev = null;
-        while (head != null) {
-            ListNode next = head.next;
-            head.next = prev;
-            prev = head;
-            head = next;
+        while (node != null) {
+            ListNode next = node.next;
+            node.next = prev;
+            prev = node;
+            node = next;
         }
 
         return prev;

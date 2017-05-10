@@ -9,17 +9,6 @@ import Leetcode.ListNode;
  */
 public class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        if(l1 == null && l2 == null) {
-            return null;
-        } else if(l1 == null) {
-            return l2;
-        } else if(l2 == null) {
-            return l1;
-        }
-        return null;
-    }
-
-    public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
         int carry = 0;
 
         ListNode head = new ListNode(Integer.MIN_VALUE);
@@ -30,6 +19,7 @@ public class AddTwoNumbers {
                 carry += ln1.val;
                 ln1 = ln1.next;
             }
+
             if(ln2 != null) {
                 carry += ln2.val;
                 ln2 = ln2.next;
@@ -38,6 +28,7 @@ public class AddTwoNumbers {
             ln3 = ln3.next;
             carry /= 10;
         }
+
         if(carry == 1) {
             ln3.next = new ListNode(1);
         }

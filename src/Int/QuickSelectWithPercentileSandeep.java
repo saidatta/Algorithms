@@ -20,7 +20,7 @@ public class QuickSelectWithPercentileSandeep {
 
 
     public int pthPercentile(int[] array, int percentile) {
-        //-1 because of quick select index starts from 0
+        //-1 because of quick select index starts from 0 & the percentile formula
         int percentileIndex = (int) Math.round((percentile / 100D) * array.length) - 1;
         return quickSelect(array, percentileIndex);
     }

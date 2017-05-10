@@ -6,13 +6,13 @@ import java.util.Map;
 /**
  * LC 138
  * https://leetcode.com/problems/copy-list-with-random-pointer/#/description
- *
+ * <p>
  * Created by venkatamunnangi on 12/11/16.
  */
 public class CopyListWIthRandomPointer {
 
-        //O (n)
-        public RandomListNode copyRandomList(RandomListNode head) {
+    //O (n)
+    public RandomListNode copyRandomList(RandomListNode head) {
         if (head == null) {
             return null;
         }

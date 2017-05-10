@@ -33,8 +33,6 @@ import static java.lang.System.out;
  * Created by venkatamunnangi on 3/23/17.
  */
 public class RemoveInvalidParentheses {
-
-
     public List<String> removeInvalidParentheses(String s) {
         List<String> res = new ArrayList<>();
 

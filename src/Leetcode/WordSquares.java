@@ -30,8 +30,9 @@ public class WordSquares {
                 TrieNode cur = root;
                 for (char ch : w.toCharArray()) {
                     int idx = ch - 'a';
-                    if (cur.children[idx] == null)
+                    if (cur.children[idx] == null) {
                         cur.children[idx] = new TrieNode();
+                    }
                     cur.children[idx].startWith.add(w);
                     cur = cur.children[idx];
                 }

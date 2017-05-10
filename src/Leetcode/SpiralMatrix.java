@@ -6,6 +6,8 @@ import java.util.List;
 /**
  * https://leetcode.com/problems/spiral-matrix/#/description
  *
+ * O(m+n)
+ *
  * Created by venkatamunnangi on 10/2/16.
  */
 public class SpiralMatrix {
@@ -33,7 +35,6 @@ public class SpiralMatrix {
         int x = 0;
         int y = 0;
         while(m > 0 && n > 0) {
-
             for(int i = 0;i < n-1; i++) {
                 travelledNumbers.add(matrix[x][y++]);
             }

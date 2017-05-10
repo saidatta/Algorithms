@@ -3,6 +3,9 @@ package Leetcode;
 /**
  * https://leetcode.com/problems/range-sum-query-2d-mutable/#/description
  *
+ * Explanation of Binary Indexed Tree :
+ * https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
+ *
  * Created by venkatamunnangi on 4/29/17.
  */
 public class RangeSumQuery2DMutable {
@@ -13,7 +16,9 @@ public class RangeSumQuery2DMutable {
     int n;
 
     public RangeSumQuery2DMutable(int[][] matrix) {
-        if (matrix.length == 0 || matrix[0].length == 0) return;
+        if (matrix.length == 0 || matrix[0].length == 0) {
+            return;
+        }
         m = matrix.length;
         n = matrix[0].length;
         tree = new int[m+1][n+1];
@@ -26,7 +31,9 @@ public class RangeSumQuery2DMutable {
     }
 
     public void update(int row, int col, int val) {
-        if (m == 0 || n == 0) return;
+        if (m == 0 || n == 0) {
+            return;
+        }
         int delta = val - nums[row][col];
         nums[row][col] = val;
         for (int i = row + 1; i <= m; i += i & (-i)) {
@@ -37,7 +44,9 @@ public class RangeSumQuery2DMutable {
     }
 
     public int sumRegion(int row1, int col1, int row2, int col2) {
-        if (m == 0 || n == 0) return 0;
+        if (m == 0 || n == 0) {
+            return 0;
+        }
         return sum(row2+1, col2+1) + sum(row1, col1) - sum(row1, col2+1) - sum(row2+1, col1);
     }
 
