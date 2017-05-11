@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static java.lang.System.*;
+
 /**
  *         <p>
  *         Find minimum spanning tree usinig Kruskals algorithm
@@ -80,7 +82,7 @@ public class KruskalMST {
         KruskalMST mst = new KruskalMST();
         List<Edge<Integer>> result = mst.getKruskalMST(graph);
         for (Edge<Integer> edge : result) {
-            System.out.println(edge.getVertex1() + " " + edge.getVertex2());
+            out.println(edge.getVertex1() + " " + edge.getVertex2());
         }
     }
 }

@@ -37,7 +37,7 @@ public class FenwickTree {
      * Start from index+1 if you want prefix sum 0 to index. Keep adding value
      * till you reach 0
      */
-    public int getSum(int binaryIndexedTree[], int index) {
+    public int getSum(int[] binaryIndexedTree, int index) {
         index = index + 1;
         int sum = 0;
         while (index > 0) {
@@ -78,10 +78,10 @@ public class FenwickTree {
         return index + (index & -index);
     }
 
-    public static void main(String args[]) {
-        int input[] = {1, 2, 3, 4, 5, 6, 7};
+    public static void main(String[] args) {
+        int[] input = {1, 2, 3, 4, 5, 6, 7};
         FenwickTree ft = new FenwickTree();
-        int binaryIndexedTree[] = ft.createTree(input);
+        int[] binaryIndexedTree = ft.createTree(input);
         assert 1 == ft.getSum(binaryIndexedTree, 0);
         assert 3 == ft.getSum(binaryIndexedTree, 1);
         assert 6 == ft.getSum(binaryIndexedTree, 2);

@@ -6,13 +6,18 @@ import java.util.Stack;
 import static java.lang.System.*;
 
 /**
+ * Topological Sort is the linear ordering of a directed graph's nodes such that
+ * for every edge from node u to node v, u comes before v in the ordering
+ *
+ * Time Complexity: O(|V| + |E|)
+ *
  * Created by venkatamunnangi on 1/2/17.
  */
 public class TopologicalSortGraph {
     private int V; // no. of vertices
     private LinkedList<Integer>[] adjacentNodes;
 
-    TopologicalSortGraph(int v) {
+    public TopologicalSortGraph(int v) {
         V = v;
         adjacentNodes = new LinkedList[V];
         for(int i = 0; i< V;++i) {
@@ -24,11 +29,12 @@ public class TopologicalSortGraph {
         adjacentNodes[x].add(y);
     }
 
-    void topologicalSort() {
+    public void topologicalSort() {
         Stack<Integer> stack = new Stack<>();
 
         boolean[] visited = new boolean[V];
         for (int i = 0; i < V; i++) {
+            // un-necessary. kept for logical and readability reasons.
             visited[i] = false;
         }
 

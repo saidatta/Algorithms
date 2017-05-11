@@ -5,19 +5,22 @@ import java.util.PriorityQueue;
 
 /**
  * https://leetcode.com/problems/find-median-from-data-stream/#/description
- *
- *
+ * <p>
+ * <p>
  * [2,3,4] , the median is 3
  * [2,3], the median is (2 + 3) / 2 = 2.5
- *
+ * <p>
  * Created by venkatamunnangi on 5/3/17.
  */
 public class FindMedianFromDataStream {
     // maxHeap queue is always larger or equal to minHeap queue
     PriorityQueue<Integer> minHeap, maxHeap;
-    /** initialize your data structure here. */
+
+    /**
+     * initialize your data structure here.
+     */
     public FindMedianFromDataStream() {
-        minHeap =  new PriorityQueue<>();
+        minHeap = new PriorityQueue<>();
         maxHeap = new PriorityQueue<>(1000, Collections.reverseOrder());
     }
 
@@ -25,7 +28,7 @@ public class FindMedianFromDataStream {
     public void addNum(int num) {
         maxHeap.offer(num);
         minHeap.offer(maxHeap.poll());
-        if (maxHeap.size() < minHeap.size()){
+        if (maxHeap.size() < minHeap.size()) {
             maxHeap.offer(minHeap.poll());
         }
     }
@@ -34,8 +37,9 @@ public class FindMedianFromDataStream {
     public double findMedian() {
         if (maxHeap.size() == minHeap.size()) {
             return (maxHeap.peek() + minHeap.peek()) / 2.0;
+        } else {
+            return maxHeap.peek();
         }
-        else return maxHeap.peek();
     }
 }
 
