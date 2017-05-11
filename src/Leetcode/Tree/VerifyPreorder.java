@@ -11,7 +11,9 @@ public class VerifyPreorder {
     }
 
     private void helper(int[] preorder, int[] pointer, int min, int max) {
-        if(pointer[0] == preorder.length) return;
+        if(pointer[0] == preorder.length) {
+            return;
+        }
 
         int cur = preorder[pointer[0]];  // we check the cur element in arr
         if(cur > min && cur < max) {

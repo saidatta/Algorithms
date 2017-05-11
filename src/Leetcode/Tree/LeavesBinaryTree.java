@@ -8,6 +8,9 @@ import java.util.List;
 /**
  * LC 366 - https://leetcode.com/problems/find-leaves-of-binary-tree/#/description
  *
+ * Given a binary tree, collect a tree's nodes as if you were doing this:
+ * Collect and remove all leaves, repeat until the tree is empty.
+ *
  * Created by venkatamunnangi on 12/16/16.
  */
 /**

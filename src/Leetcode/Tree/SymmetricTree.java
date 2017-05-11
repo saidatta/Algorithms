@@ -6,6 +6,7 @@ import java.util.*;
 
 /**
  * https://leetcode.com/problems/symmetric-tree/#/description
+ * Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
  *
  * Created by venkatamunnangi on 24/11/16.
  */
@@ -42,6 +43,7 @@ public class SymmetricTree {
         return true;
     }
 
+    // if both of them are equal then add it the queues.
     public boolean checkSymmetry(TreeNode tn1, TreeNode tn2, Queue<TreeNode> q , Queue<TreeNode> q2) {
         if(q.size() != q2.size()) {
             return false;

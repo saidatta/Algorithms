@@ -20,6 +20,7 @@ public class LCABinaryTree {
             return root;
         }
 
+        /// one value is null in here.
         return (left != null) ? left : right;
     }
 

@@ -100,8 +100,7 @@ public class Graph<T>{
     }
 }
 
-
-class Vertex<T> {
+ class Vertex<T> {
     long id;
     private T data;
     private List<Edge<T>> edges = new ArrayList<>();

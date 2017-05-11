@@ -31,6 +31,7 @@ public class GraphValidTree {
             nums[x] = y;
         }
 
+        // always true because we are mostly focused on the cycle condition
         return edges.length == n - 1;
     }
 

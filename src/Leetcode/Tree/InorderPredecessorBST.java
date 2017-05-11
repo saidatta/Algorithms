@@ -8,7 +8,7 @@ import Leetcode.TreeNode;
  * Created by venkatamunnangi on 3/28/17.
  */
 public class InorderPredecessorBST {
-
+    // either it is left node or root node.
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
         if(root == null) {
             return null;
@@ -22,6 +22,7 @@ public class InorderPredecessorBST {
         }
     }
 
+    // either it is right node or root node.
     public TreeNode inorderPredecessor(TreeNode root, TreeNode p) {
         if(root == null) {
             return null;

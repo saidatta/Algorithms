@@ -17,12 +17,14 @@ public class ValidateBST {
             return true;
         }
 
+        // root nodes > left node && root < right
         boolean bstProperty = (min == null || root.val > min) && (max == null || root.val < max);
 
         return bstProperty && isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
     }
 
     public static void main(String [] args) {
+        // invalid bst below.
         TreeNode tr = new TreeNode(20);
         tr.left = new TreeNode(18);
         tr.left.left = new TreeNode(1);

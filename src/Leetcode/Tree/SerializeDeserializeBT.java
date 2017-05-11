@@ -12,7 +12,7 @@ import java.util.Queue;
  * Created by venkatamunnangi on 3/12/17.
  */
 public class SerializeDeserializeBT {
-    private static final String spliter = ",";
+    private static final String SEPERATOR = ",";
     private static final String NN = "X";
 
     // Encodes a tree to a single string.
@@ -24,9 +24,9 @@ public class SerializeDeserializeBT {
 
     private void buildString(TreeNode node, StringBuilder sb) {
         if (node == null) {
-            sb.append(NN).append(spliter);
+            sb.append(NN).append(SEPERATOR);
         } else {
-            sb.append(node.val).append(spliter);
+            sb.append(node.val).append(SEPERATOR);
             buildString(node.left, sb);
             buildString(node.right,sb);
         }
@@ -34,7 +34,7 @@ public class SerializeDeserializeBT {
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
         Queue<String> nodes = new LinkedList<>();
-        nodes.addAll(Arrays.asList(data.split(spliter)));
+        nodes.addAll(Arrays.asList(data.split(SEPERATOR)));
         return buildTree(nodes);
     }
 

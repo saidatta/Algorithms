@@ -5,6 +5,9 @@ import Leetcode.ListNode;
 /**
  * https://leetcode.com/problems/add-two-numbers/
  *
+ * Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+ * Output: 7 -> 0 -> 8
+ *
  * Created by venkatamunnangi on 12/11/16.
  */
 public class AddTwoNumbers {

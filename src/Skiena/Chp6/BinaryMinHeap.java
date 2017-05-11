@@ -74,7 +74,7 @@ public class BinaryMinHeap<T> {
      * Checks with heap is empty or not
      */
     public boolean empty(){
-        return allNodes.size() == 0;
+        return allNodes.isEmpty();
     }
 
     /**

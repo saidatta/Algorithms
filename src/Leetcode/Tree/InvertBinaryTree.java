@@ -23,10 +23,13 @@ public class InvertBinaryTree {
         while(!q.isEmpty()) {
             TreeNode node = q.poll();
 
+            // inversion formula
+            // Remember that swapping between subtrees is not valid.
             TreeNode left = node.left;
             node.left = node.right;
             node.right = left;
 
+            // order of offering is important.
             if(node.right != null) {
                 q.offer(node.right);
             }

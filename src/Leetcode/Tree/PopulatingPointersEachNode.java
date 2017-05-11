@@ -8,6 +8,13 @@ import Leetcode.TreeLinkNode;
  * Created by venkatamunnangi on 3/8/17.
  */
 public class PopulatingPointersEachNode {
+
+//  class TreeLinkNode {
+//        public int val;
+//        public TreeLinkNode left, right, next;
+//        public TreeLinkNode(int x) { val = x; }
+//    }
+
     public void connect(TreeLinkNode root) {
         if(root == null) {
             return;
