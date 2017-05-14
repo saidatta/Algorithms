@@ -12,9 +12,7 @@ public class MeetingRoom {
     public boolean canAttendMeetings(Interval[] intervals) {
         List<Interval> all = Arrays.asList(intervals);
 
-        all.sort((o1, o2) -> {
-            return o1.start - o2.start;
-        });
+        all.sort((o1, o2) -> o1.start - o2.start);
 
         for(int i = 1; i< intervals.length; i++) {
             if(intervals[i].start < intervals[i-1].end) {

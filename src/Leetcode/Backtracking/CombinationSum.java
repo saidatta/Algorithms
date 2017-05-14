@@ -8,6 +8,11 @@ import static java.lang.System.*;
 /**
  * https://leetcode.com/problems/combination-sum/#/description
  *
+ * Given a set of candidate numbers (C) (without duplicates) and a target number (T),
+ * find all unique combinations in C where the candidate numbers sums to T.
+ *
+ * The same repeated number may be chosen from C unlimited number of times.
+ *
  * For example, given candidate set [2, 3, 6, 7] and target 7.
  *
  * Created by venkatamunnangi on 4/4/17.

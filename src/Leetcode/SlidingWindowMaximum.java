@@ -18,7 +18,6 @@ public class SlidingWindowMaximum {
      * @param k
      * @return
      */
-
     public int[] maxSlidingWindow(int[] a, int k) {
         if (a == null || k <= 0) {
             return new int[0];

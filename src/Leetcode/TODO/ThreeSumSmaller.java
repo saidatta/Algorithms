@@ -31,7 +31,8 @@ public class ThreeSumSmaller {
      *  i  lo    hi
      * [-2, 0, 1, 3]
      *
-     * We use a for loop (index i) to iterate through each element of the array. For each i, we create two pointers, lo and hi,
+     * We use a for loop (index i) to iterate through each element of the array.
+     * For each i, we create two pointers, lo and hi,
      * where lo is initialized as the next element of i, and hi is initialized at the end of the array.
      * If we know that nums[i] + nums[lo] + nums[hi] < target, then we know that since the array is sorted, we can
      * replace hi with any element from lo+1 to nums.length-1, and the requirements will still be met.
