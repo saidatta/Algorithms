@@ -12,7 +12,7 @@ public class QuickSelectWithPercentileSandeep {
     public static void main(String[] args) {
         QuickSelectWithPercentileSandeep qs = new QuickSelectWithPercentileSandeep();
 
-        int[] arr = {43, 54, 87, 88, 89, 93, 95, 96, 98, 99, 100, 56, 61, 62, 66, 68, 69, 69, 70, 71, 72, 77, 78, 79, 85,};
+        int[] arr = {43, 54, 87, 88, 89, 93, 95, 96, 98, 99, 100, 56, 61, 62, 66, 68, 69, 69, 70, 71, 72, 77, 78, 79, 85};
         int percentile = 90;
 
         out.println(qs.pthPercentile(arr, percentile));
@@ -40,8 +40,9 @@ public class QuickSelectWithPercentileSandeep {
         return nums[start];
     }
 
+    // 0 24
     private int partion(int[] nums, int start, int end) {
-        int pivot = start, temp;
+        int pivot = start;
         while (start <= end) {
             while (start <= end && nums[start] <= nums[pivot]) {
                 start++;

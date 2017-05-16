@@ -2,7 +2,7 @@ package Leetcode;
 
 /**
  * LC 256
- * https://leetcode.com/problems/paint-house/
+ * https://leetcode.com//paint-house/
  *
  * Created by venkatamunnangi on 2/6/17.
  *

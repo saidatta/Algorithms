@@ -38,7 +38,7 @@ public class FenwickTree {
      * till you reach 0
      */
     public int getSum(int[] binaryIndexedTree, int index) {
-        index = index + 1;
+        index++;
         int sum = 0;
         while (index > 0) {
             sum += binaryIndexedTree[index];
