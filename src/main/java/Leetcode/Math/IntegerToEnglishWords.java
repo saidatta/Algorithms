@@ -8,9 +8,9 @@ import static java.lang.System.out;
  * Created by venkatamunnangi on 3/25/17.
  */
 public class IntegerToEnglishWords {
-    private final String[] LESS_THAN_20 = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
-    private final String[] TENS = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety", "Hundred"};
-    private final String[] THOUSANDS = {"", "Thousand", "Million", "Billion"};
+    private final String[] LESS_THAN_20 = new String[]{"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+    private final String[] TENS = new String[]{"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety", "Hundred"};
+    private final String[] THOUSANDS = new String[]{"", "Thousand", "Million", "Billion"};
 
     public String numberToWords(int num) {
         int numToParse = num;
@@ -40,7 +40,7 @@ public class IntegerToEnglishWords {
         }
 
         if(num < 20) {
-            return LESS_THAN_20[num]+" ";
+            return LESS_THAN_20[num] + " ";
         } else if (num < 100) {
             return TENS[num / 10] +" "+ constructNumberTranslation(num % 10);
         } else {
@@ -48,7 +48,7 @@ public class IntegerToEnglishWords {
         }
     }
 
-    public static void main(String [] args) {
+    public static void main(String... args) {
         IntegerToEnglishWords integerToEnglishWords = new IntegerToEnglishWords();
         out.println(integerToEnglishWords.constructNumberTranslation(1001));
     }

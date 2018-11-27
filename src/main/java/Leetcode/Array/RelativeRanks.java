@@ -17,7 +17,7 @@ public class RelativeRanks {
             pair[i][1] = i;
         }
 
-        Arrays.sort(pair, (a, b) -> (b[0] - a[0]));
+//        Arrays.sort(pair, (a, b) -> (b[0] - a[0]));
 
         String[] result = new String[nums.length];
 

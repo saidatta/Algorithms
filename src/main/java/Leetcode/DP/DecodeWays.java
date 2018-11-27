@@ -46,6 +46,7 @@ public class DecodeWays {
 
     public static void main(String [] args) {
         DecodeWays decodeWays = new DecodeWays();
+        out.println(decodeWays.numDecodings("111"));
         out.println(decodeWays.numDecodings("14122"));
         out.println(decodeWays.numDecodings("12"));
     }

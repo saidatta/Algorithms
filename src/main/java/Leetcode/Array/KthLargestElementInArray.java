@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 public class KthLargestElementInArray {
     public int findKthLargest(int[] nums, int k) {
 
-        final PriorityQueue<Integer> pq = new PriorityQueue<>();
+        final PriorityQueue<Integer> pq = new PriorityQueue<>(k+1);
         for(int val : nums) {
             pq.offer(val);
 
