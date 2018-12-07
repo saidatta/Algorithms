@@ -19,7 +19,7 @@ public class RandomNumberFromStream {
 
         Random r = new Random();
 
-        for (int i = 1; i < n; i++) {// Iterate from the 2nd element to nth element
+        for (int i = 0; i < n; i++) {// Iterate from the 2nd element to nth element
             int j = r.nextInt(i + 1); // Pick a random index from 0 to i.
 
             if (j < 1) {
