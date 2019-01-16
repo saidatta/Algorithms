@@ -12,25 +12,25 @@ import java.util.Stack;
  * Created by venkatamunnangi on 4/30/17.
  */
 public class DecodeString {
-    public String decodeString(String s) {
+    public String decodeString(String input) {
         String res = "";
         Stack<Integer> countStack = new Stack<>();
         Stack<String> resStack = new Stack<>();
         int index = 0;
-        while (index < s.length()) {
-            if (Character.isDigit(s.charAt(index))) {
+        while (index < input.length()) {
+            if (Character.isDigit(input.charAt(index))) {
                 int count = 0;
-                while (Character.isDigit(s.charAt(index))) {
+                while (Character.isDigit(input.charAt(index))) {
                     // if double digit
-                    count = 10 * count + (s.charAt(index) - '0');
+                    count = 10 * count + input.charAt(index) - '0';
                     index++;
                 }
                 countStack.push(count);
-            } else if (s.charAt(index) == '[') {
+            } else if (input.charAt(index) == '[') {
                 resStack.push(res);
                 res = "";
                 index++;
-            } else if (s.charAt(index) == ']') {
+            } else if (input.charAt(index) == ']') {
                 StringBuilder temp = new StringBuilder(resStack.pop());
                 int repeatTimes = countStack.pop();
                 for (int i = 0; i < repeatTimes; i++) {
@@ -39,7 +39,7 @@ public class DecodeString {
                 res = temp.toString();
                 index++;
             } else {
-                res += s.charAt(index++);
+                res += input.charAt(index++);
             }
         }
         return res;

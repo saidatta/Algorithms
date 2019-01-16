@@ -24,7 +24,7 @@ public class TwoSum {
     }
 
     public static void main(String [] args) {
-        int [] nums = {2,7,11,15};
+        int [] nums = new int[]{2, 7, 11, 15};
         TwoSum twoSum = new TwoSum();
 
         int [] ans = twoSum.twoSum(nums, 9);
