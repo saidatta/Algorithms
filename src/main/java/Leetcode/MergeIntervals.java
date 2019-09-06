@@ -1,6 +1,7 @@
 package Leetcode;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -46,5 +47,14 @@ public class MergeIntervals {
         MergeIntervals mergeIntervals = new MergeIntervals();
         Interval [] inters = {new Interval(94133, 94133), new Interval(94200, 94299),new Interval(94226, 94399)};
         System.out.println(mergeIntervals.merge(Arrays.asList(inters)));
+    }
+
+
+    public class MyComparator implements Comparator<Integer>
+    {
+        public int compare( Integer x, Integer y )
+        {
+            return y - x;
+        }
     }
 }

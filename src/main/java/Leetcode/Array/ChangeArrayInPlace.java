@@ -14,7 +14,7 @@ import static java.lang.System.*;
  * Created by venkatamunnangi on 12/28/16.
  */
 public class ChangeArrayInPlace {
-    void rearrange(int[] arr, int n) {
+    public void rearrange(int[] arr, int n) {
         // First step: Increase all values by (arr[arr[i]]%n)*n
         for (int i = 0; i < n; i++) {
             arr[i] += (arr[arr[i]] % n) * n;
@@ -26,7 +26,7 @@ public class ChangeArrayInPlace {
     }
 
     // A utility function to print an array of size n
-    void printArr(int arr[], int n)
+    private void printArr(int arr[], int n)
     {
         for (int i = 0; i < n; i++) {
             out.print(arr[i] + " ");

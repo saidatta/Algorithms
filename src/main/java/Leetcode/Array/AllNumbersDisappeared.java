@@ -23,11 +23,13 @@ import static java.lang.System.out;
  * Created by venkatamunnangi on 5/15/17.
  */
 public class AllNumbersDisappeared {
+
+    //o(n) o(1) space
     public List<Integer> findDisappearedNumbers(int... nums) {
         List<Integer> ret = new ArrayList<>();
 
-        // the goal isto leveragethe indices. if you encoutner a number, then go to that
-        // array index and mark its value as -1
+        // the goal is to leverage the indices. if you encoutner a number, then go to that
+        // array index and mark its value as -1*val
         for(int i = 0; i < nums.length; i++) {
             // transforming into an array index
             int val = Math.abs(nums[i]) - 1;
