@@ -8,6 +8,8 @@ import java.util.PriorityQueue;
  * Created by venkatamunnangi on 3/28/17.
  */
 public class MergeKSortedLists {
+
+    // kn log(k)
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists==null || lists.length == 0) {
             return null;

@@ -11,7 +11,7 @@ import java.util.Deque;
  *
  * Created by venkatamunnangi on 4/2/17.
  */
-public class SlidingWindowMaximum {
+public class    SlidingWindowMaximum {
     /**
      *
      * @param a
@@ -19,7 +19,7 @@ public class SlidingWindowMaximum {
      * @return
      */
     public int[] maxSlidingWindow(int[] a, int k) {
-        if (a == null || k <= 0) {
+        if (a == null || k  <= 0) {
             return new int[0];
         }
         int n = a.length;

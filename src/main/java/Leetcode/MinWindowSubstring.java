@@ -5,23 +5,30 @@ import java.util.HashMap;
 /**
  * https://leetcode.com/problems/minimum-window-substring/#/description
  *
+ * Input: S = "ADOBECODEBANC", T = "ABC"
+ * Output: "BANC"
+ *
  * Created by venkatamunnangi on 3/27/17.
  */
 public class MinWindowSubstring {
     public String minWindow(String source, String target) {
         HashMap<Character, Integer> TgtOccurrencesInSource = new HashMap<>();
         for (char c : source.toCharArray()) {
+            // occurrence map from source
             TgtOccurrencesInSource.put(c, 0);
         }
 
         for (char c : target.toCharArray()) {
+            // map how many target occurences within source.
             if (TgtOccurrencesInSource.containsKey(c))
                 TgtOccurrencesInSource.put(c, TgtOccurrencesInSource.get(c) + 1);
             else
                 return "";
         }
 
-        int windowStart = 0, windowEnd = 0, minStart = 0, minLen = Integer.MAX_VALUE, numOfTargetCharsNeedToBeFoundInSource = target.length();
+        int windowStart = 0, windowEnd = 0, minStart = 0, minLen = Integer.MAX_VALUE,
+                numOfTargetCharsNeedToBeFoundInSource = target.length();
+
         while (windowEnd < source.length()) {
             char c1 = source.charAt(windowEnd);
 

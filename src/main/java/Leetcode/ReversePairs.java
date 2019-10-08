@@ -25,14 +25,20 @@ public class ReversePairs {
         int[] merge = new int[r - l + 1];
 
         while (i <= m) {
-            while (p <= r && nums[i] > 2L * nums[p]) p++;
+            while (p <= r && nums[i] > 2L * nums[p]) {
+                p++;
+            }
             res += p - (m + 1);
 
-            while (j <= r && nums[i] >= nums[j]) merge[k++] = nums[j++];
+            while (j <= r && nums[i] >= nums[j]) {
+                merge[k++] = nums[j++];
+            }
             merge[k++] = nums[i++];
         }
 
-        while (j <= r) merge[k++] = nums[j++];
+        while (j <= r) {
+            merge[k++] = nums[j++];
+        }
 
         System.arraycopy(merge, 0, nums, l, merge.length);
 

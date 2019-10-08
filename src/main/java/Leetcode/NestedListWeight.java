@@ -35,9 +35,9 @@ public class NestedListWeight {
         List<NestedInteger> currentList = nestedInteger.getList();
 
         int ans = 0;
-        ++depth;
+        int currentDepth = depth+1;
         for(NestedInteger curr : currentList) {
-            ans += depthSumHelper(curr, depth);
+            ans += depthSumHelper(curr, currentDepth);
         }
         return ans;
     }

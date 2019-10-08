@@ -1,6 +1,14 @@
 package Leetcode;
 
 public class CountPrimes {
+    //n log log n
+
+    /**
+     * https://leetcode.com/problems/count-primes/
+     *
+     * @param n
+     * @return
+     */
     public int countPrimes(int n) {
         if(n < 2) {
             return 0;

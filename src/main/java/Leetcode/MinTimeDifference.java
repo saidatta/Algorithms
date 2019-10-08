@@ -36,4 +36,10 @@ public class MinTimeDifference {
         return min;
     }
 
+    public static void main(String [] args) {
+        MinTimeDifference minTimeDifference = new MinTimeDifference();
+
+//        System.out.println(minTimeDifference.findMinDifference());
+    }
+
 }

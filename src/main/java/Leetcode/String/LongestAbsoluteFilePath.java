@@ -9,7 +9,7 @@ import java.util.Stack;
  *
  * Created by venkatamunnangi on 1/9/17.
  */
-public class LongestAbsolutePath {
+public class LongestAbsoluteFilePath {
 
     String TAB = "\t";
     String NEW_LINE = "\n";
@@ -56,7 +56,7 @@ public class LongestAbsolutePath {
     }
 
     public static void main(String [] args) {
-        LongestAbsolutePath lap = new LongestAbsolutePath();
+        LongestAbsoluteFilePath lap = new LongestAbsoluteFilePath();
         System.out.println(lap.lengthLongestPath("dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext"));
     }
 }

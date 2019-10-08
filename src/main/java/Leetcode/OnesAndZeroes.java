@@ -9,7 +9,6 @@ import java.util.Arrays;
  */
 public class OnesAndZeroes {
     public int findMaxForm(String[] strs, int m, int n) {
-        int l = strs.length;
         int[][] dp = new int[m+1][n+1];
 
         for (int i = 0; i < m+1; i++) {

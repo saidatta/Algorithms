@@ -2,6 +2,7 @@ package Leetcode.Graph;
 
 import Leetcode.UndirectedGraphNode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -11,22 +12,29 @@ import java.util.HashMap;
  */
 public class CloneGraph {
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-        HashMap<Integer,UndirectedGraphNode> map = new HashMap<>();
-        return dfs(node,map);
+        return clone(node, new HashMap<>());
     }
-    private UndirectedGraphNode dfs(UndirectedGraphNode node, HashMap<Integer,UndirectedGraphNode> map) {
-        if (node == null) {
+
+    private UndirectedGraphNode clone(UndirectedGraphNode src, HashMap<UndirectedGraphNode, UndirectedGraphNode> visitedBag){
+        if (src == null){
             return null;
         }
-        if (map.containsKey(node.label)) {
-            return map.get(node.label);
-        } else {
-            UndirectedGraphNode clone = new UndirectedGraphNode(node.label);
-            map.put(node.label,clone);
-            for (int i = 0; i < node.neighbors.size(); i++) {
-                clone.neighbors.add(dfs(node.neighbors.get(i), map));
-            }
-            return clone;
+        if (visitedBag.containsKey(src)){
+            return visitedBag.get(src);
         }
+
+        UndirectedGraphNode n = new UndirectedGraphNode(src.label);
+        n.neighbors = new ArrayList<>();
+
+        visitedBag.put(src, n);
+        for (UndirectedGraphNode child : src.neighbors){
+            if (visitedBag.containsKey(child)){
+                n.neighbors.add(visitedBag.get(child));
+            } else {
+                UndirectedGraphNode childCopy = clone(child, visitedBag);
+                n.neighbors.add(childCopy);
+            }
+        }
+        return n;
     }
 }

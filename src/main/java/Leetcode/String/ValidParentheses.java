@@ -9,6 +9,7 @@ import java.util.Stack;
  */
 public class ValidParentheses {
 
+    // ([)]
     public boolean isValid(String s) {
         if(s == null || s.isEmpty()) {
             return false;
@@ -18,7 +19,7 @@ public class ValidParentheses {
         String endings = ")}]";
 
         for(char c : s.toCharArray()) {
-            if(endings.contains(c+"")) {
+            if(endings.contains(Character.toString(c))) {
                 if(know.empty()) {
                     return false;
                 }

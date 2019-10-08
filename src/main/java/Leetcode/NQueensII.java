@@ -2,6 +2,8 @@ package Leetcode;
 
 /**
  * TODO - Now, instead outputting board configurations, return the total number of distinct solutions.
+ * https://leetcode.com/problems/n-queens-ii/
+ *
  * Created by venkatamunnangi on 13/11/16.
  */
 public class NQueensII {

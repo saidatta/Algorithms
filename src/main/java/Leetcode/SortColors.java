@@ -3,9 +3,11 @@ package Leetcode;
 /**
  * https://leetcode.com/problems/sort-colors/#/description
  *
+ * DCP_35
  * Created by venkatamunnangi on 3/28/17.
  */
 public class SortColors {
+    // O (2n)
     public void sortColors(int[] A) {
         int n = A.length;
         int endIndex=n-1, startIndex=0;

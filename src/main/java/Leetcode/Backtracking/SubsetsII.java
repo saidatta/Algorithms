@@ -17,11 +17,13 @@ public class SubsetsII {
         return al;
     }
 
+    // nlogn + 2^N
     private void subsetsBacktrack(List<List<Integer>> al, List<Integer> temp, int[] nums, int start) {
         int n = nums.length;
         al.add(new ArrayList<>(temp));
         for(int i = start; i< n; i++) {
             if(i > start && nums[i] == nums[i-1]) {
+                // make sure its the second one && check if previous and second one is equal.
                 continue;
             }
 

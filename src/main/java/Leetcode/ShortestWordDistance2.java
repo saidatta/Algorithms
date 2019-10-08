@@ -20,7 +20,7 @@ public class ShortestWordDistance2 {
             if(wordsMap.containsKey(word)) {
                 wordsMap.get(word).add(i);
             } else {
-                ArrayList al = new ArrayList<>();
+                ArrayList<Integer> al = new ArrayList<>();
                 al.add(i);
                 wordsMap.put(word, al);
             }

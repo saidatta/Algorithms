@@ -36,6 +36,7 @@ public class MoveZeroes {
             return secondLargest;
         }
 
+        // 0(n)
     public void moveZeroes(int[] nums) {
         if(nums == null || nums.length == 0) {
             return;

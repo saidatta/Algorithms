@@ -17,6 +17,9 @@ public class ClimbingStairs {
         total[1] = 1;
         total[2] = 2;
 
+        // Since we can only get to the 4th step by getting to the 3rd step and going up by one, or
+        // by getting to the 2nd step and going up by two. So f(4) = f(3) + f(2).
+
         for(int i = 3; i<=n;i++) {
             // fibonacci sequence variation.
             total[i] = total[i-1] + total[i-2];

@@ -21,14 +21,31 @@ public class ShortestWordDistance {
             }
 
             if(pos1 != -1 && pos2 != -1) {
+                //if both words are found.
                 minValue = Math.min(minValue, Math.abs(pos1-pos2));
             }
         }
 
         if(pos1 == -1 || pos2 == -1) {
+            // word not found.
             return -1;
         }
 
         return minValue;
+    }
+
+    public static void main(String [] args) {
+        String [] words = new String[]{"practice", "makes", "perfect", "coding", "makes"};
+
+        String w1 = "coding",w2="practice";
+
+        ShortestWordDistance shortestWordDistance = new ShortestWordDistance();
+
+        System.out.println(shortestWordDistance.shortestDistance(words, w1, w2));
+
+        String wx1 = "coding",wx2="makes";
+
+        System.out.println(shortestWordDistance.shortestDistance(words, wx1, wx2));
+
     }
 }

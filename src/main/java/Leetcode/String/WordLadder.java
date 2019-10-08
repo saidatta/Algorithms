@@ -17,14 +17,21 @@ import java.util.*;
  * Created by venkatamunnangi on 4/2/17.
  */
 public class WordLadder {
+
+    //Time Complexity: (n26)^L
+    //  Space Complexity: (n26)^L
+    //  n = number of words in list
+    //  L = length of each word in list
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         Set<String> dict = new HashSet<>(wordList), visited = new HashSet<>();
         Queue<String> queue = new LinkedList<>();
         queue.offer(beginWord);
         int lenOfTransformation = 1;
 
+
+        // BFS produces the shortest word sequence for an undirected unweighted graph.
         while(!queue.isEmpty()) {
-            for (int x = queue.size(); x > 0; x--) {
+            for (int x = queue.size(); x > 0; x--) { // empty the current poll iteration.
                 String word = queue.poll();
 
                 if (word.equals(endWord)) {
@@ -43,6 +50,7 @@ public class WordLadder {
                         String neighbour = String.valueOf(wordArray);
                         if (dict.contains(neighbour) && !visited.contains(neighbour)) {
                             visited.add(neighbour);
+                            // keep adding new words for the next transformation sequence.
                             queue.offer(neighbour);
                         }
                     }
@@ -106,7 +114,8 @@ public class WordLadder {
     }
     public static void main(String [] args) {
         WordLadder wordLadder = new WordLadder();
-        List<String> dict = Arrays.asList("hot","dot","dog","lot","log","cog");
+//        List<String> dict = Arrays.asList("hot","dot","dog","lot","log","cog");
+        List<String> dict = Arrays.asList("hot","dot","dog","lot");//"log","cog");
         System.out.println(wordLadder.ladderLength("hit", "cog",dict));
     }
 

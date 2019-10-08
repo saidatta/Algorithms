@@ -7,6 +7,9 @@ import static java.lang.System.out;
 /**
  * https://leetcode.com/problems/maximal-rectangle/#/description
  *
+ * In a grid of 1s and 0s, Find the largest Rectangle formed by 1s.
+ * The size of the grid can infinite. (Think Google maps, ur finding Area of California)
+ *
  * Created by venkatamunnangi on 3/3/17.
  */
 public class MaximalRectangle {

@@ -59,7 +59,7 @@ public class LFUCache {
             lessFreqNodes.remove(toRemove);// remove the first one as it is LRU
             keyValue.remove(toRemove.key);
             count--;
-            if (lessFreqNodes.size() == 0) {
+            if (lessFreqNodes.isEmpty()) {
                 frequencyMap.remove(lowestFreq);
             }
         }

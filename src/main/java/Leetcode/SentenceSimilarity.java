@@ -25,6 +25,7 @@ public class SentenceSimilarity {
         Map<String, Set<String>> map = new HashMap<>();
 
         for(String [] pair : pairs) {
+            // creating symmetry from the pairs provided to us.
             map.putIfAbsent(pair[0], new HashSet<>());
             map.putIfAbsent(pair[1], new HashSet<>());
             map.get(pair[0]).add(pair[1]);
@@ -41,5 +42,13 @@ public class SentenceSimilarity {
         }
 
         return true;
+    }
+
+    public <T> List<T> twoDArrayToList(T[][] twoDArray) {
+        List<T> list = new ArrayList<T>();
+        for (T[] array : twoDArray) {
+            list.addAll(Arrays.asList(array));
+        }
+        return list;
     }
 }

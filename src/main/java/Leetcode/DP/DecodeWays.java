@@ -10,6 +10,29 @@ import static java.lang.System.out;
 public class DecodeWays {
     static int NUM_LETTERS = 26;
 
+    public int numDecodingsRecursion(String s) {
+        return helper(s);
+    }
+
+    private int helper(String s) {
+        int n = s.length();
+        if (n == 0) {
+            return 0;
+        } else  if(n <= 1) {
+            return 1;
+        }
+
+        int total = 0;
+
+        if(Integer.parseInt(s.substring(2)) <= 26) {
+            total +=  helper(s.substring(2));
+        }
+
+        total += helper(s.substring(1));
+
+        return total;
+    }
+
     public int numDecodings(String s) {
         int n = s.length();
         if (n == 0) {
@@ -26,10 +49,12 @@ public class DecodeWays {
         memo[n-1] = s.charAt(n-1) != '0' ? 1 : 0;
 
         for (int i = n - 2; i >= 0; i--) {
-            if (s.charAt(i) == '0') {
-                // Case 1: individual 0 does not work
-                // Case 2: 0 preceding any number does not work
-            } else {
+
+            // For condition -> s.charAt(i) == '0', dont do processing and let it be incremented to next.
+            // Case 1: individual 0 does not work
+            // Case 2: 0 preceding any number does not work
+
+            if (s.charAt(i) != '0') {
                 // memo[i+1]+memo[i+2]
                 // The character pair works, so we need to add up the total ways of decoding for the two pairs.
                 // memo[i+1]
@@ -46,6 +71,9 @@ public class DecodeWays {
 
     public static void main(String [] args) {
         DecodeWays decodeWays = new DecodeWays();
+        out.println(decodeWays.numDecodings("00"));
+        out.println(decodeWays.numDecodingsRecursion("111"));
+
         out.println(decodeWays.numDecodings("111"));
         out.println(decodeWays.numDecodings("14122"));
         out.println(decodeWays.numDecodings("12"));

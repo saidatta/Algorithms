@@ -25,7 +25,7 @@ public class MeetingRoomsII {
         int rooms = 0;
         int endsItr = 0;
         for(int i=0; i<starts.length; i++) {
-            if(starts[i]<ends[endsItr])
+            if(starts[i] < ends[endsItr])
                 rooms++;
             else
                 endsItr++;
@@ -40,15 +40,15 @@ public class MeetingRoomsII {
         // Sort the intervals by start time
         Arrays.sort(intervals, (a, b) -> a.start - b.start);
 
-        // Use a min heap to track the minimum end time of merged intervals
-        PriorityQueue<Interval> heap = new PriorityQueue<>(intervals.length, (a, b) -> a.end - b.end);
+        // Use a min meetingRoomsHeap to track the minimum end time of merged intervals
+        PriorityQueue<Interval> meetingRoomsHeap = new PriorityQueue<>(intervals.length, (a, b) -> a.end - b.end);
 
         // start with the first meeting, put it to a meeting room
-        heap.offer(intervals[0]);
+        meetingRoomsHeap.offer(intervals[0]);
 
         for (int i = 1; i < intervals.length; i++) { //
             // get the meeting room that finishes earliest
-            Interval interval = heap.poll();
+            Interval interval = meetingRoomsHeap.poll();
 
             if (intervals[i].start >= interval.end) {
                 // if the current meeting starts right after
@@ -56,15 +56,15 @@ public class MeetingRoomsII {
                 interval.end = intervals[i].end;
             } else {
                 // otherwise, this meeting needs a new room
-                heap.offer(intervals[i]);
+                meetingRoomsHeap.offer(intervals[i]);
             }
 
             // don't forget to put the meeting room back
             // and also let the heapify get triggered as well.
-            heap.offer(interval);
+            meetingRoomsHeap.offer(interval);
         }
 
-        return heap.size();
+        return meetingRoomsHeap.size();
     }
 
     public static void main(String [] args) {

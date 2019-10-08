@@ -1,6 +1,7 @@
 package Leetcode.Backtracking;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -30,5 +31,80 @@ public class FlipGameII {
             G ^= g.get(p);
         }
         return G != 0;
+    }
+
+    public boolean canWin(String s) {
+        List<String> list = new ArrayList<>();
+        for(int i = 0; i < s.length() - 1; i++){
+            if(s.charAt(i) == '+' && s.charAt(i + 1) == '+') {
+                // generate all possible sequence after every attempt
+                list.add(s.substring(0, i) + "--" + s.substring(i + 2, s.length()));
+            }
+        }
+
+        for(String str : list) {
+            if(!canWin(str)) {          // if there is any one way the next player can't win, take it and you'll win
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean canWinMemo(String s) {
+        if (s == null || s.length() < 2) {
+            return false;
+        }
+        HashMap<String, Boolean> winMap = new HashMap<String, Boolean>();
+        return helper(s, winMap);
+    }
+
+//    One search path:
+//
+//    Input s = "++++++++"
+//
+//    Player 0: "--++++++"
+//
+//    Player 1: "----++++"
+//
+//    Player 0: "----+--+"
+//
+//    Player0 can win for the input string as "----++++".
+//
+//    Another search path:
+//
+//    Player 0: "++--++++"
+//
+//    Player 1: "----++++"
+//
+//    Player 0: "----+--+"
+//
+//            (Duplicate computation happens. We have already known anyone can win for the
+//
+//    input string as "----++++".)
+
+    public boolean helper(String inputString, HashMap<String, Boolean> winMap) {
+        if (winMap.containsKey(inputString)) {
+            return winMap.get(inputString);
+        }
+
+
+
+        for (int i = 0; i < inputString.length() - 1; i++) {
+            if (inputString.startsWith("++", i)) {
+                String nextTurn = inputString.substring(0, i) + "--" + inputString.substring(i+2);
+                if (!helper(nextTurn, winMap)) {
+                    winMap.put(inputString, true);
+                    return true;
+                }
+            }
+        }
+
+        winMap.put(inputString, false);
+        return false;
+    }
+
+    public static void main(String [] args) {
+        FlipGameII flipGameII = new FlipGameII();
+        System.out.println(flipGameII.canWin("++++"));
     }
 }

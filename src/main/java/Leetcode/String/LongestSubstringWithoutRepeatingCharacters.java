@@ -1,5 +1,8 @@
 package Leetcode.String;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/#/description
  *
@@ -14,6 +17,8 @@ package Leetcode.String;
  * Created by venkatamunnangi on 11/29/16.
  */
 public class LongestSubstringWithoutRepeatingCharacters {
+
+
     public int lengthOfLongestSubstring(String s) {
         if(s == null || s.length() == 0) {
             return 0;
@@ -24,8 +29,8 @@ public class LongestSubstringWithoutRepeatingCharacters {
         // o(n)
         for(int i = 0; i < s.length() ; i++) {
             char x = s.charAt(i);
-            if(!sb.contains(""+x)) {
-                sb += (s.charAt(i));
+            if(!sb.contains(Character.toString(x))) {
+                sb += Character.toString(s.charAt(i));
             } else {
                 if(max < sb.length()) {
                     max = sb.length();
@@ -33,7 +38,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
                 // find the repeating occurence in max string.
                 int index = sb.indexOf(x);
-                // then substring after that.
+                // then substring after that occurence in the current result string.
                 sb = sb.substring(index + 1) + x;
             }
         }
@@ -43,5 +48,57 @@ public class LongestSubstringWithoutRepeatingCharacters {
         }
 
         return max;
+    }
+
+    public int lengthOfLongestSubstring2(String s) {
+        int maxLen = 0;
+        Set<Character> window = new HashSet<>();
+
+        int left = 0, right = 0;
+        while(right < s.length()) {
+            while(window.contains(s.charAt(right)))
+                window.remove(s.charAt(left++));
+            window.add(s.charAt(right++));
+            maxLen = Math.max(maxLen, right - left);
+        }
+
+        return maxLen;
+    }
+
+    class Solution {
+        public long solution(String s) {
+            if (s == null || s.length() == 0) {
+                return 0;
+            }
+            //nndfddf
+            String sb = "";
+            int maxLen = 0;
+
+            for (int i = 0; i < s.length(); i++) {
+                char current = s.charAt(i);
+
+                if (!sb.contains(Character.toString(current))) {
+                    s += Character.toString(current);
+                } else {
+                    if (maxLen < sb.length()) {
+                        maxLen = sb.length();
+                    }
+
+                    int firstOccurence = sb.indexOf(current);
+                    sb = sb.substring(firstOccurence + 1) + current;
+                }
+            }
+
+            if (maxLen < sb.length()) {
+                maxLen = sb.length();
+            }
+
+            return maxLen;
+        }
+    }
+
+    public static void main(String [] args) {
+        LongestSubstringWithoutRepeatingCharacters longestSubstringWithoutRepeatingCharacters = new LongestSubstringWithoutRepeatingCharacters();
+        System.out.println(longestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstring("pwwkew"));
     }
 }

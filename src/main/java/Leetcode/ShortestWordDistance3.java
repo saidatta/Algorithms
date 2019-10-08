@@ -13,6 +13,7 @@ public class ShortestWordDistance3 {
         List<Integer> l2 = new ArrayList<>();
 
         for(int i = 0; i < words.length;i++) {
+            // all indices for occurences of word 1 & 2.
             if (words[i].equals(word1)) {
                 l1.add(i);
             }

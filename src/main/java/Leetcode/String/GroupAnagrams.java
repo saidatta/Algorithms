@@ -27,7 +27,7 @@ public class GroupAnagrams {
     }
 
 
-    public List<List<String>> gA2(String [] strs) {
+    public List<List<String>> gA2(String... strs) {
         List<List<String>> result = new ArrayList<>();
 
         HashMap<String, ArrayList<String>> map = new HashMap<>();
@@ -50,5 +50,11 @@ public class GroupAnagrams {
         result.addAll(map.values());
 
         return result;
+    }
+
+    public static void main(String [] args) {
+        GroupAnagrams groupAnagrams = new GroupAnagrams();
+
+        System.out.println(groupAnagrams.gA2("eat", "tea", "tan", "ate", "nat", "bat"));
     }
 }

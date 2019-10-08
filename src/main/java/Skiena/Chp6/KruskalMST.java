@@ -32,9 +32,6 @@ public class KruskalMST {
         }
     }
 
-    /**
-     *
-     */
     public List<Edge<Integer>> getKruskalMST(Graph<Integer> graph) {
         List<Edge<Integer>> allEdges = graph.getAllEdges();
 

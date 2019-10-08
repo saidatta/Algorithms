@@ -61,16 +61,16 @@ public class ExpressionAddOperators {
 
     public static void main(String[] args) {
         ExpressionAddOperators expressionAddOperators = new ExpressionAddOperators();
-        out.println(expressionAddOperators.addOperators("123", 6));
-        out.println(expressionAddOperators.addOperators("123", 5));
-        out.println(expressionAddOperators.addOperators("321", 6));
-        out.println(expressionAddOperators.addOperators(null, 6));
-        out.println(expressionAddOperators.addOperators("123", -11));
-        out.println(expressionAddOperators.addOperators("123", -1));
-        out.println(expressionAddOperators.addOperators("105", 5));
-        out.println(expressionAddOperators.addOperators("100", 5));
-        out.println(expressionAddOperators.addOperators("199", 18));
-        out.println(expressionAddOperators.addOperators("234", 100));
-        out.println(expressionAddOperators.addOperators("9999999999", 100));
+        out.println(expressionAddOperators.addOperators("105", 1));
+//        out.println(expressionAddOperators.addOperators("123", 5));
+//        out.println(expressionAddOperators.addOperators("321", 6));
+//        out.println(expressionAddOperators.addOperators(null, 6));
+//        out.println(expressionAddOperators.addOperators("123", -11));
+//        out.println(expressionAddOperators.addOperators("123", -1));
+//        out.println(expressionAddOperators.addOperators("105", 5));
+//        out.println(expressionAddOperators.addOperators("100", 5));
+//        out.println(expressionAddOperators.addOperators("199", 18));
+//        out.println(expressionAddOperators.addOperators("234", 100));
+//        out.println(expressionAddOperators.addOperators("9999999999", 100));
     }
 }

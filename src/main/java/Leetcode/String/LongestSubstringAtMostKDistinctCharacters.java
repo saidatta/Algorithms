@@ -20,7 +20,7 @@ public class LongestSubstringAtMostKDistinctCharacters {
 
         int startWindowIndex = 0;
         int num = 0;
-        int res = 0;
+        int maxLengthSubstring = 0;
 
         for (int endWindowIndex = 0; endWindowIndex < s.length(); endWindowIndex++) {
             if (count[s.charAt(endWindowIndex)]++ == 0) {
@@ -36,9 +36,9 @@ public class LongestSubstringAtMostKDistinctCharacters {
                 }
                 startWindowIndex++;
             }
-            res = Math.max(res, endWindowIndex - startWindowIndex + 1);
+            maxLengthSubstring = Math.max(maxLengthSubstring, endWindowIndex - startWindowIndex + 1);
         }
-        return res;
+        return maxLengthSubstring;
     }
 
     //A more generic solution as follows, can be solution for Unicode string:
@@ -64,7 +64,7 @@ public class LongestSubstringAtMostKDistinctCharacters {
 
     public static void main(String[] args) {
         LongestSubstringAtMostKDistinctCharacters obj = new LongestSubstringAtMostKDistinctCharacters();
-//        out.println(obj.lengthOfLongestSubstringKDistinct("eceba", 2));
-        out.println(obj.lengthOfLongestSubstringKDistinct("abcba", 2));
+        out.println(obj.lengthOfLongestSubstringKDistinct("eceba", 2));
+//        out.println(obj.lengthOfLongestSubstringKDistinct2("abcbab", 2));
     }
 }

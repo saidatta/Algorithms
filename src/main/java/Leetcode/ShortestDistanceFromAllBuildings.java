@@ -29,13 +29,16 @@ public class ShortestDistanceFromAllBuildings {
                 if (grid[i][j] == 1) {
                     buildings.add(new Tuple(i, j, 0));
                 }
+                // visited
                 grid[i][j] = -grid[i][j];
             }
         }
+
         // BFS from every building
-        for (int k = 0; k < buildings.size(); ++k) {
-            bfs(buildings.get(k), k, dist, grid, m, n);
+        for (int buildingIndex = 0; buildingIndex < buildings.size(); ++buildingIndex) {
+            bfs(buildings.get(buildingIndex), buildingIndex, dist, grid, m, n);
         }
+
         // Find the minimum distance
         // when traversing shortestDistance is never negative.
         int shortestDistanceFromAllBuildings = -1;
@@ -50,18 +53,18 @@ public class ShortestDistanceFromAllBuildings {
         return shortestDistanceFromAllBuildings;
     }
 
-    public void bfs(Tuple root, int buildingIndex, int[][] dist, int[][] grid, int m, int n) {
+    public void bfs(Tuple currentBuildingDetail, int buildingIndex, int[][] dist, int[][] grid, int m, int n) {
         Queue<Tuple> q = new ArrayDeque<>();
-        q.add(root);
+        q.add(currentBuildingDetail);
         while (!q.isEmpty()) {
-            Tuple b = q.poll();
+            Tuple currLocation = q.poll();
             // We are incrementing the distance that has been memorized from the previous points.
-            dist[b.y][b.x] += b.dist;
+            dist[currLocation.y][currLocation.x] += currLocation.dist;
             for (int i = 0; i < 4; ++i) {
-                int x = b.x + dx[i], y = b.y + dy[i];
+                int x = currLocation.x + dx[i], y = currLocation.y + dy[i];
                 if (y >= 0 && x >= 0 && y < m && x < n && grid[y][x] == buildingIndex) {
                     grid[y][x] = buildingIndex + 1;
-                    q.add(new Tuple(y, x, b.dist + 1));
+                    q.add(new Tuple(y, x, currLocation.dist + 1));
                 }
             }
         }
@@ -72,7 +75,7 @@ public class ShortestDistanceFromAllBuildings {
         public int x;
         public int dist;
 
-        public Tuple(int y, int x, int dist) {
+        Tuple(int y, int x, int dist) {
             this.y = y;
             this.x = x;
             this.dist = dist;

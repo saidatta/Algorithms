@@ -6,7 +6,7 @@ import static java.lang.System.out;
 
 /**
  * https://leetcode.com/problems/word-break-ii/#/description
- *
+ * <p>
  * Created by venkatamunnangi on 3/24/17.
  */
 public class WordBreakII {
@@ -14,29 +14,29 @@ public class WordBreakII {
         return DFS(s, wordDict, new HashMap<>());
     }
 
-    // dfs function returns an array including all substrings derived from s.
-    private List<String> DFS(String s, List<String> wordDict, HashMap<String, LinkedList<String>> map) {
-        if (map.containsKey(s)) {
-            return map.get(s);
+    // dfs function returns an array including all substrings derived from currentTrimmedWord.
+    private List<String> DFS(String currentTrimmedWord, List<String> wordDict, HashMap<String, LinkedList<String>> map) {
+        if (map.containsKey(currentTrimmedWord)) {
+            return map.get(currentTrimmedWord);
         }
 
-        LinkedList<String>res = new LinkedList<>();
-        if (s.isEmpty()) {
-            res.add("");
-            return res;
+        LinkedList<String> constructedSentences = new LinkedList<>();
+        if (currentTrimmedWord.isEmpty()) {
+            constructedSentences.add("");
+            return constructedSentences;
         }
         for (String word : wordDict) {
-            if (s.startsWith(word)) {
-                List<String>sublist = DFS(s.substring(word.length()), wordDict, map);
+            if (currentTrimmedWord.startsWith(word)) {
+                List<String> sublist = DFS(currentTrimmedWord.substring(word.length()), wordDict, map);
                 for (String sub : sublist)
-                    res.add(word + (sub.isEmpty() ? "" : " ") + sub);
+                    constructedSentences.add(word + (sub.isEmpty() ? "" : " ") + sub);
             }
         }
-        map.put(s, res);
-        return res;
+        map.put(currentTrimmedWord, constructedSentences);
+        return constructedSentences;
     }
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         WordBreakII wordBreakII = new WordBreakII();
         List<String> dict = new ArrayList<>();
         dict.add("cat");

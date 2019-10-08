@@ -1,10 +1,9 @@
 package Leetcode.Backtracking;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.System.*;
+import static java.lang.System.out;
 
 /**
  * https://leetcode.com/problems/subsets/#/description
@@ -15,9 +14,10 @@ import static java.lang.System.*;
  * Created by venkatamunnangi on 3/28/17.
  */
 public class Subsets {
+
+    //2^N
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> list = new ArrayList<>();
-        Arrays.sort(nums);
         backtrack(list, new ArrayList<>(), nums, 0);
         return list;
     }

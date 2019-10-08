@@ -11,6 +11,7 @@ import java.util.List;
  * Created by venkatamunnangi on 10/2/16.
  */
 public class SpiralMatrix {
+    //O(n*m)
     public List<Integer> spiralOrder(int[][] matrix) {
     List<Integer> travelledNumbers = new ArrayList<>();
 

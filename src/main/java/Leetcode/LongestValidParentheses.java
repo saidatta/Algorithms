@@ -16,13 +16,15 @@ public class LongestValidParentheses {
         int[] dp = new int[s.length()];
         int result = 0;
         int leftParenthesesCount = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(') {
+        for (int index = 0; index < s.length(); index++) {
+            if (s.charAt(index) == '(') {
                 leftParenthesesCount++;
             } else if (leftParenthesesCount > 0){
-                dp[i] = dp[i - 1] + 2;
-                dp[i] += (i - dp[i]) >= 0 ? dp[i - dp[i]] : 0;
-                result = Math.max(result, dp[i]);
+                dp[index] = dp[index - 1] + 2;
+                //we need to not only consider valid parenthesis from current set of parens
+                // but also from previous ones. () -> group 1, (()) -> group 2  for "()(())"
+                dp[index] += (index - dp[index]) >= 0 ? dp[index - dp[index]] : 0;
+                result = Math.max(result, dp[index]);
                 leftParenthesesCount--;
             }
         }
@@ -32,6 +34,7 @@ public class LongestValidParentheses {
     public static void main(String [] args) {
         LongestValidParentheses longestValidParentheses = new LongestValidParentheses();
         System.out.println(longestValidParentheses.longestValidParentheses("()"));
+        System.out.println(longestValidParentheses.longestValidParentheses("(())"));
         System.out.println(longestValidParentheses.longestValidParentheses("()(())"));
     }
 }

@@ -25,18 +25,23 @@ public class ReadNCharsRead4 {
 
         while(ptr < n) {
             if(bufPtr == 0) {
+                // if buffptr is at start of reading or reading 4 characters have been read.
+                // re-read it.
                 buffTotal = read4(buf4);
             }
 
             if(buffTotal == 0) {
+                // exception as read4 method gave no characters.
                 break;
             }
 
             while(ptr < n && bufPtr < buffTotal) {
+                // Translate the buffer.
                 buf[ptr++] = buf4[bufPtr++];
             }
 
             if(bufPtr >= buffTotal) {
+                // end of the 4 char read buffer total.
                 bufPtr = 0;
             }
         }

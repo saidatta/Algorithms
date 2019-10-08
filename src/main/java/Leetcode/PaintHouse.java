@@ -2,7 +2,7 @@ package Leetcode;
 
 /**
  * LC 256
- * https://leetcode.com//paint-house/
+ * https://leetcode.com/problems/paint-house/
  *
  * Created by venkatamunnangi on 2/6/17.
  *
@@ -16,7 +16,7 @@ public class PaintHouse {
             return 0;
         }
 
-
+        //red(0), blue(1) or green(2)
         for(int i = 1; i< costs.length; i++) {
             costs[i][0] += Math.min(costs[i-1][1], costs[i-1][2]);
             costs[i][1] += Math.min(costs[i-1][0], costs[i-1][2]);

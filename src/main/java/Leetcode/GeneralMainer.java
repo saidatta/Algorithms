@@ -14,7 +14,7 @@ public class GeneralMainer {
     }
 
     protected static void testNestedWeight2() {
-        NestedWeight2 nw2 = new NestedWeight2();
+        NestedListWeightII nw2 = new NestedListWeightII();
 
         ArrayList al3 = new ArrayList();
         al3.add(6);

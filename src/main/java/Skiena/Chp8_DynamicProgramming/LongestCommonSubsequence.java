@@ -2,10 +2,13 @@ package Skiena.Chp8_DynamicProgramming;
 
 /**
  *
+ * https://leetcode.com/problems/longest-common-subsequence/
+ *
  * Created by venkatamunnangi on 2/21/17.
  */
 public class LongestCommonSubsequence {
 
+//     text1 = "abcde", text2 = "ace"
     public int lcsDynamic(char str1[], char str2[]) {
         if(str1 == null || str2 == null) {
             return 0;

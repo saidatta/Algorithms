@@ -27,7 +27,7 @@ public class MajorityElement {
     }
 
     //faster algorithm
-    public int majorityElement2(int[] nums) {
+    public int majorityElement2(int... nums) {
         int majorElem = nums[0], count = 1;
 
         for(int i = 1;i< nums.length;i++) {
@@ -42,6 +42,13 @@ public class MajorityElement {
         }
 
         return majorElem;
+    }
+
+    public static void main(String [] args) {
+        MajorityElement majorityElement = new MajorityElement();
+//        System.out.println(majorityElement.majorityElement2(3,3,3,4,4,4,4));
+        System.out.println(majorityElement.majorityElement2(3,4,3,4,3,4,3));
+
     }
 
 

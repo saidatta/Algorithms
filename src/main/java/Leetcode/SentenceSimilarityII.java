@@ -33,13 +33,16 @@ public class SentenceSimilarityII {
         return true;
     }
 
+
+
     private boolean dfs(Map<String, Set<String>> graph, String source, String target, Set<String> visited) {
         if (graph.get(source).contains(target)) {
             return true;
         }
 
         if (visited.add(source)) {
-            return graph.get(source).stream().anyMatch((String nextPairWord) -> !visited.contains(nextPairWord) && dfs(graph, nextPairWord, target, visited));
+            return graph.get(source).stream().anyMatch((String nextPairWord) -> !visited.contains(nextPairWord)
+                    && dfs(graph, nextPairWord, target, visited));
         }
         return false;
     }

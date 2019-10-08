@@ -24,17 +24,17 @@ public class GenerateParen {
         return al;
     }
 
-    private void helper(List<String> list, String curr, int oc, int cc, int n) {
-        if(oc == n && cc == n) {
-            list.add(curr);
+    private void helper(List<String> list, String currentString, int leftParen, int rightParen, int n) {
+        if(leftParen == n && rightParen == n) {
+            list.add(currentString);
             return;
         }
 
-        if(oc < n) {
-            helper(list, curr+"(", ++oc, cc, n);
+        if(leftParen < n) {
+            helper(list, currentString+"(", ++leftParen, rightParen, n);
         }
-        if(cc < oc) {
-            helper(list, curr+")", oc, ++cc, n);
+        if(rightParen < leftParen) {
+            helper(list, currentString+")", leftParen, ++rightParen, n);
         }
     }
 }

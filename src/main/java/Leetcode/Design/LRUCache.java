@@ -26,8 +26,8 @@ public class LRUCache {
     public int get(int key) {
         if (map.containsKey(key)) {
             Node n = map.get(key);
-            remove(n);
-            setHead(n);
+        remove(n);
+        setHead(n);
             return n.value;
         }
 

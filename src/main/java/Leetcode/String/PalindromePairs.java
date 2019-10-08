@@ -8,6 +8,8 @@ import java.util.List;
 /**
  * https://leetcode.com/problems/palindrome-pairs/#/description
  *
+ * Given words = ["bat", "tab", "cat"] Return [[0, 1], [1, 0]] The palindromes are ["battab", "tabbat"]
+ *
  * Case1: If s1 is a blank string, then for any string that is palindrome s2, s1+s2 and s2+s1 are palindrome.
  *
  * Case 2: If s2 is the reversing string of s1, then s1+s2 and s2+s1 are palindrome.
@@ -50,9 +52,9 @@ public class PalindromePairs {
 
         //find all string and reverse string pairs
         for(int i = 0; i < words.length; i++){
-            String curr = reverseStr(words[i]);
-            if(map.containsKey(curr)){
-                int found = map.get(curr);
+            String reverseStr = reverseStr(words[i]);
+            if(map.containsKey(reverseStr)){
+                int found = map.get(reverseStr);
                 if(found == i) {
                     continue;
                 }

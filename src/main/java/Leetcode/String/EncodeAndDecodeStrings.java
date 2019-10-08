@@ -15,9 +15,11 @@ public class EncodeAndDecodeStrings {
     // Encodes a list of toBeEncodedStrings to a single string.
     public String encode(List<String> toBeEncodedStrings) {
         StringBuilder sb = new StringBuilder();
+
         for(String currentString : toBeEncodedStrings) {
             sb.append(currentString.length()).append('/').append(currentString);
         }
+
         return sb.toString();
     }
 

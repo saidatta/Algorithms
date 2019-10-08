@@ -10,7 +10,7 @@ public class BackspaceStringCompare {
         return Objects.equals(normalizedString(S), normalizedString(T));
     }
 
-
+// O(n)
     private String normalizedString(String targetString) {
         StringBuilder sb = new StringBuilder();
         int currentIndex = targetString.length() -1;
