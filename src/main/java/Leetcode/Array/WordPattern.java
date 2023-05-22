@@ -3,6 +3,8 @@ package Leetcode.Array;
 import java.util.HashMap;
 
 /**
+ * https://leetcode.com/problems/word-pattern/
+ *
  * Created by venkatamunnangi on 9/10/19.
  */
 public class WordPattern {

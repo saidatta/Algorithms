@@ -1,6 +1,6 @@
 package Leetcode.Array;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * The knows API is defined in the parent class Relation.
@@ -37,6 +37,7 @@ public class FindCelebrity {
 
     private boolean knows(int a, int celeb) {
         // LEETCODE API
-        throw new NotImplementedException();
+        return false;
+//        throw new NotImplementedException();
     }
 }

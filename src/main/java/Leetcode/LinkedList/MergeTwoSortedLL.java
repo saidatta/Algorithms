@@ -60,6 +60,7 @@ public class MergeTwoSortedLL {
         }
 
         ListNode ans = new ListNode(Integer.MIN_VALUE);
+        ListNode head = ans;
 
         while(l1 != null && l2 != null) {
             if(l1.val < l2.val) {
@@ -80,6 +81,6 @@ public class MergeTwoSortedLL {
             ans.next = l2;
         }
 
-        return ans.next;
+        return head.next;
     }
 }

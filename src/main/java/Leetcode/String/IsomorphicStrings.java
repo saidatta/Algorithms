@@ -15,7 +15,7 @@ import static java.lang.System.*;
 public class IsomorphicStrings {
     public boolean isIsomorphic(String s, String t) {
         Map<Object, Integer> doubleDictionary = new HashMap<>();
-        for (Integer i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             // Here, put will return a previous value of that key.
             // If there is no previous occurrence, then it returns a null value.
             Integer sValue = doubleDictionary.put(s.charAt(i), i);
@@ -27,6 +27,7 @@ public class IsomorphicStrings {
         return true;
     }
 
+    // egg add
     public boolean isIsomorphic2(String s, String t) {
         int[] m1 = new int[256];
         int[] m2 = new int[256];
@@ -35,6 +36,7 @@ public class IsomorphicStrings {
             if (m1[s.charAt(i)] != m2[t.charAt(i)]) {
                 return false;
             }
+
             m1[s.charAt(i)] = m2[t.charAt(i)] = i;
         }
 

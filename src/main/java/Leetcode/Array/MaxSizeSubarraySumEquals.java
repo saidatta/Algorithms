@@ -21,7 +21,7 @@ public class MaxSizeSubarraySumEquals {
         int sum = 0, max = 0;
         for (int i=0; i<nums.length; i++) {
             sum += nums[i];
-            max = Math.max(max, i - index.getOrDefault(sum - k, i));
+                max = Math.max(max, i - index.getOrDefault(sum - k, i));
 
             index.putIfAbsent(sum, i);
         }

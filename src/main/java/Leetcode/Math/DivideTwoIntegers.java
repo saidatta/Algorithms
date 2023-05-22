@@ -20,9 +20,9 @@ public class DivideTwoIntegers {
                     shift++;
                 }
                 m -= n << shift;
-                result += (1 << shift);
+                result += (1L << shift);
             }
-            result = (neg) ? ~(result - 1) : result;
+            result = (neg) ? -result : result;
             result = Math.min(Integer.MAX_VALUE, result);
             result = Math.max(Integer.MIN_VALUE, result);
             return (int)result;

@@ -32,11 +32,11 @@ public class GroupAnagrams {
 
         HashMap<String, ArrayList<String>> map = new HashMap<>();
         for(String str: strs){
-            char[] arr = new char[26];
+            char[] freqMatch = new char[26];
             for(int i=0; i < str.length(); i++){
-                arr[str.charAt(i)-'a']++;
+                freqMatch[str.charAt(i)-'a']++;
             }
-            String ns = new String(arr);
+                String ns = new String(freqMatch);
 
             if(map.containsKey(ns)){
                 map.get(ns).add(str);

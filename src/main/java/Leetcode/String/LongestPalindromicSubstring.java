@@ -12,19 +12,22 @@ public class LongestPalindromicSubstring {
         if(s == null || s.isEmpty()) {
             return s;
         }
-        int curLen = 0;
+
+        int currentPalindromicLen = 0;
         int start = -1;
         char[] array = s.toCharArray();
         for(int i = 0; i < array.length; i++) {
-            if(isPalindrome(array, i - curLen - 1, i)) {
-                start = i - curLen - 1;
-                curLen += 2;
-            } else if (isPalindrome(array, i - curLen, i)) {
-                start = i - curLen;
-                curLen += 1;
+            if(isPalindrome(array, i - currentPalindromicLen - 1, i)) {
+                // if even len.
+                start = i - currentPalindromicLen - 1;
+                currentPalindromicLen += 2;
+            } else if (isPalindrome(array, i - currentPalindromicLen, i)) {
+                // if odd len.
+                start = i - currentPalindromicLen;
+                currentPalindromicLen += 1;
             }
         }
-        return new String(array, start, curLen);
+        return new String(array, start, currentPalindromicLen);
     }
 
     /**
@@ -120,5 +123,8 @@ public class LongestPalindromicSubstring {
         LongestPalindromicSubstring longestPalindromicSubstring = new LongestPalindromicSubstring();
         out.println(longestPalindromicSubstring.longestPalindrome("abcdefedcba"));
         out.println(longestPalindromicSubstring.longestPalindrome("ababaxba"));
+
+        out.println(longestPalindromicSubstring.longestPalindrome("ababaxfx"));
+        out.println(longestPalindromicSubstring.longestPalindrome("xfxababa"));
     }
 }

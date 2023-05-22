@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * https://leetcode.com/problems/combination-sum-ii/#/description
- *
+ * <p>
  * Created by venkatamunnangi on 4/4/17.
  */
 public class CombinationSumII {
@@ -18,27 +18,28 @@ public class CombinationSumII {
     }
 
     private void backtrack(int[] candidates, List<List<Integer>> result, List<Integer> temp, int remain, int start) {
-        if( remain < 0) {
+        if (remain < 0) {
             return;
         }
 
-        if( remain == 0) {
-            result.add(new ArrayList<Integer>(temp));
+        if (remain == 0) {
+            result.add(new ArrayList<>(temp));
             return;
         }
 
-        for(int i = start; i< candidates.length; i++) {
-            if(i > start && candidates[i] == candidates[i-1]) {
+        for (int i = start; i < candidates.length; i++) {
+            if (i > start && candidates[i] == candidates[i - 1]) {
+                // to allow first element and skip duplicates.
                 continue;
             }
             temp.add(candidates[i]);
-            backtrack(candidates, result, temp, remain - candidates[i], i+1);
-            temp.remove(temp.size() -1);
+            backtrack(candidates, result, temp, remain - candidates[i], i + 1);
+            temp.remove(temp.size() - 1);
         }
     }
 
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         int[] arr = {10, 1, 2, 7, 6, 1, 5};
         CombinationSumII combinationSum = new CombinationSumII();
         System.out.println(combinationSum.combinationSum2(arr, 8));

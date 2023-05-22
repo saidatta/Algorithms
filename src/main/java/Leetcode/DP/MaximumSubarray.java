@@ -16,8 +16,16 @@ public class MaximumSubarray {
         int max = nums[0];
         int [] netSums = new int[nums.length];
 
-        for(int i = 1; i< nums.length;i++) {
-            netSums[i] = nums[i] + ((netSums[i-1] > 0) ? netSums[i-1] : 0);
+
+        // -2
+        // -2 1
+        // -2 1 -2
+        // -2 1 -2 4
+        // ... 4 3
+        // ... 4 3 5
+        // ... 4 3 5 7
+        for(int i = 1; i < nums.length; i++) {
+            netSums[i] = nums[i] + (Math.max(netSums[i - 1], 0));
             max = Math.max(max, netSums[i]);
         }
 

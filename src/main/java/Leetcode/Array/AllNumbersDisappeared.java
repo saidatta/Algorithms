@@ -30,7 +30,7 @@ public class AllNumbersDisappeared {
     public List<Integer> findDisappearedNumbers(int... nums) {
         List<Integer> ret = new ArrayList<>();
 
-        // the goal is to leverage the indices. if you encoutner a number, then go to that
+        // the goal is to leverage the indices. if you encounter a number, then go to that
         // array index and mark its value as -1*val
         for(int i = 0; i < nums.length; i++) {
             // transforming into an array index

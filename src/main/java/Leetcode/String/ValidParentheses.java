@@ -43,20 +43,20 @@ public class ValidParentheses {
         if(s == null || s.isEmpty()) {
             return false;
         }
-        Stack<Character> cache = new Stack<>();
+        Stack<Character> matchingParenCache = new Stack<>();
 
         for(char c : s.toCharArray()) {
             if(c == '(') {
-                cache.push(')');
+                matchingParenCache.push(')');
             } else if (c == '{')
-                cache.push('}');
+                matchingParenCache.push('}');
             else if (c == '[')
-                cache.push(']');
-            else if (cache.empty() || cache.pop() != c) {
+                matchingParenCache.push(']');
+            else if (matchingParenCache.empty() || matchingParenCache.pop() != c) {
                 return false;
             }
         }
 
-        return cache.empty();
+        return matchingParenCache.empty();
     }
 }

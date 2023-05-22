@@ -1,6 +1,6 @@
 package Leetcode;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * https://leetcode.com/problems/read-n-characters-given-read4-ii-call-multiple-times/#/description
@@ -42,6 +42,6 @@ public class ReadNCharsRead4II {
     }
 
     int read4(char[] buf) {
-        throw new NotImplementedException();
+        return 4;
     }
 }

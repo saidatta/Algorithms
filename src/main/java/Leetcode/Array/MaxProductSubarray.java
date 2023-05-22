@@ -27,14 +27,14 @@ public class MaxProductSubarray {
         // imax/imin stores the max/min product of
         // subarray that ends with the current number A[i]
         int max = Integer.MIN_VALUE, imax = 1, imin = 1;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] < 0) {
+        for (int num : nums) {
+            if (num < 0) {
                 int tmp = imax;
                 imax = imin;
                 imin = tmp;
             }
-            imax = Math.max(imax * nums[i], nums[i]);
-            imin = Math.min(imin * nums[i], nums[i]);
+            imax = Math.max(imax * num, num);
+            imin = Math.min(imin * num, num);
 
             max = Math.max(max, imax);
         }

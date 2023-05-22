@@ -1,6 +1,6 @@
 package Leetcode;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *
@@ -50,7 +50,7 @@ public class ReadNCharsRead4 {
     }
 
     private int read4(char[] buff) {
-        throw new NotImplementedException();
+        return 4;
     }
 
 }

@@ -39,7 +39,6 @@ public class LFUCache {
         }
         updateFrequency(key);
         return keyValue.get(key).value;
-
     }
 
     public void put(int key, int value) {
@@ -51,7 +50,7 @@ public class LFUCache {
             updateFrequency(key);
             return;
         }
-        Node n = new Node(key, value, 0);
+        Node created = new Node(key, value, 0);
         if (count == capacity) {
             LinkedHashSet<Node> lessFreqNodes = frequencyMap.get(lowestFreq);
             Iterator<Node> itr = lessFreqNodes.iterator();
@@ -64,14 +63,14 @@ public class LFUCache {
             }
         }
 
-        keyValue.put(key, n);
+        keyValue.put(key, created);
         lowestFreq = 0;
         count++;
         if (frequencyMap.containsKey(0)) {
-            frequencyMap.get(0).add(n);
+            frequencyMap.get(0).add(created);
         } else {
             LinkedHashSet<Node> newNodes = new LinkedHashSet<Node>();
-            newNodes.add(n);
+            newNodes.add(created);
             frequencyMap.put(0, newNodes);
         }
     }

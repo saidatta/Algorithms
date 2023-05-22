@@ -6,44 +6,50 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * https://leetcode.com/problems/word-pattern-ii/
+ *
  * Created by venkatamunnangi on 9/10/19.
  */
 public class WordPatternII {
 
-    Map<Character, String> map = new HashMap<>();
-    Set<String> set = new HashSet<>();
+    Map<Character, String> patternCacheMap = new HashMap<>();
+    Set<String> duplicateCheck = new HashSet<>();
 
-    public boolean wordPatternMatch(String pattern, String str) {
+
+    public static void main(String [] args) {
+        WordPatternII wordPatternII = new WordPatternII();
+        System.out.println(wordPatternII.wordPatternMatch("abab", "redblueredblue"));
+    }
+    //Input: pattern = "abab", s = "redblueredblue"
+    public boolean wordPatternMatch(String pattern, String givenString) {
         if (pattern.isEmpty()) {
-            return str.isEmpty();
+            return givenString.isEmpty();
         }
         
-        if (map.containsKey(pattern.charAt(0))) {
-            String value = map.get(pattern.charAt(0));
-            if (str.length() < value.length() || !str.substring(0, value.length()).equals(value)) {
+        if (patternCacheMap.containsKey(pattern.charAt(0))) {
+            String value = patternCacheMap.get(pattern.charAt(0));
+            if (givenString.length() < value.length() || !givenString.startsWith(value)) {
                 return false;
             }
-            if (wordPatternMatch(pattern.substring(1), str.substring(value.length()))) {
-                return true;
-            }
+            return wordPatternMatch(pattern.substring(1), givenString.substring(value.length()));
         } else {
-            for (int i = 1; i <= str.length(); i++) {
-                if (set.contains(str.substring(0, i))) {
+            for (int i = 1; i <= givenString.length(); i++) {
+                if (duplicateCheck.contains(givenString.substring(0, i))) {
                     continue;
                 }
-                map.put(pattern.charAt(0), str.substring(0, i));
-                set.add(str.substring(0, i));
-                if (wordPatternMatch(pattern.substring(1), str.substring(i))) {
+                patternCacheMap.put(pattern.charAt(0), givenString.substring(0, i));
+                duplicateCheck.add(givenString.substring(0, i));
+                if (wordPatternMatch(pattern.substring(1), givenString.substring(i))) {
                     return true;
                 }
-                set.remove(str.substring(0, i));
-                map.remove(pattern.charAt(0));
+                duplicateCheck.remove(givenString.substring(0, i));
+                patternCacheMap.remove(pattern.charAt(0));
             }
         }
         return false;
     }
 
-    private Map<Character, String> map1 = new HashMap<>();
+    private Map<Character, String> patternCache = new HashMap<>();
     private Map<String, Character> map2 = new HashMap<>();
 
     public boolean wordPatternMatchCache(String pattern, String str) {
@@ -54,34 +60,32 @@ public class WordPatternII {
     }
 
 
-    private boolean dfs(String pattern, String str, int start0, int start1) {
-        if (start0 == pattern.length() && start1 == str.length()) {
+    private boolean dfs(String pattern, String givenString, int patternStart, int stringsStart) {
+        if (patternStart == pattern.length() && stringsStart == givenString.length()) {
             return true;
-        } else if (start0 == pattern.length() || start1 == str.length()) {
+        } else if (patternStart == pattern.length() || stringsStart == givenString.length()) {
             return false;
         } else {
-            if (map1.containsKey(pattern.charAt(start0))) {
-                String go = map1.get(pattern.charAt(start0));
-                if (!str.startsWith(go, start1)) {
+            if (patternCache.containsKey(pattern.charAt(patternStart))) {
+                String go = patternCache.get(pattern.charAt(patternStart));
+                if (!givenString.startsWith(go, stringsStart)) {
                     return false;
                 } else {
-                    return dfs(pattern, str, start0 + 1, start1 + go.length());
+                    return dfs(pattern, givenString, patternStart + 1, stringsStart + go.length());
                 }
             }
-            for (int i = start1; i < str.length(); i++) {
-                String temp = str.substring(start1, i + 1);
-                if (str.length() - i < pattern.length() - start0) {
+            for (int i = stringsStart; i < givenString.length(); i++) {
+                String temp = givenString.substring(stringsStart, i + 1);
+                if (givenString.length() - i < pattern.length() - patternStart) {
                     break;
                 }
-                if (map2.containsKey(temp)) {
-                    continue;
-                } else {
-                    map1.put(pattern.charAt(start0), temp);
-                    map2.put(temp, pattern.charAt(start0));
-                    if (dfs(pattern, str, start0 + 1, i + 1)) {
+                if (!map2.containsKey(temp)) {
+                    patternCache.put(pattern.charAt(patternStart), temp);
+                    map2.put(temp, pattern.charAt(patternStart));
+                    if (dfs(pattern, givenString, patternStart + 1, i + 1)) {
                         return true;
                     } else {
-                        map1.remove(pattern.charAt(start0));
+                        patternCache.remove(pattern.charAt(patternStart));
                         map2.remove(temp);
                     }
                 }

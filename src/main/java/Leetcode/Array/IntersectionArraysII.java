@@ -49,7 +49,7 @@ public class IntersectionArraysII {
     }
 
 
-    // O(n), O(n)
+    // O(nlogn), O(nlogn)
     // if arrays are sorted, then 2 pointer solution works.
     public int[] intersect2(int[] nums1, int[] nums2) {
         Arrays.sort(nums1);

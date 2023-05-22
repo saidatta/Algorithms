@@ -24,30 +24,26 @@ public class LongestSubstringWithoutRepeatingCharacters {
             return 0;
         }
 
-        String sb = "";
+        StringBuilder uniqueSubstring = new StringBuilder();
         int max = 0;
         // o(n)
         for(int i = 0; i < s.length() ; i++) {
-            char x = s.charAt(i);
-            if(!sb.contains(Character.toString(x))) {
-                sb += Character.toString(s.charAt(i));
+            char currentChar = s.charAt(i);
+            if(!uniqueSubstring.toString().contains(Character.toString(currentChar))) {
+                uniqueSubstring.append(s.charAt(i));
             } else {
-                if(max < sb.length()) {
-                    max = sb.length();
+                if(max < uniqueSubstring.length()) {
+                    max = uniqueSubstring.length();
                 }
 
-                // find the repeating occurence in max string.
-                int index = sb.indexOf(x);
-                // then substring after that occurence in the current result string.
-                sb = sb.substring(index + 1) + x;
+                // find the repeating occurrence in max string.
+                int index = uniqueSubstring.toString().indexOf(currentChar);
+                // then substring after that occurrence in the current result string.
+                uniqueSubstring = new StringBuilder(uniqueSubstring.substring(index + 1) + currentChar);
             }
         }
 
-        if(max < sb.length()) {
-            return sb.length();
-        }
-
-        return max;
+        return Math.max(max, uniqueSubstring.length());
     }
 
     public int lengthOfLongestSubstring2(String s) {

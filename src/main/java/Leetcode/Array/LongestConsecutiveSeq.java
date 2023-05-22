@@ -17,12 +17,15 @@ public class LongestConsecutiveSeq {
 
         int best = 0;
         for (int x : nums) {
-            if(!set.contains(x -1 )) {
-                int y = x + 1;
-                while(set.contains(y)) {
-                    y++;
+            int prevValue = x - 1;
+            if(!set.contains( prevValue )) {
+                // start of seq.
+                int nextElem = x + 1;
+                while(set.contains(nextElem)) {
+                    nextElem++;
                 }
-                best = Math.max(best, y - x);
+                // 1 2 3 4
+                best = Math.max(best, nextElem - x);
             }
         }
 

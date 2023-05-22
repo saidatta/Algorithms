@@ -6,30 +6,29 @@ package Leetcode.String;
  * Created by venkatamunnangi on 12/1/16.
  */
 public class CountAndSay {
-
     public String countAndSay(int n) {
-        StringBuilder sb = new StringBuilder("1");
-        StringBuilder prev;
+            StringBuilder sb = new StringBuilder("1");
+            StringBuilder prev;
 
-        for(int i = 1; i<n; i++) {
-            prev = sb;
-            char start = prev.charAt(0);
-            sb = new StringBuilder();
-            int count = 0;
+            for(int i = 1; i<n; i++) {
+                prev = sb;
+                char start = prev.charAt(0);
+                sb = new StringBuilder();
+                int count = 0;
 
-            for (int j = 0; j < prev.length(); j++) {
-                if (start != prev.charAt(j)) {
-                    sb.append(count).append(start);
-                    start = prev.charAt(j);
-                    count = 1;
-                } else {
-                    count++;
+                for (int j = 0; j < prev.length(); j++) {
+                    if (start != prev.charAt(j)) {
+                        sb.append(count).append(start);
+                        start = prev.charAt(j);
+                        count = 1;
+                    } else {
+                        count++;
+                    }
                 }
+                sb.append(count).append(start);
             }
-            sb.append(count).append(start);
-        }
 
-        return sb.toString();
+            return sb.toString();
     }
 
 

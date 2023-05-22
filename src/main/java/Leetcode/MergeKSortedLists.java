@@ -1,5 +1,6 @@
 package Leetcode;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -15,7 +16,7 @@ public class MergeKSortedLists {
             return null;
         }
 
-        PriorityQueue<ListNode> priorityQueue= new PriorityQueue<>(lists.length, (o1, o2) -> o1.val - o2.val);
+        PriorityQueue<ListNode> priorityQueue= new PriorityQueue<>(lists.length, Comparator.comparingInt(o -> o.val));
 
         ListNode dummy = new ListNode(0);
         ListNode tail=dummy;

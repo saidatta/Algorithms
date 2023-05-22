@@ -13,8 +13,9 @@ import java.util.*;
  * ["acef"],
  * ["a","z"]
  * ]
- * <p>
- * <p>
+ *
+ * https://leetcode.com/problems/group-shifted-strings/
+ *
  * Created by venkatamunnangi on 9/7/19.
  */
 public class GroupShiftedStrings {
@@ -27,14 +28,14 @@ public class GroupShiftedStrings {
 
     public List<List<String>> groupStrings(String... inputStrings) {
         List<List<String>> result = new ArrayList<List<String>>();
-        HashMap<String, ArrayList<String>> map
-                = new HashMap<String, ArrayList<String>>();
+        HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
+
         for (String currentString : inputStrings) {
             char[] currentCharArray = currentString.toCharArray();
             if (currentCharArray.length > 0) {
                 int diff = currentCharArray[0] -'a';
                 for (int i = 0; i < currentCharArray.length; i++) {
-                    if (currentCharArray[i] - diff <'a'){
+                    if (currentCharArray[i] - diff < 'a'){
                         currentCharArray[i] = (char) (currentCharArray[i] - diff + 26);
                     }else{
                         currentCharArray[i] = (char) (currentCharArray[i] - diff);

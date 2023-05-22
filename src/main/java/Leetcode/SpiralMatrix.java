@@ -13,48 +13,48 @@ import java.util.List;
 public class SpiralMatrix {
     //O(n*m)
     public List<Integer> spiralOrder(int[][] matrix) {
-    List<Integer> travelledNumbers = new ArrayList<>();
 
-        if(matrix.length == 0 || matrix[0].length == 0) {
-            return travelledNumbers;
-        }
-        int m = matrix.length, n = matrix[0].length;
+        List<Integer> travelledNumbers = new ArrayList<>();
 
-        if(m == 1) {
-            for(int i = 0;i< n;i++) {
-                travelledNumbers.add(matrix[0][i]);
-            }
-            return travelledNumbers;
-        } else if(n == 1) {
-            for(int i = 0;i< m;i++) {
-                travelledNumbers.add(matrix[i][0]);
-            }
+        if (matrix.length == 0) {
             return travelledNumbers;
         }
 
+        int rowBegin = 0;
+        int rowEnd = matrix.length-1;
+        int colBegin = 0;
+        int colEnd = matrix[0].length - 1;
 
-        int x = 0;
-        int y = 0;
-        while(m > 0 && n > 0) {
-            for(int i = 0;i < n-1; i++) {
-                travelledNumbers.add(matrix[x][y++]);
+        while (rowBegin <= rowEnd && colBegin <= colEnd) {
+            // Traverse Right
+            for (int j = colBegin; j <= colEnd; j ++) {
+                travelledNumbers.add(matrix[rowBegin][j]);
             }
-            for(int j = 0;j <m-1; j++) {
-                travelledNumbers.add(matrix[x++][y]);
+            rowBegin++;
+
+            // Traverse Down
+            for (int j = rowBegin; j <= rowEnd; j ++) {
+                travelledNumbers.add(matrix[j][colEnd]);
             }
-            for(int i = 0;i < n-1; i++) {
-                travelledNumbers.add(matrix[x][y--]);
+            colEnd--;
+
+            if (rowBegin <= rowEnd) {
+                // Traverse Left
+                for (int j = colEnd; j >= colBegin; j --) {
+                    travelledNumbers.add(matrix[rowEnd][j]);
+                }
             }
-            for(int j = 0;j <m-1; j++) {
-                travelledNumbers.add(matrix[x--][y]);
+            rowEnd--;
+
+            if (colBegin <= colEnd) {
+                // Traver Up
+                for (int j = rowEnd; j >= rowBegin; j --) {
+                    travelledNumbers.add(matrix[j][colBegin]);
+                }
             }
-            // x++ - the after increment is crucial
-            // as it increments after the loop
-            x++;
-            y++;
-            m = m-2;
-            n = n -2;
+            colBegin++;
         }
+
         return travelledNumbers;
     }
 }
