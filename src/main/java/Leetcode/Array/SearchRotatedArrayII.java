@@ -7,7 +7,7 @@ package Leetcode.Array;
  *
  * Created by venkatamunnangi on 9/7/19.
  */
-public class SearchRotateArrayII {
+public class SearchRotatedArrayII {
     public boolean search(int[] nums, int target) {
         int left = 0;
         int right = nums.length - 1;
