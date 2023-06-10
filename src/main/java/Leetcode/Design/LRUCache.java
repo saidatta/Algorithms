@@ -1,6 +1,8 @@
 package Leetcode.Design;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * https://leetcode.com/problems/lru-cache/#/description
@@ -15,7 +17,7 @@ import java.util.HashMap;
 public class LRUCache {
     int capacity;
     // value to node.
-    HashMap<Integer, Node> map = new HashMap<>();
+    Map<Integer, Node> map = new LinkedHashMap<>();
     Node head = null;
     Node end = null;
 

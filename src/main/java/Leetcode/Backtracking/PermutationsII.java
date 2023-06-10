@@ -23,7 +23,7 @@ public class PermutationsII {
         if(tempList.size() == nums.length){
             list.add(new ArrayList<>(tempList));
         } else{
-            for(int i = 0; i < nums.length; i++){
+            for(int i = 0; i < nums.length; i++) {
                 if(used[i] || (i > 0 && nums[i] == nums[i-1] && !used[i - 1])) {
                     continue;
                 }
@@ -41,6 +41,5 @@ public class PermutationsII {
 
         PermutationsII permutationsII = new PermutationsII();
         System.out.println(permutationsII.permuteUnique(nums));
-
     }
 }

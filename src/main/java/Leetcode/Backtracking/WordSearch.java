@@ -43,7 +43,10 @@ public class WordSearch {
 
     int[][] dirs={{1,0},{-1,0},{0,1},{0,-1}};
     public boolean existNonManipulationInput(char[][] board, String word) {
-        if (board==null ||board.length==0||board[0].length==0) return false;
+        if (board==null ||board.length==0||board[0].length==0) {
+            return false;
+        }
+
         int m=board.length,n=board[0].length;
         boolean[][] visited=new boolean[m][n];
         for (int i=0;i< m;i++){
@@ -55,18 +58,27 @@ public class WordSearch {
         }
         return false;
     }
-    private boolean dfs(char[][] board, boolean[][] visited, int x, int y, int i, String word){
+    private boolean dfs(char[][] board, boolean[][] visited, int x, int y, int currentWordLen, String word){
         int m=board.length,n=board[0].length;
-        if (i==word.length()) return true;
+        if (currentWordLen==word.length()) {
+            return true;
+        }
 
-        if(x<0||x>=m||y<0||y>=n) return false;
-        if(visited[x][y]) return false;
-        if(board[x][y]!=word.charAt(i)) return false;
+        if(x<0||x>=m||y<0||y>=n) {
+            return false;
+        }
+        if(visited[x][y]) {
+            return false;
+        }
+
+        if(board[x][y]!=word.charAt(currentWordLen)) {
+            return false;
+        }
 
         visited[x][y]=true;
         for (int[] dir: dirs){
             int x1=x+dir[0], y1=y+dir[1];
-            if (dfs(board, visited, x1, y1, i+1, word)){
+            if (dfs(board, visited, x1, y1, currentWordLen+1, word)){
                 return true;
             }
         }

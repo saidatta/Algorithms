@@ -25,11 +25,18 @@ import static java.lang.System.out;
  */
 public class ExpressionAddOperators {
     public List<String> addOperators(String num, int target) {
+//        List<String> result = new ArrayList<>();
+//        if (num == null || num.length() == 0) {
+//            return result;
+//        }
         List<String> result = new ArrayList<>();
         if (num == null || num.length() == 0) {
             return result;
         }
 
+//        DFSHelper dfsHelper = new DFSHelper(new DFSContext(result, num, target, "", 0, 0, 0));
+//        dfsHelper.execute();
+//        return result;
         dfsHelper(result,num, target, "", 0, 0, 0);
         return result;
     }
@@ -52,9 +59,9 @@ public class ExpressionAddOperators {
             if(position == 0) {
                 dfsHelper(result, num, target, path+current, i+1, current, current);
             } else {
-                dfsHelper(result, num, target,path+"+" +current, i+1, evaludatedExpression+current, current);
+                dfsHelper(result, num, target,path+"+"+current, i+1, evaludatedExpression+current, current);
                 dfsHelper(result, num, target, path+"-"+current, i+1, evaludatedExpression-current, -current);
-                dfsHelper(result, num, target, path+"*"+current, i+1, evaludatedExpression-prevMultiplied+prevMultiplied*current, prevMultiplied*current);
+                dfsHelper(result, num, target, path+"*"+current, i+1, evaludatedExpression-prevMultiplied + prevMultiplied*current, prevMultiplied*current);
             }
         }
     }
@@ -73,4 +80,68 @@ public class ExpressionAddOperators {
 //        out.println(expressionAddOperators.addOperators("234", 100));
 //        out.println(expressionAddOperators.addOperators("9999999999", 100));
     }
+//    record DFSContext(List<String> result, String num, int target, String path, int position, long evaluatedExpression, long prevMultiplied, long current) {}
+//
+//    interface DFSHelperStrategy {
+//        void execute(DFSContext context);
+//    }
+//
+//    class InitialDFSHelperStrategy implements DFSHelperStrategy {
+//        public void execute(DFSContext context) {
+//            new DFSHelper(new DFSContext(context.result(), context.num(), context.target(), context.path() + context.current(), context.position() + 1, context.current(), context.current())).execute();
+//        }
+//    }
+//
+//    class AdditionDFSHelperStrategy implements DFSHelperStrategy {
+//        public void execute(DFSContext context) {
+//            new DFSHelper(new DFSContext(context.result(), context.num(), context.target(), context.path() + "+" + context.current(), context.position() + 1, context.evaluatedExpression() + context.current(), context.current())).execute();
+//        }
+//    }
+//
+//    class SubtractionDFSHelperStrategy implements DFSHelperStrategy {
+//        public void execute(DFSContext context) {
+//            new DFSHelper(new DFSContext(context.result(), context.num(), context.target(), context.path() + "-" + context.current(), context.position() + 1, context.evaluatedExpression() - context.current(), -context.current()))
+//                    .execute();
+//        }
+//    }
+//
+//    class MultiplicationDFSHelperStrategy implements DFSHelperStrategy {
+//        public void execute(DFSContext context) {
+//            new DFSHelper(new DFSContext(context.result(), context.num(), context.target(), context.path() + "*" + context.current(), context.position() + 1, context.evaluatedExpression() - context.prevMultiplied() + context.prevMultiplied() * context.current(), context.prevMultiplied() * context.current())).execute();
+//        }
+//    }
+//
+//    class DFSHelper {
+//        private List<DFSHelperStrategy> strategies;
+//        private DFSContext context;
+//
+//        DFSHelper(DFSContext context) {
+//            this.context = context;
+//            this.strategies = List.of(new InitialDFSHelperStrategy(), new AdditionDFSHelperStrategy(), new SubtractionDFSHelperStrategy(), new MultiplicationDFSHelperStrategy());
+//        }
+//
+//        void execute() {
+//            if (context.position() == context.num().length()) {
+//                if (context.target() == context.evaluatedExpression()) {
+//                    context.result().add(context.path());
+//                }
+//                return;
+//            }
+//
+//            for (int i = context.position(); i < context.num().length(); i++) {
+//                if (i != context.position() && context.num().charAt(context.position()) == '0') {
+//                    break;
+//                }
+//
+//                long current = Long.parseLong(context.num().substring(context.position(), i + 1));
+//                DFSContext newContext = new DFSContext(context.result(), context.num(), context.target(), context.path(), i + 1, context.evaluatedExpression(), context.prevMultiplied(), current);
+//
+//                for (DFSHelperStrategy strategy : strategies) {
+//                    strategy.execute(newContext);
+//                }
+//            }
+//        }
+//    }
+
+
 }

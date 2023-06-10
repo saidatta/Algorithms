@@ -1,6 +1,7 @@
 package Int;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -8,25 +9,29 @@ import java.util.List;
  */
 public class PascalsTriangle {
     public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> triangle = new ArrayList<>();
 
-        List<List<Integer>> result = new ArrayList<>();
+        if (numRows == 0) {
+            return triangle;
+        }
 
-        for(int i = 0 ; i < numRows; i++) {
-            List<Integer> list = new ArrayList<>();
+        triangle.add(Collections.singletonList(1));
 
-            for(int j = 0; j < i + 1 ; j++) {
-                if(j == 0 || j == i) {
-                    //boundaries are always 1.
-                    list.add(1);
-                } else {
-                    int a = result.get(i - 1).get(j - 1);
-                    int b = result.get(i - 1).get(j);
-                    list.add(a + b);
-                }
+        for (int rowNum = 1; rowNum < numRows; rowNum++) {
+            List<Integer> row = new ArrayList<>();
+            List<Integer> prevRow = triangle.get(rowNum-1);
+
+            row.add(1);
+
+            for (int j = 1; j < rowNum; j++) {
+                row.add(prevRow.get(j-1) + prevRow.get(j));
             }
 
-            result.add(list);
+            row.add(1);
+
+            triangle.add(row);
         }
-        return result;
+
+        return triangle;
     }
 }

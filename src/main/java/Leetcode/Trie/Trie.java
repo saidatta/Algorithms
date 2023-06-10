@@ -9,7 +9,6 @@ import java.util.Map;
  * Created by venkatamunnangi on 4/19/17.
  */
 public class Trie {
-
     private class TrieNode {
         Map<Character, TrieNode> children;
         boolean endOfWord;
