@@ -12,20 +12,23 @@ import Leetcode.TreeNode;
  */
 // O(n)
 public class CountUnivalueSubtrees {
+    private int count = 0;
+
     public int countUnivalSubtrees(TreeNode root) {
-        int[] count = new int[1]; // since primitives are not passed by reference.
-        helper(root, count);
-        return count[0];
+        helper(root);
+        return count;
     }
 
-    private boolean helper(TreeNode node, int[] count) {
+    private boolean helper(TreeNode node) {
         if (node == null) {
             return true;
         }
 
-        boolean left = helper(node.left, count);
-        boolean right = helper(node.right, count);
+        // recursively check the left and right subtrees
+        boolean left = helper(node.left);
+        boolean right = helper(node.right);
 
+        // if both subtrees are unival trees, check if the current node is also unival
         if (left && right) {
             if (node.left != null && node.val != node.left.val) {
                 return false;
@@ -33,10 +36,13 @@ public class CountUnivalueSubtrees {
             if (node.right != null && node.val != node.right.val) {
                 return false;
             }
-            count[0]++;
+
+            // if the current node is unival, increment the count and return true
+            count++;
             return true;
         }
 
+        // if either of the subtrees is not unival, the current node cannot be unival
         return false;
     }
 
@@ -68,7 +74,7 @@ public class CountUnivalueSubtrees {
 //        }
 //
 //    }
-
+//
 //    int help(int[][] grid, int i,int j) {
 //
 //        if(!boundaryChecks(i,j, grid)) {
@@ -80,7 +86,7 @@ public class CountUnivalueSubtrees {
 //            int y1 = j + directions[0][1];
 //        int x2 = i + directions[1][0];
 //        int y2 = j + directions[1][1];
-
+//
 //            int sub = Math.max(help(grid, x1,y1),help(grid, x2,y2));
 //        return Math.max(sub,helper2(root.left,root.val) + helper2(root.right,root.val))
 ////        return sub;
@@ -88,7 +94,7 @@ public class CountUnivalueSubtrees {
 //
 //
 //        return Math.max(sub,helper2(root.left,root.val) + helper2(root.right,root.val));
-
+//
 //    }
 
     private boolean boundaryChecks(int i, int j, int[][] matrix) {
