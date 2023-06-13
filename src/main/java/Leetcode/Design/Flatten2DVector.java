@@ -10,7 +10,6 @@ import java.util.List;
  * Created by venkatamunnangi on 10/11/16.
  */
 public class Flatten2DVector implements Iterator<Integer> {
-
     private List<List<Integer>> vector2d;
     private List<Integer> tempList;
     private int currentIndex;
@@ -18,13 +17,14 @@ public class Flatten2DVector implements Iterator<Integer> {
 
     public Flatten2DVector(List<List<Integer>> vec2d) {
         vector2d = vec2d;
+        currentIndex = 0;
+        tempIndex = 0;
+
         if (vector2d == null || vector2d.isEmpty()) {
             tempList = new ArrayList<>();
         } else {
             tempList = vector2d.get(currentIndex);
         }
-        currentIndex = 0;
-        tempIndex = 0;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Flatten2DVector implements Iterator<Integer> {
                 // if the last arrays are just empty. Then, we cannot return any number from them.
             } while ((currentIndex < vector2d.size()) && (vector2d.get(currentIndex).isEmpty()));
         }
-        return currentIndex < vector2d.size();
 
+        return currentIndex < vector2d.size();
     }
 }
