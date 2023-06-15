@@ -37,7 +37,47 @@ public class MinAbsoluteDiffBST {
 
         return min;
     }
+    public int getMinimumDifference2(TreeNode root) {
+        return recursiveDiff(root);
+    }
 
+    public int recursiveDiff(TreeNode root) {
+        int currMin = minDiffWithRoot(root);
+        if (root.left != null) {
+            currMin = Math.min(currMin, recursiveDiff(root.left));
+        }
+        if (root.right != null) {
+            currMin = Math.min(currMin, recursiveDiff(root.right));
+        }
+        return currMin;
+    }
+
+//    Iterate over each node, find the minimum absolute difference for the subtree rooted on this node. Update the
+//    global minimum on the way.
+
+//   Note this is a BST, so the minimum difference between the root and a node from its subtrees is
+//   MIN(root - max value of its left subtree, min value of its right subtree - root). Remember, max value of
+//   its left subtree is the rightmost node in its left subtree and min value of its right subtree is the
+//   leftmost node in its right subtree.
+    //{root != null}
+    public int minDiffWithRoot(TreeNode root) {
+        int minDiff = Integer.MAX_VALUE;
+        if (root.left != null) {
+            TreeNode temp = root.left;
+            while (temp.right != null) {  //max value < root
+                temp = temp.right;
+            }
+            minDiff = Math.min(minDiff, root.val - temp.val);;
+        }
+        if (root.right != null) {
+            TreeNode temp = root.right;
+            while (temp.left != null) {  //min value > root
+                temp = temp.left;
+            }
+            minDiff = Math.min(minDiff, temp.val - root.val);
+        }
+        return minDiff;
+    }
     public int getMinimumDifferenceIterative(TreeNode root) {
         int min = Integer.MAX_VALUE;
         Stack<TreeNode> stack = new Stack<>();
