@@ -9,9 +9,9 @@ import java.util.Arrays;
  * There have been many implementations in discussion. However, some major deviations from standard probabilistic skip
  * lists in those solutions include
  *
- * Deterministically deciding level instead of nondeterministically
- * Maintenance of multiple nodes for each level of the same search key
- * Maintenance of multiple nodes for each appearance of the same search key
+ * Deterministically deciding level instead of nondeterministically Maintenance of multiple nodes for each level of the
+ * same search key. Maintenance of multiple nodes for each appearance of the same search key
+ *
  * I implemented a standard version of skip list based on Skip Lists: A Probabilistic Alternative to Balanced Trees by
  * William Pugh, adopting the technique of fix the dice in the paper as well. There is no manual memory deallocation in
  * Java, so I omitted the free(x) statement. C++ users should feel free to release the unused memory.

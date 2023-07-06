@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.TreeMap;
 
+/**
+ * https://leetcode.com/problems/snapshot-array/
+ */
 class SnapshotArray {
 
 //    TreeMap<Integer, Integer>[] indices;
@@ -32,15 +35,6 @@ class SnapshotArray {
 //    public int get(int index, int snap_id) {
 //        return indices[index].floorEntry(snap_id).getValue();
 //    }
-
-    class SnapshotNode {
-        TreeMap<Integer, Integer> logs = new TreeMap<>();
-
-        SnapshotNode() {
-            logs.put(snapshotArrayVersion, 0);
-        }
-    }
-
     private int snapshotArrayVersion = -1;
     private ArrayList<SnapshotNode> snapshotArray = new ArrayList<>();
     private HashMap<Integer, Integer> snapshotIdVersionMapping = new HashMap<>();
@@ -75,4 +69,11 @@ class SnapshotArray {
         return (entry == null) ? 0 : entry.getValue();
     }
 
+    class SnapshotNode {
+        TreeMap<Integer, Integer> logs = new TreeMap<>();
+
+        SnapshotNode() {
+            logs.put(snapshotArrayVersion, 0);
+        }
+    }
 }

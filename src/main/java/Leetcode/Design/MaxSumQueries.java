@@ -5,6 +5,7 @@ import java.util.*;
 public class MaxSumQueries {
     private int[] seg;
     private TreeMap<Integer, Integer> hm;
+
     public int[] maximumSumQueries(int[] a1, int[] a2, int[][] queries) {
         // equal length arrays a1 and a2.
         int n = a1.length;
@@ -38,7 +39,8 @@ public class MaxSumQueries {
         Arrays.fill(seg, -1);
         while (j < queries.length) {
             while (i > -1 && bothTrackValues[i][0] >= queries[j][0]) {
-                update(0, hm.size() - 1, hm.get(bothTrackValues[i][1]), bothTrackValues[i][0] + bothTrackValues[i][1], 0);
+                update(0, hm.size() - 1, hm.get(bothTrackValues[i][1]), bothTrackValues[i][0] + bothTrackValues[i][1],
+                        0);
                 i--;
             }
 

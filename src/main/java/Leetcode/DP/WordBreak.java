@@ -18,6 +18,7 @@ public class WordBreak {
         if(wordDict == null || targetString == null || targetString.isEmpty()|| wordDict.isEmpty()) {
             return false;
         }
+
         boolean [] positions = new boolean[targetString.length() + 1];
         positions[0] = true;
 
@@ -39,7 +40,6 @@ public class WordBreak {
                     positions[wordEnd] = true;
                 }
             }
-
         }
         return positions[targetString.length()];
     }

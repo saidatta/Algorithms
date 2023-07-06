@@ -1,4 +1,4 @@
-package Leetcode.DP;
+package Leetcode.DP.array;
 
 /**
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/#/description
@@ -22,7 +22,7 @@ public class BestTimeToBuyAndSellStock4 {
                 int profitFormula = prices[j] + tmpMax; // curr price - buy.
                 // profit of current transaction with current price.
                 t[i][j] = Math.max(prevProfitWithSameTransaction, profitFormula);
-                tmpMax =  Math.max(tmpMax, t[i - 1][j - 1] - prices[j]);
+                tmpMax =  Math.max(tmpMax, t[i - 1][j] - prices[j]);
             }
         }
         return t[k][len - 1];

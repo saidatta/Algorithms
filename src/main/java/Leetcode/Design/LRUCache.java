@@ -10,7 +10,7 @@ import java.util.Map;
  * get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
  *
  * put(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity,
- *                   it should invalidate the least recently used item before inserting a new item.
+ * it should invalidate the least recently used item before inserting a new item.
  *
  * Created by venkatamunnangi on 3/10/17.
  */
@@ -28,11 +28,10 @@ public class LRUCache {
     public int get(int key) {
         if (map.containsKey(key)) {
             Node n = map.get(key);
-        remove(n);
-        setHead(n);
+            remove(n);
+            setHead(n);
             return n.value;
         }
-
         return -1;
     }
 

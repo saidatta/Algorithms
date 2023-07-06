@@ -19,6 +19,7 @@ public class CloneGraph {
         if (src == null){
             return null;
         }
+
         if (visitedBag.containsKey(src)){
             return visitedBag.get(src);
         }

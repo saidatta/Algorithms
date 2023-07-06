@@ -29,6 +29,12 @@ public class CountingBits {
             }
 
             // recurrence relation.
+//            observation that the binary representation of a number i is the same as the binary representation of
+//            i - offset, with an additional '1'. For example, the binary representation of 5 (101) is the same as the
+//            binary representation of 1 (1), with an additional '1'. This holds because i is always either a power of
+//            2 or the sum of a smaller power of 2 (represented by offset) and a number that has been encountered before
+//            (represented by i - offset). Therefore, the number of '1's in the binary representation of i is the number
+//            of '1's in the binary representation of i - offset, plus one.
             ans[i] = ans[i - offset] + 1;
         }
 

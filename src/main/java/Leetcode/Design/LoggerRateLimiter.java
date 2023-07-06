@@ -4,7 +4,6 @@ import java.util.*;
 
 /**
  * https://leetcode.com/problems/logger-rate-limiter/#/description
- * <p>
  *
  *     Google
  * Created by venkatamunnangi on 5/15/17.
@@ -23,7 +22,7 @@ public class LoggerRateLimiter {
      * Initialize your data structure here.
      */
     public LoggerRateLimiter() {
-        recentLogs = new PriorityQueue<>(10, (l1, l2) -> l1.timestamp - l2.timestamp);
+        recentLogs = new PriorityQueue<>(10, Comparator.comparingInt(l -> l.timestamp));
         recentMessages = new HashSet<>();
     }
 

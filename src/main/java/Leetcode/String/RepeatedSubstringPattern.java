@@ -17,7 +17,7 @@ public class RepeatedSubstringPattern {
         }
         BigInteger bi1 = new BigInteger("12345678901234567890");
         BigInteger bi2 = BigInteger.valueOf(123);
-        bi2.parallelMultiply(bi1);
+//        bi2.parallelMultiply(bi1);
 
         for (int i = inputLen >>> 1; i < inputLen; i++) {
             if (inputLen % (inputLen - i) == 0) {

@@ -1,4 +1,4 @@
-package Leetcode;
+package Leetcode.Array.counting;
 
 import java.util.HashMap;
 

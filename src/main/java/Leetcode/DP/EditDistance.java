@@ -26,7 +26,9 @@ public class EditDistance {
     /**
      * Uses bottom up DP to find the edit distance
      */
-    public int dynamicEditDistance(char[] str1, char[] str2) {
+    public int dynamicEditDistance(String s1, String s2) {
+
+        char[] str1 = s1.toCharArray(), str2 = s2.toCharArray();
         int[][] temp = new int[str1.length + 1][str2.length + 1];
 
         for (int i = 0; i < temp[0].length; i++) {
@@ -91,11 +93,11 @@ public class EditDistance {
 
         String str1 = "azced";
         String str2 = "abcdef";
-        out.print(editDistance.dynamicEditDistance(str1.toCharArray(), str2.toCharArray()));
+        out.print(editDistance.dynamicEditDistance(str1, str2));
 
         str1 = "abcd";
         str2 = "dbfd";
-        out.println(editDistance.dynamicEditDistance(str1.toCharArray(), str2.toCharArray()));
+        out.println(editDistance.dynamicEditDistance(str1, str2));
     }
 
 }

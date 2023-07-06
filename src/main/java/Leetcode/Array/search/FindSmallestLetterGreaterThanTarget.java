@@ -1,4 +1,4 @@
-package Leetcode.Array.binarySearch;
+package Leetcode.Array.search;
 
 public class FindSmallestLetterGreaterThanTarget {
     public char findNextGreatestLetter(char[] letters, char target) {

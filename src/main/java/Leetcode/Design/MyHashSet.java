@@ -31,22 +31,23 @@ import java.util.*;
 class MyHashSet {
     public static int _MAX_LENGTH = 10000;
     int[][] store = new int[_MAX_LENGTH][100];
+
     public MyHashSet() {
         for (int[] row : store) {
             Arrays.fill(row, -1);
         }
     }
 
-    public int computeHash(int key){
+    public int computeHash(int key) {
         return key % _MAX_LENGTH;
     }
 
     public void add(int key) {
         int row = computeHash(key);
 
-        if(!contains(key)){
-            for(int i = 0; i < 100; i++){
-                if(store[row][i] == -1){
+        if (!contains(key)) {
+            for (int i = 0; i < 100; i++) {
+                if (store[row][i] == -1) {
                     store[row][i] = key;
                     break;
                 }
@@ -56,8 +57,8 @@ class MyHashSet {
 
     public void remove(int key) {
         int row = computeHash(key);
-        for(int i = 0; i < 100; i++){
-            if(store[row][i] == key){
+        for (int i = 0; i < 100; i++) {
+            if (store[row][i] == key) {
                 store[row][i] = -1;
                 break;
             }
@@ -66,8 +67,8 @@ class MyHashSet {
 
     public boolean contains(int key) {
         int row = computeHash(key);
-        for(int i = 0; i < 100; i++){
-            if(store[row][i] == key){
+        for (int i = 0; i < 100; i++) {
+            if (store[row][i] == key) {
                 return true;
             }
         }

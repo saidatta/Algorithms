@@ -1,4 +1,4 @@
-package Leetcode.DP;
+package Leetcode.DP.array;
 
 /**
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock/?tab=Description
