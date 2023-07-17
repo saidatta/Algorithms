@@ -1,4 +1,4 @@
-package Leetcode.LinkedList;
+package Leetcode.LinkedList.math;
 
 import Leetcode.ListNode;
 
