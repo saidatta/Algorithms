@@ -19,20 +19,21 @@ public class LongestSubstringAtMostKDistinctCharacters {
         int[] count = new int[256];     // there are 256 ASCII characters in the world
 
         int startWindowIndex = 0;
-        int num = 0;
+        int currentDistinctLetters = 0;
         int maxLengthSubstring = 0;
 
         for (int endWindowIndex = 0; endWindowIndex < s.length(); endWindowIndex++) {
             if (count[s.charAt(endWindowIndex)]++ == 0) {
                 // if count[s.charAt(j)] == 0, we know that it is a distinct character
-                num++;
+                currentDistinctLetters++;
             }
-            while (num > k && startWindowIndex < s.length()) { // sliding window
+            while (currentDistinctLetters > k && startWindowIndex < s.length()) {
+                // sliding window when we encounter currentDistinctLetters > given k.
                 count[s.charAt(startWindowIndex)]--;
                 if (count[s.charAt(startWindowIndex)] == 0) {
                     // If we remove a distinct character, then we have to
                     // decrement the number of current distinct characters in rotation
-                    num--;
+                    currentDistinctLetters--;
                 }
                 startWindowIndex++;
             }

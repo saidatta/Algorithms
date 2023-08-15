@@ -1,4 +1,4 @@
-package Leetcode;
+package Leetcode.Backtracking;
 
 /**
  * https://leetcode.com/problems/sudoku-solver/

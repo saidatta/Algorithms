@@ -9,26 +9,27 @@ import static java.lang.System.*;
  */
 public class MedianOfTwoSortedArrays {
     // nums1 = [1,2], nums2 = [3,4]
-    public double findMedianSortedArrays(int A[], int B[]) {
+    public double findMedianSortedArrays(int[] A, int[] B) {
         int n = A.length;
         int m = B.length;
         // the following call is to make sure len(A) <= len(B).
         // yes, it calls itself, but at most once, shouldn't be
-        // consider a recursive solution
+        // considered a recursive solution
         if (n > m) {
             return findMedianSortedArrays(B, A);
         }
 
         // now, do binary search
-        int midPtOfTwoArrays = (n + m - 1) / 2;
+        int midPtOfTwoArrays = (n + m - 1) >>> 1;
         int left = 0, right = Math.min(midPtOfTwoArrays, n); // right is n, NOT n-1, this is important!!
         while (left < right) {
-            int midA = (left + right) / 2;
+            int midA = (left + right) >>> 1;
             int midB = midPtOfTwoArrays - midA;
-            if (A[midA] < B[midB])
+            if (A[midA] < B[midB]) {
                 left = midA + 1;
-            else
+            } else {
                 right = midA;
+            }
         }
 
         // after binary search, we almost get the median because it must be between
@@ -36,8 +37,9 @@ public class MedianOfTwoSortedArrays {
 
         // if (n+m) is odd, the median is the larger one between A[left-1] and B[midPtOfTwoArrays-left].
         // and there are some corner cases we need to take care of.
-        int a = Math.max(left > 0 ? A[left - 1] : Integer.MIN_VALUE
-                , midPtOfTwoArrays - left >= 0 ? B[midPtOfTwoArrays - left] : Integer.MIN_VALUE);
+        int a = Math.max(
+                left > 0 ? A[left - 1] : Integer.MIN_VALUE,
+                midPtOfTwoArrays - left >= 0 ? B[midPtOfTwoArrays - left] : Integer.MIN_VALUE);
 
         // odd check.
         if (((n + m) & 1) == 1)
@@ -46,8 +48,9 @@ public class MedianOfTwoSortedArrays {
         // if (n+m) is even, the median can be calculated by
         //      median = (max(A[left-1], B[midPtOfTwoArrays-left]) + min(A[left], B[midPtOfTwoArrays-left+1]) / 2.0
         // also, there are some corner cases to take care of.
-        int b = Math.min(left < n ? A[left] : Integer.MAX_VALUE
-                , midPtOfTwoArrays - left + 1 < m ? B[midPtOfTwoArrays - left + 1] : Integer.MAX_VALUE);
+        int b = Math.min(
+                left < n ? A[left] : Integer.MAX_VALUE,
+                midPtOfTwoArrays - left + 1 < m ? B[midPtOfTwoArrays - left + 1] : Integer.MAX_VALUE);
         return (a + b) / 2.0;
     }
 

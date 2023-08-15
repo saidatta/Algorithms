@@ -12,7 +12,6 @@ public class ValidPalindromeII {
             if (s.charAt(l) != s.charAt(r)) {
                 return isPalindromic(s, l, r - 1) || isPalindromic(s, l + 1, r);
             }
-
             l++;
             r--;
         }

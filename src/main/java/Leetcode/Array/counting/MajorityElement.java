@@ -9,17 +9,18 @@ import java.util.HashMap;
  */
 public class MajorityElement {
     HashMap<Integer, Integer> hm = new HashMap<>();
-    public int majorityElement(int[] nums) {
-        int target = nums.length/2;
 
-        for(int n : nums) {
-            if(!hm.containsKey(n)) {
+    public int majorityElement(int[] nums) {
+        int target = nums.length / 2;
+
+        for (int n : nums) {
+            if (!hm.containsKey(n)) {
                 hm.put(n, 1);
             } else {
                 hm.put(n, hm.get(n) + 1);
             }
             int count = hm.get(n);
-            if(count > target) {
+            if (count > target) {
                 return n;
             }
         }
@@ -30,11 +31,11 @@ public class MajorityElement {
     public int majorityElement2(int... nums) {
         int majorElem = nums[0], count = 1;
 
-        for(int i = 1;i< nums.length;i++) {
-            if(count == 0) {
+        for (int i = 1; i < nums.length; i++) {
+            if (count == 0) {
                 count++;
                 majorElem = nums[i];
-            } else if(majorElem == nums[i]) {
+            } else if (majorElem == nums[i]) {
                 count++;
             } else {
                 count--;
@@ -44,10 +45,10 @@ public class MajorityElement {
         return majorElem;
     }
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         MajorityElement majorityElement = new MajorityElement();
 //        System.out.println(majorityElement.majorityElement2(3,3,3,4,4,4,4));
-        System.out.println(majorityElement.majorityElement2(3,4,3,4,3,4,3));
+        System.out.println(majorityElement.majorityElement2(3, 4, 3, 4, 3, 4, 3));
 
     }
 

@@ -15,28 +15,27 @@ import java.util.Set;
 public class WordBreak {
     public boolean wordBreak(String targetString, Set<String> wordDict) {
 
-        if(wordDict == null || targetString == null || targetString.isEmpty()|| wordDict.isEmpty()) {
+        if (wordDict == null || targetString == null || targetString.isEmpty() || wordDict.isEmpty()) {
             return false;
         }
 
-        boolean [] positions = new boolean[targetString.length() + 1];
+        boolean[] positions = new boolean[targetString.length() + 1];
         positions[0] = true;
 
-        for(int i = 0 ;i < targetString.length();i++) {
-
-            if(!positions[i]) {
+        for (int i = 0; i < targetString.length(); i++) {
+            if (!positions[i]) {
                 continue;
             }
 
-            for(String word : wordDict) {
+            for (String word : wordDict) {
                 int wordLength = word.length();
                 int wordEnd = i + wordLength;
 
-                if(wordEnd > targetString.length()) {
+                if (wordEnd > targetString.length()) {
                     continue;
                 }
 
-                if(targetString.substring(i,wordEnd).equals(word)) {
+                if (targetString.substring(i, wordEnd).equals(word)) {
                     positions[wordEnd] = true;
                 }
             }
@@ -45,7 +44,7 @@ public class WordBreak {
     }
 
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         WordBreak wordBreak = new WordBreak();
 
         Set<String> words = new HashSet<>();

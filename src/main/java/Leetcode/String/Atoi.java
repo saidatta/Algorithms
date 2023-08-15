@@ -6,29 +6,24 @@ package Leetcode.String;
  * Created by venkatamunnangi on 12/6/16.
  */
 public class Atoi {
-    public int myAtoi(String str) {
-        int i = 0;
-        str = str.trim();
-        char[] c = str.toCharArray();
-
-        int sign = 1;
-        if (i < c.length && (c[i] == '-' || c[i] == '+')) {
-            if (c[i] == '-') {
-                sign = -1;
-            }
+    public int myAtoi(String s) {
+        int i = 0, sign = 1, result = 0;
+        // 1. Check for white spaces
+        while (i < s.length() && s.charAt(i) == ' ') {
             i++;
         }
-
-        int num = 0;
-        int bound = Integer.MAX_VALUE / 10;
-        while (i < c.length && c[i] >= '0' && c[i] <= '9') {
-            int digit = c[i] - '0';
-            if (num > bound || (num == bound && digit > 7)) {
-                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-            }
-            num = num * 10 + digit;
-            i++;
+        // 2. Check for signs
+        if (i < s.length() && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
+            sign = (s.charAt(i++) == '+') ? 1 : -1;
         }
-        return sign * num;
+        // 3. Convert number and avoid overflow
+        while (i < s.length() && s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+            if (result > Integer.MAX_VALUE / 10 ||
+                    (result == Integer.MAX_VALUE / 10 && s.charAt(i) - '0' > Integer.MAX_VALUE % 10)) {
+                return (sign == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+            result = result * 10 + (s.charAt(i++) - '0');
+        }
+        return result * sign;
     }
 }

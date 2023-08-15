@@ -12,31 +12,31 @@ package Leetcode.Array;
 public class TrappingRainWater {
     public int trap(int[] height) {
 
-        if(height == null || height.length == 0) {
+        if (height == null || height.length == 0) {
             return 0;
         }
 
         int max = height[0];
         int maxIndex = 0;
         //find the highest bar.
-        for(int i = 1;i<= height.length -1;i++) {
-            if(max < height[i]) {
+        for (int i = 1; i <= height.length - 1; i++) {
+            if (max < height[i]) {
                 max = height[i];
                 maxIndex = i;
             }
         }
 
         int prevHigh = 0, ans = 0;
-        for(int i = 0;i<maxIndex;i++) {
-            if(prevHigh < height[i]) {
+        for (int i = 0; i < maxIndex; i++) {
+            if (prevHigh < height[i]) {
                 prevHigh = height[i];
             }
             ans += (prevHigh - height[i]);
         }
 
         prevHigh = 0;
-        for(int i = height.length -1;i>maxIndex; i--) {
-            if(prevHigh < height[i]) {
+        for (int i = height.length - 1; i > maxIndex; i--) {
+            if (prevHigh < height[i]) {
                 prevHigh = height[i];
             }
             ans += (prevHigh - height[i]);

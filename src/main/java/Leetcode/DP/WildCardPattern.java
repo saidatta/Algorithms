@@ -3,7 +3,6 @@ package Leetcode.DP;
 /**
  * https://leetcode.com/problems/wildcard-matching/#/description
  *
- * The complexity of the algorithm is O(p*s), where p and s are the lengths of the pattern and input strings.
  *
  * Created by venkatamunnangi on 4/19/17.
  */

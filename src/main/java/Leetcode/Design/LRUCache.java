@@ -48,8 +48,6 @@ public class LRUCache {
                 remove(end);
             }
             setHead(created);
-
-
             map.put(key, created);
         }
     }

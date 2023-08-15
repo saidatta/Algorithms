@@ -8,8 +8,7 @@ import java.util.PriorityQueue;
  * Created by venkatamunnangi on 4/2/17.
  */
 public class KthLargestElementInArray {
-    public int findKthLargest(int[] nums, int k) {
-
+    public static int findKthLargest(int[] nums, int k) {
         final PriorityQueue<Integer> pq = new PriorityQueue<>(k+1);
         for(int val : nums) {
             pq.offer(val);
@@ -21,6 +20,9 @@ public class KthLargestElementInArray {
         return pq.peek();
     }
 
+    public static void main(String [] args) {
+        System.out.println(findKthLargest(new int[]{3,2,1,5,6,4}, 2));
+    }
     public int findKthLargest2(int[] a, int k) {
         int n = a.length;
         // n-k+1 smallest because a typical qs will be ascending.

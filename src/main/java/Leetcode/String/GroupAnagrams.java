@@ -3,7 +3,7 @@ package Leetcode.String;
 import java.util.*;
 
 /**
- * https://leetcode.com/problems/anagrams/#/description
+ * https://leetcode.com/problems/anagrams/
  *
  * Created by venkatamunnangi on 12/2/16.
  */
@@ -28,7 +28,6 @@ public class GroupAnagrams {
 
 
     public List<List<String>> gA2(String... strs) {
-        List<List<String>> result = new ArrayList<>();
 
         HashMap<String, ArrayList<String>> map = new HashMap<>();
         for(String str: strs){
@@ -47,9 +46,7 @@ public class GroupAnagrams {
             }
         }
 
-        result.addAll(map.values());
-
-        return result;
+        return new ArrayList<>(map.values());
     }
 
     public static void main(String [] args) {

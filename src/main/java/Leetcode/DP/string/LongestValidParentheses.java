@@ -1,4 +1,4 @@
-package Leetcode;
+package Leetcode.DP.string;
 
 public class LongestValidParentheses {
 //    The idea is go through the string and use DP to store the longest valid parentheses at that point.

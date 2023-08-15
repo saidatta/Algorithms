@@ -9,10 +9,8 @@ import static java.lang.System.*;
  * Created by venkatamunnangi on 10/2/16.
  */
 public class RegularExpressionMatching {
-
     char ANY_OCCURENCES = '*';
     char ANY_CHAR = '.';
-
     public boolean isMatch(String str, String regex) {
         boolean[][] dp = new boolean[str.length() + 1][regex.length() + 1];
         dp[0][0] = true;

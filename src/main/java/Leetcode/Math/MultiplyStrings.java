@@ -1,4 +1,4 @@
-package Leetcode;
+package Leetcode.Math;
 
 /**
  * https://leetcode.com/problems/multiply-strings/#/description

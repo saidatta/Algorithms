@@ -12,13 +12,13 @@ import java.util.List;
 // find nodes at a given distance k from a target node. The inheritance relationship allows the NodeWParent objects to
 // inherit the properties of TreeNode and adds the parent member for tracking the parent node.
 //
-//        Approach
-//        Complexity
-//        Time complexity:
-//        O(n+k)O(n + k)O(n+k)
+// Approach
+//    Complexity
+//    Time complexity:
+//      O(n+k)O(n + k)O(n+k)
 //
-//        Space complexity:
-//        O(n+k)O(n + k)O(n+k)
+//    Space complexity:
+//      O(n+k)O(n + k)O(n+k)
 class AllNodesKBT {
     private final List<Integer> foundNodes;
     private NodeWParent start;
