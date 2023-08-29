@@ -1,6 +1,6 @@
 package CCI;
 
-import Leetcode.TreeNode;
+import leetcode.TreeNode;
 
 /**
  * Created by venkatamunnangi on 12/21/16.

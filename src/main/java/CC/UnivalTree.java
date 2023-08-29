@@ -1,6 +1,6 @@
 package CC;
 
-import Leetcode.TreeNode;
+import leetcode.TreeNode;
 
 class UnivalTree {
 

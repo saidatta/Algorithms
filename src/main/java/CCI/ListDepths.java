@@ -1,6 +1,6 @@
 package CCI;
 
-import Leetcode.TreeNode;
+import leetcode.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

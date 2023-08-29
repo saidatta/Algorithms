@@ -1,7 +1,7 @@
 package CCI;
 
 
-import Leetcode.TreeNode;
+import leetcode.TreeNode;
 
 /**
  * https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/#/description

@@ -86,7 +86,7 @@ public class UnionFind {
     private Node findSet(Node node) {
         Node parentNode = node.parent;
         if(parentNode == node) {
-            return  parentNode;
+            return parentNode;
         }
 
         // path compression once the parent root node is evaluated

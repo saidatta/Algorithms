@@ -22,8 +22,8 @@ import java.util.Map;
 
 public class BellmanFordShortestPath {
 
-    //some random big number is treated as infinity. I m not taking INTEGER_MAX as infinity because
-    //doing any addition on that causes integer overflow
+    // some random big number is treated as infinity. I m not taking INTEGER_MAX as infinity because
+    // doing any addition on that causes integer overflow
     private static int INFINITY = 10000000;
 
     class NegativeWeightCycleException extends RuntimeException {}
@@ -34,18 +34,18 @@ public class BellmanFordShortestPath {
         Map<Vertex<Integer>, Integer> distance = new HashMap<>();
         Map<Vertex<Integer>, Vertex<Integer>> parent = new HashMap<>();
 
-        //set distance of every vertex to be infinity initially
+        // set distance of every vertex to be infinity initially
         for(Vertex<Integer> v : graph.getAllVertex()) {
             distance.put(v, INFINITY);
             parent.put(v, null);
         }
 
-        //set distance of source vertex to be 0
+        // set distance of source vertex to be 0
         distance.put(sourceVertex, 0);
 
         int V = graph.getAllVertex().size();
 
-        //relax edges repeatedly V - 1 times
+        // relax edges repeatedly V - 1 times
         for (int i = 0; i < V - 1 ; i++) {
             for (Edge<Integer> edge : graph.getAllEdges()) {
                 Vertex<Integer> u = edge.getVertex1();
@@ -60,9 +60,9 @@ public class BellmanFordShortestPath {
             }
         }
 
-        //relax all edges again. If we still get lesser distance it means
-        //there is negative weight cycle in the graph. Throw exception in that
-        //case
+        // relax all edges again. If we still get lesser distance it means
+        // there is negative weight cycle in the graph. Throw exception in that
+        // case
         for (Edge<Integer> edge : graph.getAllEdges()) {
             Vertex<Integer> u = edge.getVertex1();
             Vertex<Integer> v = edge.getVertex2();
