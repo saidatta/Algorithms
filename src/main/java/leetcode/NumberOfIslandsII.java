@@ -52,7 +52,7 @@ import java.util.List;
  * Created by venkatamunnangi on 5/13/17.
  */
 public class NumberOfIslandsII {
-    private int[][] dir = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
+    private final int[][] dir = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
 
     public List<Integer> numIslands2(int m, int n, int[][] positions) {
         UnionFind2D islands = new UnionFind2D(m, n);

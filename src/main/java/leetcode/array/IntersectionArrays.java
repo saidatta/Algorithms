@@ -51,22 +51,26 @@ public class IntersectionArrays {
 
     //Time = O(n). Space = O(n).
     public int[] intersection2(int[] nums1, int[] nums2) {
-        HashSet<Integer> set1 = new HashSet<Integer>();
-        for(int i: nums1){
-            set1.add(i);
+        Set<Integer> set1 = new HashSet<>();
+        for (int num : nums1) {
+            set1.add(num);
         }
-        HashSet<Integer> set2 = new HashSet<Integer>();
-        for(int i: nums2){
-            if(set1.contains(i)){
-                set2.add(i);
-            } }
-        int[] result = new int[set2.size()];
-        int i=0;
-        for(int n: set2){
-            result[i++] = n;
+
+        Set<Integer> intersection = new HashSet<>();
+        for (int num : nums2) {
+            if (set1.contains(num)) {
+                intersection.add(num);
+            }
+        }
+
+        int[] result = new int[intersection.size()];
+        int idx = 0;
+        for (int num : intersection) {
+            result[idx++] = num;
         }
         return result;
     }
+
 
     //nlogn
     public int[] intersectionWithoutSet(int[] nums1, int[] nums2) {

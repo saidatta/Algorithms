@@ -24,7 +24,7 @@ public class ValidWordAbbrev {
                 j++;
             }
 
-            int num = Integer.valueOf(abbr.substring(start, j));
+            int num = Integer.parseInt(abbr.substring(start, j));
             i += num;
         }
         return i == word.length() && j == abbr.length();

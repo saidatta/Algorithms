@@ -35,3 +35,58 @@ public class UniquePaths {
         System.out.println(uniquePaths.uniquePaths(2, 2));
     }
 }
+
+class Solution {
+
+    /**
+     * Computes the number of unique paths from the top-left to bottom-right corner
+     * of a grid with given dimensions m x n.
+     *
+     * @param m the number of rows in the grid.
+     * @param n the number of columns in the grid.
+     * @return the number of unique paths.
+     */
+    public int uniquePaths(int m, int n) {
+        int[][] grid = initializeGrid(m, n);
+        populateGridWithPathCounts(grid, m, n);
+        return grid[m-1][n-1];
+    }
+
+    /**
+     * Initializes a grid with given dimensions and sets boundary values.
+     *
+     * @param m the number of rows in the grid.
+     * @param n the number of columns in the grid.
+     * @return a grid initialized with boundary values.
+     */
+    private int[][] initializeGrid(int m, int n) {
+        int[][] grid = new int[m][n];
+
+        for(int i = 0; i < m; i++) {
+            grid[i][0] = 1; // Set leftmost column to 1
+        }
+
+        for(int j = 0; j < n; j++) {
+            grid[0][j] = 1; // Set topmost row to 1
+        }
+
+        return grid;
+    }
+
+    /**
+     * Populates the grid with counts of unique paths to each cell.
+     *
+     * @param grid the grid to be populated.
+     * @param m the number of rows in the grid.
+     * @param n the number of columns in the grid.
+     */
+    private void populateGridWithPathCounts(int[][] grid, int m, int n) {
+        for(int i = 1; i < m; i++) {
+            for(int j = 1; j < n; j++) {
+                // The number of ways to reach a cell is the sum of ways from the left and above.
+                grid[i][j] = grid[i-1][j] + grid[i][j-1];
+            }
+        }
+    }
+}
+

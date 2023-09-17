@@ -14,9 +14,11 @@ public class BoundedBlockingQueue {
     private int tail = 0;
     private int head = 0;
     private int size = 0;
+
     public BoundedBlockingQueue(int capacity) {
-        if (capacity <= 0)
+        if (capacity <= 0) {
             throw new IllegalArgumentException();
+        }
         this.queue = new int[capacity];
         lock = new ReentrantLock(false);
         this.full = lock.newCondition();
@@ -26,7 +28,7 @@ public class BoundedBlockingQueue {
     public void enqueue(int element) throws InterruptedException {
         lock.lockInterruptibly();
         try {
-            while(size == queue.length) {
+            while (size == queue.length) {
                 full.await();
             }
             queue[tail++] = element;
@@ -41,7 +43,7 @@ public class BoundedBlockingQueue {
     public int dequeue() throws InterruptedException {
         lock.lockInterruptibly();
         try {
-            while(size == 0) {
+            while (size == 0) {
                 notEmpty.await();
             }
             int res = queue[head++];

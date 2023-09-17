@@ -10,36 +10,53 @@ import java.util.List;
  * Created by venkatamunnangi on 12/21/16.
  */
 public class FactorCombinations {
+    /**
+     * Get all unique combinations of factors of a number.
+     * @param n The number for which to get factor combinations.
+     * @return A list of lists containing combinations of factors.
+     */
     public List<List<Integer>> getFactors(int n) {
-        List<List<Integer>> answer = new ArrayList<>();
-        getFactorsHelper(n, answer, new ArrayList<>(), 2);
-        return answer;
-
-//            List<List<Integer>> answer = new ArrayList<>();
-//            new GetFactorsCommand(n, answer, new ArrayList<>(), 2).execute();
-//            return answer;
+        List<List<Integer>> combinations = new ArrayList<>();
+        findCombinations(n, combinations, new ArrayList<>(), 2);
+        return combinations;
     }
 
-    public void getFactorsHelper(int n, List<List<Integer>> answer, List<Integer> factors, int start) {
-        if(n <= 1) {
-            if(factors.size() > 1) {
-                answer.add(new ArrayList<>(factors));
+    /**
+     * Recursive helper method to find factor combinations.
+     *
+     * @param n The current dividend.
+     * @param combinations The list to store valid factor combinations.
+     * @param currentFactors The current factor combination.
+     * @param start The current factor to consider.
+     */
+    private void findCombinations(int n, List<List<Integer>> combinations, List<Integer> currentFactors, int start) {
+        // If n is reduced to 1 and we have more than one factor, add the current combination to the result
+        if (n <= 1) {
+            if (currentFactors.size() > 1) {
+                combinations.add(new ArrayList<>(currentFactors));
             }
             return;
         }
+
+        // For each number from 'start' to the square root of n, try dividing n
         for (int i = start; i <= Math.sqrt(n); i++) {
             if(n % i == 0) {
-                factors.add(i);
-                getFactorsHelper(n/i, answer, factors, i);
-                factors.remove(factors.size() - 1);
+                currentFactors.add(i);
+                findCombinations(n / i, combinations, currentFactors, i);
+                currentFactors.remove(currentFactors.size() - 1);
             }
         }
 
         // At the end of the of factor chain the sqrt function will not include the final number
         // 2 x 2 x 3 - 3 in this factor chain.
-        factors.add(n);
-        getFactorsHelper(n/n, answer, factors, n);
-        factors.remove(factors.size()-1);
+        currentFactors.add(n);
+        findCombinations(n/n, combinations, currentFactors, n);
+        currentFactors.remove(currentFactors.size() - 1);
+    }
+
+    public static void main(String[] args) {
+        FactorCombinations solver = new FactorCombinations();
+        System.out.println(solver.getFactors(1));
     }
 
     interface Command {

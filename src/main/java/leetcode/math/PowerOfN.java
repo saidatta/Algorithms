@@ -6,6 +6,8 @@ package leetcode.math;
  * Created by venkatamunnangi on 2/7/17.
  */
 public class PowerOfN {
+
+
     public double myPow(double x, int n) {
         if (Double.compare(x, 0) == 0) {
             return 0;

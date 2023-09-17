@@ -76,4 +76,37 @@ class SnapshotArray {
             logs.put(snapshotArrayVersion, 0);
         }
     }
+
+//    private List<List<Integer>> snapshot;
+//    private int snapTimes;
+//
+//    public SnapshotArray(int length) {
+//        this.snapshot = new ArrayList<>();
+//        for (int i = 0; i < length; i++) {
+//            List<Integer> initialValue = new ArrayList<>();
+//            initialValue.add(0);
+//            this.snapshot.add(initialValue);
+//        }
+//        this.snapTimes = 0;
+//    }
+//
+//    public void set(int index, int val) {
+//        while (this.snapTimes >= this.snapshot.get(index).size()) {
+//            int lastUnchangedValue = this.snapshot.get(index).get(this.snapshot.get(index).size() - 1);
+//            this.snapshot.get(index).add(lastUnchangedValue);
+//        }
+//        this.snapshot.get(index).set(this.snapTimes, val);
+//    }
+//
+//    public int snap() {
+//        this.snapTimes++;
+//        return this.snapTimes - 1;
+//    }
+//
+//    public int get(int index, int snapId) {
+//        if (this.snapshot.get(index).size() <= snapId) {
+//            return this.snapshot.get(index).get(this.snapshot.get(index).size() - 1);
+//        }
+//        return this.snapshot.get(index).get(snapId);
+//    }
 }

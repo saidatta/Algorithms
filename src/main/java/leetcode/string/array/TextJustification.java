@@ -3,6 +3,7 @@ package leetcode.string.array;
 import java.util.ArrayList;
 import java.util.List;
 
+// https://leetcode.com/problems/text-justification/description/
 public class TextJustification {
     public List<String> fullJustify(String[] words, int maxWidth) {
         List<String> result = new ArrayList<>();

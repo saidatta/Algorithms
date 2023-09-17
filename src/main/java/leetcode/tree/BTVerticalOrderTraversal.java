@@ -11,55 +11,57 @@ import java.util.*;
  */
 public class BTVerticalOrderTraversal {
     public List<List<Integer>> verticalOrder(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
         if (root == null) {
-            return res;
+            return result;
         }
 
-        Map<Integer, ArrayList<Integer>> map = new HashMap<>();
+        Map<Integer, ArrayList<Integer>> columnMap = new HashMap<>();
+        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        Queue<Integer> columnQueue = new LinkedList<>();
+        int minColumn = 0, maxColumn = 0;
 
-        Queue<TreeNode> q = new LinkedList<>();
-        Queue<Integer> cols = new LinkedList<>();
+        nodeQueue.add(root);
+        columnQueue.add(0);
 
-        int min  = 0, max = 0;
+        while (!nodeQueue.isEmpty()) {
+            TreeNode currentNode = nodeQueue.poll();
+            int currentColumn = columnQueue.poll();
 
-        q.add(root);
-        cols.add(0);
-
-        while(!q.isEmpty()) {
-            TreeNode currentNode = q.poll();
-            int col = cols.poll();
-
-            if(currentNode.left != null) {
-                q.offer(currentNode.left);
-                cols.offer(col - 1);
-                min = Math.min(min, col-1);
+            // Process left child
+            if (currentNode.left != null) {
+                nodeQueue.offer(currentNode.left);
+                columnQueue.offer(currentColumn - 1);
+                minColumn = Math.min(minColumn, currentColumn - 1);
             }
 
-            if(currentNode.right != null) {
-                q.offer(currentNode.right);
-                cols.offer(col + 1);
-                max = Math.max(max, col+1);
+            // Process right child
+            if (currentNode.right != null) {
+                nodeQueue.offer(currentNode.right);
+                columnQueue.offer(currentColumn + 1);
+                maxColumn = Math.max(maxColumn, currentColumn + 1);
             }
 
-            if (!map.containsKey(col)) {
-                map.put(col, new ArrayList<>());
-            }
-            map.get(col).add(currentNode.val);
+            columnMap.computeIfAbsent(currentColumn, k -> new ArrayList<>())
+                    .add(currentNode.val);
         }
 
-        for(int i = min; i<= max; i++) {
-            res.add(map.get(i));
+        for (int i = minColumn; i <= maxColumn; i++) {
+            result.add(columnMap.get(i));
         }
 
-        return res;
+        return result;
     }
 
 
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(15);
+        root.right.right = new TreeNode(7);
 
-
-
-    public static void main(String [] args) {
-
+        BTVerticalOrderTraversal traversal = new BTVerticalOrderTraversal();
+        System.out.println(traversal.verticalOrder(root));
     }
 }

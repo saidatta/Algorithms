@@ -9,13 +9,13 @@ import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.Queue;
 
-// "Implement a hybrid queue class, with one part in memory and the other part on the hard disk."
+// Implement a hybrid queue class, with one part in memory and the other part on the hard disk.
 // The idea behind a hybrid queue is to have a queue that can handle a larger amount of data than what can be typically
-// stored in the RAM. When the in-memory part of the queue gets full, the data should overflow to the hard disk.
+// stored in the RAM. When the in-memory part of the queue gets full, the data should overflow to the hard disk
 public class HybridQueue<T> {
-    private Queue<T> inMemoryQueue;
-    private Queue<File> diskQueue;
-    private int memoryCapacity;
+    private final Queue<T> inMemoryQueue;
+    private final Queue<File> diskQueue;
+    private final int memoryCapacity;
     private int diskCount;
 
     public HybridQueue(int memoryCapacity) {

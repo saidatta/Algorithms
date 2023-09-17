@@ -77,5 +77,16 @@ public class IntersectionArraysII {
         }
         return result;
     }
+//    What if nums1's size is small compared to nums2's size? Which algorithm is better?
+//    If nums1 is significantly smaller than nums2, then the HashMap-based solution is better as you would be creating
+//    a HashMap for a smaller dataset (nums1).
 
+//    What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements
+//    into the memory at once?
+//    If memory is limited: You can split nums2 into chunks that fit into memory.
+//    Process each chunk separately against nums1.
+//    It's also worth noting that database systems often handle this scenario efficiently with operations like "join" if
+//    data is stored in a database.
+//    External sorting can be another approach where you can sort chunks and then merge them, similar to the merge-sort
+//    algorithm. After sorting, you can apply the two-pointer approach.
 }

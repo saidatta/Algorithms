@@ -14,11 +14,11 @@ public class BSTIterator {
 
     public BSTIterator(TreeNode root) {
         // root == null
-        treeNodeStack = new Stack<>();
+        this.treeNodeStack = new Stack<>();
         TreeNode curr = root;
         while(curr != null) {
             // the O ( h ) requirement
-            treeNodeStack.push(curr);
+            this.treeNodeStack.push(curr);
             if(curr.left != null) {
                 curr = curr.left;
             } else {

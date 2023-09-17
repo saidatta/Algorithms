@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.stream.Collectors;
 
+//
 public class NQueens {
-    Timer t;
-
     public List<List<String>> solveNQueens(int n) {
         char[][] board = new char[n][n];
         for(int i = 0; i < n; i++)

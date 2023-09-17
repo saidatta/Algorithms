@@ -35,7 +35,8 @@ public class SubarraySumEqualsK {
             count += prefixSumCount.getOrDefault(sum - k, 0);
 
             if (k == 0) {
-                count--;  // Adjust count for subarrays with sum 0
+                // Adjust count for subarrays with sum 0
+                count--;
             }
         }
 

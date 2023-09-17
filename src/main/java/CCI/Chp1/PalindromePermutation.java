@@ -10,13 +10,14 @@ import java.util.Set;
  */
 public class PalindromePermutation {
     public boolean isPalindromePermutation(String s) {
-        Set<Character> set=new HashSet<>();
-        for(int i=0; i<s.length(); ++i){
-            if (!set.contains(s.charAt(i)))
+        Set<Character> set = new HashSet<>();
+        for (int i = 0; i < s.length(); ++i) {
+            if (!set.contains(s.charAt(i))) {
                 set.add(s.charAt(i));
-            else
+            } else {
                 set.remove(s.charAt(i));
+            }
         }
-        return set.isEmpty() || set.size()==1;
+        return set.isEmpty() || set.size() == 1;
     }
 }

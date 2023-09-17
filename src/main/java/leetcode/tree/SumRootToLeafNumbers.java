@@ -13,13 +13,13 @@ public class SumRootToLeafNumbers {
     }
 
     public int sumNumbersHelper(TreeNode n, int sum) {
-        if(n == null) {
+        if (n == null) {
             return 0;
         }
 
         if (n.right == null && n.left == null) {
-            return sum*10 + n.val;
+            return sum * 10 + n.val;
         }
-        return sumNumbersHelper(n.left, sum*10 + n.val) + sumNumbersHelper(n.right, sum*10 + n.val);
+        return sumNumbersHelper(n.left, sum * 10 + n.val) + sumNumbersHelper(n.right, sum * 10 + n.val);
     }
 }

@@ -12,7 +12,6 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
 class TrafficLightReal {
-
     Semaphore roadASignal;          // permits cars on road A
     Semaphore roadBSignal;          // permits cars on road B
     final AtomicInteger roadACount;
