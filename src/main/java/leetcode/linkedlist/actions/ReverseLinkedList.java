@@ -13,23 +13,32 @@ public class ReverseLinkedList {
     // 1 - 2 = 2 - 1
     // 1 = 1
     // null = null
+
     public ListNode reverseList(ListNode head) {
+        // If the list is empty or has only one node, no need to reverse.
         if (head == null || head.next == null) {
             return head;
         }
 
-        ListNode curr = head;
-        ListNode ln2 = null;
+        ListNode current = head;
+        ListNode reversedPart = null; // This will store the reversed part of the list.
 
-        while(curr != null) {
-            ListNode temp = curr.next; // 3 |
-            curr.next = ln2; // 1
-            ln2 = curr; // 1
-            curr = temp; // 3
+        while (current != null) {
+            // Keep track of the next node before reversing the link.
+            ListNode nextNode = current.next;
+
+            // Reverse the current node's link.
+            current.next = reversedPart;
+
+            // Move the reversedPart pointer to this node.
+            reversedPart = current;
+
+            // Move to the next node in the original list.
+            current = nextNode;
         }
 
-        // returns head of constructed head.
-        return ln2;
+        // At the end of the loop, reversedPart will point to the new head of the reversed list.
+        return reversedPart;
     }
 
     // Iterative solution

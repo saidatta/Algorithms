@@ -1,4 +1,4 @@
-package leetcode.traversal;
+package leetcode.array.traversal;
 
 /**
  * https://leetcode.com/problems/longest-increasing-path-in-a-matrix/#/description

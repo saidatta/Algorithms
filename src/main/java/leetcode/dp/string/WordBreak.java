@@ -48,9 +48,11 @@ public class WordBreak {
         WordBreak wordBreak = new WordBreak();
 
         Set<String> words = new HashSet<>();
-        words.add("leet");
-        words.add("code");
-
-        System.out.println(wordBreak.wordBreak("leetcode", words));
+        words.add("cats");
+        words.add("dog");
+        words.add("sand");
+        words.add("and");
+        words.add("cat");
+        System.out.println(wordBreak.wordBreak("catsandog", words));
     }
 }

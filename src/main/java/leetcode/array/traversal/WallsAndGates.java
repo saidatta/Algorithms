@@ -1,4 +1,4 @@
-package leetcode.traversal;
+package leetcode.array.traversal;
 
 import java.util.LinkedList;
 import java.util.Queue;

@@ -10,30 +10,68 @@ import static java.lang.System.out;
  * Created by venkatamunnangi on 3/24/17.
  */
 public class WordBreakII {
-    public List<String> wordBreak(String s, List<String> wordDict) {
-        return DFS(s, wordDict, new HashMap<>());
+    /**
+     * Updates the set of characters based on the input string.
+     */
+    private void updateCharSet(String s, HashSet<Character> charSet) {
+        for (char c : s.toCharArray()) {
+            charSet.add(c);
+        }
     }
 
-    // dfs function returns an array including all substrings derived from currentTrimmedWord.
-    private List<String> DFS(String currentTrimmedWord, List<String> wordDict, HashMap<String, LinkedList<String>> map) {
-        if (map.containsKey(currentTrimmedWord)) {
-            return map.get(currentTrimmedWord);
+    /**
+     * Breaks the input string into words based on the word dictionary.
+     */
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        HashSet<Character> stringCharSet = new HashSet<>();
+        updateCharSet(s, stringCharSet);
+
+        HashSet<Character> wordCharSet = new HashSet<>();
+        Set<String> wordSet = new HashSet<>();
+        for (String word : wordDict) {
+            wordSet.add(word);
+            updateCharSet(word, wordCharSet);
         }
 
-        LinkedList<String> constructedSentences = new LinkedList<>();
-        if (currentTrimmedWord.isEmpty()) {
-            constructedSentences.add("");
-            return constructedSentences;
+        // Perform a quick check on the sets of characters.
+        if (!wordCharSet.containsAll(stringCharSet)) {
+            return new ArrayList<>();
         }
-        for (String word : wordDict) {
-            if (currentTrimmedWord.startsWith(word)) {
-                List<String> sublist = DFS(currentTrimmedWord.substring(word.length()), wordDict, map);
-                for (String sub : sublist)
-                    constructedSentences.add(word + (sub.isEmpty() ? "" : " ") + sub);
+
+        List<List<List<Integer>>> dp = new ArrayList<>(s.length() + 1);
+        for (int i = 0; i < s.length() + 1; i++) {
+            dp.add(new ArrayList<>());
+        }
+        dp.get(0).add(new ArrayList<>(Collections.singletonList(0)));
+
+        for (int endIndex = 1; endIndex < s.length() + 1; endIndex++) {
+            List<List<Integer>> stops = new ArrayList<>();
+
+            // Populate the dp array.
+            for (int startIndex = 0; startIndex < endIndex; startIndex++) {
+                String word = s.substring(startIndex, endIndex);
+                if (wordSet.contains(word)) {
+                    for (List<Integer> subsentence : dp.get(startIndex)) {
+                        List<Integer> copy = new ArrayList<>(subsentence);
+                        copy.add(endIndex);
+                        stops.add(copy);
+                    }
+                }
             }
+            dp.set(endIndex, stops);
         }
-        map.put(currentTrimmedWord, constructedSentences);
-        return constructedSentences;
+
+        // Reconstruct the sentences based on the break positions.
+        List<String> results = new ArrayList<>();
+        for (List<Integer> stops : dp.get(s.length())) {
+            StringBuilder sentence = new StringBuilder();
+            for (int i = 0; i < stops.size() - 1; i++) {
+                sentence.append(s, stops.get(i), stops.get(i + 1)).append(" ");
+            }
+            results.add(sentence.toString().trim());
+        }
+
+        return results;
     }
 
     public static void main(String[] args) {

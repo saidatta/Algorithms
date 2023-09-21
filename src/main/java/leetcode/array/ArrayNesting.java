@@ -14,32 +14,61 @@ package leetcode.array;
 //        One of the longest S[K]:
 //        S[0] = {A[0], A[5], A[6], A[2]} = {5, 6, 2, 0}
 public class ArrayNesting {
-//    	This is actually a DFS.  Use a visited map to keep track of visited node. If
-//    number is visited before, then the set that starts at this number must be smaller then
-//    previous max. So we can safely skip this number. In total it's O(n) complexity.
-// O(n)
-    public int arrayNesting(int[] nums) {
-        int max = Integer.MIN_VALUE;
+
+    /**
+     * Computes the length of the longest set constructed using the given rules.
+     * This can be seen as finding the longest cycle in the represented graph.
+     * The graph is represented by an array where the index and its corresponding
+     * value forms an edge.
+     *
+     * @param nums The input array of integers.
+     * @return The length of the longest set.
+     */
+    public int findLongestSetLength(int[] nums) {
+        int maxLength = 0;
         boolean[] visited = new boolean[nums.length];
+
         for (int i = 0; i < nums.length; i++) {
-            if (visited[i]) {
-                continue;
+            if (!visited[i]) {
+                int currentLength = calculateSetLength(nums, i, visited);
+                maxLength = Math.max(maxLength, currentLength);
             }
-            max = Math.max(max, calcLength(nums, i, visited));
         }
-        return max;
+
+        return maxLength;
     }
 
-    private int calcLength(int[] nums, int start, boolean[] visited) {
-        int i = start, count = 0;
-        // we dont intersect in between the chain because
-        // The elements of A are all distinct.
-        while (count == 0 || i != start) {
-            visited[i] = true;
-            i = nums[i];
+    /**
+     * Computes the length of the set starting from a given index.
+     * It traverses the graph until a cycle is detected.
+     *
+     * @param nums The input array of integers.
+     * @param start The starting index for the set.
+     * @param visited An array to keep track of visited indices.
+     * @return The length of the set starting from the given index.
+     */
+    private int calculateSetLength(int[] nums, int start, boolean[] visited) {
+        int currentIndex = start;
+        int count = 0;
+
+        // Traverse until we detect a cycle
+        while (count == 0 || currentIndex != start) {
+            visited[currentIndex] = true;
+            currentIndex = nums[currentIndex];
             count++;
         }
+
         return count;
     }
-    //1,2,1
+
+    public static void main(String[] args) {
+        ArrayNesting solution = new ArrayNesting();
+
+        int[] nums1 = {5, 4, 0, 3, 1, 6, 2};
+        System.out.println(solution.findLongestSetLength(nums1));  // Expected output: 4
+
+        int[] nums2 = {0, 1, 2};
+        System.out.println(solution.findLongestSetLength(nums2));  // Expected output: 1
+    }
 }
+

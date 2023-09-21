@@ -1,4 +1,4 @@
-package leetcode.traversal;
+package leetcode.array.traversal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
