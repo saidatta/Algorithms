@@ -7,25 +7,53 @@ package leetcode.dp;
  */
 public class UniquePathsII {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        if (obstacleGrid == null || obstacleGrid.length == 0) {
+            return 0;
+        }
+
         int width = obstacleGrid[0].length;
+
+        // dp will hold the number of unique paths to each position.
         int[] dp = new int[width];
+        // Initialize starting point
         dp[0] = 1;
+
         for (int[] row : obstacleGrid) {
             for (int j = 0; j < width; j++) {
-                if (row[j] == 1) {
+                if (isObstacle(row[j])) {
                     dp[j] = 0;
                 } else if (j > 0) {
-                    // += is crucial as we dont need to do a 2d grid.
-                    // we are adding the previous row at that location(up)
-                    // with current rows left min ways (left).
+                    // Accumulate the number of unique paths.
+                    // The current cell's value becomes the sum of the left cell and the above cell.
                     dp[j] += dp[j - 1];
                 }
             }
         }
+
         return dp[width - 1];
     }
 
-    public static void main(String [] args) {
-        UniquePathsII uniquePathsII = new UniquePathsII();
+    private boolean isObstacle(int value) {
+        return value == 1;
+    }
+    public static void main(String[] args) {
+        UniquePathsII solution = new UniquePathsII();
+
+        // Test Case 1
+        int[][] obstacleGrid1 = {
+                {0,0,0},
+                {0,1,0},
+                {0,0,0}
+        };
+        System.out.println(solution.uniquePathsWithObstacles(obstacleGrid1)); // Expected output: 2
+
+        // Test Case 2
+        int[][] obstacleGrid2 = {
+                {0,1},
+                {0,0}
+        };
+        System.out.println(solution.uniquePathsWithObstacles(obstacleGrid2)); // Expected output: 1
+
+        // You can add more test cases as needed
     }
 }

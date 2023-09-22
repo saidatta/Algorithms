@@ -1,4 +1,4 @@
-package leetcode.array;
+package leetcode.array.traversal;
 
 // https://leetcode.com/problems/max-consecutive-ones-iii/description/
 public class MaxConsecutiveOnesIII {

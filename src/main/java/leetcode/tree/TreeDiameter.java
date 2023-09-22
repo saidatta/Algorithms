@@ -8,7 +8,7 @@ import java.util.Queue;
 import java.util.Set;
 
 // https://leetcode.com/problems/tree-diameter/description/
-public class TreeDiamater {
+public class TreeDiameter {
     public int treeDiameter(int[][] edges) {
         List<List<Integer>> adjList = buildGraph(edges);
 
@@ -58,7 +58,10 @@ public class TreeDiamater {
                     }
                 }
             }
-            if (!queue.isEmpty()) distance++; // increment the distance for each level we process.
+            if (!queue.isEmpty()) {
+                // increment the distance for each level we process.
+                distance++;
+            }
         }
         return new int[]{distance, lastVisitedNode};
     }

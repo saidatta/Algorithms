@@ -52,8 +52,12 @@ public class ExpressionAddOperators {
      * @param prevMultiplied The last multiplied value for considering precedence of multiplication.
      */
     private void findCombinations(List<String> result,
-                                  String num, int target, String path,
-                                  int position, long evaluatedExpression, long prevMultiplied) {
+                                  String num,
+                                  int target,
+                                  String path,
+                                  int position,
+                                  long evaluatedExpression,
+                                  long prevMultiplied) {
         // If we have processed the entire number string
         if (position == num.length()) {
             // If the current expression equals the target, add it to the result
@@ -79,8 +83,11 @@ public class ExpressionAddOperators {
                 // Otherwise, explore possibilities with '+', '-' and '*'
                 findCombinations(result, num, target, path + "+" + current, i + 1, evaluatedExpression + current, current);
                 findCombinations(result, num, target, path + "-" + current, i + 1, evaluatedExpression - current, -current);
+                // because of PEMDAS - 2 + 3 * 4
                 findCombinations(result, num, target, path + "*" + current, i + 1,
-                        evaluatedExpression - prevMultiplied + prevMultiplied * current, prevMultiplied * current);
+                        evaluatedExpression - prevMultiplied + prevMultiplied * current,
+                        prevMultiplied * current
+                );
             }
         }
     }

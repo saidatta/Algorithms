@@ -28,13 +28,13 @@ public class SerializeDeserializeBT {
         } else {
             sb.append(node.val).append(SEPERATOR);
             buildString(node.left, sb);
-            buildString(node.right,sb);
+            buildString(node.right, sb);
         }
     }
+
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        Queue<String> nodes = new LinkedList<>();
-        nodes.addAll(Arrays.asList(data.split(SEPERATOR)));
+        Queue<String> nodes = new LinkedList<>(Arrays.asList(data.split(SEPERATOR)));
         return buildTree(nodes);
     }
 
@@ -50,7 +50,7 @@ public class SerializeDeserializeBT {
         }
     }
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         SerializeDeserializeBT ss = new SerializeDeserializeBT();
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);

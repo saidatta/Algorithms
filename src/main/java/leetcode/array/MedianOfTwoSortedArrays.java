@@ -54,6 +54,62 @@ public class MedianOfTwoSortedArrays {
         return (a + b) / 2.0;
     }
 
+
+    /**
+     * Finds the median of two sorted arrays using binary search.
+     *
+     * @param nums1 - first sorted array.
+     * @param nums2 - second sorted array.
+     * @return the median of the two sorted arrays.
+     */
+    public double findMedianSortedArrays2(int[] nums1, int[] nums2) {
+        // Ensure that nums1's length is smaller than or equal to nums2's.
+        // This makes sure the binary search is always applied to the smaller array.
+        if (nums1.length > nums2.length) {
+            return findMedianSortedArrays2(nums2, nums1);
+        }
+
+        int x = nums1.length;
+        int y = nums2.length;
+        int low = 0, high = x;
+
+        // Binary search on the smaller array (nums1).
+        while (low <= high) {
+            int partitionX = (low + high) >>> 1;
+            // Compute partition for nums2 based on partitionX.
+            int partitionY = (x + y + 1) / 2 - partitionX;
+
+            // Determine the elements immediately on the left and right
+            // of the partition for both arrays.
+            int maxX = (partitionX == 0) ? Integer.MIN_VALUE : nums1[partitionX - 1];
+            int minX = (partitionX == x) ? Integer.MAX_VALUE : nums1[partitionX];
+            int maxY = (partitionY == 0) ? Integer.MIN_VALUE : nums2[partitionY - 1];
+            int minY = (partitionY == y) ? Integer.MAX_VALUE : nums2[partitionY];
+
+            // Check if we have found the correct partitions.
+            if (maxX <= minY && maxY <= minX) {
+                // The partitions are correct.
+                // Handle even and odd combined lengths differently.
+                if ((x + y) % 2 == 0) {
+                    // If even number of total elements, median is average of max left and min right.
+                    return ((double) Math.max(maxX, maxY) + Math.min(minX, minY)) / 2;
+                } else {
+                    // If odd number of total elements, median is max of left.
+                    return (double) Math.max(maxX, maxY);
+                }
+            } else if (maxX > minY) {
+                // maxX is too big, adjust the partition to the left.
+                high = partitionX - 1;
+            } else {
+                // minX is too small, adjust the partition to the right.
+                low = partitionX + 1;
+            }
+        }
+
+        // If we reached here, the input arrays are not sorted.
+        throw new IllegalArgumentException("Input arrays are not sorted.");
+    }
+
     public static void main(String [] args) {
         MedianOfTwoSortedArrays medianOfTwoSortedArrays = new MedianOfTwoSortedArrays();
         int[] num1 = {0,3,5}, num2 = {1,2,4}, num3 = {1,3}, num4 = {2,4};

@@ -1,12 +1,20 @@
 package leetcode.array;
 
-public class MaxSubarraySunOneDeletion {
+import java.util.Arrays;
+
+// https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/description/
+public class MaxSubarraySumWithOneDeletion {
+
+    /**
+     * Calculate the maximum subarray sum after potentially removing one element.
+     *
+     * @param arr Input array of integers.
+     * @return The maximum subarray sum after deletion.
+     */
     public int maximumSum(int[] arr) {
         int n = arr.length;
 
-        if (n == 1) {
-            return arr[0];
-        }
+        if (n == 1) return arr[0];
 
         // Initialize the two prefix-sum arrays
         int[] leftToRightSum = new int[n];
@@ -24,7 +32,9 @@ public class MaxSubarraySunOneDeletion {
         int currSumFromLeft = 0;
         for (int i = 0; i < n; i++) {
             currSumFromLeft += arr[i];
-            if (currSumFromLeft < 0) currSumFromLeft = 0;
+            if (currSumFromLeft < 0) {
+                currSumFromLeft = 0;
+            }
             leftToRightSum[i] = Math.max(arr[i], currSumFromLeft);
         }
 
@@ -32,7 +42,9 @@ public class MaxSubarraySunOneDeletion {
         int currSumFromRight = 0;
         for (int i = n - 1; i >= 0; i--) {
             currSumFromRight += arr[i];
-            if (currSumFromRight < 0) currSumFromRight = 0;
+            if (currSumFromRight < 0) {
+                currSumFromRight = 0;
+            }
             rightToLeftSum[i] = Math.max(arr[i], currSumFromRight);
         }
 
@@ -51,5 +63,21 @@ public class MaxSubarraySunOneDeletion {
         }
 
         return maxSumAfterRemoval == 0 ? maxElement : maxSumAfterRemoval;
+    }
+
+    public static void main(String[] args) {
+        MaxSubarraySumWithOneDeletion solution = new MaxSubarraySumWithOneDeletion();
+
+        // Test Case 1
+        int[] arr1 = {1, -2, 0, 3};
+        System.out.println(solution.maximumSum(arr1)); // Expected output: 4 (subarray [1, -2, 0, 3])
+
+        // Test Case 2
+        int[] arr2 = {1, -2, -2, 3};
+        System.out.println(solution.maximumSum(arr2)); // Expected output: 3 (subarray [3])
+
+        // Test Case 3
+        int[] arr3 = {-1, -1, -1, -1};
+        System.out.println(solution.maximumSum(arr3)); // Expected output: -1 (subarray [-1])
     }
 }

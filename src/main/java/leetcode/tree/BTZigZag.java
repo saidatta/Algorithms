@@ -1,5 +1,6 @@
 package leetcode.tree;
 
+import java.util.Deque;
 import leetcode.TreeNode;
 
 import java.util.ArrayList;
@@ -22,16 +23,16 @@ public class BTZigZag {
     }
 
     private void travel(TreeNode curr, List<List<Integer>> solution, int level) {
-        if(curr == null) {
+        if (curr == null) {
             return;
         }
 
-        if(solution.size() <= level) {
+        if (solution.size() <= level) {
             solution.add(new LinkedList<>());
         }
 
-        List<Integer> collection  = solution.get(level);
-        if(level % 2 == 0) {
+        List<Integer> collection = solution.get(level);
+        if (level % 2 == 0) {
             collection.add(curr.val);
         } else {
             collection.add(0, curr.val);
@@ -41,4 +42,65 @@ public class BTZigZag {
         travel(curr.right, solution, level + 1);
     }
 
+    public List<List<Integer>> zigzagLevelOrderBFS(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+
+        if (root == null) {
+            return result;
+        }
+
+        Deque<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        boolean zigzag = false;
+
+        while (!queue.isEmpty()) {
+            List<Integer> currentLevel = new ArrayList<>();
+            int levelSize = queue.size();
+
+            for (int i = 0; i < levelSize; i++) {
+                if (zigzag) {
+                    TreeNode node = queue.removeLast();
+                    currentLevel.add(node.val);
+                    if (node.right != null) {
+                        queue.addFirst(node.right);
+                    }
+                    if (node.left != null) {
+                        queue.addFirst(node.left);
+                    }
+                } else {
+                    TreeNode node = queue.removeFirst();
+                    currentLevel.add(node.val);
+                    if (node.left != null) {
+                        queue.addLast(node.left);
+                    }
+                    if (node.right != null) {
+                        queue.addLast(node.right);
+                    }
+                }
+            }
+
+            result.add(currentLevel);
+            zigzag = !zigzag;
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        // Example:
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(15);
+        root.right.right = new TreeNode(7);
+
+        BTZigZag traversal = new BTZigZag();
+        List<List<Integer>> result = traversal.zigzagLevelOrder(root);
+        for (List<Integer> level : result) {
+            System.out.println(level);
+        }
+        // Expected output:
+        // [3]
+        // [20, 9]
+        // [15, 7]
+    }
 }
