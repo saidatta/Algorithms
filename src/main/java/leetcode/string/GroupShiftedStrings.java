@@ -19,7 +19,7 @@ public class GroupShiftedStrings {
             StringBuilder sb = new StringBuilder();
             for (int i = 1; i < s.length(); i++) {
                 //Difference from the previous char.
-                sb.append(String.format("%2d", (s.charAt(i) - s.charAt(i - 1) + 26) % 26));
+                sb.append(String.format("%2d", Math.abs(s.charAt(i) - s.charAt(i - 1) + 26) % 26));
             }
             if (!map.containsKey(sb.toString())) {
                 map.put(sb.toString(), new ArrayList<>());

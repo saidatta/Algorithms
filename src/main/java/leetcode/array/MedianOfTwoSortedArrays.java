@@ -69,33 +69,33 @@ public class MedianOfTwoSortedArrays {
             return findMedianSortedArrays2(nums2, nums1);
         }
 
-        int x = nums1.length;
-        int y = nums2.length;
-        int low = 0, high = x;
+        int M = nums1.length;
+        int N = nums2.length;
+        int low = 0, high = M;
 
         // Binary search on the smaller array (nums1).
         while (low <= high) {
             int partitionX = (low + high) >>> 1;
             // Compute partition for nums2 based on partitionX.
-            int partitionY = (x + y + 1) / 2 - partitionX;
+            int partitionY = (M + N + 1) / 2 - partitionX;
 
             // Determine the elements immediately on the left and right
             // of the partition for both arrays.
             int maxX = (partitionX == 0) ? Integer.MIN_VALUE : nums1[partitionX - 1];
-            int minX = (partitionX == x) ? Integer.MAX_VALUE : nums1[partitionX];
+            int minX = (partitionX == M) ? Integer.MAX_VALUE : nums1[partitionX];
             int maxY = (partitionY == 0) ? Integer.MIN_VALUE : nums2[partitionY - 1];
-            int minY = (partitionY == y) ? Integer.MAX_VALUE : nums2[partitionY];
+            int minY = (partitionY == N) ? Integer.MAX_VALUE : nums2[partitionY];
 
             // Check if we have found the correct partitions.
             if (maxX <= minY && maxY <= minX) {
                 // The partitions are correct.
                 // Handle even and odd combined lengths differently.
-                if ((x + y) % 2 == 0) {
+                if ((M + N) % 2 == 0) {
                     // If even number of total elements, median is average of max left and min right.
                     return ((double) Math.max(maxX, maxY) + Math.min(minX, minY)) / 2;
                 } else {
                     // If odd number of total elements, median is max of left.
-                    return (double) Math.max(maxX, maxY);
+                    return Math.max(maxX, maxY);
                 }
             } else if (maxX > minY) {
                 // maxX is too big, adjust the partition to the left.
