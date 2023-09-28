@@ -1,6 +1,7 @@
 package leetcode.array;
 
 import java.util.PriorityQueue;
+import java.util.Random;
 
 /**
  * https://leetcode.com/problems/kth-largest-element-in-an-array/#/description
@@ -56,6 +57,56 @@ public class KthLargestElementInArray {
             // pivot is too small, so it must be on the right
             return quickSelect(a, i + 1, hi, k - m);
         }
+    }
+
+    //// O(1) solution - https://leetcode.com/problems/kth-largest-element-in-an-array/editorial/ comment
+    private int[] array;
+    private final Random randomGenerator = new Random();
+
+    public int findKthLargestQuickSelect(int[] nums, int k) {
+        this.array = nums;
+        int length = nums.length;
+
+        int left = 0;
+        int right = length - 1;
+
+        while (true) {
+            int pivotPosition = partition(left, right);
+
+            if (length - k == pivotPosition) {
+                return array[pivotPosition];
+            } else if (length - k > pivotPosition) {
+                left = pivotPosition + 1;
+            } else {
+                right = pivotPosition - 1;
+            }
+        }
+    }
+
+    // This function chooses a random pivot, partitions the array and returns
+    // the position where the pivot is finally placed
+    private int partition(int left, int right) {
+        int pivotIndex = randomGenerator.nextInt(right - left + 1) + left;
+        int pivotValue = array[pivotIndex];
+        swap(pivotIndex, right);
+
+        int storePosition = left;
+        for (int i = left; i < right; i++) {
+            if (array[i] < pivotValue) {
+                swap(i, storePosition);
+                storePosition++;
+            }
+        }
+
+        swap(storePosition, right);
+        return storePosition;
+    }
+
+    // This function swaps two elements in the array
+    private void swap(int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
 
     void swap(int[] a, int i, int j) {
