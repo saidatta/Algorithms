@@ -1,6 +1,6 @@
 package leetcode.dp.array;
 
-import leetcode.TreeNode;
+import leetcode.tree.util.TreeNode;
 
 /**
  * https://leetcode.com/problems/house-robber-iii

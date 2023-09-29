@@ -3,7 +3,7 @@ package leetcode.tree.traversal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import leetcode.TreeNode;
+import leetcode.tree.util.TreeNode;
 
 public class BTInorderTraversal {
 

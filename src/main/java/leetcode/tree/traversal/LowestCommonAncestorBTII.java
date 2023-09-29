@@ -1,6 +1,6 @@
-package leetcode.tree;
+package leetcode.tree.traversal;
 
-import leetcode.TreeNode;
+import leetcode.tree.util.TreeNode;
 
 // https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/description/
 public class LowestCommonAncestorBTII {

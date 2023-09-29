@@ -1,6 +1,6 @@
 package leetcode.tree.traversal;
 
-import leetcode.TreeNode;
+import leetcode.tree.util.TreeNode;
 
 // https://leetcode.com/problems/closest-binary-search-tree-value/description/
 public class ClosestBSTValue {

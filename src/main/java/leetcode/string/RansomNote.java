@@ -6,26 +6,29 @@ package leetcode.string;
  * Created by venkatamunnangi on 4/5/17.
  */
 public class RansomNote {
-    public boolean canConstruct(String ransomNote, String magazine) {
-        char[] ch1 = ransomNote.toCharArray();
-        char[] ch2 = magazine.toCharArray();
+    public static boolean canConstruct(String ransomNote, String magazine) {
+        int[] frequency = new int[26];
 
-        int[] count = new int[26];
-        for(char c : ch1) {
-            count[c - 'a']++;
+        // Populate the frequency array with counts from the magazine
+        for (char ch : magazine.toCharArray()) {
+            frequency[ch - 'a']++;
         }
 
-        for(char c : ch2) {
-            if(count[c-'a']>0) {
-             count[c-'a']--;
-            }
-        }
-
-        for(int i : count) {
-            if(i != 0) {
+        // Decrement counts for each character in ransomNote
+        for (char ch : ransomNote.toCharArray()) {
+            if (--frequency[ch - 'a'] < 0) {
+                // Letter not present or exhausted in magazine
                 return false;
             }
         }
+
         return true;
     }
+
+    public static void main(String[] args) {
+        System.out.println(canConstruct("a", "b"));  // false
+        System.out.println(canConstruct("aa", "ab"));  // false
+        System.out.println(canConstruct("aa", "aab"));  // true
+    }
+
 }

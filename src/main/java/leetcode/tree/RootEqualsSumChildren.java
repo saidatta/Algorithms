@@ -1,6 +1,6 @@
 package leetcode.tree;
 
-import leetcode.TreeNode;
+import leetcode.tree.util.TreeNode;
 
 public class RootEqualsSumChildren {
     public boolean isSumTree(TreeNode root) {

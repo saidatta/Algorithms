@@ -1,6 +1,6 @@
 package dailyCodingProblem;
 
-import leetcode.TreeNode;
+import leetcode.tree.util.TreeNode;
 
 /**
  *

@@ -1,10 +1,9 @@
 package leetcode.tree;
 
-import leetcode.TreeNode;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
+import leetcode.tree.util.TreeNode;
 
 /**
  * https://leetcode.com/problems/binary-tree-postorder-traversal/#/description

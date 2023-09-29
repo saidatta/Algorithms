@@ -1,11 +1,10 @@
 package leetcode.tree;
 
-import leetcode.TreeNode;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import leetcode.tree.util.TreeNode;
 
 /**
  *  LeetCode 102

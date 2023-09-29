@@ -1,9 +1,8 @@
 package leetcode.tree;
 
-import leetcode.TreeNode;
-
 import java.util.ArrayList;
 import java.util.List;
+import leetcode.tree.util.TreeNode;
 
 /**
  * LC 366 - https://leetcode.com/problems/find-leaves-of-binary-tree/#/description

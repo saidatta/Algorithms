@@ -1,7 +1,6 @@
 package leetcode;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import leetcode.tree.util.TreeNode;
 
 /**
  * https://leetcode.com/problems/binary-tree-maximum-path-sum/

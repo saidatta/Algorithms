@@ -1,8 +1,7 @@
 package leetcode.tree;
 
-import leetcode.TreeNode;
-
 import java.util.Stack;
+import leetcode.tree.util.TreeNode;
 
 /**
  * https://leetcode.com/problems/minimum-absolute-difference-in-bst/#/description

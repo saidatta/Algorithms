@@ -1,8 +1,7 @@
 package leetcode.tree;
 
-import leetcode.TreeNode;
-
 import static java.lang.System.*;
+import leetcode.tree.util.TreeNode;
 
 /**
  * https://leetcode.com/problems/count-complete-tree-nodes/

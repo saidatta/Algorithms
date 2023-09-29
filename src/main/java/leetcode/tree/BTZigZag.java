@@ -1,11 +1,11 @@
 package leetcode.tree;
 
 import java.util.Deque;
-import leetcode.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import leetcode.tree.util.TreeNode;
 
 /**
  * https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/#/description

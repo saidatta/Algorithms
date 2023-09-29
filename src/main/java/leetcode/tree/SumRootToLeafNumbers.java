@@ -1,6 +1,6 @@
 package leetcode.tree;
 
-import leetcode.TreeNode;
+import leetcode.tree.util.TreeNode;
 
 /**
  * https://leetcode.com/problems/sum-root-to-leaf-numbers/#/description

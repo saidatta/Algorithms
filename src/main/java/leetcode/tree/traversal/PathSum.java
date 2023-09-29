@@ -1,6 +1,6 @@
 package leetcode.tree.traversal;
 
-import leetcode.TreeNode;
+import leetcode.tree.util.TreeNode;
 
 /**
  * LeetCode 112

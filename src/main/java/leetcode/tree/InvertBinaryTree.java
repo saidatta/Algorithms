@@ -1,9 +1,8 @@
 package leetcode.tree;
 
-import leetcode.TreeNode;
-
 import java.util.LinkedList;
 import java.util.Queue;
+import leetcode.tree.util.TreeNode;
 
 /**
  * https://leetcode.com/problems/invert-binary-tree/?tab=Description

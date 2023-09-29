@@ -1,6 +1,6 @@
 package leetcode.tree;
 
-import leetcode.TreeNode;
+import leetcode.tree.util.TreeNode;
 
 /**
  * https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/

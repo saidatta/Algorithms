@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.tree.util;
 
 /**
  * Created by venkatamunnangi on 23/11/16.

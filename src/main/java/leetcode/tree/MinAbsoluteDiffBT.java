@@ -1,8 +1,7 @@
 package leetcode.tree;
 
-import leetcode.TreeNode;
-
 import java.util.TreeSet;
+import leetcode.tree.util.TreeNode;
 
 /**
  * https://discuss.leetcode.com/topic/80823/two-solutions-in-order-traversal-and-a-more-general-way-using-treeset

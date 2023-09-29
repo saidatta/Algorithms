@@ -1,6 +1,6 @@
 package leetcode.tree.string;
 
-import leetcode.TreeNode;
+import leetcode.tree.util.TreeNode;
 
 public class SmallestStringStartingLeaf {
     private String smallestString = null;

@@ -2,7 +2,7 @@ package leetcode.tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import leetcode.TreeNode;
+import leetcode.tree.util.TreeNode;
 
 /**
  * https://leetcode.com/problems/minimum-depth-of-binary-tree/#/description

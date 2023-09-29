@@ -2,7 +2,7 @@ package leetcode.trie.bst;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import leetcode.TreeNode;
+import leetcode.tree.util.TreeNode;
 
 // https://leetcode.com/problems/range-sum-of-bst/description/
 public class RangeSumBST {

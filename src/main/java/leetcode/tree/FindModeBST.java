@@ -1,9 +1,8 @@
 package leetcode.tree;
 
-import leetcode.TreeNode;
-
 import java.util.ArrayList;
 import java.util.List;
+import leetcode.tree.util.TreeNode;
 
 /**
  * https://leetcode.com/problems/find-mode-in-binary-search-tree/#/description

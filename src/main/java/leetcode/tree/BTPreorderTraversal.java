@@ -1,9 +1,8 @@
 package leetcode.tree;
 
-import leetcode.TreeNode;
-
 import java.util.LinkedList;
 import java.util.List;
+import leetcode.tree.util.TreeNode;
 
 /**
  * Created by venkatamunnangi on 3/13/17.

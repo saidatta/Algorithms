@@ -1,6 +1,6 @@
 package leetcode.tree.list;
 
-import leetcode.TreeNode;
+import leetcode.tree.util.TreeNode;
 
 // https://leetcode.com/problems/flatten-binary-tree-to-linked-list/editorial/
 public class FlattenBTLinkedList {

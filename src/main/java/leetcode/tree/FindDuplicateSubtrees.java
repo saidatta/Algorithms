@@ -1,8 +1,7 @@
 package leetcode.tree;
 
-import leetcode.TreeNode;
-
 import java.util.*;
+import leetcode.tree.util.TreeNode;
 
 /**
  * https://leetcode.com/problems/find-duplicate-subtrees/
