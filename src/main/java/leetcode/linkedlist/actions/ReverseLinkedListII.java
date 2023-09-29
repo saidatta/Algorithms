@@ -1,6 +1,6 @@
 package leetcode.linkedlist.actions;
 
-import leetcode.linkedlist.ListNode;
+import leetcode.linkedlist.util.ListNode;
 
 // https://leetcode.com/problems/reverse-linked-list-ii/description/
 public class ReverseLinkedListII {

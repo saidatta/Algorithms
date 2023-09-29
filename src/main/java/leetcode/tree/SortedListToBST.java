@@ -1,7 +1,7 @@
 package leetcode.tree;
 
 
-import leetcode.linkedlist.ListNode;
+import leetcode.linkedlist.util.ListNode;
 
 import javax.swing.tree.TreeNode;
 

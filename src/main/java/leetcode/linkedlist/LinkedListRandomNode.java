@@ -1,6 +1,7 @@
 package leetcode.linkedlist;
 
 import java.util.Random;
+import leetcode.linkedlist.util.ListNode;
 
 /**
  * https://leetcode.com/problems/linked-list-random-node/#/description

@@ -1,6 +1,6 @@
 package leetcode.linkedlist.math;
 
-import leetcode.linkedlist.ListNode;
+import leetcode.linkedlist.util.ListNode;
 
 /**
  * LC - 328

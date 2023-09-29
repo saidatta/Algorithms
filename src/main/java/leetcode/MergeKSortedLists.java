@@ -2,7 +2,7 @@ package leetcode;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
-import leetcode.linkedlist.ListNode;
+import leetcode.linkedlist.util.ListNode;
 
 /**
  * https://leetcode.com/problems/merge-k-sorted-lists/#/description

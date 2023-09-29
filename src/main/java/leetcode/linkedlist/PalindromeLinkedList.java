@@ -1,4 +1,7 @@
 package leetcode.linkedlist;
+
+import leetcode.linkedlist.util.ListNode;
+
 /**
  * A solution to check if a given linked list is a palindrome.
  * The approach involves:

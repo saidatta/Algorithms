@@ -1,6 +1,7 @@
-package leetcode.linkedlist;
+package leetcode.linkedlist.traversal;
 
 import static java.lang.System.out;
+import leetcode.linkedlist.util.ListNode;
 
 /**
  * https://leetcode.com/problems/linked-list-cycle/#/description

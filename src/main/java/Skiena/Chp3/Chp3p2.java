@@ -1,6 +1,6 @@
 package Skiena.Chp3;
 
-import leetcode.linkedlist.ListNode;
+import leetcode.linkedlist.util.ListNode;
 
 /**
  * 3-2. Write a program to reverse the direction of a given singly-linked list.

@@ -1,6 +1,6 @@
 package leetcode.linkedlist.math;
 
-import leetcode.linkedlist.ListNode;
+import leetcode.linkedlist.util.ListNode;
 
 /**
  * https://leetcode.com/problems/plus-one-linked-list/#/description

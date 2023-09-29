@@ -1,5 +1,7 @@
 package leetcode.linkedlist;
 
+import leetcode.linkedlist.util.ListNode;
+
 // https://leetcode.com/problems/split-linked-list-in-parts/description/
 public class SplitLLParts {
 

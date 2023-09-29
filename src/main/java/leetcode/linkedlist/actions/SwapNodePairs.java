@@ -1,6 +1,6 @@
 package leetcode.linkedlist.actions;
 
-import leetcode.linkedlist.ListNode;
+import leetcode.linkedlist.util.ListNode;
 
 // https://leetcode.com/problems/swap-nodes-in-pairs/description/
 public class SwapNodePairs {

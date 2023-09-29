@@ -1,5 +1,7 @@
 package leetcode.linkedlist;
 
+import leetcode.linkedlist.util.ListNode;
+
 // https://leetcode.com/problems/reverse-nodes-in-k-group/
 public class ReverseNodesKGroup {
     public ListNode reverseKGroup(ListNode head, int k) {

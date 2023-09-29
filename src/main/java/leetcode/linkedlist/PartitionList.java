@@ -1,6 +1,8 @@
 package leetcode.linkedlist;
 
 
+import leetcode.linkedlist.util.ListNode;
+
 // https://leetcode.com/problems/partition-list/description/
 public class PartitionList {
     public ListNode partition(ListNode head, int x) {

@@ -1,5 +1,7 @@
 package leetcode.linkedlist;
 
+import leetcode.linkedlist.util.ListNode;
+
 // https://leetcode.com/problems/double-a-number-represented-as-a-linked-list/
 class DoubleNumberLinkedList {
     public ListNode doubleIt(ListNode head) {
