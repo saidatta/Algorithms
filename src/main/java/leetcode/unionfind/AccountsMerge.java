@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 // https://leetcode.com/problems/accounts-merge/description/
-
 class AccountsMerge {
     // Main function to merge accounts
     public List<List<String>> accountsMerge(List<List<String>> accountList) {
