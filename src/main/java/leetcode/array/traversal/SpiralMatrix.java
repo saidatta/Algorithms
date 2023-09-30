@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.array.traversal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,26 +21,26 @@ public class SpiralMatrix {
         }
 
         int rowBegin = 0;
-        int rowEnd = matrix.length-1;
+        int rowEnd = matrix.length - 1;
         int colBegin = 0;
         int colEnd = matrix[0].length - 1;
 
         while (rowBegin <= rowEnd && colBegin <= colEnd) {
             // Traverse Right
-            for (int j = colBegin; j <= colEnd; j ++) {
+            for (int j = colBegin; j <= colEnd; j++) {
                 travelledNumbers.add(matrix[rowBegin][j]);
             }
             rowBegin++;
 
             // Traverse Down
-            for (int j = rowBegin; j <= rowEnd; j ++) {
+            for (int j = rowBegin; j <= rowEnd; j++) {
                 travelledNumbers.add(matrix[j][colEnd]);
             }
             colEnd--;
 
             if (rowBegin <= rowEnd) {
                 // Traverse Left
-                for (int j = colEnd; j >= colBegin; j --) {
+                for (int j = colEnd; j >= colBegin; j--) {
                     travelledNumbers.add(matrix[rowEnd][j]);
                 }
             }
@@ -48,7 +48,7 @@ public class SpiralMatrix {
 
             if (colBegin <= colEnd) {
                 // Traver Up
-                for (int j = rowEnd; j >= rowBegin; j --) {
+                for (int j = rowEnd; j >= rowBegin; j--) {
                     travelledNumbers.add(matrix[j][colBegin]);
                 }
             }
