@@ -35,31 +35,25 @@ public class BalancedBinaryTree {
         return Math.max(left,right);
     }
 
-    //  In this bottom up approach, each node in the tree only need to be accessed once.
-    // Thus the time complexity is O(N), better than the first solution.
+    // o(n)
     public boolean isBalanced2(TreeNode root) {
-        return getHeightHelper(root) != Integer.MIN_VALUE;
+        return checkBalance(root) != -1;
     }
 
-    private int getHeightHelper(TreeNode root) {
-        if(root == null) {
-            return -1;
-        }
+    private int checkBalance(TreeNode root) {
+        // Base case
+        if (root == null) return 0;
 
-        int leftHeight = getHeightHelper(root.left);
-        if(leftHeight == Integer.MIN_VALUE) {
-            return leftHeight;
-        }
+        int leftHeight = checkBalance(root.left);
+        int rightHeight = checkBalance(root.right);
 
-        int rightHeight = getHeightHelper(root.right);
-        if(rightHeight == Integer.MIN_VALUE) {
-            return rightHeight;
-        }
+        // If left or right subtree is unbalanced, propagate -1 up
+        if (leftHeight == -1 || rightHeight == -1) return -1;
 
-        if(Math.abs(leftHeight - rightHeight) > 1) {
-            return Integer.MIN_VALUE;
-        }
+        // If current tree is unbalanced, return -1
+        if (Math.abs(leftHeight - rightHeight) > 1) return -1;
 
-        return Math.max(leftHeight, rightHeight) + 1;
+        // Otherwise, return the actual height
+        return 1 + Math.max(leftHeight, rightHeight);
     }
 }

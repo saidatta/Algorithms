@@ -1,4 +1,4 @@
-package leetcode.tree;
+package leetcode.tree.actions;
 
 import leetcode.tree.util.TreeNode;
 
@@ -9,14 +9,14 @@ import leetcode.tree.util.TreeNode;
  */
 public class MaxDepthOfBST {
     public int maxDepth(TreeNode root) {
-        if(root == null) {
+        if (root == null) {
             return 0;
         }
 
-        return 1+Math.max(maxDepth(root.left),maxDepth(root.right));
+        return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
     }
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         MaxDepthOfBST m = new MaxDepthOfBST();
         TreeNode r = new TreeNode(1);
         r.left = new TreeNode(2);

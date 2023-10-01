@@ -1,4 +1,4 @@
-package leetcode.tree;
+package leetcode.tree.validate;
 
 import leetcode.tree.util.TreeNode;
 
@@ -31,10 +31,7 @@ public class BSTCheck {
 
         prev = new TreeNode(root.val);
 
-        if(!validateBST(root.right,prev))
-            return false;
-
-        return true;
+        return validateBST(root.right, prev);
     }
 
     public static void main(String [] args) {

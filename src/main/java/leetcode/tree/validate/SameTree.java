@@ -1,4 +1,4 @@
-package leetcode.tree;
+package leetcode.tree.validate;
 
 import leetcode.tree.util.TreeNode;
 
@@ -9,7 +9,7 @@ import leetcode.tree.util.TreeNode;
  */
 public class SameTree {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        if(p == null && q == null) {
+        if (p == null && q == null) {
             return true;
         } else if (p == null || q == null) {
             return false;

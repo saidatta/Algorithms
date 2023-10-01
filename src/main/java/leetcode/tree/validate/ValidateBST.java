@@ -1,4 +1,4 @@
-package leetcode.tree;
+package leetcode.tree.validate;
 
 import leetcode.tree.util.TreeNode;
 
@@ -23,6 +23,26 @@ public class ValidateBST {
         return bstProperty && isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
     }
 
+
+    public boolean isValidBST2(TreeNode root) {
+        return validate(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+
+    private boolean validate(TreeNode node, long min, long max) {
+        // An empty tree is a valid BST
+        if (node == null) {
+            return true;
+        }
+
+        // The current node's value must be between min and max
+        if (node.val <= min || node.val >= max) {
+            return false;
+        }
+
+        // The left subtree of the node must be a BST and all its values must be less than node.val
+        // The right subtree of the node must be a BST and all its values must be greater than node.val
+        return validate(node.left, min, node.val) && validate(node.right, node.val, max);
+    }
     public static void main(String [] args) {
         // invalid bst below.
         TreeNode tr = new TreeNode(20);

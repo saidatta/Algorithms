@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.tree.util;
 
 /**
  * Created by venkatamunnangi on 3/8/17.
@@ -6,5 +6,8 @@ package leetcode;
 public class TreeLinkNode {
     public int val;
     public TreeLinkNode left, right, next;
-    public TreeLinkNode(int x) { val = x; }
+
+    public TreeLinkNode(int x) {
+        val = x;
+    }
 }
