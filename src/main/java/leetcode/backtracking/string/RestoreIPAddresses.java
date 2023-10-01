@@ -60,4 +60,10 @@ public class RestoreIPAddresses {
         // For 3-digit segments, the value should be <= 255
         return length != 3 || s.substring(start, start + length).compareTo("255") <= 0;
     }
+
+    public static void main(String[] args) {
+        RestoreIPAddresses generator = new RestoreIPAddresses();
+//        List<String> ips = generator.generate("25525511135");
+//        System.out.println(ips);
+    }
 }
