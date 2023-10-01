@@ -2,33 +2,45 @@ package leetcode.string;
 
 // https://leetcode.com/problems/valid-palindrome-iii/description/
 public class ValidPalindromeIII {
-
-//    A string is a k-palindrome if it can be transformed into a palindrome by removing at most k characters from it.
-//    This implies that the string and its reverse must have a common subsequence of length >= len(s) - k.
-//
-//    By finding the length of the longest common subsequence between s and its reverse, s_reverse, we can determine if
-//    s is a k-palindrome by checking.
-    // O(n**2), space -o(n)
     public boolean isValidPalindrome(String s, int k) {
-        int n = s.length();
-        return n - longestCommonSubseq(s, new StringBuilder(s).reverse().toString()) <= k;
-    }
+        int[] memo = new int[s.length()];
 
-    private int longestCommonSubseq(String s1, String s2) {
-        int m = s1.length(), n = s2.length();
-        int[][] dp = new int[m + 1][n + 1];
+        // To store the previous required values from memo.
+        int temp, prev;
 
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
-                    dp[i][j] = dp[i - 1][j - 1] + 1;
+        // Generate all combinations of `i` and `j` in the correct order.
+        for (int i = s.length() - 2; i >= 0; i--) {
+            // 'prev' stores the value at memo[i+1][j-1];
+            prev = 0;
+            for (int j = i + 1; j < s.length(); j++) {
+                // Store the value of memo[i+1][j] temporarily.
+                temp = memo[j];
+
+                // Case 1: Character at `i` equals character at `j`
+                if (s.charAt(i) == s.charAt(j)) {
+                    memo[j] = prev;
                 } else {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                    // Case 2: Character at `i` does not equal character at `j`.
+                    // Either delete character at `i` or delete character at `j`
+                    // and try to match the two pointers using recursion.
+                    // We need to take the minimum of the two results and add 1
+                    // representing the cost of deletion.
+
+                    // memo[j] will contain the value for memo[i+1][j]
+                    // memo[j-1] will contain the value for memo[i][j-1]
+                    memo[j] = 1 + Math.min(memo[j], memo[j - 1]);
                 }
+
+                // Copy the value of memo[i+1][j] to `prev`
+                // For the next iteration when j=j+1
+                // `prev` will hold the value memo[i+1][j-1];
+                prev = temp;
             }
         }
 
-        return dp[m][n];
+        // Return true if the minimum cost to create a palindrome by only deleting the letters
+        // is less than or equal to `k`.
+        return memo[s.length() - 1] <= k;
     }
 
     public static void main(String[] args) {

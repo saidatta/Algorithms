@@ -34,4 +34,21 @@ public class RotateList {
 
         return head;
     }
+
+    public static void main(String[] args) {
+        RotateList solver = new RotateList();
+
+        ListNode head1 = new ListNode(1);
+        head1.next = new ListNode(2);
+        head1.next.next = new ListNode(3);
+        head1.next.next.next = new ListNode(4);
+        head1.next.next.next.next = new ListNode(5);
+
+        ListNode result = solver.rotateRight(head1, 2);
+        while (result != null) {
+            System.out.print(result.val + " ");
+            result = result.next;
+        }
+        // Expected: 4 5 1 2 3
+    }
 }

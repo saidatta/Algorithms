@@ -1,7 +1,6 @@
-package leetcode;
+package leetcode.array.sorting;
 
 /**
- *
  * https://leetcode.com/problems/remove-duplicates-from-sorted-array/#/description
  *
  * Given input array nums = [1,1,2],
@@ -13,8 +12,8 @@ package leetcode;
 public class RemoveConsecutiveDuplicatesSortedArray {
     public int removeDuplicates(int[] nums) {
         int length = 1, k = 1;
-        for(int i = 1; i<nums.length; i++) {
-            if(nums[i-1] != nums[i]) {
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i - 1] != nums[i]) {
                 length++;
                 nums[k++] = nums[i];
             }
