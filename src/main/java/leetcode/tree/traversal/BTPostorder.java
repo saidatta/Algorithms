@@ -11,26 +11,46 @@ import leetcode.tree.util.TreeNode;
  * Created by venkatamunnangi on 3/14/17.
  */
 public class BTPostorder {
+    /**
+     * Postorder traversal of a binary tree using a single stack.
+     * Postorder traversal order: Left, Right, Root.
+     *
+     * @param root The root of the binary tree.
+     * @return A list containing nodes' values in postorder traversal order.
+     */
     public List<Integer> postorderTraversal(TreeNode root) {
-        LinkedList<Integer> ans = new LinkedList<>();
-        Stack<TreeNode> stack = new Stack<>();
+        // LinkedList allows efficient insert operations at the beginning.
+        LinkedList<Integer> traversalResult = new LinkedList<>();
+
+        // Base case: if the tree is empty, return an empty list
         if (root == null) {
-            return ans;
+            return traversalResult;
         }
 
-        stack.push(root);
-        while (!stack.isEmpty()) {
-            TreeNode cur = stack.pop();
-            ans.addFirst(cur.val);
-            if (cur.left != null) {
-                stack.push(cur.left);
+        // Stack to store nodes for processing
+        Stack<TreeNode> nodeStack = new Stack<>();
+        nodeStack.push(root);
+
+        // Process nodes
+        while (!nodeStack.isEmpty()) {
+            TreeNode currentNode = nodeStack.pop();
+
+            // Instead of adding values to the end, we add them to the front
+            // This way, we're effectively reversing Right, Root, Left order to get Left, Right, Root.
+            traversalResult.addFirst(currentNode.val);
+
+            // Push left child first, so it's processed after the right child
+            if (currentNode.left != null) {
+                nodeStack.push(currentNode.left);
             }
 
-            if (cur.right != null) {
-                stack.push(cur.right);
+            // Push right child
+            if (currentNode.right != null) {
+                nodeStack.push(currentNode.right);
             }
         }
-        return ans;
+
+        return traversalResult;
     }
 
     public static void main(String[] args) {

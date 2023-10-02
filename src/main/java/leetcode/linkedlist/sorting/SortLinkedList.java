@@ -1,4 +1,4 @@
-package leetcode.linkedlist.actions;
+package leetcode.linkedlist.sorting;
 
 import leetcode.linkedlist.util.ListNode;
 
@@ -7,7 +7,7 @@ import leetcode.linkedlist.util.ListNode;
  *
  * Created by venkatamunnangi on 12/11/16.
  */
-public class SortList {
+public class SortLinkedList {
     public ListNode sortList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
