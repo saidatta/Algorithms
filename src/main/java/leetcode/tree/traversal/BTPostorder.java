@@ -1,4 +1,4 @@
-package leetcode.tree;
+package leetcode.tree.traversal;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class BTPostorder {
         return ans;
     }
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         BTPostorder btPostorder = new BTPostorder();
         TreeNode root = new TreeNode(10);
         root.left = new TreeNode(1);
