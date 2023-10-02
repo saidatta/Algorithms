@@ -5,33 +5,46 @@ import java.util.List;
 
 // https://leetcode.com/problems/permutation-sequence/
 public class PermutationSequence {
+    /**
+     * Returns the kth permutation sequence of numbers 1 through n.
+     *
+     * @param n the number of digits in the sequence.
+     * @param k the kth permutation sequence to return.
+     * @return the kth permutation sequence as a string.
+     */
     public String getPermutation(int n, int k) {
-        List<Integer> numbers = new ArrayList<>();
-        int[] factorial = new int[n+1];
-        StringBuilder sb = new StringBuilder();
+        // List to hold numbers 1 through n.
+        List<Integer> availableNumbers = new ArrayList<>();
+        // Array to store factorial values for efficient computation.
+        int[] factorialValues = new int[n + 1];
+        StringBuilder resultPermutation = new StringBuilder();
 
-        // Create a list of numbers to get permutations.
+        // Initialize the list with numbers 1 to n.
         for (int i = 1; i <= n; i++) {
-            numbers.add(i);
+            availableNumbers.add(i);
         }
 
-        // Fill factorial array. factorial[i] contains i!
-        factorial[0] = 1;
+        // Pre-calculate factorial values.
+        factorialValues[0] = 1;
         for (int i = 1; i <= n; i++) {
-            factorial[i] = factorial[i-1] * i;
+            factorialValues[i] = factorialValues[i - 1] * i;
         }
 
-        // To get the index
+        // Adjust k to be an index in the sequence.
         k--;
 
+        // Construct the kth permutation using factorial-based indexing.
         for (int i = 1; i <= n; i++) {
-            int index = k / factorial[n-i];
-            sb.append(numbers.get(index));
-            numbers.remove(index);
-            k -= index * factorial[n-i];
+            // Determine the index of the current digit.
+            int index = k / factorialValues[n - i];
+            resultPermutation.append(availableNumbers.get(index));
+            // Remove the used number from the available numbers list.
+            availableNumbers.remove(index);
+            // Adjust k for the next iteration.
+            k -= index * factorialValues[n - i];
         }
 
-        return sb.toString();
+        return resultPermutation.toString();
     }
 
     public static void main(String[] args) {

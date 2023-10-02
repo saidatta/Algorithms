@@ -9,7 +9,7 @@ public class WordLadderII {
 
 
 //    The solution contains two steps
-//    1 Use BFS to construct a graph.
+//    1. Use BFS to construct a graph.
 //    2. Use DFS to construct the paths from end to start.Both solutions got AC within 1s.
 //    The first step BFS is quite important. I summarized three tricks
 //
