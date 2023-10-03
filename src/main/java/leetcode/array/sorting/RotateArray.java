@@ -27,10 +27,16 @@ public class RotateArray {
     }
 
 
+//    Input: nums = [1,2,3,4,5,6,7], k = 3
+    // 7 6 5 4 .... 1
+    // 5 6 7 4 3 2 1
+    // 5 6 7 1 2 3 4
+//    Output: [5,6,7,1,2,3,4]
     // o(1) space
     public void rotate(int[] nums, int k) {
         int n = nums.length;
-        k %= n; // Ensure k is not greater than length
+        // Ensure k is not greater than length
+        k %= n;
 
         // Reverse the entire array
         reverse(nums, 0, n - 1);
