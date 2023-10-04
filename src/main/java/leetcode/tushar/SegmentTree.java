@@ -4,7 +4,7 @@ package leetcode.tushar;
  * Created by venkatamunnangi on 4/21/17.
  */
 
-import leetcode.math.NextPowerOf2;
+import leetcode.math.numbertheory.NextPowerOf2;
 
 /**
  * Date 08/22/2015

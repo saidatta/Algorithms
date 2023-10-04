@@ -15,7 +15,6 @@ import java.util.Map;
  */
 
 public class FindContiguousSumK {
-
     public List<Integer> findContinuousK(int[] nums, int k) {
         Map<Integer, Integer> previous = new HashMap<>();
 

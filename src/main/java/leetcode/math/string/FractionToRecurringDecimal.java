@@ -68,7 +68,7 @@ public class FractionToRecurringDecimal {
 
         // Test some sample fractions
         int[][] testCases = {
-                {1, 2},
+                {10000000, 3},
                 {2, 1},
                 {2, 3},
                 {4, 333},
