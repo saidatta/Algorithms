@@ -1,5 +1,7 @@
 package leetcode.array.search;
 
+// https://leetcode.com/problems/find-pivot-index/
+// https://leetcode.com/problems/find-the-middle-index-in-array/submissions/
 public class FindPivotIndex {
     /**
      * Finds the pivot index in the array. The pivot index is the index

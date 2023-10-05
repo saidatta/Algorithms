@@ -41,7 +41,7 @@ public class InsertInterval {
         int insertPos = intervals.length;
 
         while (start <= end) {
-            int mid = (start + end) / 2;
+            int mid = (start + end) >>> 1;
             if (intervals[mid][0] > newInterval[0]) {
                 insertPos = mid;
                 end = mid - 1;
@@ -62,11 +62,13 @@ public class InsertInterval {
      */
     private int[][] insertAndSort(int[][] intervals, int[] newInterval) {
         List<int[]> list = new ArrayList<>(Arrays.asList(intervals));
-        int index = findInsertPosition(intervals, newInterval);
+        int insertPos = findInsertPosition(intervals, newInterval);
 
-        if (index != intervals.length) {
-            list.add(index, newInterval);
+        if (insertPos != intervals.length) {
+            // in middle, so insert it at insertPos
+            list.add(insertPos, newInterval);
         } else {
+            // if insertPos is at the end, just append the interval.
             list.add(newInterval);
         }
 
