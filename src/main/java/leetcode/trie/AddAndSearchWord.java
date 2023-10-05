@@ -4,83 +4,75 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * https://leetcode.com/problems/add-and-search-word-data-structure-design/#/description
- *
- * Word DICTIONARY
- * Created by venkatamunnangi on 4/19/17.
+ * Implementation of a Trie data structure to support
+ * add and search operations with wildcard character '.'.
+ * https://leetcode.com/problems/design-add-and-search-words-data-structure/description/
  */
 public class AddAndSearchWord {
 
+    // TrieNode inner class representing each node in the Trie
     private class TrieNode {
         Map<Character, TrieNode> children;
-        boolean endOfWord;
+        boolean isEndOfWord;
 
         TrieNode() {
             children = new HashMap<>();
+            isEndOfWord = false;
         }
     }
 
-    final TrieNode root;
+    private final TrieNode root;
 
-    /** Initialize your data structure here. */
+    /** Constructor to initialize the root of Trie. */
     public AddAndSearchWord() {
         root = new TrieNode();
     }
 
-    /** Adds a word into the data structure. */
+    /**
+     * Inserts a word into the Trie.
+     * @param word the word to be added
+     */
     public void addWord(String word) {
-        TrieNode current = root;
+        TrieNode currentNode = root;
 
-        for(int i = 0; i<word.length();i++) {
-            char c = word.charAt(i);
-            TrieNode n = current.children.get(c);
-            if(n == null) {
-                n = new TrieNode();
-                current.children.put(c, n);
+        for(char ch : word.toCharArray()) {
+            TrieNode nextNode = currentNode.children.get(ch);
+            if(nextNode == null) {
+                nextNode = new TrieNode();
+                currentNode.children.put(ch, nextNode);
             }
 
-            current = n;
+            currentNode = nextNode;
         }
-        current.endOfWord = true;
+
+        currentNode.isEndOfWord = true;
     }
 
-    /** Returns if the word is in the data structure. A word could
-     * contain the dot character '.' to represent any one letter. */
+    /**
+     * Searches for a word in the Trie. Supports wildcard character '.'.
+     * @param word the word to be searched
+     * @return true if word is found, false otherwise
+     */
     public boolean search(String word) {
-        return search(word.toCharArray(), 0, root);
+        return searchRecursively(word.toCharArray(), 0, root);
     }
 
-    private boolean search(char[] chars, int index, TrieNode parent) {
+    private boolean searchRecursively(char[] chars, int index, TrieNode currentNode) {
         if (index == chars.length) {
-            return parent.endOfWord;
+            return currentNode.isEndOfWord;
         }
 
-        Map<Character, TrieNode> childNodes = parent.children;
-        char c = chars[index];
-        if (c == '.') {
-            for (TrieNode n : childNodes.values()) {
-                if (n != null) {
-                    boolean b = search(chars, index + 1, n);
-                    if (b) {
-                        return true;
-                    }
+        char currentChar = chars[index];
+        if (currentChar == '.') {
+            for (TrieNode childNode : currentNode.children.values()) {
+                if (childNode != null && searchRecursively(chars, index + 1, childNode)) {
+                    return true;
                 }
             }
             return false;
         }
-        TrieNode node = childNodes.get(c);
-// simplified version in return statement
-//        if (node == null){
-//            return false;
-//        }
 
-        return node != null && search(chars, ++index, node);
-
+        TrieNode child = currentNode.children.get(currentChar);
+        return child != null && searchRecursively(chars, index + 1, child);
     }
 }
-/**
- * Your WordDictionary object will be instantiated and called as such:
- * WordDictionary obj = new WordDictionary();
- * obj.addWord(word);
- * boolean param_2 = obj.search(word);
- */

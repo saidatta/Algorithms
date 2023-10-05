@@ -12,19 +12,25 @@ public class Trie {
     private class TrieNode {
         Map<Character, TrieNode> children;
         boolean endOfWord;
+
         public TrieNode() {
             children = new HashMap<>();
             endOfWord = false;
         }
     }
+
     private final TrieNode root;
 
-    /** Initialize your data structure here. */
+    /**
+     * Initialize your data structure here.
+     */
     public Trie() {
         root = new TrieNode();
     }
 
-    /** Inserts a word into the trie. */
+    /**
+     * Inserts a word into the trie.
+     */
     public void insert(String word) {
         TrieNode current = root;
         for (int i = 0; i < word.length(); i++) {
@@ -40,7 +46,9 @@ public class Trie {
         current.endOfWord = true;
     }
 
-    /** Returns if the word is in the trie. */
+    /**
+     * Returns if the word is in the trie.
+     */
     public boolean search(String word) {
         TrieNode current = root;
         for (int i = 0; i < word.length(); i++) {
@@ -56,7 +64,9 @@ public class Trie {
         return current.endOfWord;
     }
 
-    /** Returns if there is any word in the trie that starts with the given prefix. */
+    /**
+     * Returns if there is any word in the trie that starts with the given prefix.
+     */
     public boolean startsWith(String prefix) {
         TrieNode current = root;
         for (int i = 0; i < prefix.length(); i++) {
