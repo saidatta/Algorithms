@@ -17,39 +17,45 @@ import java.util.List;
  * Created by venkatamunnangi on 5/14/17.
  */
 public class StrobogrammaticNumberII {
+
+    private static final List<String> ZERO_AND_ONE_DIGIT = List.of("0", "1", "8");
+    private static final List<String> TWO_DIGIT_STARTERS = List.of("11","69","88","96");
+
     public List<String> findStrobogrammatic(int n) {
-        return helper(n, n);
+        if (n == 0) return List.of("");
+        if (n == 1) return ZERO_AND_ONE_DIGIT;
+        if (n == 2) return TWO_DIGIT_STARTERS;
+
+        return constructNumbers(n, n);
     }
 
-    List<String> helper(int current, int m) {
+    private List<String> constructNumbers(int current, int max) {
         if (current == 0) {
-            return new ArrayList<>(Arrays.asList(""));
+            return List.of("");
         }
         if (current == 1) {
-            return new ArrayList<>(Arrays.asList("0", "1", "8"));
+            return ZERO_AND_ONE_DIGIT;
         }
 
-        List<String> list = helper(current - 2, m);
+        List<String> smallerNumbers = constructNumbers(current - 2, max);
+        List<String> results = new ArrayList<>();
 
-        List<String> res = new ArrayList<>();
-
-        for (String s : list) {
-            if (current != m) {
-                res.add("0" + s + "0");
+        for (String number : smallerNumbers) {
+            if (current != max) {
+                results.add("0" + number + "0");
             }
 
-            res.add("1" + s + "1");
-            res.add("6" + s + "9");
-            res.add("8" + s + "8");
-            res.add("9" + s + "6");
+            results.add("1" + number + "1");
+            results.add("6" + number + "9");
+            results.add("8" + number + "8");
+            results.add("9" + number + "6");
         }
 
-        return res;
+        return results;
     }
 
     public static void main(String[] args) {
-        StrobogrammaticNumberII strobogrammaticNumberII = new StrobogrammaticNumberII();
-
-        System.out.println(strobogrammaticNumberII.findStrobogrammatic(2));
+        StrobogrammaticNumberII finder = new StrobogrammaticNumberII();
+        System.out.println(finder.findStrobogrammatic(2));
     }
 }

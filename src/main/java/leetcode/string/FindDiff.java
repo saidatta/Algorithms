@@ -10,11 +10,22 @@ public class FindDiff {
         int charCode = t.charAt(s.length());
         // Iterate through both strings and char codes
         for (int i = 0; i < s.length(); ++i) {
-            charCode -= (int)s.charAt(i);
-            charCode += (int)t.charAt(i);
+            charCode -= s.charAt(i);
+            charCode += t.charAt(i);
         }
 
         // eventually the charcodes are negated and summed up to result the missing char
         return (char)charCode;
+    }
+
+    // alternate
+    public char findTheDifference2(String s, String t) {
+        char result = 0;
+        for (int i = 0; i < s.length(); i++) {
+            result ^= s.charAt(i);
+            result ^= t.charAt(i);
+        }
+        result ^= t.charAt(t.length() - 1); // The extra character in t
+        return result;
     }
 }
