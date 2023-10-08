@@ -8,9 +8,9 @@ public class WordLadderII {
     private List<List<String>> transformationSequences; // result to store all transformation sequences
 
 
-//    The solution contains two steps
+    //    The solution contains two steps
 //    1. Use BFS to construct a graph.
-//    2. Use DFS to construct the paths from end to start.Both solutions got AC within 1s.
+//    2. Use DFS to construct the paths from end to start.
 //    The first step BFS is quite important. I summarized three tricks
 //
 //    Using a MAP to store the min ladder of each word, or use a SET to store the words visited in current ladder,
@@ -46,8 +46,7 @@ public class WordLadderII {
                 break;
             }
 
-            List<String> neighbors = getNeighbors(currentWord);
-            for (String neighbor : neighbors) {
+            for (String neighbor : getNeighbors(currentWord)) {
                 if (!wordLadderLengths.containsKey(neighbor)) {
                     continue;
                 }
