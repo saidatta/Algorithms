@@ -35,7 +35,9 @@ public class InsertInterval {
      * @return - the index at which the newInterval should be inserted
      */
     private int findInsertPosition(int[][] intervals, int[] newInterval) {
-        if (intervals.length == 0) return 0;
+        if (intervals.length == 0) {
+            return 0;
+        }
 
         int start = 0, end = intervals.length - 1;
         int insertPos = intervals.length;
@@ -96,7 +98,8 @@ public class InsertInterval {
                 i++;
             }
 
-            i--; // Adjust index for outer loop increment.
+            // last i increment doesnt overlap, hence while loop exits. so, reverting it.
+            i--;
             mergedIntervals.add(currentInterval);
         }
 

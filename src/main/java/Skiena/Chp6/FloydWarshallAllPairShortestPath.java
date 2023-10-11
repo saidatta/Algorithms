@@ -17,7 +17,7 @@ import java.util.LinkedList;
  * https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
  */
 public class FloydWarshallAllPairShortestPath {
-    class NegativeWeightCycleException extends RuntimeException {}
+    static class NegativeWeightCycleException extends RuntimeException {}
 
     private static final int INF = 1000000;
 

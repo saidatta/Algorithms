@@ -5,66 +5,84 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by venkatamunnangi on 3/3/17.
+ * This class provides a solution to generate all unique Binary Search Trees (BSTs)
+ * that can be constructed given a number 'n'. The uniqueness is based on the
+ * structure of the BST. Each BST has values from 1 to n.
+ *
+ * A dynamic programming approach is used to solve this problem, where each subproblem
+ * represents the BSTs that can be constructed for a given range of numbers.
  */
-
-/**
- * In this case, the subproblems are defined as "all the BSTs that can be created from a sequence of consecutive
- * numbers". For example, one subproblem could be "all the BSTs that can be created from the numbers 1 to 3".
- *
- * The DP matrix dp[][] is used to store the solutions to these subproblems. The entry dp[i][j] stores all the BSTs
- * that can be generated from the sequence of numbers i to j.
- *
- * The function genTreeHelper(start, end, dp) generates all the BSTs from the sequence of numbers start to end, and
- * stores the result in dp[start][end]. This function works recursively:
- *
- * If start > end, it means that there are no numbers in the sequence. In this case, there is only one "tree" that can
- * be generated, which is an empty tree. So, it adds null to the list of trees and returns it.
- *
- * If dp[start][end] is not null, it means that this subproblem has been solved before. So, it can return the solution
- * directly from dp[start][end] without re-computing it.
- *
- * If dp[start][end] is null, it means that this subproblem has not been solved before. So, it initializes
- * dp[start][end] to an empty list of trees.
- *
- * Then, it iterates over all the numbers i in the sequence start to end. For each i, it considers i as the root of the
- * BST. All the numbers less than i will be in the left subtree, and all the numbers greater than i will be in the right
- * subtree. So, it recursively generates all the BSTs for the left and right subtrees, and for each pair of left and
- * right trees, it creates a new tree with i as the root and adds it to dp[start][end].
- *
- * Finally, it returns dp[start][end], which is the list of all the BSTs that can be generated from the sequence of
- * numbers start to end.
- *
- * So, the DP solution works by recursively breaking down the problem into smaller subproblems, solving each subproblem
- * just once, and reusing the solutions to previous subproblems to build up the solutions to larger problems. This is
- * how the DP solution logically solves the problem.
- */
-
 public class UniqueBST2 {
+    /**
+     * Generate all unique BSTs with values from 1 to 'n'.
+     *
+     * @param n The range of values in BST (1 to n).
+     * @return List of unique BSTs.
+     */
     public List<TreeNode> generateTrees(int n) {
+        // Initialize the DP table with null values.
         List<TreeNode>[][] dp = new ArrayList[n + 1][n + 1];
-        return genTreeHelper(1, n, dp);
+        return generateTreesHelper(1, n, dp);
     }
 
-    List<TreeNode> genTreeHelper(int start, int end, List<TreeNode>[][] dp) {
+    /**
+     * Helper function to generate BSTs for a given range using a DP table.
+     *
+     * @param start Starting value of the range.
+     * @param end Ending value of the range.
+     * @param dp DP table containing previously computed solutions.
+     * @return List of BSTs for the given range.
+     */
+    private List<TreeNode> generateTreesHelper(int start, int end, List<TreeNode>[][] dp) {
+        // Base condition: If range is invalid (start > end), return list containing only null.
         if (start > end) {
-            List<TreeNode> leaf = new ArrayList<>();
-            leaf.add(null);
-            return leaf;
+            List<TreeNode> list = new ArrayList<>();
+            list.add(null);
+            return list;
         }
+
+        // If this subproblem is already solved, return the answer directly from DP table.
         if (dp[start][end] != null) {
             return dp[start][end];
         }
+
+        // Initialize the list for this subproblem.
         dp[start][end] = new ArrayList<>();
+
+        // Iterate through all numbers in the range. Each number can be the root.
         for (int i = start; i <= end; i++) {
-            List<TreeNode> left = genTreeHelper(start, i - 1, dp);
-            List<TreeNode> right = genTreeHelper(i + 1, end, dp);
-            for (TreeNode l : left) {
-                for (TreeNode r : right) {
-                    dp[start][end].add(new TreeNode(i, l, r));
+            List<TreeNode> leftTrees = generateTreesHelper(start, i - 1, dp); // Generate left sub-trees
+            List<TreeNode> rightTrees = generateTreesHelper(i + 1, end, dp); // Generate right sub-trees
+
+            // Combine left and right sub-trees to form new trees with 'i' as root.
+            for (TreeNode left : leftTrees) {
+                for (TreeNode right : rightTrees) {
+                    dp[start][end].add(new TreeNode(i, left, right));
                 }
             }
         }
+
         return dp[start][end];
+    }
+
+    public static void main(String[] args) {
+        UniqueBST2 solver = new UniqueBST2();
+
+        int n = 3;
+        List<TreeNode> trees = solver.generateTrees(n);
+
+        System.out.println("Unique BSTs with " + n + " nodes:");
+        for (TreeNode root : trees) {
+            printTree(root);
+            System.out.println("-----");
+        }
+    }
+
+    // Utility function to print a tree in inorder traversal.
+    private static void printTree(TreeNode root) {
+        if (root == null) return;
+        printTree(root.left);
+        System.out.println(root.val);
+        printTree(root.right);
     }
 }

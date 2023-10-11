@@ -8,7 +8,6 @@ public class NumDistinctIslands {
 
     private int[][] grid;
     private boolean[][] visited;
-
     private static final char START = '0';
     private static final char DOWN = 'D';
     private static final char UP = 'U';
@@ -16,6 +15,7 @@ public class NumDistinctIslands {
     private static final char LEFT = 'L';
     private static final char BACKTRACK = 'B';  // added backtrack indicator
 
+    // enters the island from same location top-left
     public int numDistinctIslands(int[][] grid) {
         this.grid = grid;
         this.visited = new boolean[grid.length][grid[0].length];

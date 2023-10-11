@@ -26,7 +26,7 @@ public class BellmanFordShortestPath {
     // doing any addition on that causes integer overflow
     private static int INFINITY = 10000000;
 
-    class NegativeWeightCycleException extends RuntimeException {}
+    static class NegativeWeightCycleException extends RuntimeException {}
 
     public Map<Vertex<Integer>, Integer> getShortestPath(Graph<Integer> graph,
                                                          Vertex<Integer> sourceVertex) {
@@ -73,7 +73,7 @@ public class BellmanFordShortestPath {
         return distance;
     }
 
-    public static void main(String args[]){
+    public static void main(String[] args){
 
         Graph<Integer> graph = new Graph<>(false);
         graph.addEdge(0, 3, 8);

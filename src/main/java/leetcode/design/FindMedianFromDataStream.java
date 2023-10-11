@@ -65,13 +65,7 @@ public class FindMedianFromDataStream {
         }
 
         public int compareTo(BusinessInfo b1) {
-            if (this.rating < b1.rating) {
-                return -1;
-            }
-            if (this.rating > b1.rating) {
-                return 1;
-            }
-            return 0;
+            return Double.compare(this.rating, b1.rating);
         }
     }
 

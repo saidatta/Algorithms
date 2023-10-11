@@ -80,7 +80,7 @@ public class DijkstraShortestPath {
         return e.getVertex1().equals(v) ? e.getVertex2() : e.getVertex1();
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Graph<Integer> graph = new Graph<>(false);
         /*graph.addEdge(0, 1, 4);
         graph.addEdge(1, 2, 8);

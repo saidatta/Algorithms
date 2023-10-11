@@ -51,4 +51,42 @@ public class AllPossibleFullBinaryTrees {
 
         return dp.get(n);
     }
+
+    public static void main(String[] args) {
+        AllPossibleFullBinaryTrees solution = new AllPossibleFullBinaryTrees();
+
+        int n = 7;  // Example number of nodes. Change as per your requirement
+        List<TreeNode> trees = solution.allPossibleFBT(n);
+
+        System.out.println("All possible Full Binary Trees with " + n + " nodes:");
+        for (int i = 0; i < trees.size(); i++) {
+            System.out.println("Tree " + (i+1) + ":");
+            printTree(trees.get(i));
+            System.out.println("-------------------");
+        }
+    }
+
+    public static void printTree(TreeNode root) {
+        if (root == null) return;
+
+        // Simple BFS to print tree
+        List<TreeNode> currentLevel = new ArrayList<>();
+        List<TreeNode> nextLevel = new ArrayList<>();
+        currentLevel.add(root);
+
+        while (!currentLevel.isEmpty()) {
+            for (TreeNode node : currentLevel) {
+                if (node != null) {
+                    System.out.print(node.val + " ");
+                    nextLevel.add(node.left);
+                    nextLevel.add(node.right);
+                } else {
+                    System.out.print("null ");
+                }
+            }
+            System.out.println();
+            currentLevel = new ArrayList<>(nextLevel);
+            nextLevel.clear();
+        }
+    }
 }
