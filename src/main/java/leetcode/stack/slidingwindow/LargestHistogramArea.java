@@ -52,6 +52,8 @@ public class LargestHistogramArea {
     public static void main(String[] args) {
         LargestHistogramArea solution = new LargestHistogramArea();
 
+        int[] heights10= {1,2,3,4,3};
+        System.out.println(solution.largestRectangleArea(heights10)); // Expected output: 10
         int[] heights0= {6, 7, 5, 2, 4, 5, 9, 3};
         System.out.println(solution.largestRectangleArea(heights0)); // Expected output: 10
 

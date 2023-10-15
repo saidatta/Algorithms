@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // https://leetcode.com/problems/permutation-sequence/
+// https://www.youtube.com/watch?v=W9SIlE2jhBQ
 public class PermutationSequence {
     /**
      * Returns the kth permutation sequence of numbers 1 through n.
@@ -31,6 +32,7 @@ public class PermutationSequence {
         }
 
         // Adjust k to be an index in the sequence.
+        // since we are doing factorial blocks 0 indexed.
         k--;
 
         // Construct the kth permutation using factorial-based indexing.
@@ -51,7 +53,7 @@ public class PermutationSequence {
         PermutationSequence solver = new PermutationSequence();
 
         System.out.println(solver.getPermutation(3, 3)); // "213"
-        System.out.println(solver.getPermutation(4, 9)); // "2314"
+        System.out.println(solver.getPermutation(4, 12)); // "2314"
         System.out.println(solver.getPermutation(3, 1)); // "123"
     }
 }

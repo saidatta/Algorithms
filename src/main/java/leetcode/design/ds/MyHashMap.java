@@ -1,6 +1,4 @@
-package leetcode.design;
-
-import java.util.HashMap;
+package leetcode.design.ds;
 
 /**
  * https://github.com/donnemartin/system-design-primer/blob/master/solutions/object_oriented_design/hash_table

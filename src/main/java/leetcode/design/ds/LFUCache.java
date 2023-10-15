@@ -1,4 +1,4 @@
-package leetcode.design;
+package leetcode.design.ds;
 
 import java.util.HashMap;
 import java.util.Iterator;

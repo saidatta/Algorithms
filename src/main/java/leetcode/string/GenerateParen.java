@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * https://leetcode.com/problems/generate-parentheses/#/description
+ * https://www.youtube.com/watch?v=s9fokUqJ76A&list=PLot-Xpze53lfOdF3KwpMSFEyfE77zIwiP&index=12
  *
  * Write a function to generate all combinations of well-formed parentheses.
  *
@@ -15,12 +16,12 @@ import java.util.List;
  */
 public class GenerateParen {
     public List<String> generateParenthesis(int n) {
-        if(n <= 0) {
+        if (n <= 0) {
             return new ArrayList<>();
         }
 
         List<String> al = new ArrayList<>();
-        helper(al,"",0,0,n );
+        helper(al, "", 0, 0, n);
         return al;
     }
 
@@ -30,11 +31,11 @@ public class GenerateParen {
             return;
         }
 
-        if(leftParen < n) {
-            helper(list, currentString+"(", leftParen+1, rightParen, n);
+        if (leftParen < n) {
+            helper(list, currentString + "(", leftParen + 1, rightParen, n);
         }
-        if(rightParen < leftParen) {
-            helper(list, currentString+")", leftParen, rightParen+1, n);
+        if (rightParen < leftParen) {
+            helper(list, currentString + ")", leftParen, rightParen + 1, n);
         }
     }
 
@@ -44,6 +45,9 @@ public class GenerateParen {
         return res;
     }
 
+    // only add if Open(or left) < n
+    // only add if Closed (or right ) < Open (or left)
+    // valid if left == right == n
     public void recurse(List<String> res, int left, int right, String s, int n) {
         if (s.length() == n * 2) {
             res.add(s);

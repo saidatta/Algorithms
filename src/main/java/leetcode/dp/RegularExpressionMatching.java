@@ -29,7 +29,6 @@ public class RegularExpressionMatching {
                      * if it matches the char in string and regex, or it char in string is '.'.
                      * Then, the set the value of the previous word. dp[i-1][j-1].
                      */
-
                     dp[i][j] = dp[i - 1][j - 1];
                 } else {
                     if (regex.charAt(j - 1) == ANY_OCCURENCES) {

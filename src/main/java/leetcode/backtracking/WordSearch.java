@@ -8,8 +8,8 @@ package leetcode.backtracking;
 public class WordSearch {
     public boolean exist(char[][] board, String word) {
         char[] w = word.toCharArray();
-        for (int y=0; y<board.length; y++) {
-            for (int x=0; x<board[y].length; x++) {
+        for (int y = 0; y < board.length; y++) {
+            for (int x = 0; x < board[y].length; x++) {
                 if (exist(board, y, x, w, 0)) {
                     return true;
                 }
@@ -23,7 +23,7 @@ public class WordSearch {
         if (i == word.length) {
             return true;
         }
-        if (y<0 || x<0 || y == board.length || x == board[y].length) {
+        if (y < 0 || x < 0 || y == board.length || x == board[y].length) {
             // out of bounds
             return false;
         }
@@ -33,56 +33,58 @@ public class WordSearch {
             return false;
         }
         board[y][x] ^= 256; // marking visited
-        boolean exist = exist(board, y, x+1, word, i+1)
-                || exist(board, y, x-1, word, i+1)
-                || exist(board, y+1, x, word, i+1)
-                || exist(board, y-1, x, word, i+1);
+        boolean exist = exist(board, y, x + 1, word, i + 1)
+                || exist(board, y, x - 1, word, i + 1)
+                || exist(board, y + 1, x, word, i + 1)
+                || exist(board, y - 1, x, word, i + 1);
         board[y][x] ^= 256; // swapping values back to original.
         return exist;
     }
 
-    int[][] dirs={{1,0},{-1,0},{0,1},{0,-1}};
+    int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
     public boolean existNonManipulationInput(char[][] board, String word) {
-        if (board==null ||board.length==0||board[0].length==0) {
+        if (board == null || board.length == 0 || board[0].length == 0) {
             return false;
         }
 
-        int m=board.length,n=board[0].length;
-        boolean[][] visited=new boolean[m][n];
-        for (int i=0;i< m;i++){
-            for (int j=0;j<n;j++){
-                if (dfs(board,visited,i,j,0,word)){
+        int m = board.length, n = board[0].length;
+        boolean[][] visited = new boolean[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (dfs(board, visited, i, j, 0, word)) {
                     return true;
                 }
             }
         }
         return false;
     }
-    private boolean dfs(char[][] board, boolean[][] visited, int x, int y, int currentWordLen, String word){
-        int m=board.length,n=board[0].length;
-        if (currentWordLen==word.length()) {
+
+    private boolean dfs(char[][] board, boolean[][] visited, int x, int y, int currentWordLen, String word) {
+        int m = board.length, n = board[0].length;
+        if (currentWordLen == word.length()) {
             return true;
         }
 
-        if(x<0||x>=m||y<0||y>=n) {
+        if (x < 0 || x >= m || y < 0 || y >= n) {
             return false;
         }
-        if(visited[x][y]) {
-            return false;
-        }
-
-        if(board[x][y]!=word.charAt(currentWordLen)) {
+        if (visited[x][y]) {
             return false;
         }
 
-        visited[x][y]=true;
-        for (int[] dir: dirs){
-            int x1=x+dir[0], y1=y+dir[1];
-            if (dfs(board, visited, x1, y1, currentWordLen+1, word)){
+        if (board[x][y] != word.charAt(currentWordLen)) {
+            return false;
+        }
+
+        visited[x][y] = true;
+        for (int[] dir : dirs) {
+            int x1 = x + dir[0], y1 = y + dir[1];
+            if (dfs(board, visited, x1, y1, currentWordLen + 1, word)) {
                 return true;
             }
         }
-        visited[x][y]=false;
+        visited[x][y] = false;
         return false;
     }
 }

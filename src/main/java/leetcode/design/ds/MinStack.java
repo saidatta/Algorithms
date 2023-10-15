@@ -1,4 +1,4 @@
-package leetcode.design;
+package leetcode.design.ds;
 
 import static java.lang.System.out;
 

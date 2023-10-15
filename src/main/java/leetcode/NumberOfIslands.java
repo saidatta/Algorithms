@@ -57,7 +57,6 @@ public class NumberOfIslands {
         }
     }
 
-
     class IslandCounter {
         private int n, m;
 

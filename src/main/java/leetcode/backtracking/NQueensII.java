@@ -8,7 +8,6 @@ package leetcode.backtracking;
  */
 public class NQueensII {
     int count = 0;
-
     public int totalNQueens(int n) {
         boolean[] cols = new boolean[n];     // columns   |
         boolean[] d1 = new boolean[2 * n];   // diagonals \

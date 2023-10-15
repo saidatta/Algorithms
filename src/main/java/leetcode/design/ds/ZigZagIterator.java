@@ -1,4 +1,4 @@
-package leetcode.design;
+package leetcode.design.ds;
 
 import java.util.LinkedList;
 import java.util.List;

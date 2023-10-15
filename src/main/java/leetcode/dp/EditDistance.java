@@ -9,48 +9,92 @@ import static java.lang.System.out;
  * Created by venkatamunnangi on 3/3/17.
  */
 public class EditDistance {
-    /**
-     * Uses recursion to find minimum edits
-     */
-    public int recEditDistance(char[] str1, char[] str2, int len1, int len2) {
-
-        if (len1 == str1.length) {
-            return str2.length - len2;
-        }
-        if (len2 == str2.length) {
-            return str1.length - len1;
-        }
-        return min(recEditDistance(str1, str2, len1 + 1, len2 + 1) + str1[len1] == str2[len2] ? 0 : 1, recEditDistance(str1, str2, len1, len2 + 1) + 1, recEditDistance(str1, str2, len1 + 1, len2) + 1);
+    public int minDistance(String s1, String s2) {
+        return recursiveEditDistance(s1.toCharArray(), s2.toCharArray(), 0, 0);
     }
 
     /**
-     * Uses bottom up DP to find the edit distance
+     * Calculate the minimum edit distance (Levenshtein distance) between two strings using recursion.
+     * Determines the number of insertions, deletions, and substitutions needed to transform one string into another.
+     *
+     * @param s1 First string as character array
+     * @param s2 Second string as character array
+     * @param index1 Current index in the first string
+     * @param index2 Current index in the second string
+     * @return Minimum edit distance between the two strings from the current indices
      */
-    public int dynamicEditDistance(String s1, String s2) {
+    public int recursiveEditDistance(char[] s1, char[] s2, int index1, int index2) {
 
-        char[] str1 = s1.toCharArray(), str2 = s2.toCharArray();
-        int[][] temp = new int[str1.length + 1][str2.length + 1];
-
-        for (int i = 0; i < temp[0].length; i++) {
-            temp[0][i] = i;
+        // If we've reached the end of s1, the distance is the number of characters left in s2
+        if (index1 == s1.length) {
+            return s2.length - index2;
         }
 
-        for (int i = 0; i < temp.length; i++) {
+        // If we've reached the end of s2, the distance is the number of characters left in s1
+        if (index2 == s2.length) {
+            return s1.length - index1;
+        }
+
+        // If characters at the current position are the same, no operation is needed.
+        // Otherwise, a substitution is needed.
+        int substitutionCost = (s1[index1] == s2[index2]) ? 0 : 1;
+
+        int substitute = recursiveEditDistance(s1, s2, index1 + 1, index2 + 1) + substitutionCost;
+        int insert = recursiveEditDistance(s1, s2, index1, index2 + 1) + 1;
+        int delete = recursiveEditDistance(s1, s2, index1 + 1, index2) + 1;
+
+        // Return the minimum of the three operations
+        return Math.min(substitute, Math.min(insert, delete));
+    }
+
+
+    /**
+     * Calculate the minimum edit distance (Levenshtein distance) between two strings using dynamic programming.
+     * Determines the number of insertions, deletions, and substitutions needed to transform one string into another.
+     *
+     * @param s1 First string
+     * @param s2 Second string
+     * @return Minimum edit distance between the two strings
+     */
+    public int computeEditDistance(String s1, String s2) {
+
+        char[] chars1 = s1.toCharArray();
+        char[] chars2 = s2.toCharArray();
+
+        // Create a 2D table to store edit distances between substrings.
+        // temp[i][j] represents the edit distance between the first i characters of s1 and the first j characters of s2.
+        int[][] temp = new int[chars1.length + 1][chars2.length + 1];
+
+        // Initialize the first column - transforming a non-empty s1 into an empty s2 requires deleting all characters
+        // in s1
+        for (int i = 0; i <= chars1.length; i++) {
             temp[i][0] = i;
         }
 
+        // Initialize the first row - transforming an empty s1 into a non-empty s2 requires inserting all characters of
+        // s2
+        for (int j = 0; j <= chars2.length; j++) {
+            temp[0][j] = j;
+        }
 
-        for (int i = 1; i <= str1.length; i++) {
-            for (int j = 1; j <= str2.length; j++) {
-                if (str1[i - 1] == str2[j - 1]) {
+        // Fill in the table using a bottom-up approach
+        for (int i = 1; i <= chars1.length; i++) {
+            for (int j = 1; j <= chars2.length; j++) {
+                // If characters at the current position in both strings are the same, no operation is needed
+                if (chars1[i - 1] == chars2[j - 1]) {
                     temp[i][j] = temp[i - 1][j - 1];
                 } else {
-                    temp[i][j] = 1 + min(temp[i - 1][j - 1], temp[i - 1][j], temp[i][j - 1]);
+                    // Calculate the minimum of three operations: substitution, insertion, and deletion
+                    int substitute = temp[i - 1][j - 1];
+                    int insert = temp[i][j - 1];
+                    int delete = temp[i - 1][j];
+                    temp[i][j] = 1 + Math.min(substitute, Math.min(insert, delete));
                 }
             }
         }
-        printActualEdits(temp, str1, str2);
-        return temp[str1.length][str2.length];
+
+        // The final value represents the edit distance for the full strings
+        return temp[chars1.length][chars2.length];
     }
 
     /**
@@ -59,10 +103,7 @@ public class EditDistance {
     public void printActualEdits(int[][] T, char[] str1, char[] str2) {
         int i = T.length - 1;
         int j = T[0].length - 1;
-        while (true) {
-            if (i == 0 || j == 0) {
-                break;
-            }
+        while (i != 0 && j != 0) {
             if (str1[i - 1] == str2[j - 1]) {
                 i = i - 1;
                 j = j - 1;
@@ -93,11 +134,10 @@ public class EditDistance {
 
         String str1 = "azced";
         String str2 = "abcdef";
-        out.print(editDistance.dynamicEditDistance(str1, str2));
+        out.print(editDistance.minDistance(str1, str2));
 
         str1 = "abcd";
         str2 = "dbfd";
-        out.println(editDistance.dynamicEditDistance(str1, str2));
+        out.println(editDistance.computeEditDistance(str1, str2));
     }
-
 }

@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.*;
 
 public class CourseSchedule {
-    private int numCourses;
-    private int[][] prerequisites;
+    private final int numCourses;
+    private final int[][] prerequisites;
 
     public CourseSchedule(int numCourses, int[][] prerequisites) {
         this.numCourses = numCourses;
@@ -48,7 +48,10 @@ public class CourseSchedule {
         return topoSort;
     }
 
-    private void populateTopoStackDFS(int current, boolean[] visited, ArrayList<Integer>[] adjList, Stack<Integer> topoSort) {
+    private void populateTopoStackDFS(int current,
+                                      boolean[] visited,
+                                      ArrayList<Integer>[] adjList,
+                                      Stack<Integer> topoSort) {
         if (!visited[current]) {
             visited[current] = true;
             for (int neighbor : adjList[current]) {
@@ -64,8 +67,7 @@ public class CourseSchedule {
         List<Integer> toReturn = new ArrayList<>();
         int[] index = new int[numCourses];
         while (!topoSort.empty()) {
-            toReturn.add(topoSort.peek());
-            topoSort.pop();
+            toReturn.add(topoSort.pop());
         }
 
         for (int i = 0; i < toReturn.size(); i++) {
@@ -81,9 +83,9 @@ public class CourseSchedule {
     }
 
     public static void main(String[] args) {
-        int numCourses = 2;
-//        int[][] prerequisites = {{1, 0}, {2, 0}, {3, 1}, {3, 2}};
-        int[][] prerequisites = {{1, 0}};
+        int numCourses = 5;
+        int[][] prerequisites = {{0, 1}, {0, 2}, {1, 3}, {1, 4},{3, 4}};
+//        int[][] prerequisites = {{1, 0}};
 
         CourseSchedule finder = new CourseSchedule(numCourses, prerequisites);
         boolean order = finder.canFinish();

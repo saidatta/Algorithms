@@ -33,6 +33,7 @@ public class MedianOfTwoSortedArrays {
         }
 
         // after binary search, we almost get the median because it must be between
+        // left partition edge or right partition start
         // these 4 numbers: A[left-1], A[left], B[midPtOfTwoArrays-left], and B[midPtOfTwoArrays-left+1]
 
         // if (n+m) is odd, the median is the larger one between A[left-1] and B[midPtOfTwoArrays-left].

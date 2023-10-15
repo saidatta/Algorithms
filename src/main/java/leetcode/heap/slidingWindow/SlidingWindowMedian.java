@@ -15,8 +15,8 @@ public class SlidingWindowMedian {
     public double[] medianSlidingWindow(int[] nums, int k) {
         List<Double> medians = new ArrayList<>();
         Map<Integer, Integer> numberFrequency = new HashMap<>();
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
 
         int i = 0;
 
@@ -28,7 +28,9 @@ public class SlidingWindowMedian {
             // Appends the current median.
             medians.add(calculateMedian(k, maxHeap, minHeap));
 
-            if (i == nums.length) break;
+            if (i == nums.length) {
+                break;
+            }
 
             int outgoingNumber = nums[i - k];
             int incomingNumber = nums[i];
@@ -70,7 +72,9 @@ public class SlidingWindowMedian {
             return 0;
         }
 
-        if (k % 2 != 0) return (double) maxHeap.peek();
+        if (k % 2 != 0) {
+            return (double) maxHeap.peek();
+        }
 
         // If minHeap is empty, we return the top of maxHeap as the median.
         double rightOfMedian = (minHeap.isEmpty() ? maxHeap.peek() : minHeap.peek());
@@ -82,7 +86,9 @@ public class SlidingWindowMedian {
     /**
      * Adjusts the balance of the heaps after sliding the window.
      */
-    private void balanceHeaps(int outgoingNumber, int incomingNumber, PriorityQueue<Integer> maxHeap, PriorityQueue<Integer> minHeap, Map<Integer, Integer> numberFrequency) {
+    private void balanceHeaps(int outgoingNumber, int incomingNumber,
+                              PriorityQueue<Integer> maxHeap, PriorityQueue<Integer> minHeap,
+                              Map<Integer, Integer> numberFrequency) {
         int balance = (outgoingNumber <= maxHeap.peek() ? -1 : 1);
         numberFrequency.put(outgoingNumber, numberFrequency.getOrDefault(outgoingNumber, 0) + 1);
 

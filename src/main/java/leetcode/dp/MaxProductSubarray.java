@@ -21,7 +21,8 @@ public class MaxProductSubarray {
         int minProduct = A[0];
         int maxRes = A[0];
         for (int i = 1; i < n; i++) {
-            if (A[i] >= 0) { // checking for positive
+            if (A[i] >= 0) {
+                // checking for positive
                 maxProduct = Math.max(maxProduct * A[i], A[i]);
                 minProduct = Math.min(minProduct * A[i], A[i]);
             } else {
