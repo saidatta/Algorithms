@@ -8,7 +8,6 @@ import leetcode.tree.util.TreeNode;
  * Created by venkatamunnangi on 12/21/16.
  */
 public class BSTCheck {
-
     public boolean isValidBST(TreeNode root) {
         return validateBST(root, null);
     }
@@ -43,3 +42,19 @@ public class BSTCheck {
         System.out.println(bstCheck.isValidBST(root));
     }
 }
+//
+//    public boolean isValidBST(TreeNode root) {
+//        return validate(root, Long.MIN_VALUE, Long.MAX_VALUE);
+//    }
+//
+//    private boolean validate(TreeNode node, long min, long max) {
+//        if(node == null) {
+//            return true;
+//        }
+//
+//        if(node.val <= min || node.val >= max) {
+//            return false;
+//        }
+//
+//        return validate(node.left, min, node.val) && validate(node.right, node.val, max);
+//    }

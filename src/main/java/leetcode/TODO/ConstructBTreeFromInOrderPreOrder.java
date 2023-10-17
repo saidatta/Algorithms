@@ -13,22 +13,33 @@ import leetcode.tree.util.TreeNode;
 public class ConstructBTreeFromInOrderPreOrder {
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        return helper(0, 0, inorder.length - 1, preorder, inorder);
+        return buildTree(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
     }
 
-    public TreeNode helper(int preStart, int inStart, int inEnd, int[] preorder, int[] inorder) {
-        if (preStart > preorder.length - 1 || inStart > inEnd) {
+    private TreeNode buildTree(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd) {
+        if (preStart > preEnd || inStart > inEnd) {
             return null;
         }
+
+        // Root node is the first node in preorder
         TreeNode root = new TreeNode(preorder[preStart]);
-        int inIndex = 0; // Index of current root in inorder
+
+        // Find the index of the root in inorder
+        int inIndex = 0;
         for (int i = inStart; i <= inEnd; i++) {
             if (inorder[i] == root.val) {
                 inIndex = i;
+                break;
             }
         }
-        root.left = helper(preStart + 1, inStart, inIndex - 1, preorder, inorder);
-        root.right = helper(preStart + inIndex - inStart + 1, inIndex + 1, inEnd, preorder, inorder);
+
+        // left tree node count
+        int leftTreeCount = inIndex - inStart;
+
+        // Build left and right subtrees
+        root.left = buildTree(preorder, preStart + 1, preStart + leftTreeCount, inorder, inStart, inIndex - 1);
+        root.right = buildTree(preorder, preStart + leftTreeCount + 1, preEnd, inorder, inIndex + 1, inEnd);
+
         return root;
     }
 }
