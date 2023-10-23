@@ -56,7 +56,9 @@ public class AlienDictionary {
             String currentWord = words[i];
             String nextWord = words[i + 1];
 
-            // Special case: If the current word is a prefix of the next word, then this is not a valid dictionary.
+            // Special case: If the current word is a prefix of the next word and length is bigger, then this is not a
+            // valid dictionary. (e.g, if eqrfee comes before to egrf, then its not a valid dictionary as its sorted
+            // lexicographically
             if (currentWord.length() > nextWord.length() && currentWord.startsWith(nextWord)) {
                 return false;
             }
@@ -94,8 +96,7 @@ public class AlienDictionary {
             char currentChar = queue.poll();
             order.append(currentChar);
 
-            // Reduce the in-degree of all adjacent nodes and
-            // if any of them has no incoming edges, add it to the queue
+            // Reduce the in-degree of all adjacent nodes and if any of them has no incoming edges, add it to the queue
             for (char adjacentChar : adjacencyList.get(currentChar)) {
                 inDegreeCount.put(adjacentChar, inDegreeCount.get(adjacentChar) - 1);
                 if (inDegreeCount.get(adjacentChar) == 0) {
@@ -110,7 +111,7 @@ public class AlienDictionary {
 
     public static void main(String[] args) {
         AlienDictionary dictionarySolver = new AlienDictionary();
-//        System.out.println(dictionarySolver.alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt"}));
+        System.out.println(dictionarySolver.alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt"}));
         System.out.println(dictionarySolver.alienOrder(new String[]{"za", "xyzbc"}));
         System.out.println(dictionarySolver.alienOrder(new String[]{"z", "x", "z"}));
     }

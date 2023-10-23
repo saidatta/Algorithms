@@ -1,5 +1,7 @@
 package leetcode.tree;
 
+import java.util.LinkedList;
+import java.util.Stack;
 import leetcode.tree.util.TreeNode;
 
 /**
@@ -10,16 +12,33 @@ import leetcode.tree.util.TreeNode;
 public class KthSmallestBST {
     public int kthSmallest(TreeNode root, int k) {
         int count = countNodes(root.left);
-        if(k <= count) { // if k is in the left subtree.
+        if(k <= count) {
+            // k is in the left subtree.
             return kthSmallest(root.left, k);
         } else if (k > count + 1) {
-            // if k is in the right subtree.
+            // k is in the right subtree.
             // count + 1 because of left subtree and root element.
             return kthSmallest(root.right, k - count - 1);
         }
 
         // if k == count + 1
         return root.val;
+    }
+
+    public int kthSmallestIterative(TreeNode root, int k) {
+        Stack<TreeNode> stack = new Stack<>();
+
+        while(true) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            if (--k == 0) {
+                return root.val;
+            }
+            root = root.right;
+        }
     }
 
     private int countNodes(TreeNode n) {

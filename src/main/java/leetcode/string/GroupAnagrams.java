@@ -3,7 +3,7 @@ package leetcode.string;
 import java.util.*;
 
 /**
- * https://leetcode.com/problems/anagrams/
+ * https://leetcode.com/problems/group-anagrams/
  *
  * Created by venkatamunnangi on 12/2/16.
  */

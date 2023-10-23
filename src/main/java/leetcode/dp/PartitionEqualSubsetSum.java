@@ -65,11 +65,13 @@ public class PartitionEqualSubsetSum {
 
         // Test 1
         int[] nums1 = {1, 5, 11, 5};
-        System.out.println(solution.canPartition(nums1));  // Expected: true (because [1, 5, 5] and [11] are two subsets with equal sum)
+        // Expected: true (because [1, 5, 5] and [11] are two subsets with equal sum)
+        System.out.println(solution.canPartition(nums1));
 
         // Test 2
         int[] nums2 = {1, 2, 3, 5};
-        System.out.println(solution.canPartition(nums2));  // Expected: false (no way to split these numbers into two subsets with equal sums)
+        // Expected: false (no way to split these numbers into two subsets with equal sums)
+        System.out.println(solution.canPartition(nums2));
     }
 
 }

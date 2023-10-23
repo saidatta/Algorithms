@@ -5,7 +5,8 @@ import static java.lang.System.out;
 /**
  * Time complexity is O(m*n)
  * Space complexity is O(m*n)
- * <p>
+ * https://leetcode.com/problems/edit-distance/description/
+ *
  * Created by venkatamunnangi on 3/3/17.
  */
 public class EditDistance {
@@ -129,7 +130,7 @@ public class EditDistance {
         return Math.min(l, c);
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         EditDistance editDistance = new EditDistance();
 
         String str1 = "azced";

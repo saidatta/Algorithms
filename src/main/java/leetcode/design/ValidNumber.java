@@ -4,13 +4,13 @@ import java.util.*;
 
 // Define an interface for number validation
 public class ValidNumber {
-
     // Enumeration to identify character groups.
     private enum CharGroup {
         DIGIT, SIGN, DOT, EXPONENT, INVALID
     }
 
     // Deterministic finite automaton (DFA) design for numeric string validation.
+    // This is Directed Acyclic graph with CharGroup as edges.
     private static final List<Map<CharGroup, Integer>> DFA = List.of(
             Map.of(CharGroup.DIGIT, 1, CharGroup.SIGN, 2, CharGroup.DOT, 3),
             Map.of(CharGroup.DIGIT, 1, CharGroup.DOT, 4, CharGroup.EXPONENT, 5),

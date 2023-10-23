@@ -25,4 +25,15 @@ public class FirstMissingPositive {
         return n + 1;
     }
 
+    public static void main(String[] args) {
+        FirstMissingPositive solution = new FirstMissingPositive();
+
+//        int[] testArray1 = {3, 4, -1, 1};
+        int[] testArray2 = {1, 2, 3};
+        int[] testArray3 = {7, 8, 9, 11, 12};
+
+//        System.out.println(solution.firstMissingPositive(testArray1));  // Expected output: 2
+        System.out.println(solution.firstMissingPositive(testArray2));  // Expected output: 4
+        System.out.println(solution.firstMissingPositive(testArray3));  // Expected output: 1
+    }
 }

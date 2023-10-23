@@ -28,7 +28,7 @@ public class SimplifyPath {
 
     public static void main(String[] args) {
         SimplifyPath simplifyPath = new SimplifyPath();
-        System.out.println(simplifyPath.simplifyPath("/home/")); // Output: "/home"
+        System.out.println(simplifyPath.simplifyPath("/home/second/")); // Output: "/home"
         System.out.println(simplifyPath.simplifyPath("/../"));   // Output: "/"
         System.out.println(simplifyPath.simplifyPath("/home//foo/")); // Output: "/home/foo"
     }

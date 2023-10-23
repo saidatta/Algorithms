@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// https://leetcode.com/problems/dot-product-of-two-sparse-vectors/
 public class DotProductSparseVector {
     private static class Pair {
         int index;
@@ -66,6 +67,17 @@ public class DotProductSparseVector {
             }
         }
 
+        private int dotProduct(SparseVectorBS vec1, SparseVectorBS vec2) {
+            int res = 0;
+            for (Pair ent : vec1.nonZeroList) {
+                int searchRes = binarySearch(vec2, ent.index);
+                if (searchRes != -1) {
+                    res += ent.value * searchRes;
+                }
+            }
+            return res;
+        }
+
         private int binarySearch(SparseVectorBS vec, int idx) {
             int low = vec.nonZeroList.get(0).index;
             int high = vec.nonZeroList.get(vec.nonZeroList.size() - 1).index;
@@ -80,18 +92,7 @@ public class DotProductSparseVector {
                     low = mid + 1;
                 }
             }
-            return 0;
-        }
-
-        private int dotProduct(SparseVectorBS vec1, SparseVectorBS vec2) {
-            int res = 0;
-            for (Pair ent : vec1.nonZeroList) {
-                int searchRes = binarySearch(vec2, ent.index);
-                if (searchRes != 0) {
-                    res += ent.value * searchRes;
-                }
-            }
-            return res;
+            return -1;
         }
 
         public int dotProduct(SparseVectorBS vec) {
