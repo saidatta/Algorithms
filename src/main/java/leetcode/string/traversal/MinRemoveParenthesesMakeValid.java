@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.string.traversal;
 
 import java.util.*;
 
@@ -9,7 +9,7 @@ import static java.lang.System.out;
  *
  * Created by venkatamunnangi on 3/23/17.
  */
-public class RemoveInvalidParentheses {
+public class MinRemoveParenthesesMakeValid {
 
     /**
      * In BFS we handle the states level by level, in the worst case, we need to handle all the levels,
@@ -54,7 +54,7 @@ public class RemoveInvalidParentheses {
             if (found) {
                 // this ensures once we've found a valid parentheses pattern, we don't do any further bfs using items
                 // pending in the queue since any further bfs would only yield strings of smaller length.
-                // However the items already in queue need to be processed since there could be other solutions of the
+                // However, the items already in queue need to be processed since there could be other solutions of the
                 // same length.
                 continue;
             }
@@ -69,7 +69,7 @@ public class RemoveInvalidParentheses {
                 String t = currentQueuedString.substring(0, i) + currentQueuedString.substring(i + 1);
 
                 if (!visited.contains(t)) {
-                    // for each state, if it'inputString not visited, add it to the queue
+                    // for each state, if it's inputString not visited, add it to the queue
                     queue.add(t);
                     visited.add(t);
                 }
@@ -146,7 +146,7 @@ public class RemoveInvalidParentheses {
             }
             for (int j = last_j; j <= i; ++j) {
                 if (s.charAt(j) == par[1] && (j == last_j || s.charAt(j - 1) != par[1])) {
-                    remove(s.substring(0, j) + s.substring(j + 1, s.length()), ans, i, j, par);
+                    remove(s.substring(0, j) + s.substring(j + 1), ans, i, j, par);
                 }
             }
             return;
@@ -218,10 +218,10 @@ public class RemoveInvalidParentheses {
 
 
     public static void main(String [] args) {
-        RemoveInvalidParentheses removeInvalidParentheses = new RemoveInvalidParentheses();
-        out.println(removeInvalidParentheses.ss("(()(()"));
-        out.println(removeInvalidParentheses.removeInvalidParentheses("()())()"));
-        out.println(removeInvalidParentheses.removeInvalidParentheses("(a)())()"));
-        out.println(removeInvalidParentheses.removeInvalidParentheses(")("));
+        MinRemoveParenthesesMakeValid minRemoveParenthesesMakeValid = new MinRemoveParenthesesMakeValid();
+        out.println(minRemoveParenthesesMakeValid.ss("(()(()"));
+        out.println(minRemoveParenthesesMakeValid.removeInvalidParentheses("()())()"));
+        out.println(minRemoveParenthesesMakeValid.removeInvalidParentheses("(a)())()"));
+        out.println(minRemoveParenthesesMakeValid.removeInvalidParentheses(")("));
     }
 }

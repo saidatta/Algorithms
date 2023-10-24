@@ -7,12 +7,6 @@ package leetcode.array.twoPointer;
  */
 public class MoveZeroes {
 
-    public static void main(String [] args) {
-        System.out.println(secondMax(3,2,1));
-        System.out.println(secondMax(1,2,3));
-        System.out.println(secondMax(2,3,1,4));
-
-    }
     static int secondMax(int... array) {
 
             int n = array.length;
@@ -60,7 +54,7 @@ public class MoveZeroes {
         }
     }
 
-    public static void moveZeroes2(int[] nums) {
+    public static void moveZeroes2(int... nums) {
         int lastNonZeroFoundAt = 0;
         // If the current element is not 0, then we need to
         // append it just in front of last non 0 element we found.
@@ -76,5 +70,10 @@ public class MoveZeroes {
             nums[i] = 0;
         }
     }
+    public static void main(String [] args) {
+        moveZeroes2(0,1,0,3,12);
+//        System.out.println(moveZeroes2(1,2,3));
+//        System.out.println(moveZeroes2(2,3,1,4));
 
+    }
 }
