@@ -19,9 +19,7 @@ public class CustomSortString {
 
         // Write all characters that occur in order, in the order of order.
         for (char c : order.toCharArray()) {
-            for (int i = 0; i < count[c - 'a']; ++i) {
-                ans.append(c);
-            }
+            ans.append(String.valueOf(c).repeat(Math.max(0, count[c - 'a'])));
             // Setting count[char] to zero to denote that we do
             // not need to write 'char' into our answer anymore.
             count[c - 'a'] = 0;
@@ -30,9 +28,7 @@ public class CustomSortString {
         // Write all remaining characters that don't occur in order.
         // That information is specified by 'count'.
         for (char c = 'a'; c <= 'z'; ++c) {
-            for (int i = 0; i < count[c - 'a']; ++i) {
-                ans.append(c);
-            }
+            ans.append(String.valueOf(c).repeat(Math.max(0, count[c - 'a'])));
         }
 
         return ans.toString();

@@ -7,7 +7,9 @@ import leetcode.tree.util.TreeNode;
 // https://leetcode.com/problems/range-sum-of-bst/description/
 public class RangeSumBST {
     public int rangeSumBST(TreeNode root, int low, int high) {
-        if (root == null) return 0; // Base case
+        if (root == null) {
+            return 0; // Base case
+        }
 
         int sum = 0;
         // If current node's value is between low and high (inclusive), add it to the sum.
