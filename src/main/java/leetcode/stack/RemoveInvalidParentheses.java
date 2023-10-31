@@ -7,9 +7,9 @@ import java.util.Set;
 
 public class RemoveInvalidParentheses {
     public static void main(String[] args) {
-        System.out.println(minRemoveToMakeValid("lee(t(c)o)de)"));  // Output: "lee(t(c)o)de"
-        System.out.println(minRemoveToMakeValid("a)b(c)d"));        // Output: "ab(c)d"
-        System.out.println(minRemoveToMakeValid("))(("));           // Output: ""
+        System.out.println(minRemoveToMakeValid2("lee(t(c)o)de)"));  // Output: "lee(t(c)o)de"
+        System.out.println(minRemoveToMakeValid2("a)b(c)d"));        // Output: "ab(c)d"
+        System.out.println(minRemoveToMakeValid2("))(("));           // Output: ""
     }
 
     public static String minRemoveToMakeValid(String s) {
@@ -42,40 +42,63 @@ public class RemoveInvalidParentheses {
         return sb.toString();
     }
 
-    public String minRemoveToMakeValid2(String s) {
+    public static String minRemoveToMakeValid2(String s) {
         // Pass 1: Remove all invalid ")"
         StringBuilder sb = new StringBuilder();
+        // Counter for "(" seen so far
         int openSeen = 0;
+        // Counter to maintain the balance between "(" and ")"
         int balance = 0;
+
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
+
+            // When "(" is encountered, increment counters
             if (c == '(') {
                 openSeen++;
                 balance++;
             }
+
+            // When ")" is encountered, check if it is balanced
             if (c == ')') {
+                // If there are no matching "(", skip this ")"
                 if (balance == 0) {
                     continue;
                 }
+
+                // Else, decrement the balance as we found a matching pair
                 balance--;
             }
+
+            // Append the current character to the StringBuilder
             sb.append(c);
         }
 
-        // Pass 2: Remove the rightmost "("
+        // Pass 2: Remove the rightmost "(" that are more than required for balance
         StringBuilder result = new StringBuilder();
+        // Calculate how many "(" to keep for balance
         int openToKeep = openSeen - balance;
+
         for (int i = 0; i < sb.length(); i++) {
             char c = sb.charAt(i);
+
+            // When "(" is encountered, decide whether to keep it or not
             if (c == '(') {
+                // Decrement the count of "(" to keep
                 openToKeep--;
+
+                // If no more "(" are required for balance, skip this "("
                 if (openToKeep < 0) {
                     continue;
                 }
             }
+
+            // Append the current character to the result StringBuilder
             result.append(c);
         }
 
+        // Convert result StringBuilder to String and return
         return result.toString();
     }
+
 }

@@ -28,8 +28,8 @@ public class ValidNumber {
     public boolean isNumber(String s) {
         int currentState = 0;
 
-        for (int i = 0; i < s.length(); i++) {
-            CharGroup group = identifyCharGroup(s.charAt(i));
+        for (char c : s.toCharArray()) {
+            CharGroup group = identifyCharGroup(c);
 
             if (group == CharGroup.INVALID || !DFA.get(currentState).containsKey(group)) {
                 return false;

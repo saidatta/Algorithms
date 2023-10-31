@@ -20,11 +20,11 @@ public class LowestCommonAncestorBTII {
         TreeNode right = util(root.right, p, q);
 
         if (root == p || root == q) {
-            if (left != null || right != null) {
-                ans = root;
-                return null;
+            if (left == null && right == null) {
+                return root;
             }
-            return root;
+            ans = root;
+            return null;
         }
 
         if (left != null && right != null) {

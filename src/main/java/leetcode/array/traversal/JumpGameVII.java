@@ -3,7 +3,7 @@ package leetcode.array.traversal;
 import java.util.LinkedList;
 import java.util.Queue;
 
-// https://leetcode.com/problems/jump-game-vii/submissions/
+// https://leetcode.com/problems/jump-game-vii/
 public class JumpGameVII {
     public static boolean canReach(String s, int minJump, int maxJump) {
         int n = s.length();
