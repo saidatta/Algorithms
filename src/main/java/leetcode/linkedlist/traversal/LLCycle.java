@@ -6,10 +6,11 @@ import leetcode.linkedlist.util.ListNode;
 /**
  * https://leetcode.com/problems/linked-list-cycle/#/description
  *
+ * https://www.youtube.com/watch?v=gBTe7lFR3vc
+ *
  * Created by venkatamunnangi on 12/11/16.
  */
 public class LLCycle {
-
     public boolean hasCycle(ListNode head) {
         if(head == null || head.next == null) {
             return false;

@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 // https://leetcode.com/problems/single-threaded-cpu/description/
+// https://www.youtube.com/watch?v=RR1n-d4oYqE
 public class SingleThreadCPU {
 
     public int[] getOrder(int[][] tasks) {
@@ -18,7 +19,7 @@ public class SingleThreadCPU {
         // Sort the tasks based on enqueueTime.
         Arrays.sort(indexedTasks, Comparator.comparingInt(a -> a[0]));
 
-        // Priority queue to order tasks based on processing time and index.
+        // Priority queue to order tasks based on processing time and if processing time is same, smallest index.
         PriorityQueue<int[]> pq = new PriorityQueue<>(
                 (a, b) -> a[1] != b[1] ? a[1] - b[1] : a[2] - b[2]);
 

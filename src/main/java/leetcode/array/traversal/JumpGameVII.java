@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 // https://leetcode.com/problems/jump-game-vii/
+// https://www.youtube.com/watch?v=v1HpZUnQ4Yo
 public class JumpGameVII {
     public static boolean canReach(String s, int minJump, int maxJump) {
         int n = s.length();
@@ -27,6 +28,9 @@ public class JumpGameVII {
                     queue.add(nextJump);
                 }
             }
+            // avoid repeated work to maintain O(n);
+            // in the level of BFS, by maintaing the farthest previous level could reach and start from there, we can
+            // avoid doing repeated work.
             maxReach = curr + maxJump;
         }
 

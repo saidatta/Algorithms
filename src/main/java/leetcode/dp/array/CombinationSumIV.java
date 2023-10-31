@@ -3,18 +3,18 @@ package leetcode.dp.array;
 // https://leetcode.com/problems/combination-sum-iv/description/
 public class CombinationSumIV {
 
-//    For the problem statement, the dp[i] value will represent the number of ways to make the sum i using the given
-//    numbers. We'll iterate through each number and add the value of dp[i - num] (i.e., how many ways we can create
-//    the current value minus the number) to dp[i].
+//   dp[i] value will represent the number of ways to make the sum i using the given numbers. We'll iterate through
+//   each number and add the value of dp[i - num]
+//   i.e How many ways we can create the current value minus the number to dp[i].
     public static int combinationSum4(int[] nums, int target) {
         int[] dp = new int[target + 1];
         // There's one way to form the sum 0: by using no numbers.
         dp[0] = 1;
 
-        for (int i = 1; i <= target; i++) {
+        for (int currentSum = 1; currentSum <= target; currentSum++) {
             for (int num : nums) {
-                if (i - num >= 0) {
-                    dp[i] += dp[i - num];
+                if (currentSum - num >= 0) {
+                    dp[currentSum] += dp[currentSum - num];
                 }
             }
         }
