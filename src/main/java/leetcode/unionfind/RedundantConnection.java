@@ -1,6 +1,7 @@
 package leetcode.unionfind;
 
 // https://leetcode.com/problems/redundant-connection/description/
+// https://www.youtube.com/watch?v=FXWRE67PLL0
 public class RedundantConnection {
     public int[] findRedundantConnection(int[][] edges) {
         int[] parents = new int[edges.length + 1];

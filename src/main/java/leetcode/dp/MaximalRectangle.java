@@ -19,9 +19,12 @@ public class MaximalRectangle {
         }
         int cols = matrix[0].length;
         int[] left = new int[cols], right = new int[cols], top = new int[cols];
-        Arrays.fill(left, cols); // max distance (inclusive) to left-most 1 at (y,x)
-        Arrays.fill(right, cols); // max distance (inclusive) to right-most 1 at (y,x)
-        Arrays.fill(top, 0); // max distance (inclusive) to top-most 1 at (y,x)
+        // max distance (inclusive) to left-most 1 at (y,x)
+        Arrays.fill(left, cols);
+        // max distance (inclusive) to right-most 1 at (y,x)
+        Arrays.fill(right, cols);
+        // max distance (inclusive) to top-most 1 at (y,x)
+        Arrays.fill(top, 0);
         int max = 0;
         for (char[] aMatrix : matrix) {
             for (int x = 0; x < cols; x++) {

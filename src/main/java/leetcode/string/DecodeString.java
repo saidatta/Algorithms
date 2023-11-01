@@ -3,45 +3,69 @@ package leetcode.string;
 import java.util.Stack;
 
 /**
- * https://leetcode.com/problems/decode-string/#/description
- *
- * s = "3[a]2[bc]", return "aaabcbc".
- * s = "3[a2[c]]", return "accaccacc".
- * s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
- *
- * Created by venkatamunnangi on 4/30/17.
+ * This class provides a method to decode a string that contains repeated substrings.
+ * The repeated substrings are represented in the format "k[substring]", where the "substring" is repeated "k" times.
+ * For example:
+ * - "3[a]2[bc]" is decoded as "aaabcbc".
+ * - "3[a2[c]]" is decoded as "accaccacc".
+ * - "2[abc]3[cd]ef" is decoded as "abcabccdcdcdef".
  */
 public class DecodeString {
+
+    /**
+     * Decodes a string with repeated substrings.
+     *
+     * @param input the string to be decoded
+     * @return the decoded string
+     */
     public String decodeString(String input) {
-        String res = "";
-        Stack<Integer> countStack = new Stack<>();
-        Stack<String> resStack = new Stack<>();
+        // The result string that is being built
+        StringBuilder currentString = new StringBuilder();
+        // A stack to keep track of the count of repetitions for each nested substring
+        Stack<Integer> repetitionCountStack = new Stack<>();
+        // A stack to keep track of the result strings at each level of nesting
+        Stack<String> stringStack = new Stack<>();
         int index = 0;
+
+        // Iterate through the input string
         while (index < input.length()) {
-            if (Character.isDigit(input.charAt(index))) {
+            char currentChar = input.charAt(index);
+
+            if (Character.isDigit(currentChar)) {
+                // If the current character is a digit, calculate the whole number (in case of multiple digits)
                 int count = 0;
                 while (Character.isDigit(input.charAt(index))) {
-                    // if double digit
                     count = 10 * count + input.charAt(index) - '0';
                     index++;
                 }
-                countStack.push(count);
-            } else if (input.charAt(index) == '[') {
-                resStack.push(res);
-                res = "";
+                repetitionCountStack.push(count); // Push the calculated number to the stack
+            } else if (currentChar == '[') {
+                // When '[' is encountered, push the current result string to the stack and reset the result string
+                stringStack.push(currentString.toString());
+                currentString = new StringBuilder();
                 index++;
-            } else if (input.charAt(index) == ']') {
-                StringBuilder temp = new StringBuilder(resStack.pop());
-                int repeatTimes = countStack.pop();
-                for (int i = 0; i < repeatTimes; i++) {
-                    temp.append(res);
-                }
-                res = temp.toString();
+            } else if (currentChar == ']') {
+                // When ']' is encountered, pop the top element from the string stack and the repetition count stack
+                String previousString = stringStack.pop();
+                int repeatTimes = repetitionCountStack.pop();
+
+                // Append the repeated current string to the previous string
+                currentString = new StringBuilder(previousString).append(currentString.toString().repeat(repeatTimes));
                 index++;
             } else {
-                res += input.charAt(index++);
+                // If the current character is not a digit or bracket, append it to the current result string
+                currentString.append(currentChar);
+                index++;
             }
         }
-        return res;
+        return currentString.toString(); // Convert the result StringBuilder to a String and return
+    }
+
+    public static void main(String[] args) {
+        DecodeString ds = new DecodeString();
+
+        System.out.println(ds.decodeString("3[a]2[bc]")); // Output: "aaabcbc"
+        System.out.println(ds.decodeString("3[a2[c]]")); // Output: "accaccacc"
+        System.out.println(ds.decodeString("2[abc]3[cd]ef")); // Output: "abcabccdcdcdef"
     }
 }
