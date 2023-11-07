@@ -1,6 +1,7 @@
 package leetcode.array.traversal;
 
 // https://leetcode.com/problems/missing-number/
+// https://www.youtube.com/watch?v=WnPLSRLSANE
 public class MissingNumber {
     public int missingNumber(int[] nums) {
         int expectedSum = nums.length * (nums.length + 1) / 2;
