@@ -7,7 +7,6 @@ import java.util.PriorityQueue;
 // https://leetcode.com/problems/single-threaded-cpu/description/
 // https://www.youtube.com/watch?v=RR1n-d4oYqE
 public class SingleThreadCPU {
-
     public int[] getOrder(int[][] tasks) {
         int n = tasks.length;
 

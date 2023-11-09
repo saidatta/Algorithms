@@ -70,15 +70,5 @@ public class ShortestDistanceFromAllBuildings {
         }
     }
 
-    class Tuple {
-        public int y;
-        public int x;
-        public int dist;
-
-        Tuple(int y, int x, int dist) {
-            this.y = y;
-            this.x = x;
-            this.dist = dist;
-        }
-    }
+    record Tuple(int y, int x, int dist) { }
 }
