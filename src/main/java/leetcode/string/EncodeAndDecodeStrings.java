@@ -40,6 +40,5 @@ public class EncodeAndDecodeStrings {
         EncodeAndDecodeStrings encodeAndDecodeStrings = new EncodeAndDecodeStrings();
         out.println(encodeAndDecodeStrings.encode(Arrays.asList("ABC", "CA")));
         out.println(encodeAndDecodeStrings.decode(encodeAndDecodeStrings.encode(Arrays.asList("ABC", "CA"))));
-
     }
 }
