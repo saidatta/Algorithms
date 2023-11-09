@@ -1,4 +1,4 @@
-package leetcode.array.twoPointer;
+package leetcode.array.prefixSum;
 
 /**
  * LeetCode problem: https://leetcode.com/problems/friends-of-appropriate-ages/
@@ -26,6 +26,7 @@ public class AppropriateAgesFriendRequests {
             sumInAge[age] = numInAge[age] + sumInAge[age - 1];
 
         // Loop over each age from 15 to 120 (age < 15 cannot send requests due to age rule).
+        // the 0.5*aage + 7 < age < 120, the first part of the inequality doesnt satisfy for the left part.
         for (int age = 15; age <= 120; ++age) {
             // Skip if no one is this age.
             if (numInAge[age] == 0) continue;
