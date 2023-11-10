@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.array.matrix;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.Queue;
  * Created by venkatamunnangi on 4/30/17.
  */
 public class ShortestDistanceFromAllBuildings {
-    int[] dx = {1, 0, -1, 0}, dy = {0, 1, 0, -1};
+    private static final int[][] DIRECTIONS = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
     public static void main(String... args) {
         int[][] a = {{1,0,2,0,1},{0,0,0,0,0},{0,0,1,0,0}};
@@ -60,8 +60,9 @@ public class ShortestDistanceFromAllBuildings {
             Tuple currLocation = q.poll();
             // We are incrementing the distance that has been memorized from the previous points.
             dist[currLocation.y][currLocation.x] += currLocation.dist;
-            for (int i = 0; i < 4; ++i) {
-                int x = currLocation.x + dx[i], y = currLocation.y + dy[i];
+            for (int[] dir : DIRECTIONS) {
+                int x = currLocation.x + dir[0], y = currLocation.y + dir[1];
+                // out of bounds check and building index.
                 if (y >= 0 && x >= 0 && y < m && x < n && grid[y][x] == buildingIndex) {
                     grid[y][x] = buildingIndex + 1;
                     q.add(new Tuple(y, x, currLocation.dist + 1));
@@ -70,5 +71,5 @@ public class ShortestDistanceFromAllBuildings {
         }
     }
 
-    record Tuple(int y, int x, int dist) { }
+    public record Tuple(int y, int x, int dist) { }
 }

@@ -36,8 +36,7 @@ public class AsteroidCollision {
         // Add the asteroids from the stack to the vector in the reverse order.
         int[] remainingAsteroids = new int[st.size()];
         for (int i = remainingAsteroids.length - 1; i >= 0; i--) {
-            remainingAsteroids[i] = st.peek();
-            st.pop();
+            remainingAsteroids[i] = st.pop();
         }
 
         return remainingAsteroids;
