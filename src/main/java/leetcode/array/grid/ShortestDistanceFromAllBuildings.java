@@ -1,4 +1,4 @@
-package leetcode.array.matrix;
+package leetcode.array.grid;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

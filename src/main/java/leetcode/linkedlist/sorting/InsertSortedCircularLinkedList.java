@@ -2,7 +2,8 @@ package leetcode.linkedlist.sorting;
 
 import leetcode.linkedlist.util.ListNode;
 
-public class InsertSortedLinkedList {
+// https://leetcode.com/problems/insert-into-a-sorted-circular-linked-list/description/
+public class InsertSortedCircularLinkedList {
     /**
      * Inserts a new node with the given value into the sorted circular linked list.
      * If the list is empty, it creates a new node and returns it.
@@ -35,7 +36,7 @@ public class InsertSortedLinkedList {
         ListNode node = head;
 
         while (node.next != head) {
-            // If current node and next node are in order
+            // If the current node and next node are in order
             if (node.val <= node.next.val) {
                 // Check if insertVal lies between them
                 if (insertVal >= node.val && insertVal <= node.next.val) {
@@ -60,5 +61,4 @@ public class InsertSortedLinkedList {
         ListNode next = node.next;
         node.next = new ListNode(insertVal, next);
     }
-
 }

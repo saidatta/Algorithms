@@ -1,4 +1,4 @@
-package leetcode.array.matrix;
+package leetcode.array.grid;
 
 // https://leetcode.com/problems/toeplitz-matrix/
 public class ToeplitzMatrix {
