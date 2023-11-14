@@ -1,4 +1,4 @@
-package leetcode.graph.traversal;
+package leetcode.array.grid.traversal;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -7,30 +7,12 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 // A*
-public class ShortestPathBinaryMatrix {
-
-    // Candidate represents a possible option for travelling to the cell
-    // at (row, col).
-    static class Candidate {
-        public int row;
-        public int col;
-        public int distanceSoFar;
-        public int totalEstimate;
-
-        public Candidate(int row, int col, int distanceSoFar, int totalEstimate) {
-            this.row = row;
-            this.col = col;
-            this.distanceSoFar = distanceSoFar;
-            this.totalEstimate = totalEstimate;
-        }
-    }
-
-
+// https://leetcode.com/problems/shortest-path-in-binary-matrix/
+public class ShortestPathBinaryMatrixAStar {
     // 8 directions.
     private static final int[][] directions = new int[][]{
             {-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}
     };
-
 
     public int shortestPathBinaryMatrix(int[][] grid) {
         // Firstly, we need to check that the start and target cells are open.
@@ -103,5 +85,51 @@ public class ShortestPathBinaryMatrix {
         int remainingRows = grid.length - row - 1;
         int remainingCols = grid[0].length - col - 1;
         return Math.max(remainingRows, remainingCols);
+    }
+
+    // Candidate represents a possible option for travelling to the cell
+    // at (row, col).
+    static class Candidate {
+        public int row;
+        public int col;
+        public int distanceSoFar;
+        public int totalEstimate;
+
+        public Candidate(int row, int col, int distanceSoFar, int totalEstimate) {
+            this.row = row;
+            this.col = col;
+            this.distanceSoFar = distanceSoFar;
+            this.totalEstimate = totalEstimate;
+        }
+    }
+
+    public static void main(String[] args) {
+        ShortestPathBinaryMatrixAStar solution = new ShortestPathBinaryMatrixAStar();
+
+        // Example 1: Path exists
+        int[][] grid1 = {
+                {0, 1, 0, 0, 0},
+                {0, 1, 0, 1, 0},
+                {0, 0, 0, 1, 0},
+                {1, 1, 0, 1, 0},
+                {1, 1, 0, 0, 0}
+        };
+        System.out.println("Shortest Path (Example 1): " + solution.shortestPathBinaryMatrix(grid1));
+
+        // Example 2: No path exists
+        int[][] grid2 = {
+                {0, 0, 0},
+                {1, 1, 0},
+                {1, 1, 1}
+        };
+        System.out.println("Shortest Path (Example 2): " + solution.shortestPathBinaryMatrix(grid2));
+
+        // Example 3: Direct path
+        int[][] grid3 = {
+                {0, 0, 0},
+                {0, 0, 0},
+                {0, 0, 0}
+        };
+        System.out.println("Shortest Path (Example 3): " + solution.shortestPathBinaryMatrix(grid3));
     }
 }
