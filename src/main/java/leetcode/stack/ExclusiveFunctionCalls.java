@@ -6,7 +6,6 @@ import java.util.List;
 
 // https://leetcode.com/problems/exclusive-time-of-functions/solutions/153497/java-solution-using-stack-wrapper-class-and-calculation-when-pop-element-from-the-stack/
 class ExclusiveFunctionCalls {
-
     // Parses a list of log strings to calculate the exclusive time spent in each function.
     public int[] exclusiveTime(int n, List<String> logs) {
         // Stack to keep track of function call start times

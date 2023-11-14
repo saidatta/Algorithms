@@ -1,6 +1,7 @@
 package leetcode.array.binarysearch;
 
 // https://leetcode.com/problems/cutting-ribbons/
+// https://www.youtube.com/watch?v=ha8RA6ZpRyY
 public class CuttingRibbons {
     public static int maxLength(int[] ribbons, int k) {
         int low = 1, high = 0;
@@ -10,11 +11,8 @@ public class CuttingRibbons {
 
         while (low <= high) {
             int mid = low + (high - low) / 2;
-            int count = 0;
-            for (int ribbon : ribbons) {
-                count += ribbon / mid;
-            }
-            if (count >= k) {
+
+            if (canCut(ribbons, mid, k)) {
                 low = mid + 1;
             } else {
                 high = mid - 1;
@@ -22,6 +20,15 @@ public class CuttingRibbons {
         }
 
         return high;
+    }
+
+    private static boolean canCut(int[] ribbons, int mid, int k) {
+        int count = 0;
+        for (int ribbon : ribbons) {
+            count += ribbon / mid;
+        }
+
+        return count >= k;
     }
 
     public static void main(String[] args) {
