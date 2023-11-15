@@ -34,7 +34,7 @@ public class TopologicalSortGraph {
 
         boolean[] visited = new boolean[V];
         for (int i = 0; i < V; i++) {
-            // un-necessary. kept for logical and readability reasons.
+            // unnecessary. kept for logical and readability reasons.
             visited[i] = false;
         }
 

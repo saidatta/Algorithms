@@ -3,6 +3,7 @@ package leetcode.graph;
 import java.util.LinkedList;
 import java.util.Queue;
 
+// https://leetcode.com/problems/is-graph-bipartite/
 public class IsBipartite {
 
 //     Depth First Search (DFS) or Breadth First Search (BFS) traversal can be used to determine if the graph
@@ -15,6 +16,7 @@ public class IsBipartite {
         int[] colors = new int[n];
 
         for (int i = 0; i < n; i++) {
+            // this is to make sure we cover disjoint component graphs
             if (colors[i] == 0 && !validColor(graph, colors, i)) {
                 return false;
             }
@@ -41,6 +43,7 @@ public class IsBipartite {
                 }
             }
         }
+
         return true;
     }
 
