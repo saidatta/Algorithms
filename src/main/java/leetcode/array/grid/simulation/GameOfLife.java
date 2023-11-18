@@ -18,10 +18,12 @@ public class GameOfLife {
 
                 // Rule 1 or Rule 3
                 if (board[i][j] == 1 && (liveNeighbors < 2 || liveNeighbors > 3)) {
+                    // mark them dead.
                     board[i][j] = -1;
                 }
                 // Rule 4
                 if (board[i][j] == 0 && liveNeighbors == 3) {
+                    // mark them alive
                     board[i][j] = 2;
                 }
             }
@@ -52,5 +54,37 @@ public class GameOfLife {
             }
         }
         return liveCount;
+    }
+
+    public static void main(String[] args) {
+        GameOfLife game = new GameOfLife();
+
+        // Sample grid for testing
+        int[][] board = {
+                {0, 1, 0},
+                {0, 0, 1},
+                {1, 1, 1},
+                {0, 0, 0}
+        };
+
+        // Print initial state of the board
+        System.out.println("Initial Board:");
+        printBoard(board);
+
+        // Apply the rules of Game of Life
+        game.gameOfLife(board);
+
+        // Print updated state of the board
+        System.out.println("\nBoard after Game of Life:");
+        printBoard(board);
+    }
+
+    private static void printBoard(int[][] board) {
+        for (int[] row : board) {
+            for (int cell : row) {
+                System.out.print(cell + " ");
+            }
+            System.out.println();
+        }
     }
 }

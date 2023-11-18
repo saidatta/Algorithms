@@ -89,9 +89,7 @@ public class CheckOriginalTwoEncodedStrings {
     }
 }
 
-}
-
-/**
+/*
  * s1 = "l123e", s2 = "44", diff = 0
  * |
  * |--- (Case 1: Literal in s1, diff > 0) l -> "123e", 44, diff = -1
