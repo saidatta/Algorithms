@@ -1,5 +1,6 @@
 package leetcode.design.ds;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,8 +47,8 @@ class AllocatorNode {
 }
 
 public class MemoryAllocator {
-    private final AllocatorNode leftDummy;   // Left boundary dummy node
-    private final AllocatorNode rightDummy;  // Right boundary dummy node
+    private final AllocatorNode headDummy;   // Left boundary dummy node
+    private final AllocatorNode tailDummy;  // Right boundary dummy node
     private final Map<Integer, List<AllocatorNode>> idToNodes = new HashMap<>();
 
     /**
@@ -55,42 +56,43 @@ public class MemoryAllocator {
      * @param blockSize Size of the memory
      */
     public MemoryAllocator(int blockSize) {
-        leftDummy = new AllocatorNode(0, 0, 0);
-        rightDummy = new AllocatorNode(0, 0, 0);
+        headDummy = new AllocatorNode(0, 0, 0);
+        tailDummy = new AllocatorNode(0, 0, 0);
         AllocatorNode freeNode = new AllocatorNode(0, blockSize, -1);  // Initially, all memory is free
-        leftDummy.next = freeNode;
-        freeNode.prev = leftDummy;
-        freeNode.next = rightDummy;
-        rightDummy.prev = freeNode;
+        headDummy.next = freeNode;
+        freeNode.prev = headDummy;
+        freeNode.next = tailDummy;
+        tailDummy.prev = freeNode;
     }
 
     /**
-     * Allocates a block of memory of the given size and assigns it the given memory ID.
-     * @param size Size of the block
+     * Allocates a block of memory for the given size and assigns it the given memory ID.
+     * @param requestedSize Size of the block
      * @param mID Memory ID
      * @return Start index of the allocated block or -1 if allocation is not possible
      */
-    public int allocate(int size, int mID) {
-        AllocatorNode curr = leftDummy.next;
-        while (curr != rightDummy) {
+    public int allocate(int requestedSize, int mID) {
+        AllocatorNode current = headDummy.next;
+        while (current != tailDummy) {
             // Check if the current block is free and big enough
-            if (curr.mID == -1 && curr.freeSize >= size) {
-                if (curr.freeSize == size) {
+            if (current.mID == -1 && current.freeSize >= requestedSize) {
+                if (current.freeSize == requestedSize) {
                     // marking the current node tagged with mId
-                    curr.mID = mID;
+                    current.mID = mID;
                     // mID -> current node mapping
-                    idToNodes.computeIfAbsent(mID, k -> new ArrayList<>()).add(curr);
-                    return curr.start;
+                    idToNodes.computeIfAbsent(mID, k -> new ArrayList<>()).add(current);
+                    return current.start;
                 } else {
-                    curr.freeSize -= size;
-                    AllocatorNode mem = new AllocatorNode(curr.start, size, mID);
-                    curr.start += size;
-                    mem.insert(curr.prev, curr);
+                    // here, we move the start free pointer to next free space.
+                    current.freeSize -= requestedSize;
+                    AllocatorNode mem = new AllocatorNode(current.start, requestedSize, mID);
+                    current.start += requestedSize;
+                    mem.insert(current.prev, current);
                     idToNodes.computeIfAbsent(mID, k -> new ArrayList<>()).add(mem);
                     return mem.start;
                 }
             }
-            curr = curr.next;
+            current = current.next;
         }
         return -1;
     }
@@ -103,9 +105,7 @@ public class MemoryAllocator {
     public int free(int mID) {
         int freed = 0;
         List<AllocatorNode> nodesList = idToNodes.get(mID);
-        if (nodesList == null) {
-            return 0;
-        }
+        if (nodesList == null) return 0;
 
         for (AllocatorNode node : nodesList) {
             freed += node.freeSize;

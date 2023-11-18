@@ -9,12 +9,12 @@ import leetcode.tree.util.TreeNode;
 */
 public class ConvertBSTSortedLinkedList {
 
-
     public TreeNode treeToDoublyList(TreeNode root) {
         if (root == null) {
             return null;
         }
         TreeNode[] treeNodes = divideAndConquer(root);
+        // make it circular.
         TreeNode first = treeNodes[0], last = treeNodes[1];
         first.left = last;
         last.right = first;
@@ -36,6 +36,7 @@ public class ConvertBSTSortedLinkedList {
 
         // in case both left subtree and right subtree are both non-empty
         if (left != null && right != null) {
+            // make it sorted 1<>2<><3> <==> left <> parent <> right
             left[1].right = curr;
             curr.left = left[1];
             curr.right = right[0];
@@ -57,7 +58,7 @@ public class ConvertBSTSortedLinkedList {
             return new TreeNode[]{curr, right[1]};
         }
 
-        // in case both subtree are empty
+        // in case both subtrees are empty
         return new TreeNode[]{curr, curr};
     }
 
