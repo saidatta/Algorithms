@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * https://leetcode.com/problems/palindrome-pairs/#/description
@@ -22,95 +23,96 @@ import java.util.List;
  *
  * Created by venkatamunnangi on 4/5/17.
  */
+import java.util.ArrayList;
+import java.util.List;
+
 public class PalindromePairs {
 
+    static class TrieNode {
+        TrieNode[] children;
+        int wordIndex;
+        List<Integer> palindromesBelow;
+
+        TrieNode() {
+            children = new TrieNode[26];
+            wordIndex = -1;
+            palindromesBelow = new ArrayList<>();
+        }
+    }
+
     public List<List<Integer>> palindromePairs(String[] words) {
-        List<List<Integer>> res = new ArrayList<>();
-        if(words == null || words.length == 0){
-            return res;
-        }
-        //build the map save the key-val pairs: String - idx
-        HashMap<String, Integer> map = new HashMap<>();
-        for(int i = 0; i < words.length; i++){
-            map.put(words[i], i);
+        List<List<Integer>> result = new ArrayList<>();
+        TrieNode root = new TrieNode();
+
+        // Build the trie with reversed words
+        for (int i = 0; i < words.length; i++) {
+            addWord(root, words[i], i);
         }
 
-        //special cases: "" can be combine with any palindrome string
-        if(map.containsKey("")){
-            int blankIdx = map.get("");
-            for(int i = 0; i < words.length; i++){
-                if(isPalindrome(words[i])){
-                    // not the empty space by itself.
-                    if(i == blankIdx) {
-                        continue;
-                    }
-                    res.add(Arrays.asList(blankIdx, i));
-                    res.add(Arrays.asList(i, blankIdx));
-                }
-            }
+        // Search for palindrome pairs
+        for (int i = 0; i < words.length; i++) {
+            search(words, i, root, result);
         }
 
-        //find all string and reverse string pairs
-        for(int i = 0; i < words.length; i++){
-            String reverseStr = reverseStr(words[i]);
-            if(map.containsKey(reverseStr)){
-                int found = map.get(reverseStr);
-                if(found == i) {
-                    continue;
-                }
-                res.add(Arrays.asList(i, found));
-            }
-        }
-
-        //find the pair s1, s2 that
-        //case1 : s1[0:cut] is palindrome and s1[cut+1:] = reverse(s2) => (s2, s1)
-        //case2 : s1[cut+1:] is palindrome and s1[0:cut] = reverse(s2) => (s1, s2)
-        for(int i = 0; i < words.length; i++){
-            String cur = words[i];
-            for(int cut = 1; cut < cur.length(); cut++){
-                if(isPalindrome(cur.substring(0, cut))){
-                    String cut_r = reverseStr(cur.substring(cut));
-                    if(map.containsKey(cut_r)){
-                        int found = map.get(cut_r);
-                        if(found == i) continue;
-                        res.add(Arrays.asList(found, i));
-                    }
-                }
-
-                if(isPalindrome(cur.substring(cut))){
-                    String cut_r = reverseStr(cur.substring(0, cut));
-                    if(map.containsKey(cut_r)){
-                        int found = map.get(cut_r);
-                        if(found == i) continue;
-                        res.add(Arrays.asList(i, found));
-                    }
-                }
-            }
-        }
-
-        return res;
+        return result;
     }
 
-    public String reverseStr(String str){
-        StringBuilder sb= new StringBuilder(str);
-        return sb.reverse().toString();
+    private void addWord(TrieNode root, String word, int wordIndex) {
+        TrieNode node = root;
+        for (int i = word.length() - 1; i >= 0; i--) {
+            int ch = word.charAt(i) - 'a';
+            if (node.children[ch] == null) {
+                node.children[ch] = new TrieNode();
+            }
+            if (isPalindrome(word, 0, i)) {
+                node.palindromesBelow.add(wordIndex);
+            }
+            node = node.children[ch];
+        }
+        node.wordIndex = wordIndex;
+        node.palindromesBelow.add(wordIndex);
     }
 
-    private boolean isPalindrome(String word) {
-        int n = word.length();
-        for(int i = 0; i<=n/2; i++) {
-            if(word.charAt(i) != word.charAt(n-i-1)) {
+    private void search(String[] words, int wordIndex, TrieNode root, List<List<Integer>> result) {
+        TrieNode node = root;
+        String word = words[wordIndex];
+
+        for (int i = 0; i < word.length(); i++) {
+            // Check for pair when we reach the end of a word in trie
+            if (node.wordIndex >= 0 && node.wordIndex != wordIndex && isPalindrome(word, i, word.length() - 1)) {
+                result.add(List.of(wordIndex, node.wordIndex));
+            }
+
+            node = node.children[word.charAt(i) - 'a'];
+            if (node == null) return;
+        }
+
+        // Check the remaining words in trie
+        for (int otherIndex : node.palindromesBelow) {
+            if (wordIndex != otherIndex) {
+                result.add(List.of(wordIndex, otherIndex));
+            }
+        }
+    }
+
+    private boolean isPalindrome(String word, int start, int end) {
+        while (start < end) {
+            if (word.charAt(start++) != word.charAt(end--)) {
                 return false;
             }
         }
-
         return true;
     }
 
-    public static void main(String [] args) {
-        PalindromePairs palindromePairs = new PalindromePairs();
-        System.out.println(palindromePairs.isPalindrome("aa"));
-        System.out.println(palindromePairs.isPalindrome("aba"));
-        System.out.println(palindromePairs.isPalindrome("abax"));
+    public static void main(String[] args) {
+        PalindromePairs solution = new PalindromePairs();
+        System.out.println(solution.palindromePairs(new String[]{"abcd","dcba","lls","s","sssll"}));
+        // Output: [[0,1],[1,0],[3,2],[2,4]]
+
+        System.out.println(solution.palindromePairs(new String[]{"bat","tab","cat"}));
+        // Output: [[0,1],[1,0]]
+
+        System.out.println(solution.palindromePairs(new String[]{"a",""}));
+        // Output: [[0,1],[1,0]]
     }
 }
