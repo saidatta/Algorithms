@@ -1,5 +1,7 @@
 package leetcode.design;
 
+import java.util.concurrent.SynchronousQueue;
+
 /**
  * LC 170
  * https://leetcode.com/problems/two-sum-iii-data-structure-design/#/description
