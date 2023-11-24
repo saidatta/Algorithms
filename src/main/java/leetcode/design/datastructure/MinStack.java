@@ -1,4 +1,4 @@
-package leetcode.design.ds;
+package leetcode.design.datastructure;
 
 import static java.lang.System.out;
 

@@ -1,4 +1,4 @@
-package leetcode.design.ds;
+package leetcode.design.datastructure;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;

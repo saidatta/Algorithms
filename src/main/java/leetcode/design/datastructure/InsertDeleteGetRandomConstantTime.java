@@ -1,8 +1,10 @@
-package leetcode.design.ds;
+package leetcode.design.datastructure;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+
+import java.util.*;
 
 /**
  * https://leetcode.com/problems/insert-delete-getrandom-o1/#/description
@@ -16,19 +18,17 @@ import java.util.Random;
  *
  * Created by venkatamunnangi on 4/2/17.
  */
-import java.util.*;
-
-// https://leetcode.com/problems/insert-delete-getrandom-o1/description/
 class RandomizedSet {
-    private Map<Integer, Integer> valueToIndex;
-    private List<Integer> values;
-    private Random rand;
+    // val -> index.
+    private final Map<Integer, Integer> valueToIndex;
+    private final List<Integer> values;
+    private final Random rand;
 
     /** Initialize your data structure here. */
     public RandomizedSet() {
-        valueToIndex = new HashMap<>();
-        values = new ArrayList<>();
-        rand = new Random();
+        this.valueToIndex = new HashMap<>();
+        this.values = new ArrayList<>();
+        this.rand = new Random();
     }
 
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
@@ -47,6 +47,7 @@ class RandomizedSet {
             return false;
         }
 
+        // replace lastElement, index and its value with its targeted value.
         int index = valueToIndex.get(val);
         int lastElement = values.get(values.size() - 1);
 

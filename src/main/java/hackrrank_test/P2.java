@@ -63,7 +63,5 @@ public class P2 {
         for(String str : sortedFruits) {
             System.out.println(str);
         }
-
-
     }
 }

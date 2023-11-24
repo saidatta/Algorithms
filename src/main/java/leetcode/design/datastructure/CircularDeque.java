@@ -1,6 +1,4 @@
-package leetcode.design.ds;
-
-import java.util.TreeMap;
+package leetcode.design.datastructure;
 
 // https://www.lowleveldesign.io/LLD/DataStructures/CircularDeque
 public class CircularDeque {

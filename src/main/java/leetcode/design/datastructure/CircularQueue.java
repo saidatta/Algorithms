@@ -1,7 +1,4 @@
-package leetcode.design.ds;
-
-import java.util.Deque;
-import java.util.LinkedList;
+package leetcode.design.datastructure;
 
 // https://www.lowleveldesign.io/LLD/DataStructures/CircularQueue
 class CircularQueue {

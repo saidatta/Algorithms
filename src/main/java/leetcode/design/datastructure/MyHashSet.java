@@ -1,4 +1,4 @@
-package leetcode.design.ds;
+package leetcode.design.datastructure;
 
 /**
  * https://leetcode.com/problems/design-hashset/description/

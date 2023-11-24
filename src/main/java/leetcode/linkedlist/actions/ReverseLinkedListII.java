@@ -7,7 +7,7 @@ public class ReverseLinkedListII {
     public ListNode reverseBetween(ListNode head, int left, int right) {
         int curIdx = 1;
         ListNode beforeLeft = null;
-        ListNode prev = null, cur = head, nxt = null;
+        ListNode prev = null, cur = head, nxt;
         ListNode leftPtr = null;
 
         while (cur != null) {

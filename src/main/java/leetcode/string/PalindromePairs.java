@@ -1,10 +1,7 @@
 package leetcode.string;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.ArrayList;;
 import java.util.List;
-import java.util.Map;
 
 /**
  * https://leetcode.com/problems/palindrome-pairs/#/description
@@ -23,14 +20,14 @@ import java.util.Map;
  *
  * Created by venkatamunnangi on 4/5/17.
  */
-import java.util.ArrayList;
-import java.util.List;
 
+// https://leetcode.com/problems/palindrome-pairs/editorial/ - S tier
 public class PalindromePairs {
 
     static class TrieNode {
         TrieNode[] children;
         int wordIndex;
+        // are there any palindromes below.
         List<Integer> palindromesBelow;
 
         TrieNode() {
@@ -75,15 +72,21 @@ public class PalindromePairs {
 
     private void search(String[] words, int wordIndex, TrieNode root, List<List<Integer>> result) {
         TrieNode node = root;
-        String word = words[wordIndex];
+        String currentWord = words[wordIndex];
 
-        for (int i = 0; i < word.length(); i++) {
-            // Check for pair when we reach the end of a word in trie
-            if (node.wordIndex >= 0 && node.wordIndex != wordIndex && isPalindrome(word, i, word.length() - 1)) {
+//        1. Words in the Trie that are the reverse of our current word.
+//        2. Words in the Trie that start with the reverse of our current word and then finish in a palindrome.
+//        3. Words in the Trie that are the reverse of the first part of our current word, and then what's left of our
+//           current word forms a palindrome.
+
+        for (int i = 0; i < currentWord.length(); i++) {
+            // Check for a pair when we reach the end of a word in trie
+            if (node.wordIndex >= 0 && node.wordIndex != wordIndex && isPalindrome(currentWord, i, currentWord.length() - 1)) {
+                // found palindrome.
                 result.add(List.of(wordIndex, node.wordIndex));
             }
 
-            node = node.children[word.charAt(i) - 'a'];
+            node = node.children[currentWord.charAt(i) - 'a'];
             if (node == null) return;
         }
 
@@ -106,6 +109,13 @@ public class PalindromePairs {
 
     public static void main(String[] args) {
         PalindromePairs solution = new PalindromePairs();
+
+        System.out.println(solution.palindromePairs(
+                new String[]{
+                        "A", "B", "BAN", "BANANA", "BAT", "LOLCAT", "MANA", "NAB", "NANA", "NOON", "ON", "TA"
+                        , "TAC"
+                }));
+
         System.out.println(solution.palindromePairs(new String[]{"abcd","dcba","lls","s","sssll"}));
         // Output: [[0,1],[1,0],[3,2],[2,4]]
 

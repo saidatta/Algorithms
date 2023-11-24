@@ -1,4 +1,4 @@
-package leetcode.design.ds;
+package leetcode.design.datastructure;
 
 /**
  * https://github.com/donnemartin/system-design-primer/blob/master/solutions/object_oriented_design/hash_table

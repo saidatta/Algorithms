@@ -1,4 +1,4 @@
-package leetcode.design.ds;
+package leetcode.design.datastructure.iterator;
 
 import leetcode.tree.util.TreeNode;
 
@@ -10,49 +10,38 @@ import java.util.Stack;
  * Created by venkatamunnangi on 3/7/17.
  */
 public class BSTIterator {
-    private Stack<TreeNode> treeNodeStack;
+    private final Stack<TreeNode> stack;
 
     public BSTIterator(TreeNode root) {
-        // root == null
-        this.treeNodeStack = new Stack<>();
-        TreeNode curr = root;
-        while(curr != null) {
-            // the O ( h ) requirement
-            this.treeNodeStack.push(curr);
-            if(curr.left != null) {
-                curr = curr.left;
-            } else {
-                break;
-            }
+        this.stack = new Stack<>();
+        this.leftmostInorder(root);
+    }
+
+    private void leftmostInorder(TreeNode node) {
+        // Add all the nodes from root to the leftmost leaf
+        // This will be the path of nodes to be visited
+        while (node != null) {
+            stack.push(node);
+            node = node.left;
         }
     }
 
-    /** @return whether we have a next smallest number */
-    public boolean hasNext() {
-        return !treeNodeStack.isEmpty();
-    }
-
-    /** @return the next smallest number */
     public int next() {
-        TreeNode smallestNode = treeNodeStack.pop();
-        TreeNode currentNode = smallestNode;
+        // Pop the next smallest element from the stack
+        TreeNode topNode = stack.pop();
 
-        if(currentNode.right != null) {
-            currentNode = currentNode.right;
-
-            while(currentNode != null) {
-                treeNodeStack.push(currentNode);
-                if(currentNode.left != null) {
-                    currentNode = currentNode.left;
-                } else {
-                    break;
-                }
-            }
+        // If there is a right subtree, process its leftmost nodes
+        if (topNode.right != null) {
+            leftmostInorder(topNode.right);
         }
 
-        return smallestNode.val;
+        return topNode.val;
     }
 
+    public boolean hasNext() {
+        return !stack.isEmpty();
+    }
+}
 
     /**
      * An in-order implementation of a BST Iterator. For example, given a BST with Integer values,
@@ -221,7 +210,6 @@ public class BSTIterator {
 //        }
 //
 //    }
-}
 
 /**
  * Your BSTIterator will be called like this:

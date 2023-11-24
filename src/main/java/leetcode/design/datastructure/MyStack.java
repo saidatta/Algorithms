@@ -1,4 +1,4 @@
-package leetcode.design.ds;
+package leetcode.design.datastructure;
 
 import java.util.LinkedList;
 import java.util.Queue;

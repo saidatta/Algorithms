@@ -4,28 +4,23 @@ import leetcode.tree.util.TreeNode;
 
 // https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/description/
 public class MaximumDifferenceBetweenNodeAndAncestor {
-    private int maxDiff = 0;
-
     public int maxAncestorDiff(TreeNode root) {
-        dfs(root, root.val, root.val);
-        return maxDiff;
+        if (root == null) return 0;
+        return dfs(root, root.val, root.val);
     }
 
-    private void dfs(TreeNode node, int minVal, int maxVal) {
+    private int dfs(TreeNode node, int curMax, int curMin) {
         if (node == null) {
-            return;
+            return curMax - curMin;
         }
-        // Update the maximum difference
-        maxDiff = Math.max(maxDiff, Math.abs(node.val - minVal));
-        maxDiff = Math.max(maxDiff, Math.abs(node.val - maxVal));
 
-        // Update min and max values
-        minVal = Math.min(minVal, node.val);
-        maxVal = Math.max(maxVal, node.val);
+        curMax = Math.max(curMax, node.val);
+        curMin = Math.min(curMin, node.val);
 
-        // Traverse left and right children
-        dfs(node.left, minVal, maxVal);
-        dfs(node.right, minVal, maxVal);
+        int left = dfs(node.left, curMax, curMin);
+        int right = dfs(node.right, curMax, curMin);
+
+        return Math.max(left, right);
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,7 @@
 package leetcode.dp.string;
 
 // https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings
+// https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/solutions/1550342/java-clean-dfs-memo/
 public class CheckOriginalTwoEncodedStrings {
 // -1000 < diff < 1000 as there can be at most 3 digits in the string meaning largest digits are 999
 
@@ -13,7 +14,8 @@ public class CheckOriginalTwoEncodedStrings {
      */
     public boolean possiblyEquals(String s1, String s2) {
         return checkPossibility(s1.toCharArray(), s2.toCharArray(), 0, 0, 0,
-                new Boolean[s1.length() + 1][s2.length() + 1][2001]);
+                new Boolean[s1.length() + 1][s2.length() + 1][2001]
+        );
     }
 
     /**
@@ -33,7 +35,7 @@ public class CheckOriginalTwoEncodedStrings {
             return diff == 0;
         }
 
-        // Check for memoized result
+        // Check for a memorized result
         if (dp[i][j][diff + 1000] != null) {
             return dp[i][j][diff + 1000];
         }
@@ -46,14 +48,16 @@ public class CheckOriginalTwoEncodedStrings {
         }
 
         // Case 2: Literal character in s1 and diff > 0
-        if (i < s1Chars.length && !Character.isDigit(s1Chars[i]) && diff > 0 && checkPossibility(s1Chars, s2Chars,
-                i + 1, j, diff - 1, dp)) {
+        if (i < s1Chars.length
+                && !Character.isDigit(s1Chars[i])
+                && diff > 0 && checkPossibility(s1Chars, s2Chars, i + 1, j, diff - 1, dp)) {
             return dp[i][j][diff + 1000] = true;
         }
 
         // Case 3: Literal character in s2 and diff < 0
-        if (j < s2Chars.length && !Character.isDigit(s2Chars[j]) && diff < 0 && checkPossibility(s1Chars, s2Chars, i,
-                j + 1, diff + 1, dp)) {
+        if (j < s2Chars.length
+                && !Character.isDigit(s2Chars[j])
+                && diff < 0 && checkPossibility(s1Chars, s2Chars, i, j + 1, diff + 1, dp)) {
             return dp[i][j][diff + 1000] = true;
         }
 

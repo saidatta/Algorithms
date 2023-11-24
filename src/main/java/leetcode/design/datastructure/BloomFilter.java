@@ -1,4 +1,4 @@
-package leetcode.design.ds;
+package leetcode.design.datastructure;
 
 import java.util.BitSet;
 import java.util.Random;

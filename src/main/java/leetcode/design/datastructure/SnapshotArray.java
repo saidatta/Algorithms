@@ -1,4 +1,4 @@
-package leetcode.design.ds;
+package leetcode.design.datastructure;
 
 import java.util.ArrayList;
 import java.util.Map;
