@@ -1,24 +1,14 @@
-package leetcode.design;
+package leetcode.array.grid.math;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 // https://leetcode.com/problems/dot-product-of-two-sparse-vectors/
-public class DotProductSparseVector {
-    private static class Pair {
-        int index;
-        int value;
-
-        Pair(int index, int value) {
-            this.index = index;
-            this.value = value;
-        }
-    }
-
+public class DotProductSparseVectorCSR {
     private final List<Pair> pairs;
 
-    public DotProductSparseVector(int[] nums) {
+    public DotProductSparseVectorCSR(int[] nums) {
         this.pairs = new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] != 0) {
@@ -33,7 +23,7 @@ public class DotProductSparseVector {
      * @param vec - Another sparse vector
      * @return - The dot product
      */
-    public int dotProduct(DotProductSparseVector vec) {
+    public int dotProduct(DotProductSparseVectorCSR vec) {
         int result = 0;
         int p = 0, q = 0;
 
@@ -114,6 +104,15 @@ public class DotProductSparseVector {
         }
     }
 
+    private static class Pair {
+        int index;
+        int value;
+
+        Pair(int index, int value) {
+            this.index = index;
+            this.value = value;
+        }
+    }
 }
 
 //    Update from recent FB onsite, interviewer didn't accept the HASHMAP solution and wanted to see the 2 pointers

@@ -1,4 +1,6 @@
-package leetcode;
+package leetcode.binary;
+
+import java.util.stream.IntStream;
 
 /**
  * Given an array of integers where every integer occurs three times except for one integer,
@@ -11,12 +13,17 @@ package leetcode;
 public class SingleNumber {
     public int singleNumber(int... nums) {
         int result = 0;
-        for(int i=0; i < nums.length; i++){
-            //xor of equal numbers is 0.
+        for (int num : nums) {
+            // xor of equal numbers is 0.
             // xor with 0 with another non-zero number is that non-zero number.
-            result ^= nums[i];
+            result ^= num;
         }
         return result;
+    }
+
+    // this looks slower.
+    public int singleNumberFunctional(int... nums) {
+        return IntStream.of(nums).reduce((a, b) -> a ^ b).orElse(0);
     }
 
     public static void main(String [] args) {

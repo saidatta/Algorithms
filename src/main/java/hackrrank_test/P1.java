@@ -6,10 +6,8 @@ import java.util.Stack;
  * Created by venkatamunnangi on 9/23/17.
  */
 public class P1 {
-
     private static String solution() {
-        StringBuffer sb = new StringBuffer();
-
+        StringBuilder sb = new StringBuilder();
         Stack<Character> stack = new Stack<>();
 
         for(char ch : sb.toString().toCharArray()) {

@@ -1,4 +1,4 @@
-package leetcode.array.slidingWindow;
+package leetcode.array.slidingwindow;
 
 public class MinOpsReduceXZero {
     /**

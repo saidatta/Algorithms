@@ -1,10 +1,10 @@
-package leetcode.array.slidingWindow;
+package leetcode.array.slidingwindow;
 
 import java.util.Arrays;
 
 // https://leetcode.com/problems/frequency-of-the-most-frequent-element
 // https://www.youtube.com/watch?v=vgBrQ0NM5vE
-import java.util.Arrays;
+
 
 public class FrequencyOfMostFrequentElement {
 

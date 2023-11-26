@@ -1,4 +1,4 @@
-package leetcode.array.slidingWindow;
+package leetcode.array.slidingwindow;
 
 /**
  * https://leetcode.com/problems/minimum-size-subarray-sum/description/

@@ -1,6 +1,4 @@
-package leetcode.array.slidingWindow;
-
-import java.util.Arrays;
+package leetcode.array.slidingwindow;
 
 // https://leetcode.com/problems/maximum-average-subarray-i/
 public class MaxAverageSubarray {
