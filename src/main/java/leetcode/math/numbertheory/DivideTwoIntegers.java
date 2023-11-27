@@ -1,4 +1,4 @@
-package leetcode.math;
+package leetcode.math.numbertheory;
 
 /**
  * division without operator

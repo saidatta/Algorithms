@@ -1,4 +1,4 @@
-package leetcode.math;
+package leetcode.math.geometry;
 
 // https://leetcode.com/problems/angle-between-hands-of-a-clock/description/
 public class ClockAngle {

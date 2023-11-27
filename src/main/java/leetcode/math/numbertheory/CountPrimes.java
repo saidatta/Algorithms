@@ -1,4 +1,4 @@
-package leetcode.math;
+package leetcode.math.numbertheory;
 
 /**
  * https://leetcode.com/problems/count-primes/
