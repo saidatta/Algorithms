@@ -1,4 +1,4 @@
-package leetcode.string.slidingWindow;
+package leetcode.string.slidingwindow;
 
 // https://leetcode.com/problems/longest-repeating-character-replacement/description/
 public class LongestRepeatingCharacterReplacement {

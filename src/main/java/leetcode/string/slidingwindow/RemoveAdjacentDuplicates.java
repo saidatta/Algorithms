@@ -1,4 +1,4 @@
-package leetcode.string.slidingWindow;
+package leetcode.string.slidingwindow;
 
 // https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
 public class RemoveAdjacentDuplicates {

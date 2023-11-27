@@ -1,4 +1,4 @@
-package leetcode.string.two_pointers;
+package leetcode.string.twopointers;
 
 import java.util.Arrays;
 import java.util.HashMap;

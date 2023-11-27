@@ -1,4 +1,4 @@
-package leetcode.string.two_pointers;
+package leetcode.string.twopointers;
 
 // https://leetcode.com/problems/reverse-string/
 public class ReverseString {

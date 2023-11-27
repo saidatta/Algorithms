@@ -1,4 +1,4 @@
-package leetcode.string.two_pointers;
+package leetcode.string.twopointers;
 
 // https://leetcode.com/problems/maximum-xor-product/solutions/4304472/c-java-python-javascript-beats-100-explained/
 public class MaximumXorProduct {

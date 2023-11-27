@@ -1,4 +1,4 @@
-package leetcode.string.two_pointers;
+package leetcode.string.twopointers;
 
 public class SeparateBlackAndWhiteBalls {
     public long minimumSteps(String s) {

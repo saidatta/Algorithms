@@ -1,4 +1,4 @@
-package leetcode.string.slidingWindow;
+package leetcode.string.slidingwindow;
 
 // https://leetcode.com/problems/remove-colored-pieces-if-both-neighbors-are-the-same-color/description/
 public class RemoveColoredPiecesSameColor {

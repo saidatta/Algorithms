@@ -1,4 +1,4 @@
-package leetcode.string.two_pointers;
+package leetcode.string.twopointers;
 
 // https://leetcode.com/contest/problems/make-three-strings-equal/
 public class MakeThreeStringsEqual {

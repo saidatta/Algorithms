@@ -7,13 +7,17 @@ import java.util.List;
 public class KthLexicographicalHappyStrings {
     public String getHappyString(int n, int k) {
         List<String> happyStrings = new ArrayList<>();
-        generateHappyStrings(new StringBuilder(), n, happyStrings, ' ');
+        generateHappyStrings(new StringBuilder(), n, happyStrings, ' ', k);
         return k <= happyStrings.size() ? happyStrings.get(k - 1) : "";
     }
 
-    private void generateHappyStrings(StringBuilder current, int n, List<String> result, char lastChar) {
+    private void generateHappyStrings(StringBuilder current, int n, List<String> result, char lastChar, int k) {
         if (current.length() == n) {
             result.add(current.toString());
+            return;
+        }
+
+        if (result.size() == k) {
             return;
         }
 
@@ -21,7 +25,7 @@ public class KthLexicographicalHappyStrings {
         for (char c : new char[] {'a', 'b', 'c'}) {
             if (c != lastChar) {
                 current.append(c);
-                generateHappyStrings(current, n, result, c);
+                generateHappyStrings(current, n, result, c, k);
                 current.deleteCharAt(current.length() - 1); // Backtrack
             }
         }

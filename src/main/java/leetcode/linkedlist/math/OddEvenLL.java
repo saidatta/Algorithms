@@ -16,7 +16,7 @@ public class OddEvenLL {
     // 1-2-3-4 = 1-3-2-4
     // 1-1-2-3 = 1-2-1-3
     // 1-2-3-4-5 = 1-3-5-2-4
-    public ListNode oddEvenList(ListNode head) {
+    public ListNode     oddEvenList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
@@ -45,21 +45,44 @@ public class OddEvenLL {
     }
 
     public ListNode oddEvenList2(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
+        if (head == null) return null;
+
+        ListNode oddPtr = head;
+        ListNode evenPtr = head.next;
+        ListNode evenHead = evenPtr;
+
+        while (evenPtr != null && evenPtr.next != null) {
+            oddPtr.next = oddPtr.next.next;
+            evenPtr.next = evenPtr.next.next;
+            oddPtr = oddPtr.next;
+            evenPtr = evenPtr.next;
         }
 
-        ListNode odd = head, even = head.next, evenHead = even;
-
-        while (even != null && even.next != null) {
-            odd.next = even.next;
-            even.next = even.next.next;
-
-            odd = odd.next;
-            even = even.next;
-        }
-
-        odd.next = evenHead;
+        oddPtr.next = evenHead;
         return head;
+    }
+
+    // Main method for testing
+    public static void main(String[] args) {
+        OddEvenLL solution = new OddEvenLL();
+
+        // Example 1: Input: head = [1,2,3,4,5]
+        ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+        head = solution.oddEvenList(head);
+        printList(head); // Expected Output: [1,3,5,2,4]
+
+        // Example 2: Input: head = [2,1,3,5,6,4,7]
+        head = new ListNode(2, new ListNode(1, new ListNode(3, new ListNode(5, new ListNode(6, new ListNode(4, new ListNode(7)))))));
+        head = solution.oddEvenList(head);
+        printList(head); // Expected Output: [2,3,6,7,1,5,4]
+    }
+
+    // Helper method to print the linked list
+    private static void printList(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val + " ");
+            head = head.next;
+        }
+        System.out.println();
     }
 }

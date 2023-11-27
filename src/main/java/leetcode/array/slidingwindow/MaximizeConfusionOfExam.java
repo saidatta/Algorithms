@@ -40,3 +40,17 @@ public class MaximizeConfusionOfExam {
         System.out.println(solution.maxConsecutiveAnswers("TTFTTFTT", 1)); // Output: 5
     }
 }
+// The problem is about altering the answers of a true/false test to maximize the length of consecutive
+// identical answers (all 'T's or all 'F's). You are given `answerKey`, a string representing the
+// original answers, and an integer `k`, which is the maximum number of changes you can make to the answers.
+// The objective is to determine the longest string of consecutive 'T's or 'F's that can be achieved by making at
+// most `k` changes to the `answerKey`. The challenge lies in deciding which answers to change to maximize the length
+// of either all 'T's or all 'F's in a row.
+//
+// ### Example Explanation
+// 1. **Example 1**: For `answerKey = "TTFF"` and `k = 2`, changing both 'F's to 'T's results in "TTTT", which has four
+//      consecutive 'T's.
+// 2. **Example 2**: With `answerKey = "TFFT"` and `k = 1`, changing the first 'T' to 'F' results in "FFFT" or changing
+//      the second 'T' to 'F' results in "TFFF". Both have three consecutive 'F's.
+// 3. **Example 3**: For `answerKey = "TTFTTFTT"` and `k = 1`, changing either the first or second 'F' to 'T' results
+//      in a sequence with five consecutive 'T's, like "TTTTTFTT" or "TTFTTTTT".
