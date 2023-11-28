@@ -1,4 +1,4 @@
-package leetcode.backtracking;
+package leetcode.backtracking.string;
 
 /**
  * https://leetcode.com/problems/word-search/#/description

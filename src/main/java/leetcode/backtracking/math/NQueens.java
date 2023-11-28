@@ -1,16 +1,12 @@
-package leetcode.backtracking;
+package leetcode.backtracking.math;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Timer;
-import java.util.stream.Collectors;
-
-// https://leetcode.com/problems/n-queens/
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+// https://leetcode.com/problems/n-queens/
+
 
 // https://leetcode.com/problems/n-queens/
 public class NQueens {

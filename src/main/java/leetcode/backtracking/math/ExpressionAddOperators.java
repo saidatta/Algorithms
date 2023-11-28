@@ -1,4 +1,4 @@
-package leetcode.backtracking;
+package leetcode.backtracking.math;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +23,6 @@ import static java.lang.System.out;
  * <p>
  * Created by venkatamunnangi on 3/27/17.
  */
-import java.util.List;
-import java.util.ArrayList;
 
 public class ExpressionAddOperators {
 

@@ -1,4 +1,4 @@
-package leetcode.backtracking;
+package leetcode.backtracking.game;
 
 /**
  * https://leetcode.com/problems/sudoku-solver/

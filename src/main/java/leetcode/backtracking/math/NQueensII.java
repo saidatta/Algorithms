@@ -1,4 +1,4 @@
-package leetcode.backtracking;
+package leetcode.backtracking.math;
 
 /**
  * TODO - Now, instead outputting board configurations, return the total number of distinct solutions.
