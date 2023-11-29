@@ -27,30 +27,50 @@ public class WallsAndGates {
             }
         }
 
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             int[] point = queue.remove();
             int x = point[0], y = point[1];
 
-            if( x > 0 && rooms[x-1][y] == Integer.MAX_VALUE) {
-                rooms[x-1][y] = rooms[x][y] +1;
-                queue.offer(new int[]{x-1, y});
+            if (x > 0 && rooms[x - 1][y] == Integer.MAX_VALUE) {
+                rooms[x - 1][y] = rooms[x][y] + 1;
+                queue.offer(new int[]{x - 1, y});
             }
 
             // since we are looking x+1, look at penultimate item.
-            if( x <m-1 && rooms[x+1][y] == Integer.MAX_VALUE) {
-                rooms[x+1][y] = rooms[x][y] +1;
-                queue.offer(new int[]{x+1, y});
+            if (x < m - 1 && rooms[x + 1][y] == Integer.MAX_VALUE) {
+                rooms[x + 1][y] = rooms[x][y] + 1;
+                queue.offer(new int[]{x + 1, y});
             }
 
-            if( y > 0 && rooms[x][y-1] == Integer.MAX_VALUE) {
-                rooms[x][y-1] = rooms[x][y] +1;
-                queue.offer(new int[]{x, y-1});
+            if (y > 0 && rooms[x][y - 1] == Integer.MAX_VALUE) {
+                rooms[x][y - 1] = rooms[x][y] + 1;
+                queue.offer(new int[]{x, y - 1});
             }
 
-            if( y < n-1 && rooms[x][y+1] == Integer.MAX_VALUE) {
-                rooms[x][y+1] = rooms[x][y] +1;
-                queue.offer(new int[]{x, y+1});
+            if (y < n - 1 && rooms[x][y + 1] == Integer.MAX_VALUE) {
+                rooms[x][y + 1] = rooms[x][y] + 1;
+                queue.offer(new int[]{x, y + 1});
             }
+        }
+    }
+
+    public static void main(String[] args) {
+        WallsAndGates solver = new WallsAndGates();
+        int[][] rooms = {
+                {Integer.MAX_VALUE, -1, 0, Integer.MAX_VALUE},
+                {Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, -1},
+                {Integer.MAX_VALUE, -1, Integer.MAX_VALUE, -1},
+                {0, -1, Integer.MAX_VALUE, Integer.MAX_VALUE}
+        };
+
+        solver.wallsAndGates(rooms);
+
+        // Print the updated grid
+        for (int[] row : rooms) {
+            for (int cell : row) {
+                System.out.print(cell + " ");
+            }
+            System.out.println();
         }
     }
 }

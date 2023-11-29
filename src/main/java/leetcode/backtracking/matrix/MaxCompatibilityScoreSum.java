@@ -136,3 +136,126 @@ public class MaxCompatibilityScoreSum {
 
     }
 }
+
+
+//import java.util.Arrays;
+//
+//public class KuhnMunkres {
+//
+//    // Calculate the maximum compatibility score sum
+//    public int maxCompatibilitySum(int[][] students, int[][] mentors) {
+//        int[][] scoreMatrix = createScoreMatrix(students, mentors);
+//        return applyKuhnMunkres(scoreMatrix);
+//    }
+//
+//    // Create a score matrix for students and mentors
+//    private int[][] createScoreMatrix(int[][] students, int[][] mentors) {
+//        int size = students.length;
+//        int[][] scoreMatrix = new int[size][size];
+//
+//        for (int i = 0; i < size; i++) {
+//            for (int j = 0; j < size; j++) {
+//                scoreMatrix[i][j] = calculateCompatibility(students[i], mentors[j]);
+//            }
+//        }
+//        return scoreMatrix;
+//    }
+//
+//    // Calculate compatibility score between a student and a mentor
+//    private int calculateCompatibility(int[] student, int[] mentor) {
+//        int score = 0;
+//        for (int i = 0; i < student.length; i++) {
+//            if (student[i] == mentor[i]) {
+//                score++;
+//            }
+//        }
+//        return score;
+//    }
+//
+//    // Apply the Kuhn-Munkres algorithm to the score matrix
+//    private int applyKuhnMunkres(int[][] scoreMatrix) {
+//        int size = scoreMatrix.length;
+//        int[] lx = new int[size], ly = new int[size];
+//        int[] matchY = new int[size];
+//        Arrays.fill(matchY, -1);
+//
+//        // Initialize labels
+//        for (int x = 0; x < size; x++) {
+//            for (int y = 0; y < size; y++) {
+//                lx[x] = Math.max(lx[x], scoreMatrix[x][y]);
+//            }
+//        }
+//
+//        // Find match for each x
+//        for (int x = 0; x < size; x++) {
+//            while (true) {
+//                boolean[] visitedX = new boolean[size];
+//                boolean[] visitedY = new boolean[size];
+//                if (findMatch(x, visitedX, visitedY, matchY, lx, ly, scoreMatrix)) {
+//                    break;
+//                } else {
+//                    updateLabels(visitedX, visitedY, lx, ly, scoreMatrix);
+//                }
+//            }
+//        }
+//
+//        // Calculate the sum of scores for matches
+//        int scoreSum = 0;
+//        for (int x = 0; x < size; x++) {
+//            scoreSum += scoreMatrix[x][matchY[x]];
+//        }
+//        return scoreSum;
+//    }
+//
+//    // Recursive function to find a match for x
+//    private boolean findMatch(int x, boolean[] visitedX, boolean[] visitedY, int[] matchY, int[] lx, int[] ly, int[][] scoreMatrix) {
+//        visitedX[x] = true;
+//        int size = scoreMatrix.length;
+//
+//        for (int y = 0; y < size; y++) {
+//            if (lx[x] + ly[y] == scoreMatrix[x][y] && !visitedY[y]) {
+//                visitedY[y] = true;
+//                if (matchY[y] == -1 || findMatch(matchY[y], visitedX, visitedY, matchY, lx, ly, scoreMatrix)) {
+//                    matchY[y] = x;
+//                    return true;
+//                }
+//            }
+//        }
+//        return false;
+//    }
+//
+//    // Update labels lx and ly
+//    private void updateLabels(boolean[] visitedX, boolean[] visitedY, int[] lx, int[] ly, int[][] scoreMatrix) {
+//        int delta = Integer.MAX_VALUE;
+//        int size = lx.length;
+//
+//        for (int x = 0; x < size; x++) {
+//            if (visitedX[x]) {
+//                for (int y = 0; y < size; y++) {
+//                    if (!visitedY[y]) {
+//                        delta = Math.min(delta, lx[x] + ly[y] - scoreMatrix[x][y]);
+//                    }
+//                }
+//            }
+//        }
+//
+//        for (int x = 0; x < size; x++) {
+//            if (visitedX[x]) {
+//                lx[x] -= delta;
+//            }
+//        }
+//
+//        for (int y = 0; y < size; y++) {
+//            if (visitedY[y]) {
+//                ly[y] += delta;
+//            }
+//        }
+//    }
+//
+//    public static void main(String[] args) {
+//        KuhnMunkres km = new KuhnMunkres();
+//        int[][] students = {{1, 1, 0}, {1, 0, 1}, {0, 0, 1}};
+//        int[][] mentors = {{1, 0, 0}, {0, 0, 1}, {1, 1, 0}};
+//        System.out.println("Maximum Compatibility Score Sum: " + km.maxCompatibilitySum(students, mentors));
+//    }
+//}

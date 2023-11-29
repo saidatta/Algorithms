@@ -16,10 +16,8 @@ public class IsSubseq {
         while(i < sLength && j < tLength) {
             if(s.charAt(i) == t.charAt(j)) {
                 i++;
-                j++;
-            } else {
-                j++;
             }
+            j++;
         }
 
         return i == sLength;
