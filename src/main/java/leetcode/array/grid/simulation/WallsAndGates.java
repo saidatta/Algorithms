@@ -1,10 +1,11 @@
-package leetcode.array.traversal;
+package leetcode.array.grid.simulation;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 /**
  * https://leetcode.com/problems/walls-and-gates/#/description
+ * https://leetcode.com/problems/walls-and-gates/solutions/488939/java-pattern-multi-source-bfs-with-clean-code-and-interview-tips/
  *
  * Created by venkatamunnangi on 5/21/17.
  */

@@ -1,4 +1,4 @@
-package leetcode.tree;
+package leetcode.tree.traversal.bst;
 
 import leetcode.tree.util.TreeNode;
 

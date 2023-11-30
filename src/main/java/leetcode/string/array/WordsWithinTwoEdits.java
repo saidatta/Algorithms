@@ -14,31 +14,14 @@ public class WordsWithinTwoEdits {
      */
     public List<String> twoEditWords(String[] queries, String[] dictionary) {
         List<String> matchingQueries = new ArrayList<>();
-        char[][] dictionaryChars = convertToCharArray(dictionary);
 
         for (String query : queries) {
-            if (isMatchWithinTwoEdits(query.toCharArray(), dictionaryChars)) {
+            if (isMatchWithinTwoEdits(query.toCharArray(), dictionary)) {
                 matchingQueries.add(query);
             }
         }
 
         return matchingQueries;
-    }
-
-    /**
-     * Converts an array of strings to a 2D char array for efficient access.
-     *
-     * @param dictionary The array of dictionary words.
-     * @return 2D char array representing the dictionary words.
-     */
-    private char[][] convertToCharArray(String[] dictionary) {
-        char[][] dictionaryChars = new char[dictionary.length][dictionary[0].length()];
-
-        for (int i = 0; i < dictionary.length; i++) {
-            dictionaryChars[i] = dictionary[i].toCharArray();
-        }
-
-        return dictionaryChars;
     }
 
     /**
@@ -48,9 +31,9 @@ public class WordsWithinTwoEdits {
      * @param dictionaryChars The dictionary words in 2D char array form.
      * @return true if the query matches any dictionary word within two edits, false otherwise.
      */
-    private boolean isMatchWithinTwoEdits(char[] queryChars, char[][] dictionaryChars) {
-        for (char[] dictWordChars : dictionaryChars) {
-            if (canTransformWithinTwoEdits(queryChars, dictWordChars)) {
+    private boolean isMatchWithinTwoEdits(char[] queryChars, String[] dictionaryChars) {
+        for (String dictWordChars : dictionaryChars) {
+            if (canTransformWithinTwoEdits(queryChars, dictWordChars.toCharArray())) {
                 return true;
             }
         }
