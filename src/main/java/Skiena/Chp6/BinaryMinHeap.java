@@ -21,8 +21,8 @@ import java.util.Map;
  */
 public class BinaryMinHeap<T> {
 
-    private List<Node> allNodes = new ArrayList<>();
-    private Map<T,Integer> nodePosition = new HashMap<>();
+    private final List<Node> allNodes = new ArrayList<>();
+    private final Map<T,Integer> nodePosition = new HashMap<>();
 
     public class Node {
         int weight;

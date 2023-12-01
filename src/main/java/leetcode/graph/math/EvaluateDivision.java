@@ -4,17 +4,8 @@ import java.util.*;
 
 // https://leetcode.com/problems/evaluate-division/editorial/
 public class EvaluateDivision {
-    private static class Node {
-        String key;
-        double value;
-
-        Node(String key, double value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
-
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
+        // a form of adj list, since keys are actually Strings instead of integer.
         Map<String, List<Node>> graph = new HashMap<>();
         buildGraph(graph, equations, values);
 
@@ -51,6 +42,8 @@ public class EvaluateDivision {
         }
         return -1.0;
     }
+
+    private record Node(String key, double value) {}
 
     public static void main(String[] args) {
         EvaluateDivision solution = new EvaluateDivision();
