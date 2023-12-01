@@ -1,4 +1,4 @@
-package leetcode.array.twoPointer;
+package leetcode.array.twopointers;
 
 /**
  * https://leetcode.com/problems/maximum-product-subarray/

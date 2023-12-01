@@ -24,11 +24,7 @@ public class HouseRobber {
     }
 
     public static void main(String [] args) {
-
         HouseRobber houseRobber = new HouseRobber();
         System.out.println(houseRobber.rob(5,1,1,5));
-
     }
-
-
 }

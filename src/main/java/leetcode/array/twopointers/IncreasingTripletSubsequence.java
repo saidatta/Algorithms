@@ -1,4 +1,4 @@
-package leetcode.array.twoPointer;
+package leetcode.array.twopointers;
 
 // https://leetcode.com/problems/increasing-triplet-subsequence/
 public class IncreasingTripletSubsequence {
