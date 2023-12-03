@@ -1,8 +1,6 @@
-package leetcode.TODO;
+package leetcode.array.twopointers;
 
 import java.util.Arrays;
-
-import static java.lang.System.out;
 
 /**
  * https://leetcode.com/problems/3sum-smaller/#/description
@@ -22,15 +20,12 @@ import static java.lang.System.out;
 public class ThreeSumSmaller {
 
     /**
-     * We sort the array first. Then, for each element, we use the two pointer approach to find the number of triplets that meet the requirements.
-     *
+     * We sort the array first. Then, for each element, we use the two pointer approach to find the number of triplet
+     * s that meet the requirements.
      * Let me illustrate how the two pointer technique works with an example:
-     *
      * target = 2
-     *
      *  i  lo    hi
      * [-2, 0, 1, 3]
-     *
      * We use a for loop (index i) to iterate through each element of the array.
      * For each i, we create two pointers, lo and hi,
      * where lo is initialized as the next element of i, and hi is initialized at the end of the array.
@@ -39,31 +34,36 @@ public class ThreeSumSmaller {
      * Just like in the example above, we know that since -2 + 0 + 3 < 2, we can replace hi (3) with 1, and
      * it would still work. Therefore, we can just add hi - lo to the triplet count.
      *
-     * @param target
-     * @param nums
-     * @return
      */
-    public int threeSumSmaller(int target, int... nums) {
-        int result = 0;
+    public int threeSumSmaller(int[] nums, int target) {
         Arrays.sort(nums);
-        for(int i = 0; i <= nums.length-3; i++) {
-            int lo = i+1;
-            int hi = nums.length-1;
-            while(lo < hi) {
-                if(nums[i] + nums[lo] + nums[hi] < target) {
-                    result += hi - lo;
-                    lo++;
-                } else {
-                    hi--;
-                }
-            }
+        int sum = 0;
+        for (int i = 0; i < nums.length - 2; i++) {
+            sum += twoSumSmaller(nums, i + 1, target - nums[i]);
         }
-
-        return result;
+        return sum;
     }
 
-    public static void main(String... args) {
-        ThreeSumSmaller threeSumSmaller = new ThreeSumSmaller();
-        out.println(threeSumSmaller.threeSumSmaller(2, -2,0,1,3));
+    private int twoSumSmaller(int[] nums, int startIndex, int target) {
+        int sum = 0;
+        int left = startIndex;
+        int right = nums.length - 1;
+        while (left < right) {
+            if (nums[left] + nums[right] < target) {
+                // If the sum is smaller than the target, then all elements from left to right will also work
+                sum += right - left;
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        ThreeSumSmaller solution = new ThreeSumSmaller();
+        System.out.println(solution.threeSumSmaller(new int[]{-2, 0, 1, 3}, 2)); // Output: 2
+        System.out.println(solution.threeSumSmaller(new int[]{}, 0));           // Output: 0
+        System.out.println(solution.threeSumSmaller(new int[]{0}, 0));          // Output: 0
     }
 }
