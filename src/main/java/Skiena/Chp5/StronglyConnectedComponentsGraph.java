@@ -1,5 +1,6 @@
 package Skiena.Chp5;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Stack;
 
@@ -24,7 +25,6 @@ import java.util.Stack;
  *    Take v as source and do dfs (call DFSUtil(v)). The dfs starting from v prints strongly connected component of v.
  *    In the above example, we process vertices in order 0, 3, 4, 2, 1 (One by one popped from stack).
  *
- *
  * Why transpose is necessary for this kosaraju algorithm.
  * http://cs.stackexchange.com/questions/19652/kosaraju-s-algorithm-why-transpose
  *
@@ -35,8 +35,8 @@ import java.util.Stack;
  * Created by venkatamunnangi on 1/2/17.
  */
 public class StronglyConnectedComponentsGraph {
-    private int noOfVertices;
-    private LinkedList<Integer> adjacentNodes[];
+    private final int noOfVertices;
+    private final LinkedList<Integer>[] adjacentNodes;
 
     public StronglyConnectedComponentsGraph(int v) {
         this.noOfVertices = v;
@@ -55,7 +55,7 @@ public class StronglyConnectedComponentsGraph {
     public void printSCCs() {
         Stack<Integer> stack = new Stack<Integer>();
 
-        boolean visited[] = new boolean[noOfVertices];
+        boolean[] visited = new boolean[noOfVertices];
 
         for(int i = 0; i< noOfVertices;i++) {
             if(!visited[i]) {
@@ -65,11 +65,9 @@ public class StronglyConnectedComponentsGraph {
 
         StronglyConnectedComponentsGraph transposedGraph = getTranspose();
 
-        //mark everything as false again so that we make sure that transppose
+        // mark everything as false again so that we make sure that transppose
         // is able to reach all the vertices that were reachable from the original graph.
-        for(int i = 0;i< visited.length; i++) {
-            visited[i] = false;
-        }
+        Arrays.fill(visited, false);
 
         StronglyConnectedComponentsGraph graph = getTranspose();
 
@@ -83,6 +81,7 @@ public class StronglyConnectedComponentsGraph {
         }
     }
 
+    // topological sort
     private void fillOrder(int vertex, Stack<Integer> stack, boolean [] visited) {
         visited[vertex] = true;
 
@@ -106,7 +105,7 @@ public class StronglyConnectedComponentsGraph {
         return graph;
     }
 
-    private void dfsUtil(int vertex, boolean visited[]) {
+    private void dfsUtil(int vertex, boolean[] visited) {
         visited[vertex] = true;
         System.out.println(vertex + " ");
 
@@ -118,7 +117,7 @@ public class StronglyConnectedComponentsGraph {
     }
 
     // Driver method
-    public static void main(String args[])
+    public static void main(String[] args)
     {
         // Create a graph given in the above diagram
         StronglyConnectedComponentsGraph g = new StronglyConnectedComponentsGraph(5);

@@ -21,82 +21,87 @@ import static java.lang.System.*;
  * Created by venkatamunnangi on 1/3/17.
  */
 public class UnionFind {
+    private final Map<Long, Node> nodeMap = new HashMap<>();
 
-    private Map<Long, Node> nodeMap = new HashMap<>();
-
-    class Node {
-        int rank;
-        long data;
-        Node parent;
-    }
-
-
+    /**
+     * Creates a set with only one element.
+     *
+     * @param data The element to be added.
+     */
     public void makeSet(long data) {
         Node node = new Node();
         node.rank = 0;
-        node.parent = node;
+        node.parent = node; // Parent is itself
         node.data = data;
         nodeMap.put(data, node);
     }
 
     /**
+     * Merges two sets that contain the elements d1 and d2.
      *
-     * Combines two sets together to one.
-     * Does union by rank.
-     *
-     * @param d1 - first data
-     * @param d2 - 2nd data.
-     * @return true if d1 & d2 are in a different connected components.
+     * @param d1 First element.
+     * @param d2 Second element.
+     * @return True if the sets were merged, false if they were already in the same set.
      */
     public boolean union(long d1, long d2) {
+        Node node1 = nodeMap.get(d1);
+        Node node2 = nodeMap.get(d2);
 
-        Node n1 = nodeMap.get(d1);
-        Node n2 = nodeMap.get(d2);
+        Node parent1 = findParent(node1);
+        Node parent2 = findParent(node2);
 
-        Node p1 = findSet(n1);
-        Node p2 = findSet(n2);
-
-        //if they are part of same set do nothing
-        if(p1.data == p2.data) {
+        // Check if they are part of the same set
+        if (parent1.data == parent2.data) {
             return false;
         }
 
-        //else whoever's rank is higher becomes parent of other
-        if(p1.rank >= p2.rank) {
-            //increment rank only if both sets have same rank
-            p1.rank = (p1.rank == p2.rank) ? p1.rank+1 : p1.rank;
-            p2.parent = p1;
+        // Union by rank: attach the smaller rank tree under the root of the higher rank tree
+        if (parent1.rank >= parent2.rank) {
+            // make parent2's parent  -> parent 1
+            parent1.rank = (parent1.rank == parent2.rank) ? parent1.rank + 1 : parent1.rank;
+            parent2.parent = parent1;
         } else {
-            p1.parent = p2;
+            // make parent1's parent  -> parent 2
+            parent1.parent = parent2;
         }
+
         return true;
     }
 
     /**
-     * Finds the representative of this set
+     * Finds the representative (root node) of the set that contains data.
+     *
+     * @param data The element to find the set for.
+     * @return The representative's data of the set.
      */
-    public long findSet(long data) {
-        return findSet(nodeMap.get(data)).data;
+    public long findParent(long data) {
+        return findParent(nodeMap.get(data)).data;
     }
 
     /**
-     * Find the representative recursively and does path
-     * compression as well.
+     * Finds the representative of the set that node is part of.
+     * Applies path compression to flatten the structure of the tree.
+     *
+     * @param node The node to find the representative for.
+     * @return The representative node.
      */
-    private Node findSet(Node node) {
-        Node parentNode = node.parent;
-        if(parentNode == node) {
-            return parentNode;
+    private Node findParent(Node node) {
+        Node parent = node.parent;
+        if (parent == node) {
+            return parent;
         }
-
-        // path compression once the parent root node is evaluated
-        // then update the child Nodes with the correct root node.
-        node.parent = findSet(node.parent);
-
+        node.parent = findParent(node.parent); // Path compression
         return node.parent;
     }
 
-    public static void main(String args[]) {
+    // Node class representing each element in a set
+    private static class Node {
+        int rank;      // Rank of the node used for union by rank
+        long data;     // Data or identifier of the node
+        Node parent;   // Parent node in the set
+    }
+
+    public static void main(String[] args) {
         UnionFind ds = new UnionFind();
         ds.makeSet(1);
         ds.makeSet(2);
@@ -113,12 +118,12 @@ public class UnionFind {
         ds.union(5, 6);
         ds.union(3, 7);
 
-        out.println(ds.findSet(1));
-        out.println(ds.findSet(2));
-        out.println(ds.findSet(3));
-        out.println(ds.findSet(4));
-        out.println(ds.findSet(5));
-        out.println(ds.findSet(6));
-        out.println(ds.findSet(7));
+        out.println(ds.findParent(1));
+        out.println(ds.findParent(2));
+        out.println(ds.findParent(3));
+        out.println(ds.findParent(4));
+        out.println(ds.findParent(5));
+        out.println(ds.findParent(6));
+        out.println(ds.findParent(7));
     }
 }

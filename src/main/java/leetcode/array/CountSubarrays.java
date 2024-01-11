@@ -1,7 +1,6 @@
 package leetcode.array;
 
 public class CountSubarrays {
-
     SegmentTreeNode root = null;
 
     public int numberOfSubarrays(int[] nums) {
@@ -21,6 +20,7 @@ public class CountSubarrays {
                 int mid = start + (end - start) / 2;
                 node.left = buildTree(nums, start, mid);
                 node.right = buildTree(nums, mid + 1, end);
+                assert node.right != null;
                 node.min = Math.min(node.left.min, node.right.min);
                 node.max = Math.max(node.left.max, node.right.max);
             }

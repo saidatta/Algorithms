@@ -23,8 +23,8 @@ package leetcode.fenwicktree;
 public class FenwickTree {
 
     /**
-     * Start from index+1 if you updating index in original array. Keep adding this value
-     * for next node till you reach outside range of tree
+     * Start from index+1 if you're updating index in an original array. Keep adding this value
+     *  for the next node till you reach outside range of a tree
      */
     public void updateBinaryIndexedTree(int[] binaryIndexedTree, int val, int index) {
         while (index < binaryIndexedTree.length) {

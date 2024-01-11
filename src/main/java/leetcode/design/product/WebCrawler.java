@@ -38,8 +38,8 @@ public class WebCrawler {
     private String extractHostname(String url) {
         try {
             // Extract the hostname from URL using URL class
-            return new URL(url).getHost();
-        } catch (MalformedURLException e) {
+            return new URI(url).getHost();
+        } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }

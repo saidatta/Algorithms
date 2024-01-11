@@ -5,119 +5,211 @@ import java.lang.reflect.Array;
 import static java.lang.System.*;
 
 /**
- * Created by venkatamunnangi on 12/28/16.
+ * Generic Heap implementation.
+ *
+ * @param <T> the type of elements in the heap, which must be Comparable
  */
 public abstract class Heap<T extends Comparable> {
+    private static final int DEFAULT_SIZE = 40;
+    private final T[] array;
+    private int count = 0;
 
-        private static int MAX_SIZE = 40;
-        private T[] array;
-        private int count = 0;
+    /**
+     * Constructs a heap with default maximum size.
+     *
+     * @param clazz the class of the heap elements
+     */
+    public Heap(Class<T> clazz) {
+        this(clazz, DEFAULT_SIZE);
+    }
 
-        public Heap(Class<T> clazz) {
-            this(clazz, MAX_SIZE);
+    /**
+     * Constructs a heap with the specified maximum size.
+     *
+     * @param clazz the class of the heap elements
+     * @param size the maximum size of the heap
+     */
+    public Heap(Class<T> clazz, int size) {
+        array = (T[]) Array.newInstance(clazz, size);
+    }
+
+    /**
+     * Prints the elements of the heap array and the highest priority element.
+     */
+    public void printHeapArray() {
+        for (int i = 0; i < count; i++) {
+            System.out.print(array[i] + ", ");
+        }
+        System.out.println();
+
+        try {
+            System.out.println("Highest priority element: " + getHighestPriority());
+        } catch (HeapEmptyException ignored) {
+        }
+    }
+
+    /**
+     * Returns the index of the parent of the element at the specified index.
+     *
+     * @param index the index of the element
+     * @return the index of the parent or -1 if index is out of bounds
+     */
+    public int getParentIndex(int index) {
+        if (index < 0 || index > count) {
+            return -1;
         }
 
-        public Heap(Class<T> clazz, int size) {
-            array = (T[]) Array.newInstance(clazz, size);
+        return (index - 1) / 2;
+    }
+
+    /**
+     * Returns the index of the left child of the element at the specified index.
+     *
+     * @param index the index of the element
+     * @return the index of the left child or -1 if no child exists
+     */
+    public int getLeftChildIndex(int index) {
+        int leftChildIndex = 2 * index + 1;
+        if (leftChildIndex >= count) {
+            return -1;
         }
 
-        public void printHeapArray() {
-            for (int i = 0; i < count; i++) {
-                out.print(array[i] + ", ");
-            }
-            out.println();
+        return leftChildIndex;
+    }
 
-            try {
-                out.println("Highest priority: " + getHighestPriority());
-            } catch (HeapEmptyException ex) {
-
-            }
+    /**
+     * Returns the index of the right child of the element at the specified index.
+     *
+     * @param index the index of the element
+     * @return the index of the right child or -1 if no child exists
+     */
+    public int getRightChildIndex(int index) {
+        int rightChildIndex = 2 * index + 2;
+        if (rightChildIndex >= count) {
+            return -1;
         }
 
-        public int getParentIndex(int index) {
-            if (index < 0 || index > count) {
-                return -1;
-            }
+        return rightChildIndex;
+    }
 
-            return (index - 1) / 2;
+    /**
+     * Retrieves the highest priority element from the heap.
+     *
+     * @return the highest priority element
+     * @throws HeapEmptyException if the heap is empty
+     */
+    public T getHighestPriority() throws HeapEmptyException {
+        if (count == 0) {
+            throw new HeapEmptyException();
         }
 
-        public int getLeftChildIndex(int index) {
-            int leftChildIndex = 2 * index + 1;
-            if (leftChildIndex >= count) {
-                return -1;
-            }
+        return array[0];
+    }
 
-            return leftChildIndex;
+    /**
+     * Inserts a new value into the heap.
+     *
+     * @param value the value to insert
+     * @throws HeapFullException if the heap is full
+     */
+    public void insert(T value) throws HeapFullException {
+        if (count >= array.length) {
+            throw new HeapFullException();
         }
 
-        public int getRightChildIndex(int index) {
-            int rightChildIndex = 2 * index + 2;
-            if (rightChildIndex >= count) {
-                return -1;
-            }
+        array[count] = value;
+        siftUp(count);
+        count++;
+    }
 
-            return rightChildIndex;
-        }
+    /**
+     * Removes and returns the highest priority element from the heap.
+     *
+     * @return the removed element
+     * @throws HeapEmptyException if the heap is empty
+     */
+    public T removeHighestPriority() throws HeapEmptyException {
+        T min = getHighestPriority();
 
-        public T getHighestPriority() throws HeapEmptyException {
-            if (count == 0) {
-                throw new HeapEmptyException();
-            }
+        array[0] = array[count - 1];
+        count--;
+        siftDown(0);
 
-            return array[0];
-        }
+        return min;
+    }
 
-        public void insert(T value) throws HeapFullException {
-            if (count >= array.length) {
-                throw new HeapFullException();
-            }
+    /**
+     * Moves the element at the specified index down the heap until the heap property is restored.
+     *
+     * @param index the index of the element to sift down
+     */
+    protected abstract void siftDown(int index);
 
-            array[count] = value;
-            siftUp(count);
+    /**
+     * Moves the element at the specified index up the heap until the heap property is restored.
+     *
+     * @param index the index of the element to sift up
+     */
+    protected abstract void siftUp(int index);
 
-            count++;
-        }
+    /**
+     * Swaps two elements in the heap array.
+     *
+     * @param index1 the index of the first element
+     * @param index2 the index of the second element
+     */
+    protected void swap(int index1, int index2) {
+        T tempValue = array[index1];
+        array[index1] = array[index2];
+        array[index2] = tempValue;
+    }
 
-        public T removeHighestPriority() throws HeapEmptyException {
-            T min = getHighestPriority();
+    /**
+     * Returns the number of elements in the heap.
+     *
+     * @return the count of elements in the heap
+     */
+    public int getCount() {
+        return count;
+    }
 
-            array[0] = array[count - 1];
-            count--;
-            siftDown(0);
+    /**
+     * Checks if the heap is empty.
+     *
+     * @return true if the heap is empty, false otherwise
+     */
+    public boolean isEmpty() {
+        return count == 0;
+    }
 
-            return min;
-        }
+    /**
+     * Checks if the heap is full.
+     *
+     * @return true if the heap is full, false otherwise
+     */
+    public boolean isFull() {
+        return count == array.length;
+    }
 
-        protected abstract void siftDown(int index);
+    /**
+     * Retrieves the element at the specified index in the heap array.
+     *
+     * @param index the index of the element
+     * @return the element at the specified index
+     */
+    T getElementAtIndex(int index) {
+        return array[index];
+    }
 
-        protected abstract void siftUp(int index);
+    /**
+     * Exception thrown when an operation is attempted on a full heap.
+     */
+    static class HeapFullException extends Exception {
+    }
 
-        protected void swap(int index1, int index2) {
-            T tempValue = array[index1];
-            array[index1] = array[index2];
-            array[index2] = tempValue;
-        }
-
-        public int getCount() {
-            return count;
-        }
-
-        public boolean isEmpty() {
-            return count == 0;
-        }
-
-        public boolean isFull() {
-            return count == array.length;
-        }
-
-        T getElementAtIndex(int index) {
-            return array[index];
-        }
-
-        static class HeapFullException extends Exception {
-        }
-
-        static class HeapEmptyException extends Exception {
-        }
+    /**
+     * Exception thrown when an operation is attempted on an empty heap.
+     */
+    static class HeapEmptyException extends Exception {
+    }
 }

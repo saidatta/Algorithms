@@ -1,70 +1,62 @@
 package Skiena.Chp6;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import static java.lang.System.*;
 
 /**
- *         <p>
- *         Find minimum spanning tree usinig Kruskals algorithm
- *         <p>
- *         Time complexity - O(ElogE)
- *         Space complexity - O(E + V)
- *         <p>
- *         References
- *         https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
+ * <p>
+ * Find minimum spanning tree usinig Kruskals algorithm
+ * <p>
+ * Time complexity - O(ElogE)
+ * Space complexity - O(E + V)
+ * <p>
+ * References
+ * https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
  *
  * Created by venkatamunnangi on 1/3/17.
  */
 public class KruskalMST {
-
-    class EdgeComparator implements Comparator<Edge<Integer>> {
-        @Override
-        public int compare(Edge<Integer> e1, Edge<Integer> e2) {
-            if(e1.getWeight() <= e2.getWeight()) {
-                return -1;
-            } else {
-                return 1;
-            }
-        }
-    }
-
+    // Function to get the Minimum Spanning Tree using Kruskal's algorithm
     public List<Edge<Integer>> getKruskalMST(Graph<Integer> graph) {
+        // Get all edges of the graph and sort them based on their weights
         List<Edge<Integer>> allEdges = graph.getAllEdges();
-
-        Collections.sort(allEdges, new EdgeComparator());
+        allEdges.sort(new EdgeComparator());
 
         UnionFind unionFind = new UnionFind();
 
-        //create all the vertex components through unionfind's make set.
-        for(Vertex<Integer> vertex : graph.getAllVertex()) {
+        // Initialize disjoint sets for all vertices in the graph
+        for (Vertex<Integer> vertex : graph.getAllVertex()) {
             unionFind.makeSet(vertex.getId());
         }
 
         List<Edge<Integer>> resultingEdges = new ArrayList<>();
-        for(Edge<Integer> edge : allEdges) {
-            //get the representative component sets of two vertices of the edge.
-            long r1 = unionFind.findSet(edge.getVertex1().getId());
-            long r2 = unionFind.findSet(edge.getVertex2().getId());
+        for (Edge<Integer> edge : allEdges) {
+            // Find the two vertices root components of the edge
+            long root1 = unionFind.findParent(edge.getVertex1().getId());
+            long root2 = unionFind.findParent(edge.getVertex2().getId());
 
-            //evaulate If vertices are in the same set or different set
-            if(r1 == r2) {
-                // if vertices are in the same set, then ignore the set
-                // as it will result in a possible cycle.
-            } else {
-                // if vertices are in different set then add the edge to result and union these two sets into one.
+            // Check if the vertices are in different sets to avoid cycles
+            if (root1 != root2) {
+                // Add the edge to the result and union the two sets
                 resultingEdges.add(edge);
-                unionFind.union(r1,r2);
+                unionFind.union(root1, root2);
             }
         }
         return resultingEdges;
     }
 
-    public static void main(String args[]) {
-        Graph<Integer> graph = new Graph<Integer>(false);
+    // Comparator class for sorting edges based on their weights
+    static class EdgeComparator implements Comparator<Edge<Integer>> {
+        @Override
+        public int compare(Edge<Integer> e1, Edge<Integer> e2) {
+            return Integer.compare(e1.getWeight(), e2.getWeight());
+        }
+    }
+    public static void main(String[] args) {
+        Graph<Integer> graph = new Graph<>(false);
         // vertex1 vertex2 weight.
         graph.addEdge(1, 2, 4);
         graph.addEdge(1, 3, 1);

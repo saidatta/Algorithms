@@ -2,7 +2,6 @@ package Skiena.Chp6;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -10,10 +9,9 @@ import java.util.Scanner;
  * Created by venkatamunnangi on 1/3/17.
  */
 public class PrimsAlgorithmGraph {
-
     // adj array
-    private List<Pair<Integer, Integer>>[] adjList;
-    private int V;
+    private final ArrayList<Pair<Integer, Integer>>[] adjList;
+    private final int V;
 
     public PrimsAlgorithmGraph(int n) {
         V = n;
@@ -24,13 +22,13 @@ public class PrimsAlgorithmGraph {
     }
 
     public void addEdge(int x, int y, int w) {
-        adjList[x].add(new Pair<>(y, w));
-        adjList[y].add(new Pair<>(x, w));
+        adjList[x].add(new Pair<>(w, y));
+        adjList[y].add(new Pair<>(w, x));
     }
 
     public int primMST() {
         // Min Heap
-        PriorityQueue<Pair<Integer, Integer>> pq = new PriorityQueue<>(Comparator.comparingInt(Pair::getKey));
+        PriorityQueue<Pair<Integer, Integer>> pq = new PriorityQueue<>(Comparator.comparingInt(Pair::weight));
 
         boolean[] visited = new boolean[V];
         int ans = 0;
@@ -40,8 +38,8 @@ public class PrimsAlgorithmGraph {
         while (!pq.isEmpty()) {
             Pair<Integer, Integer> best = pq.poll();
 
-            int to = best.getValue();
-            int weight = best.getKey();
+            int to = best.toVertex();
+            int weight = best.weight();
 
             if (visited[to]) {
                 continue;
@@ -51,31 +49,15 @@ public class PrimsAlgorithmGraph {
             visited[to] = true;
 
             for (Pair<Integer, Integer> edge : adjList[to]) {
-                if (!visited[edge.getKey()]) {
-                    pq.add(new Pair<>(edge.getValue(), edge.getKey()));
+                if (!visited[edge.weight()]) {
+                    pq.add(new Pair<>(edge.toVertex(), edge.weight()));
                 }
             }
         }
         return ans;
     }
 
-    private static class Pair<K, V> {
-        private K key;
-        private V value;
-
-        public Pair(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        public K getKey() {
-            return key;
-        }
-
-        public V getValue() {
-            return value;
-        }
-    }
+    private record Pair<K, V>(K weight, V toVertex) { }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -92,5 +74,4 @@ public class PrimsAlgorithmGraph {
 
         System.out.println(g.primMST());
     }
-
 }

@@ -1,7 +1,6 @@
 package leetcode.design.datastructure;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 
@@ -10,112 +9,124 @@ import java.util.Map;
  * <p>
  * Created by venkatamunnangi on 3/19/17.
  */
-public class LFUCache {
-    // frequencyMap:
-    //==================
-    // key is frequency , starts with 0 on entry  , and holds a LinkedHashSet of nodes with that freq,
-    // when a node is used again, we remove it from its location to insert with a key of 1 freq higher.
-    // since the LinkedHashSet maintains the insertion order we automatically get LRU in case of frequency tie.
 
-    Map<Integer, LinkedHashSet<Node>> frequencyMap;
-    Map<Integer, Node> keyValue;
-    int capacity;
-    int count;              // count of cache
-    int lowestFreq;         // current lowest frequency
+/**
+ * LFU (Least Frequently Used) Cache implementation.
+ * It maintains a cache of a fixed capacity and evicts the least frequently used item when the capacity is reached.
+ *
+ * https://leetcode.com/problems/lfu-cache
+ */
+public class LFUCache {
+    // Frequency map stores each frequency along with a set of nodes having that frequency.
+    private final Map<Integer, LinkedHashSet<LFUNode>> frequencyMap;
+    // Key-value map for quick access to nodes.
+    private final Map<Integer, LFUNode> keyValueMap;
+    private final int capacity;
+    private int size; // Current size of the cache
+    private int minFrequency; // The minimum frequency among the nodes in the cache
 
     public LFUCache(int capacity) {
         this.capacity = capacity;
-        this.count = 0;
+        this.size = 0;
+        this.minFrequency = 0;
         frequencyMap = new HashMap<>();
-        keyValue = new HashMap<>();
+        keyValueMap = new HashMap<>();
     }
 
+    /**
+     * Retrieves the value associated with the given key, and updates its frequency.
+     *
+     * @param key The key to retrieve.
+     * @return The value associated with the key, or -1 if the key does not exist.
+     */
     public int get(int key) {
-        if (this.capacity == 0) {
+        if (capacity == 0 || !keyValueMap.containsKey(key)) {
             return -1;
         }
-        if (!keyValue.containsKey(key)) {
-            return -1;
-        }
-        updateFrequency(key);
-        return keyValue.get(key).value;
+        LFUNode LFUNode = keyValueMap.get(key);
+        increaseFrequency(LFUNode);
+        return LFUNode.value;
     }
 
+    /**
+     * Inserts a key-value pair into the cache.If the cache is at full capacity, it evicts the least frequently used
+     * item.
+     *
+     * @param key   The key to insert.
+     * @param value The value associated with the key.
+     */
     public void put(int key, int value) {
         if (capacity == 0) {
             return;
         }
-        if (keyValue.containsKey(key)) {
-            keyValue.get(key).value = value;// update new value in same key
-            updateFrequency(key);
+
+        if (keyValueMap.containsKey(key)) {
+            LFUNode LFUNode = keyValueMap.get(key);
+            LFUNode.value = value; // Update value
+            increaseFrequency(LFUNode);
             return;
         }
-        Node created = new Node(key, value, 0);
-        if (count == capacity) {
-            LinkedHashSet<Node> lessFreqNodes = frequencyMap.get(lowestFreq);
-            Iterator<Node> itr = lessFreqNodes.iterator();
-            Node toRemove = itr.next();
-            lessFreqNodes.remove(toRemove);// remove the first one as it is LRU
-            keyValue.remove(toRemove.key);
-            count--;
-            if (lessFreqNodes.isEmpty()) {
-                frequencyMap.remove(lowestFreq);
-            }
+
+        if (size == capacity) {
+            evictLFUNode();
         }
 
-        keyValue.put(key, created);
-        lowestFreq = 0;
-        count++;
-        if (frequencyMap.containsKey(0)) {
-            frequencyMap.get(0).add(created);
-        } else {
-            LinkedHashSet<Node> newNodes = new LinkedHashSet<Node>();
-            newNodes.add(created);
-            frequencyMap.put(0, newNodes);
-        }
+        LFUNode newLFUNode = new LFUNode(key, value, 0);
+        keyValueMap.put(key, newLFUNode);
+        frequencyMap.computeIfAbsent(0, k -> new LinkedHashSet<>()).add(newLFUNode);
+        minFrequency = 0;
+        size++;
     }
 
-
-    public void updateFrequency(int key) {
-        Node n = keyValue.get(key); // get the node
-        int freq = n.frequency; // get the frequency from the node
-
-        frequencyMap.get(freq).remove(n); // remove the node from frequency map to put in one level up
-        if (frequencyMap.get(freq).size() == 0 && lowestFreq == freq) {
-            frequencyMap.remove(freq);
-            lowestFreq = freq + 1;
+    /**
+     * Increases the frequency of a node and updates its position in the frequency map.
+     *
+     * @param LFUNode The node whose frequency is to be increased.
+     */
+    private void increaseFrequency(LFUNode LFUNode) {
+        int currentFreq = LFUNode.frequency;
+        frequencyMap.get(currentFreq).remove(LFUNode);
+        if (frequencyMap.get(currentFreq).isEmpty() && minFrequency == currentFreq) {
+            minFrequency++;
         }
-        n.frequency++;// increment the frequency in node itself
-
-        if (frequencyMap.containsKey(freq + 1)) {
-            frequencyMap.get(freq + 1).add(n);
-        } else {
-            LinkedHashSet<Node> newHashSet = new LinkedHashSet<Node>();
-            newHashSet.add(n);
-            frequencyMap.put(freq + 1, newHashSet);
-        }
+        LFUNode.frequency++;
+        frequencyMap.computeIfAbsent(LFUNode.frequency, k -> new LinkedHashSet<>()).add(LFUNode);
     }
 
-    class Node {
+    /**
+     * Evicts the least frequently used node from the cache.
+     */
+    private void evictLFUNode() {
+        LinkedHashSet<LFUNode> leastFreqLFUNodes = frequencyMap.get(minFrequency);
+        LFUNode toEvict = leastFreqLFUNodes.iterator().next();
+        leastFreqLFUNodes.remove(toEvict);
+        keyValueMap.remove(toEvict.key);
+        if (leastFreqLFUNodes.isEmpty()) {
+            frequencyMap.remove(minFrequency);
+        }
+        size--;
+    }
+
+    static class LFUNode {
         int key;
         int value;
         int frequency;
 
-        public Node(int k, int v, int f) {
-            this.key = k;
-            this.value = v;
-            this.frequency = f;
+        LFUNode(int key, int value, int frequency) {
+            this.key = key;
+            this.value = value;
+            this.frequency = frequency;
         }
 
+        @Override
         public String toString() {
-            return " [ k:" + key + " v:" + value + " f:" + frequency + "] ";
+            return "[key:" + key + ", value:" + value + ", freq:" + frequency + "]";
         }
     }
-
+}
 /**
  * Your LFUCache object will be instantiated and called as such:
  * LFUCache obj = new LFUCache(capacity);
  * int param_1 = obj.get(key);
  * obj.put(key,value);
  */
-}

@@ -25,8 +25,8 @@ public class MeetingRoomsII {
         Arrays.sort(ends);
         int rooms = 0;
         int endsItr = 0;
-        for (int i = 0; i < starts.length; i++) {
-            if (starts[i] < ends[endsItr]) {
+        for (int start : starts) {
+            if (start < ends[endsItr]) {
                 rooms++;
             } else {
                 endsItr++;

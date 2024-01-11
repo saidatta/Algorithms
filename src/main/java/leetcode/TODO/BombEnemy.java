@@ -25,7 +25,7 @@ public class BombEnemy {
                     col[j] = killedEnemiesCol(grid, i, j);
                 }
                 if (grid[i][j] == '0') {
-                    max = ((row + col[j]) > max) ? row + col[j] : max;
+                    max = Math.max((row + col[j]), max);
                 }
             }
 
