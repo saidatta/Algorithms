@@ -21,7 +21,7 @@ public class ConvertBSTSortedLinkedList {
         return first;
     }
 
-    // helper function that return a length 2 TreeNode array (when current subtree is nonempty)
+    // Helper function that return a length 2 TreeNode array (when current subtree is nonempty)
     // or null (when current subtree is empty)
     // first TreeNode of array will be the head of DLL formed from current subtree
     // last TreeNode of array will be the tail of DLL formed from current subtree

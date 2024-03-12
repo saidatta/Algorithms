@@ -1,4 +1,4 @@
-package leetcode.array.prefixSum;
+package leetcode.array.prefixsum;
 
 // https://leetcode.com/problems/sum-of-all-odd-length-subarrays/description/
 public class SumOddLengthSubarrays {

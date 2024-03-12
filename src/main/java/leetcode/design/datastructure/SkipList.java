@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 /**
  * https://leetcode.com/problems/design-skiplist/description/
+ *
+ * https://leetcode.com/problems/design-skiplist/solutions/1221253/standard-skip-list-implementation-original-research-paper-based/
  * 
  * There have been many implementations in discussion. However, some major deviations from standard probabilistic skip
  * lists in those solutions include

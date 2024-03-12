@@ -51,7 +51,6 @@ public class StronglyConnectedComponentsGraph {
         adjacentNodes[v].add(w);
     }
 
-
     public void printSCCs() {
         Stack<Integer> stack = new Stack<Integer>();
 

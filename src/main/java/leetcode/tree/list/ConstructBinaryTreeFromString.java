@@ -6,7 +6,7 @@ public class ConstructBinaryTreeFromString {
     int index = 0; // Global index to track the current position in the string
 
     public TreeNode str2tree(String s) {
-        if (s == null || s.length() == 0 || index >= s.length()) {
+        if (s == null || s.isEmpty() || index >= s.length()) {
             return null;
         }
 

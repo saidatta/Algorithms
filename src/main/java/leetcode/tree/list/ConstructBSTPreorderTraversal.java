@@ -4,6 +4,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import leetcode.tree.util.TreeNode;
 
+// https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/description/
+// https://www.youtube.com/watch?v=9sw8RRsBw6s - alternate solution
 public class ConstructBSTPreorderTraversal {
     // Class level variables to track current index in the preorder traversal,
     // the preorder array itself, and its length.

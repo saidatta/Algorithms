@@ -1,4 +1,4 @@
-package leetcode.array.prefixSum;
+package leetcode.array.prefixsum;
 
 /**
  * LeetCode problem: https://leetcode.com/problems/friends-of-appropriate-ages/

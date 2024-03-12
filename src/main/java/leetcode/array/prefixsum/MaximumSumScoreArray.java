@@ -1,4 +1,4 @@
-package leetcode.array.prefixSum;
+package leetcode.array.prefixsum;
 
 // https://leetcode.com/problems/maximum-sum-score-of-array/description/
 public class MaximumSumScoreArray {

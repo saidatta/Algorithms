@@ -1,10 +1,10 @@
-package leetcode.array.prefixSum;
+package leetcode.array.prefixsum;
 
 import java.util.HashMap;
 import java.util.Map;
 
 //
-public class rawr {
+public class WaysToPartition {
     // Time Complexity: O(n), Space Complexity: O(n)
     public int waysToPartition(int[] nums, int k) {
         int n = nums.length;

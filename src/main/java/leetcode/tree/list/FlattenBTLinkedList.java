@@ -20,7 +20,6 @@ public class FlattenBTLinkedList {
         while (currentNode != null) {
             // If the node has a left child, we need to rearrange
             if (currentNode.left != null) {
-
                 // Find the rightmost node of the left subtree
                 TreeNode rightmostOfLeft = getRightmost(currentNode.left);
 

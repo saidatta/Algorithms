@@ -1,6 +1,8 @@
 package leetcode.linkedlist;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,6 +18,8 @@ public class CopyListWIthRandomPointer {
         if (head == null) {
             return null;
         }
+
+        List<Integer> ll = new LinkedList<>();
 
         Map<RandomListNode, RandomListNode> dict = new HashMap<>();
         RandomListNode randomListNode = head;

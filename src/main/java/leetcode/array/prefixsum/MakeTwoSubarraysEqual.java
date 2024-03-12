@@ -1,4 +1,4 @@
-package leetcode.array.prefixSum;
+package leetcode.array.prefixsum;
 
 // https://leetcode.com/problems/make-two-arrays-equal-by-reversing-subarrays/
 public class MakeTwoSubarraysEqual {

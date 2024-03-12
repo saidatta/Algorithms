@@ -6,7 +6,7 @@ import java.util.LinkedList;
  * GeeksForgeeks
  * Created by venkatamunnangi on 1/2/17.
  */
-public class DetectCycleUndirectedGraph {
+    public class DetectCycleUndirectedGraph {
     private int V;   // No. of vertices
     private LinkedList<Integer> adj[]; // Adjacency List Represntation
 

@@ -106,13 +106,13 @@ public class LongestPalindromicSubstring {
         return max;
     }
 
-    private boolean isPalindrome(char[] c, int s, int e) {
-        if(s < 0) {
+    private boolean isPalindrome(char[] stringArray, int start, int end) {
+        if(start < 0) {
             return false;
         }
 
-        while (s < e) {
-            if(c[s++] != c[e--]) {
+        while (start < end) {
+            if(stringArray[start++] != stringArray[end--]) {
                 return false;
             }
         }

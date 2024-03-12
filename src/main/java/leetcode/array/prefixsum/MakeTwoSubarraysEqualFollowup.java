@@ -1,4 +1,4 @@
-package leetcode.array.prefixSum;
+package leetcode.array.prefixsum;
 
 // Follow up: find the minimum steps to make two arrays equal
 public class MakeTwoSubarraysEqualFollowup {

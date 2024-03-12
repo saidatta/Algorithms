@@ -1,4 +1,4 @@
-package leetcode.array.prefixSum;
+package leetcode.array.prefixsum;
 
 public class FindHighestAltitude {
     public int largestAltitude(int[] gain) {

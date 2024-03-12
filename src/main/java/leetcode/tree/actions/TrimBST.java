@@ -1,9 +1,9 @@
 package leetcode.tree.actions;
 
-// https://leetcode.com/problems/trim-a-binary-search-tree/
 
 import leetcode.tree.util.TreeNode;
 
+// https://leetcode.com/problems/trim-a-binary-search-tree/
 public class TrimBST {
     public static TreeNode trimBST(TreeNode root, int low, int high) {
         if (root == null) return null;
@@ -37,5 +37,4 @@ public class TrimBST {
         System.out.print(root.val + " ");
         printInorder(root.right);
     }
-
 }

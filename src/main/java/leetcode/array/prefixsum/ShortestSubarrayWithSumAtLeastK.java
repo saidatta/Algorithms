@@ -1,4 +1,4 @@
-package leetcode.array.prefixSum;
+package leetcode.array.prefixsum;
 
 import java.util.Deque;
 import java.util.LinkedList;

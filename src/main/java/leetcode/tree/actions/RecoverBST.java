@@ -89,18 +89,27 @@ class RecoverBST {
 }
 
 
-//    The provided Java code implements the Morris Traversal algorithm to recover a binary search tree (BST) in which two nodes have been swapped. This approach does not require extra space for recursion or a stack, making it an O(1) space complexity solution, which is more efficient than the recursive approach in terms of space.
+//    The provided Java code implements the Morris Traversal algorithm to recover a binary search tree (BST) in which
+//    two nodes have been swapped. This approach does not require extra space for recursion or a stack, making it an
+//    O(1) space complexity solution, which is more efficient than the recursive approach in terms of space.
 //
-//        Morris Traversal is a tree traversal algorithm that does not use recursion or a stack. Instead, it establishes temporary links (or threads) to traverse the tree. Here's a breakdown of the solution:
+//        Morris Traversal is a tree traversal algorithm that does not use recursion or a stack. Instead, it
+//        establishes temporary links (or threads) to traverse the tree. Here's a breakdown of the solution:
 //
 //        1. **Morris Traversal to Find Swapped Nodes**:
-//        - The algorithm iterates through the tree using a while loop. For each node, it checks if the node has a left child. If it does, it finds the rightmost child of the left subtree (the Morris predecessor).
-//        - If the rightmost child does not point back to the current node (`predecessor.right == null`), a temporary link is created, and the algorithm moves to the left child.
-//        - If the rightmost child points to the current node, it means we've already visited the left subtree, so the temporary link is broken, and the algorithm moves to the right child.
-//        - While traversing, it keeps track of the current node (`root`) and its predecessor (`pred`). If a pair of nodes is found where the predecessor's value is greater than the current node's value, these nodes are candidates for being swapped.
+//        - The algorithm iterates through the tree using a while loop. For each node, it checks if the node has a
+//        left child. If it does, it finds the rightmost child of the left subtree (the Morris predecessor).
+//        - If the rightmost child does not point back to the current node (`predecessor.right == null`), a temporary
+//        link is created, and the algorithm moves to the left child.
+//        - If the rightmost child points to the current node, it means we've already visited the left subtree, so the
+//        temporary link is broken, and the algorithm moves to the right child.
+//        - While traversing, it keeps track of the current node (`root`) and its predecessor (`pred`). If a pair of
+//        nodes is found where the predecessor's value is greater than the current node's value, these nodes are
+//        candidates for being swapped.
 //
 //        2. **Swapping the Swapped Nodes**:
-//        - The algorithm identifies two nodes (`x` and `y`) where the BST property is violated. `x` is the first such node, and `y` is the last.
+//        - The algorithm identifies two nodes (`x` and `y`) where the BST property is violated. `x` is the first such
+//           node, and `y` is the last.
 //        - After the traversal, `x` and `y` will point to the two nodes that need to be swapped to recover the BST.
 //
 //        3. **Swap Function**:

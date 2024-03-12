@@ -4,6 +4,7 @@ package leetcode.dp.array;
  * The class finds the maximum sum of a partitioned array.
  * It divides the array into subarrays of length at most k and then maximizes the sum
  * by changing all elements in a subarray to the subarray's maximum value.
+ * https://www.youtube.com/watch?v=kWhy4ZUBdOY
  */
 public class MaxSumAfterPartitioning {
 
