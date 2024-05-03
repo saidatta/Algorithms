@@ -1,4 +1,4 @@
-package leetcode.design;
+package leetcode.design.product;
 
 /**
  * https://leetcode.com/problems/design-hit-counter/#/description
