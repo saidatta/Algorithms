@@ -6,9 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 // https://leetcode.com/problems/n-queens/
-
-
-// https://leetcode.com/problems/n-queens/
 public class NQueens {
     public List<List<String>> solveNQueens(int n) {
         char[][] board = createEmptyBoard(n);

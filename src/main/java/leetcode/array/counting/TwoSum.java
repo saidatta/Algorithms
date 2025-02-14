@@ -1,6 +1,7 @@
 package leetcode.array.counting;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 1 - https://leetcode.com/problems/two-sum/#/description
@@ -23,11 +24,25 @@ public class TwoSum {
         return result;
     }
 
+    public int[] findSum(int[] arr, int n) {
+        Map<Integer, Integer> dictionaryNumbers = new HashMap<>();
+
+        for (int i = 0; i< arr.length; i++) {
+            int sum = n - arr[i];
+            if(dictionaryNumbers.containsKey(sum)) {
+                return new int[] {dictionaryNumbers.get(sum), i};
+            } else {
+                dictionaryNumbers.put(arr[i], i);
+            }
+        }
+
+        return new int[]{};
+    }
     public static void main(String [] args) {
         int [] nums = new int[]{2, 7, 11, 15};
         TwoSum twoSum = new TwoSum();
 
-        int [] ans = twoSum.twoSum(nums, 9);
+        int [] ans = twoSum.findSum(nums, 9);
         System.out.println(ans[0]+" "+ ans[1]);
     }
 }

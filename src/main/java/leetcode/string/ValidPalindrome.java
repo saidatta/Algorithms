@@ -15,16 +15,19 @@ public class ValidPalindrome {
 
         int n = s.length();
 
-        for (int i = 0, j = n - 1; i < j; i++, j--) { // Move 2 pointers from each end until they collide
-            while (!Character.isLetterOrDigit(s.charAt(i)) && i < j) {
-                i++; // Increment left pointer if not alphanumeric
+        int left = 0, right = n - 1;
+        while (left < right) { // Move 2 pointers from each end until they collide
+            while (!Character.isLetterOrDigit(s.charAt(left)) && left < right) {
+                left++; // Increment left pointer if not alphanumeric
             }
-            while (!Character.isLetterOrDigit(s.charAt(j)) && i < j) {
-                j--; // Decrement right pointer if no alphanumeric
+            while (!Character.isLetterOrDigit(s.charAt(right)) && left < right) {
+                right--; // Decrement right pointer if no alphanumeric
             }
-            if (Character.toLowerCase(s.charAt(i)) != Character.toLowerCase(s.charAt(j))) {
+            if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
                 return false; // Exit and return error if not match
             }
+            left++;
+            right--;
         }
 
         return true;

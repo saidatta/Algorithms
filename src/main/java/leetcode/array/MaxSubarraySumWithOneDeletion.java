@@ -1,8 +1,7 @@
 package leetcode.array;
 
-import java.util.Arrays;
-
 // https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/description/
+// https://www.youtube.com/watch?v=EPv23X6jJwQ
 public class MaxSubarraySumWithOneDeletion {
 
     /**

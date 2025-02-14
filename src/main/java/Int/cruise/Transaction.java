@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Stack;
 
 class TransactionalMap {
-
     private final Stack<Transaction> transactions = new Stack<>();
     private final Map<String, Integer> mainStorage = new HashMap<>();
 
