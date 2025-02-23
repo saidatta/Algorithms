@@ -6,7 +6,6 @@ import static java.lang.System.out;
 
 /**
  * https://leetcode.com/problems/remove-invalid-parentheses/#/description
- *
  * Created by venkatamunnangi on 3/23/17.
  */
 public class MinRemoveParenthesesMakeValid {

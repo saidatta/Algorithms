@@ -18,7 +18,7 @@ public class KthLargestElementInArray {
                 pq.poll();
             }
         }
-        return pq.peek();
+        return pq.remove();
     }
 
     public static void main(String [] args) {

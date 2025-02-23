@@ -5,6 +5,8 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
 
+// https://www.youtube.com/watch?v=mgQ4O9iUEbg
+// https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/description/
 public class RemoveInvalidParentheses {
     public static void main(String[] args) {
         System.out.println(minRemoveToMakeValid2("lee(t(c)o)de)"));  // Output: "lee(t(c)o)de"
