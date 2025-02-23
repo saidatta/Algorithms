@@ -15,27 +15,28 @@ public class CloneGraph {
         return clone(node, new HashMap<>());
     }
 
-    private UndirectedGraphNode clone(UndirectedGraphNode src, HashMap<UndirectedGraphNode, UndirectedGraphNode> visitedBag){
-        if (src == null){
+    private UndirectedGraphNode clone(UndirectedGraphNode src,
+                                      HashMap<UndirectedGraphNode, UndirectedGraphNode> visitedBag) {
+        if (src == null) {
             return null;
         }
 
-        if (visitedBag.containsKey(src)){
+        if (visitedBag.containsKey(src)) {
             return visitedBag.get(src);
         }
 
-        UndirectedGraphNode n = new UndirectedGraphNode(src.label);
-        n.neighbors = new ArrayList<>();
+        UndirectedGraphNode newNode = new UndirectedGraphNode(src.label);
+        newNode.neighbors = new ArrayList<>();
 
-        visitedBag.put(src, n);
-        for (UndirectedGraphNode child : src.neighbors){
-            if (visitedBag.containsKey(child)){
-                n.neighbors.add(visitedBag.get(child));
+        visitedBag.put(src, newNode);
+        for (UndirectedGraphNode child : src.neighbors) {
+            if (visitedBag.containsKey(child)) {
+                newNode.neighbors.add(visitedBag.get(child));
             } else {
                 UndirectedGraphNode childCopy = clone(child, visitedBag);
-                n.neighbors.add(childCopy);
+                newNode.neighbors.add(childCopy);
             }
         }
-        return n;
+        return newNode;
     }
 }

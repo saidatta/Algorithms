@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.array.twopointers;
 
 import java.util.Arrays;
 
@@ -8,6 +8,30 @@ import java.util.Arrays;
  * Created by venkatamunnangi on 3/19/17.
  */
 public class ProductOfArrayExceptSelf {
+
+    public int[] productExceptSelf3(int[] nums) {
+        int n = nums.length;
+
+        int left = 1, right = n-1;
+        int leftProduct = 1, rightProduct = 1;
+
+        int[] products = new int[n];
+        Arrays.fill(products, 1);;
+
+
+        while (left < right && right >= 0) {
+            products[left] = leftProduct;
+            products[right] = rightProduct;
+
+            leftProduct *= nums[left];
+            rightProduct *= nums[right];
+
+            left++;
+            right--;
+        }
+
+        return products;
+    }
     /**
      * Returns an array where each element at index i is the product of all
      * numbers in the original array except nums[i].
@@ -81,10 +105,30 @@ public class ProductOfArrayExceptSelf {
         return products;
     }
 
+    public static int[] findProduct4(int[] arr) {
+        int n = arr.length;
+        int[] products = new int[n];
+
+        Arrays.fill(products, 1);
+        int leftProduct = 1, rightProduct = 1;
+
+        for(int i =0; i < n;i++) {
+            products[i] *= leftProduct;
+            leftProduct *= arr[i];
+        }
+
+        for(int i = n - 1; i >= 0;i--) {
+            products[i] *= rightProduct;
+            rightProduct *= arr[i];
+        }
+
+        return products;
+    }
+
     public static void main(String [] args) {
         ProductOfArrayExceptSelf productOfArrayExceptSelf = new ProductOfArrayExceptSelf();
         int [] nums = {1,2,3,4};
-        System.out.println(Arrays.toString(productOfArrayExceptSelf.productExceptSelf(nums)));
+        System.out.println(Arrays.toString(findProduct4(nums)));
     }
 
     public int[] productExceptSelfSlow(int[] nums) {

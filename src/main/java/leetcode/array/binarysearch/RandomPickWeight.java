@@ -2,8 +2,8 @@ package leetcode.array.binarysearch;
 
 public class RandomPickWeight {
     class Solution {
-        private int[] prefixSums;
-        private int totalSum;
+        private final int[] prefixSums;
+        private final int totalSum;
 
         public Solution(int[] w) {
             this.prefixSums = new int[w.length];

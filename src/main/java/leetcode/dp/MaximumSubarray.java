@@ -5,9 +5,12 @@ import static java.lang.System.*;
 /**
  * Leetcode 53
  * https://leetcode.com/problems/maximum-subarray/
+ * https://www.youtube.com/watch?v=5WZl3MMT0Eg
  *
  * For example, given the array [-2,1,-3,4,-1,2,1,-5,4],
  * the contiguous subarray [4,-1,2,1] has the largest sum = 6.
+ *
+ * kadane algorithm
  *
  * Created by venkatamunnangi on 2/7/17.
  */
